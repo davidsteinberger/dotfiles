@@ -1,0 +1,21 @@
+- clean: ['~']
+
+- link:
+    ~/.dotfiles: ''
+    ~/.bashrc: bashrc
+    ~/.bash_profile: bash_profile
+    ~/.gitconfig: gitconfig
+    ~/.gitignore: gitignore
+    ~/.iTerm2: iterm2/
+    ~/.tmux.conf: tmux.conf
+    ~/.vim: vim/
+    ~/.vimrc: vimrc
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  -
+    command: ['./misc_install_script.sh', miscellaneous installs]
+    stdout: true
+  -
+    command: ['./post_install_message.sh', post install message]
+    stdout: true
