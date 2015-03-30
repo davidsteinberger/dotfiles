@@ -27,3 +27,5 @@
     trustExitCode = false
     keepBackup = false
     prompt = false
+[push]
+	default = simple
