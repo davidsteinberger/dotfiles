@@ -51,6 +51,7 @@ NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'othree/eregex.vim'
+NeoBundle 'regedarek/ZoomWin'
 
 call neobundle#end()
 
@@ -334,6 +335,7 @@ nnoremap N N:call PulseCursorLine()<cr>
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
 inoremap jk <Esc>
+vnoremap jk <Esc>
 
 " Quick alignment of text
 " nnoremap <leader>al :left<CR>
