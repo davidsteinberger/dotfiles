@@ -46,8 +46,10 @@ NeoBundle 'ervandew/supertab'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'ap/vim-css-color'
 NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'jeetsukumaran/vim-buffergator'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'mustache/vim-mustache-handlebars'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'othree/eregex.vim'
@@ -268,8 +270,8 @@ nnoremap Q gqap
 " set breakindent on  " keep paragraph indentation when re-wrapping text
 
 " Sort paragraphs
-vnoremap <leader>s !sort -f<CR>gv
-nnoremap <leader>s vip!sort -f<CR><Esc>
+"vnoremap <leader>s !sort -f<CR>gv
+"nnoremap <leader>s vip!sort -f<CR><Esc>
 
 " make p in Visual mode replace the selected text with the yank register
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
@@ -318,7 +320,7 @@ nnoremap <leader>r :YRShow<CR>
 
 " Edit the vimrc file
 nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>rv :so $MYVIMRC<CR>
 
 " Clears the search register
 nnoremap <silent> <leader>/ :nohlsearch<CR>
@@ -335,7 +337,7 @@ nnoremap N N:call PulseCursorLine()<cr>
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk')
 inoremap jk <Esc>
-vnoremap jk <Esc>
+vnoremap jö <Esc>
 
 " Quick alignment of text
 " nnoremap <leader>al :left<CR>
@@ -625,7 +627,7 @@ if has("autocmd")
         autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
         " Enable insertion of "debugger" statement in JS files
-        autocmd filetype javascript nnoremap <leader>b Odebugger;<esc>
+        "autocmd filetype javascript nnoremap <leader>b Odebugger;<esc>
     augroup end "}}}
 
     augroup textile_files "{{{
@@ -710,9 +712,9 @@ let g:ctrlp_custom_ignore = {
    \ }
 
 " Invoke CtrlP, but CommandT style
-nnoremap <leader>t :CtrlP<cr>
+"nnoremap <leader>t :CtrlP<cr>
 "nnoremap <leader>. :CtrlPTag<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
+"nnoremap <leader>b :CtrlPBuffer<cr>
 
 " C-U in insert/normal mode, to uppercase the word under cursor
 "inoremap <c-u> <esc>viwUea
@@ -804,7 +806,7 @@ autocmd FileType javascript,css nnoremap <silent> <leader>. :call cosco#commaOrS
 autocmd FileType javascript,css inoremap <silent> <leader>. <c-o>:call cosco#commaOrSemiColon()<CR>
 "imap <C-M> <CR><Esc>O
 "inoremap {<CR> {<CR>}<Esc>ko}
- let user_emmet_expandabbr_key = '<c-e>'
+let user_emmet_expandabbr_key = '<c-e>'
 noremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
@@ -833,3 +835,26 @@ endfunction
 
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
+
+" Gif config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings"
+nmap s <Plug>(easymotion-s2)
+"nmap t <Plug>(easymotion-t2)
+
+"map  / <Plug>(easymotion-sn)
+"omap / <Plug>(easymotion-tn)
+
+" These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+" Without these mappings, `n` & `N` works fine. (These mappings just provide
+" different highlight method and have some other features )
+"map  n <Plug>(easymotion-next)
+"map  N <Plug>(easymotion-prev)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+" keep cursor colum when JK motion
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion"
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
