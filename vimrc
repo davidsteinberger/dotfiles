@@ -52,6 +52,7 @@ NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'regedarek/ZoomWin'
 
@@ -76,7 +77,8 @@ syntax on
 " Change shell
 set shell=bash                  " Vim expects a POSIX-compliant shell, which Fish (my default shell) is not
 
-let mapleader=","               " change the mapleader from \ to ,
+let mapleader="ö"               " change the mapleader from \ to ö (German keyboard ;-))
+nmap , ö                        " map leader also to , (convience)
 
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in"
@@ -252,11 +254,8 @@ endif
 " }}}
 
 " Shortcut mappings {{{
-" Since I never use the ; key anyway, this is a real optimization for almost
-" all Vim commands, as I don't have to press the Shift key to form chords to
-" enter ex mode.
-nnoremap ö :
-nnoremap <leader>ö ö
+nnoremap ä :
+nnoremap <leader>ä ä
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 noremap! <F1> <Esc>
@@ -335,9 +334,9 @@ nnoremap n n:call PulseCursorLine()<cr>
 nnoremap N N:call PulseCursorLine()<cr>
 
 " Quickly get out of insert mode without your fingers having to leave the
-" home row (either use 'jj' or 'jk')
+" home row (either use 'jj' or 'jk' in insert-, öö in visual-mode)
 inoremap jk <Esc>
-vnoremap jö <Esc>
+vnoremap öö <Esc>
 
 " Quick alignment of text
 " nnoremap <leader>al :left<CR>
@@ -364,7 +363,8 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " Use The Silver Searcher over grep, iff possible
 if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --column\ --numbers\ --noheading
+  set grepformat=%f:%l:%c%m
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -445,9 +445,9 @@ nnoremap <leader>v V`]
 " }}}
 
 " NERDTree settings {{{
-nnoremap <leader>n :NERDTreeFocus<CR>
+"nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <leader>m :NERDTreeClose<CR>:NERDTreeFind<CR>
-nnoremap <leader>N :NERDTreeClose<CR>
+"nnoremap <leader>N :NERDTreeClose<CR>
 
 " Store the bookmarks file
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
@@ -858,3 +858,12 @@ map <Leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion"
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
+
+" jump through the grep/ag results in quickfix with <leader>n
+" (similar to what 'n' does in a regular search)
+nmap <leader>N [q
+nmap <leader>n ]q
+omap <leader>N [q
+omap <leader>n ]q
+xmap <leader>N [q
+xmap <leader>n ]q
