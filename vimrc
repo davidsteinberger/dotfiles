@@ -802,8 +802,8 @@ let g:syntastic_html_checkers = ['jshint']
 "autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>}
 "autocmd FileType javascript inoremap (; ();<Esc>hi
 command! CommaOrSemiColon call cosco#commaOrSemiColon()
-autocmd FileType javascript,css nnoremap <silent> <leader>. :call cosco#commaOrSemiColon()<CR>
-autocmd FileType javascript,css inoremap <silent> <leader>. <c-o>:call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css nnoremap <silent> ,. :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> ,. <c-o>:call cosco#commaOrSemiColon()<CR>
 "imap <C-M> <CR><Esc>O
 "inoremap {<CR> {<CR>}<Esc>ko}
 let user_emmet_expandabbr_key = '<c-e>'
