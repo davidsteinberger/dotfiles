@@ -77,8 +77,11 @@ syntax on
 " Change shell
 set shell=bash                  " Vim expects a POSIX-compliant shell, which Fish (my default shell) is not
 
-let mapleader="ö"               " change the mapleader from \ to ö (German keyboard ;-))
-nmap , ö                        " map leader also to , (convience)
+" add leader as <Space>
+" http://www.reddit.com/r/vim/comments/1vdrxg/space_is_a_big_key_what_do_you_map_it_to/
+map <Space> <nop>
+map <Space> \
+map <Space><Space> <leader><leader>
 
 " Editing behaviour {{{
 set showmode                    " always show what mode we're currently editing in"
@@ -233,7 +236,7 @@ endfunction
 " }}}
 
 " Toggle the foldcolumn {{{
-nnoremap <leader>f :call FoldColumnToggle()<cr>
+"nnoremap <leader>f :call FoldColumnToggle()<cr>
 
 let g:last_fold_column_width = 4  " Pick a sane default for the foldcolumn
 
@@ -254,8 +257,8 @@ endif
 " }}}
 
 " Shortcut mappings {{{
-nnoremap ä :
-nnoremap <leader>ä ä
+nnoremap ö :
+nnoremap <leader>ö ö
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 noremap! <F1> <Esc>
@@ -299,7 +302,7 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-nnoremap <leader>w <C-w>v<C-w>l
+"nnoremap <leader>w <C-w>v<C-w>l
 
 " Complete whole filenames/lines with a quicker shortcut key in insert mode
 inoremap <C-f> <C-x><C-f>
@@ -322,7 +325,7 @@ nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
 nnoremap <silent> <leader>rv :so $MYVIMRC<CR>
 
 " Clears the search register
-nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <silent> ä :nohlsearch<CR>
 
 " Pull word under cursor into LHS of a substitute (for quick search and
 " replace)
@@ -354,8 +357,8 @@ cnoremap w!! w !sudo tee % >/dev/null
 "vnoremap <Tab> %
 
 " Folding
-nnoremap <Space> za
-vnoremap <Space> za
+"nnoremap <Space> za
+"vnoremap <Space> za
 
 " Strip all trailing whitespace from a file, using ,W
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
@@ -432,7 +435,7 @@ nnoremap <leader>g :spellgood <c-r><c-w>
 command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 
 " bind \ (backward slash) to grep shortcut
-nnoremap \ :Ag<SPACE>
+nnoremap <leader>/ :Ag<SPACE>
 
 " Creating folds for tags in HTML
 "nnoremap <leader>ft Vatzf
@@ -802,7 +805,7 @@ let g:syntastic_html_checkers = ['jshint']
 "autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>}
 "autocmd FileType javascript inoremap (; ();<Esc>hi
 command! CommaOrSemiColon call cosco#commaOrSemiColon()
-autocmd FileType javascript,css nnoremap <silent> ,. :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css nnoremap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css inoremap <silent> ,. <c-o>:call cosco#commaOrSemiColon()<CR>
 "imap <C-M> <CR><Esc>O
 "inoremap {<CR> {<CR>}<Esc>ko}
@@ -837,7 +840,7 @@ let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 
 " Gif config
-let g:EasyMotion_do_mapping = 0 " Disable default mappings"
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings"
 nmap s <Plug>(easymotion-s2)
 "nmap t <Plug>(easymotion-t2)
 
