@@ -67,6 +67,8 @@ NeoBundleCheck
 filetype plugin indent on
 
 let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = '0'
+let g:ctrlp_cmd = 'CtrlP pwd'
 
 let g:vimfiler_as_default_explorer = 1
 let g:nerdtree_tabs_open_on_console_startup = 1
@@ -308,10 +310,13 @@ noremap <C-l> <C-w>l
 inoremap <C-f> <C-x><C-f>
 inoremap <C-l> <C-x><C-l>
 
-" Use ,d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
+" Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
 " yanked stack (also, in visual mode)
 nnoremap <silent> <leader>d "_d
 vnoremap <silent> <leader>d "_d
+" apply the same to ,x
+nnoremap <silent> <leader>x "_x
+vnoremap <silent> <leader>x "_x
 
 " Quick yanking to the end of the line
 nnoremap Y y$
@@ -370,7 +375,7 @@ if executable('ag')
   set grepformat=%f:%l:%c%m
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 1
@@ -622,8 +627,8 @@ if has("autocmd")
     augroup javascript_files "{{{
         au!
 
-        autocmd filetype javascript setlocal expandtab
-        autocmd filetype javascript setlocal listchars=trail:·,extends:#,nbsp:·
+        "autocmd filetype javascript setlocal expandtab
+        autocmd filetype javascript setlocal listchars=tab:\ \ ,trail:·,extends:#,nbsp:·
         autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
 
         " Toggling True/False
@@ -870,3 +875,6 @@ omap <leader>N [q
 omap <leader>n ]q
 xmap <leader>N [q
 xmap <leader>n ]q
+
+set ffs=unix,dos
+set iskeyword+=-
