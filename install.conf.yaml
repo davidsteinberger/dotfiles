@@ -1,5 +1,9 @@
 - clean: ['~']
 
+- shell:
+  - [touch vim/user.vim, create user.vim]
+  - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
+
 - link:
     ~/.dotfiles: ''
     ~/.bashrc: bashrc

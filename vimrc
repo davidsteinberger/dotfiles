@@ -408,7 +408,6 @@ if executable('ag')
     \ --ignore Pictures
     \ --ignore Movies
     \ --ignore Library
-    \ --ignore test
     \ --ignore .cache
     \ --ignore .bundler
     \ --ignore .codeintel
