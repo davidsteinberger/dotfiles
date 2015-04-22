@@ -55,6 +55,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'regedarek/ZoomWin'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 call neobundle#end()
 
@@ -512,8 +513,8 @@ if has("autocmd")
         autocmd filetype vim noremap! <buffer> <F1> <Esc>:help <C-r><C-w><CR>
     augroup end "}}}
 
-    "augroup html_files "{{{
-        "au!
+    augroup html_files "{{{
+        au!
 
         "" This function detects, based on HTML content, whether this is a
         "" Django template, or a plain HTML file, and sets filetype accordingly
@@ -537,10 +538,11 @@ if has("autocmd")
         "autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
 
         "" Auto-closing of HTML/XML tags
-        "let g:closetag_default_xml=1
-        "autocmd filetype html,htmldjango let b:closetag_html_style=1
+        let g:closetag_default_xml=1
+        autocmd filetype html,htmldjango let b:closetag_html_style=1
+        set foldmethod=indent
         "autocmd filetype html,xhtml,xml source ~/.vim/scripts/closetag.vim
-    "augroup end " }}}
+    augroup end " }}}
 
     "augroup python_files "{{{
         "au!
@@ -813,7 +815,7 @@ autocmd FileType javascript,css nnoremap <silent> <leader>, :call cosco#commaOrS
 autocmd FileType javascript,css inoremap <silent> ,. <c-o>:call cosco#commaOrSemiColon()<CR>
 "imap <C-M> <CR><Esc>O
 "inoremap {<CR> {<CR>}<Esc>ko}
-let user_emmet_expandabbr_key = '<c-e>'
+let user_emmet_expandabbr_key = '<leader>e'
 noremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
