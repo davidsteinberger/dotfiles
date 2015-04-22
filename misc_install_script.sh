@@ -15,3 +15,5 @@ sudo gem install tmuxinator
 # Note: make sure node is installed before (install it via nvm)!
 npm install -g bower coffee-script ember-cli ember-prerender express express-generator express-redis-cache grunt-cli gulp instant-markdown-d jshint mocha node-inspector nodemon nodev phantomjs
 
+# install powerline-fonts
+cd fonts && ./install.sh && cd ..

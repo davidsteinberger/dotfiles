@@ -879,3 +879,47 @@ xmap <leader>n ]q
 
 set ffs=unix,dos
 set iskeyword+=-
+
+"set guifont=Inconsolata\ for\ Powerline:h15
+"let g:Powerline_symbols = 'fancy'
+"set encoding=utf-8
+"set t_Co=256
+"set fillchars+=stl:\ ,stlnc:\
+"set term=xterm-256color
+"set termencoding=utf-8
+
+" Airline {{{
+" Make sure powerline fonts are used
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline#extensions#tabline#enabled = 1 "enable the tabline
+let g:airline#extensions#tabline#fnamemod = ':t' " show just the filename of buffers in the tab line
+let g:airline_detect_modified=1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" }}}
+"
+ " Function to show total amount of lines in the airline {{{
+function! AirlineInit()
+    let g:airline_section_z = airline#section#create_right(['%L'])
+  endfunction
+  autocmd VimEnter * call AirlineInit()
+" }}}
+
+" Quick Buffer switch mappings {{{
+" The idea is to press <leader> and then the number from normal mode to switch
+" e.g. `,2` would switch to the second buffer (listed at the top of the
+" airline strip
+
+":nnoremap <silent> <Leader> :<C-u>try \| execute "b" . v:count \| catch \| endtry<CR>
+for i in range(1, 99)
+    execute printf('nnoremap <Leader>%d :%db<CR>', i, i)
+endfor
+for i in range(1, 99)
+    execute printf('nnoremap <Leader>d%d :Bdelete %d<CR>', i, i)
+endfor
+" }}}
