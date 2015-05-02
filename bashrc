@@ -45,4 +45,11 @@ source $(brew --prefix nvm)/nvm.sh # Add NVM to PATH for node
 [[ -r /usr/local/etc/bash_completion.d/nvm ]] && . /usr/local/etc/bash_completion.d/nvm # Bash completion for nvm
 [[ -r /usr/local/etc/bash_completion.d/tmux ]] && . /usr/local/etc/bash_completion.d/tmux #
 
+# configure oracle's instantclient
+export ORACLE_BASE="/opt/oracle/instantclient_11_2/"
+export ORACLE_HOME="/opt/oracle/instantclient_11_2/"
+export DYLD_LIBRARY_PATH="/opt/oracle/instantclient_11_2/"
+export TNS_ADMIN="/opt/oracle/instantclient_11_2/"
+PATH="/opt/oracle/instantclient_11_2/":$PATH
+
 stty -ixon -ixoff
