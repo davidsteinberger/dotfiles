@@ -2,3 +2,5 @@
 vim/bundle/*
 !vim/bundle/NeoBundle.lock
 NERDTreeBookmarks
+vim/.viminfo
+vim/user.vim

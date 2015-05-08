@@ -68,6 +68,7 @@ NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'leafgarland/typescript-vim'
 "}}}
 
 call neobundle#end()
@@ -115,8 +116,13 @@ set noswapfile                  " do not write annoying intermediate swap files,
 set directory=~/.vim/.tmp,~/tmp,/tmp
                                 " store swap files in one of these directories
                                 "    (in case swapfile is ever turned on)
-set viminfo='20,\"80            " read/write a .viminfo file, don't store more
-                                "    than 80 lines of registers
+" Tell vim to remember certain things when we exit
+"  '20  :  marks will be remembered for up to 20 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='20,\"100,:20,%,n~/.viminfo
 set wildmenu                    " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
@@ -367,7 +373,7 @@ nnoremap <leader>' viW<esc>a'<esc>gvo<esc>i'<esc>gvo<esc>3l
 vnoremap <leader>" <esc>a"<esc>gvo<esc>i"<esc>gvo<esc>ll
 vnoremap <leader>' <esc>a'<esc>gvo<esc>i'<esc>gvo<esc>ll
 
-nmap cp :let @" = expand("%")"
+nmap cp :let @* = expand("%")
 
 nnoremap <C-c> :call HighlightNearCursor()<CR>
 
@@ -482,6 +488,14 @@ autocmd BufReadPost *
     \   exe "normal! g`\"" |
     \ endif
 autocmd VimEnter * call AirlineInit()
+"augroup resCur
+  "autocmd!
+  "if has("folding")
+    "autocmd BufWinEnter * if ResCur() | call UnfoldCur() | endif
+  "else
+    "autocmd BufWinEnter * call ResCur()
+  "endif
+"augroup END
 " }}}
 
 " Abbreviations {{{
@@ -631,6 +645,7 @@ command! CommaOrSemiColon call cosco#commaOrSemiColon()
 "}}}
 
 " Emmet {{{
+let g:user_emmet_leader_key="<C-ü>"
 let user_emmet_expandabbr_key = '<leader>e'
 "}}}
 
@@ -737,6 +752,34 @@ function! s:QuickfixToggle()
         let g:quickfix_is_open = 1
     endif
 endfunction
+
+" Cursor position restore
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+" Partial foldlevel restore
+if has("folding")
+  function! UnfoldCur()
+    if !&foldenable
+      return
+    endif
+    let cl = line(".")
+    if cl <= 1
+      return
+    endif
+    let cf  = foldlevel(cl)
+    let uf  = foldlevel(cl - 1)
+    let min = (cf > uf ? uf : cf)
+    if min
+      execute "normal!" min . "zo"
+      return 1
+    endif
+  endfunction
+endif
 
 " Quick Buffer switch mappings {{{
 " The idea is to press <leader> and then the number from normal mode to switch

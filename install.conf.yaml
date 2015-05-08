@@ -13,6 +13,7 @@
     ~/.iTerm2: iterm2/
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
+    ~/.viminfo: vim/.viminfo
     ~/.vimrc: vimrc
 
 - shell:
