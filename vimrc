@@ -11,6 +11,15 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+if has('nvim')
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+  " Hack to get C-h working in neovim
+  nmap <BS> <C-W>h
+  tnoremap <Esc> <C-\><C-n>
+  "removed 'key', 'oft', 'sn', 'tx' options which do not work with nvim
+  let g:zoomwin_localoptlist = ["ai","ar","bh","bin","bl","bomb","bt","cfu","ci","cin","cink","cino","cinw","cms","com","cpt","diff","efm","eol","ep","et","fenc","fex","ff","flp","fo","ft","gp","imi","ims","inde","inex","indk","inf","isk","kmp","lisp","mps","ml","ma","mod","nf","ofu","pi","qe","ro","sw","si","sts","spc","spf","spl","sua","swf","smc","syn","ts","tw","udf","wfh","wfw","wm"]
+endif
+
 " Extra user or machine specific settings
 source ~/.vim/user.vim
 
@@ -30,7 +39,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Plugins {{{
 NeoBundle 'dbext.vim'
 NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'regedarek/ZoomWin'
+"NeoBundle 'regedarek/ZoomWin'
+NeoBundle 'troydm/zoomwintab.vim'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
 NeoBundle 'lfilho/cosco.vim'
@@ -780,6 +790,21 @@ if has("folding")
     endif
   endfunction
 endif
+
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <C-A> :ZoomToggle<CR>
 
 " Quick Buffer switch mappings {{{
 " The idea is to press <leader> and then the number from normal mode to switch

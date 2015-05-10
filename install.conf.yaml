@@ -7,13 +7,17 @@
 - link:
     ~/.dotfiles: ''
     ~/.bashrc: bashrc
+    ~/.zshrc: zshrc
+    ~/.zsh: zsh
+    ~/.zshrc.zni: zshrc.zni
     ~/.bash_profile: bash_profile
+    ~/.common_profile: common_profile
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.iTerm2: iterm2/
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
-    ~/.viminfo: vim/.viminfo
+    ~/.viminfo: viminfo
     ~/.vimrc: vimrc
 
 - shell:

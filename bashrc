@@ -27,17 +27,8 @@ NC='\e[0m' # No Color
 #declare -x PS1="\[\e[1;32m\]\u @ Macbook Pro \w %\[\033[0m\] "
 export PS1="\u @ MBP \W % "
 
-export EDITOR=vim
+source ~/.common_profile
 
-alias pear="php /usr/lib/php/pear/pearcmd.php"
-alias pecl="php /usr/lib/php/pear/peclcmd.php"
-
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#PATH=$PATH:$HOME/Diverses/Scripts # Add ~/Diverses/Scripts
-#PATH=$PATH:~/Sites/depot_tools
-
-export NVM_DIR=~/.nvm # Change NVM install dir to ~/.nvm
-source $(brew --prefix nvm)/nvm.sh # Add NVM to PATH for node
 [[ -r /usr/local/etc/bash_completion.d/ag.bashcomp.sh ]] && . /usr/local/etc/bash_completion.d/ag.bashcomp.sh # Bash completion for nvm
 [[ -r /usr/local/etc/bash_completion.d/brew_bash_completion.sh ]] && . /usr/local/etc/bash_completion.d/brew_bash_completion.sh # Bash completion for nvm
 [[ -r /usr/local/etc/bash_completion.d/git-completion.bash ]] && . /usr/local/etc/bash_completion.d/git-completion.bash # Bash completion for Git
@@ -45,11 +36,3 @@ source $(brew --prefix nvm)/nvm.sh # Add NVM to PATH for node
 [[ -r /usr/local/etc/bash_completion.d/nvm ]] && . /usr/local/etc/bash_completion.d/nvm # Bash completion for nvm
 [[ -r /usr/local/etc/bash_completion.d/tmux ]] && . /usr/local/etc/bash_completion.d/tmux #
 
-# configure oracle's instantclient
-export ORACLE_BASE="/opt/oracle/instantclient_11_2/"
-export ORACLE_HOME="/opt/oracle/instantclient_11_2/"
-export DYLD_LIBRARY_PATH="/opt/oracle/instantclient_11_2/"
-export TNS_ADMIN="/opt/oracle/instantclient_11_2/"
-PATH="/opt/oracle/instantclient_11_2/":$PATH
-
-stty -ixon -ixoff

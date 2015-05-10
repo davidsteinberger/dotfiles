@@ -2,5 +2,7 @@
 vim/bundle/*
 !vim/bundle/NeoBundle.lock
 NERDTreeBookmarks
-vim/.viminfo
+viminfo
 vim/user.vim
+zsh_history
+zsh/cache/

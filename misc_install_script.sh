@@ -5,7 +5,7 @@ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.s
 
 # install required brew packages
 brew tap homebrew/dupes
-brew install cmake gawk git grep macvim reattach-to-user-namespace the_silver_searcher tmux vim watchman
+brew install cmake gawk git grep macvim reattach-to-user-namespace the_silver_searcher tmux vim watchman zsh zsh-completions dos2unix
 brew install --HEAD tidy
 brew link gawk
 
