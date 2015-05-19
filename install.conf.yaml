@@ -3,6 +3,8 @@
 - shell:
   - [touch vim/user.vim, create user.vim]
   - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
+  - [touch viminfo, create viminfo]
+  - [touch gitconfig, create gitconfig]
 
 - link:
     ~/.dotfiles: ''

@@ -476,6 +476,8 @@ if has("autocmd")
     " Toggling True/False
     autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+    autocmd FileType javascript setlocal omnifunc=tern#Complete
   augroup end
   "}}}
 
@@ -806,7 +808,7 @@ function! s:ZoomToggle() abort
     endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
-nnoremap <silent> <C-A> :ZoomToggle<CR>
+"nnoremap <silent> <C-A> :ZoomToggle<CR>
 
 " Quick Buffer switch mappings {{{
 " The idea is to press <leader> and then the number from normal mode to switch
@@ -822,19 +824,19 @@ endfor
 " }}}
 
 "set omnifunc=syntaxcomplete#Complete
-let g:tern_map_keys=1
-let g:tern_show_argument_hints="yes"
+"let g:tern_map_keys=1
+"let g:tern_show_argument_hints="yes"
 
-let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+"let g:ycm_semantic_triggers =  {
+  "\   'c' : ['->', '.'],
+  "\   'objc' : ['->', '.'],
+  "\   'ocaml' : ['.', '#'],
+  "\   'cpp,objcpp' : ['->', '.', '::'],
+  "\   'perl' : ['->'],
+  "\   'php' : ['->', '::'],
+  "\   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
+  "\   'ruby' : ['.', '::'],
+  "\   'lua' : ['.', ':'],
+  "\   'erlang' : [':'],
+  "\ }
