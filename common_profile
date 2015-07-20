@@ -18,4 +18,3 @@ export TNS_ADMIN="/opt/oracle/instantclient_11_2/"
 PATH="/opt/oracle/instantclient_11_2/":$PATH
 
 stty -ixon -ixoff
-

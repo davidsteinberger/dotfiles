@@ -5,3 +5,6 @@ alias ls='ls -GFh'
 alias ll='ls -GFhl'
 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+
+alias tmux-myplant-web="tmuxinator myplant-web"
+alias tmux-myplant-operations="tmuxinator myplant-operations"

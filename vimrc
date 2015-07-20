@@ -43,6 +43,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'troydm/zoomwintab.vim'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lfilho/cosco.vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
@@ -231,8 +232,12 @@ nnoremap <C-y> 2<C-y>
 set foldenable                  " enable folding
 set foldcolumn=2                " add a fold column
 set foldmethod=marker           " detect triple-{ style fold markers
-set foldlevel=99
-set foldlevelstart=99           " start out with everything unfolded
+"set foldlevel=20
+"set foldlevelstart=20           " start out with everything unfolded
+
+" calculate foldlevel and set it upon opening a buffer
+autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
+
 "set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
                                 " which commands trigger auto-unfold
 function! MyFoldText()
@@ -346,8 +351,8 @@ nnoremap <leader>z :%s#\<<C-r>=expand("<cword>")<CR>\>#
 
 " Keep search matches in the middle of the window and pulse the line when moving
 " to them.
-nnoremap n n:call PulseCursorLine()<cr>
-nnoremap N N:call PulseCursorLine()<cr>
+"nnoremap n n:call PulseCursorLine()<cr>
+"nnoremap N N:call PulseCursorLine()<cr>
 
 " Quickly get out of insert mode without your fingers having to leave the
 " home row (either use 'jj' or 'jk' in insert-, öö in visual-mode)
@@ -495,11 +500,14 @@ endif
 "}}}
 
 " Auto commands {{{
+" Close preview window automatically
+autocmd CompleteDone * pclose
 " Restore cursor position upon reopening files
+" \   exe "normal! g`\"" |
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
 
 autocmd VimEnter * call AirlineInit()
 "augroup resCur
@@ -579,6 +587,8 @@ if executable('ag')
     \ --ignore Mail alias
     \ --ignore Misc\ 2
     \ --ignore npmrc
+    \ --ignore node_modules
+    \ --ignore .tmp
     \ --ignore Diverses
     \ --ignore Cloud Drive
     \ --ignore eibPort
@@ -627,9 +637,9 @@ let g:ctrlp_cmd = 'CtrlP pwd'
 " Ignore common directories
 "\ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|project_files$\|test$',
 "\ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '.git'
-   \ }
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir': '\.git|node_modules|\.tmp'
+   "\ }
 "}}}
 
 " Syntastic {{{
