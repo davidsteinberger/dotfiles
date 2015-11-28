@@ -15,3 +15,4 @@ source $HOME/.bashrc
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 #PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"

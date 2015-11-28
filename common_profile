@@ -13,8 +13,8 @@ source $(brew --prefix nvm)/nvm.sh # Add NVM to PATH for node
 # configure oracle's instantclient
 export ORACLE_BASE="/opt/oracle/instantclient_11_2/"
 export ORACLE_HOME="/opt/oracle/instantclient_11_2/"
-export DYLD_LIBRARY_PATH="/opt/oracle/instantclient_11_2/"
-export TNS_ADMIN="/opt/oracle/instantclient_11_2/"
-PATH="/opt/oracle/instantclient_11_2/":$PATH
+export DYLD_LIBRARY_PATH="/opt/oracle/instantclient_11_2:$DYLD_LIBRARY_PATH"
+export TNS_ADMIN="/opt/oracle/instantclient_11_2"
+PATH="/opt/oracle/instantclient_11_2:$PATH"
 
 stty -ixon -ixoff

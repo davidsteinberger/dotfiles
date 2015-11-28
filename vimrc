@@ -15,9 +15,9 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   " Hack to get C-h working in neovim
   nmap <BS> <C-W>h
-  tnoremap <Esc> <C-\><C-n>
-  "removed 'key', 'oft', 'sn', 'tx' options which do not work with nvim
-  let g:zoomwin_localoptlist = ["ai","ar","bh","bin","bl","bomb","bt","cfu","ci","cin","cink","cino","cinw","cms","com","cpt","diff","efm","eol","ep","et","fenc","fex","ff","flp","fo","ft","gp","imi","ims","inde","inex","indk","inf","isk","kmp","lisp","mps","ml","ma","mod","nf","ofu","pi","qe","ro","sw","si","sts","spc","spf","spl","sua","swf","smc","syn","ts","tw","udf","wfh","wfw","wm"]
+  "tnoremap <Esc> <C-\><C-n>
+ set ttimeout
+ set ttimeoutlen=0
 endif
 
 " Extra user or machine specific settings
@@ -50,7 +50,7 @@ NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'mattn/emmet-vim'
-NeoBundle 'othree/eregex.vim'
+"NeoBundle 'othree/eregex.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'mtth/scratch.vim'
@@ -80,6 +80,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'benekastah/neomake'
 "}}}
 
 call neobundle#end()
@@ -115,6 +116,7 @@ set hidden                      " hide buffers instead of closing them this
 set switchbuf=useopen           " reveal already opened files from the
                                 " quickfix window instead of opening new
                                 " buffers
+set wildignorecase              " case insensitive buffer switching
 set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
 if v:version >= 730
@@ -375,6 +377,8 @@ nnoremap <leader>g :spellgood <c-r><c-w>
 
 " Reselect text that was just pasted with ,v
 nnoremap <leader>v V`]
+" paste and keep the  p register
+xnoremap <leader>p "_dP
 
 noremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
@@ -449,7 +453,7 @@ if has("autocmd")
     let g:closetag_default_xml=1
     autocmd filetype html let b:closetag_html_style=1
     autocmd filetype html set foldmethod=indent
-    autocmd filetype html autocmd BufWritePre <buffer> :%s/\s\+$//e
+    "autocmd filetype html autocmd BufWritePre <buffer> :%s/\s\+$//e
   augroup end
   "}}}
 
@@ -481,6 +485,8 @@ if has("autocmd")
     " Toggling True/False
     autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+    autocmd BufWritePost * Neomake
 
     autocmd FileType javascript setlocal omnifunc=tern#Complete
   augroup end
