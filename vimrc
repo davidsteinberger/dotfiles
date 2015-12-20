@@ -16,9 +16,9 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   " Hack to get C-h working in neovim
   nmap <BS> <C-W>h
-  "tnoremap <Esc> <C-\><C-n>
- "set ttimeout
- "set ttimeoutlen=0
+  tnoremap <Esc> <C-\><C-n>
+  "set ttimeout
+  "set ttimeoutlen=0
 else
   set viminfo='20,\"100,:20,%,n~/.viminfo
 endif
@@ -491,6 +491,8 @@ if has("autocmd")
     " Toggling True/False
     autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+    let g:neomake_javascript_enabled_makers = ['eslint']
 
     autocmd BufWritePost * Neomake
 
