@@ -1,1 +1,1 @@
-/Users/davidsteinberger/.vimrc
+../vimrc

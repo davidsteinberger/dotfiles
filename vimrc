@@ -12,12 +12,15 @@ if has('vim_starting')
 endif
 
 if has('nvim')
+  set shada='20,\"100,:20,%,n~/.nviminfo
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   " Hack to get C-h working in neovim
   nmap <BS> <C-W>h
   "tnoremap <Esc> <C-\><C-n>
- set ttimeout
- set ttimeoutlen=0
+ "set ttimeout
+ "set ttimeoutlen=0
+else
+  set viminfo='20,\"100,:20,%,n~/.viminfo
 endif
 
 " Extra user or machine specific settings
@@ -37,7 +40,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugins {{{
-NeoBundle 'dbext.vim'
+"NeoBundle 'dbext.vim'
 NeoBundle 'Valloric/YouCompleteMe'
 "NeoBundle 'regedarek/ZoomWin'
 NeoBundle 'troydm/zoomwintab.vim'
@@ -72,7 +75,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'joker1007/vim-markdown-quote-syntax'
+"NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'rcmdnk/vim-markdown'
 NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'jistr/vim-nerdtree-tabs'
@@ -81,6 +84,9 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'benekastah/neomake'
+
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'Yggdroot/indentLine'
 "}}}
 
 call neobundle#end()
@@ -135,7 +141,7 @@ set directory=~/.vim/.tmp,~/tmp,/tmp
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='20,\"100,:20,%,n~/.viminfo
+"set viminfo='20,\"100,:20,%,n~/.viminfo
 set wildmenu                    " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
@@ -457,7 +463,7 @@ if has("autocmd")
   augroup end
   "}}}
 
-  augroup mkd_files, makrdown_files "{{{
+  augroup mkd_files, markdown_files "{{{
     au!
 
     autocmd filetype markdown set tw=80 wrap
@@ -473,7 +479,7 @@ if has("autocmd")
     augroup end
       "}}}
 
-  augroup javascript_files "{{{
+  augroup javascript_files *.js "{{{
     au!
 
     autocmd filetype javascript setlocal listchars=tab:\ \ ,trail:·,extends:#,nbsp:·
@@ -670,6 +676,10 @@ let g:syntastic_html_tidy_ignore_errors = [
 "let g:syntastic_html_checkers = ['jshint']
 "}}}
 
+" JSX config {{{
+  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+"}}}
+
 " Cosco {{{
 command! CommaOrSemiColon call cosco#commaOrSemiColon()
 "}}}
@@ -689,6 +699,7 @@ cabbrev bd Bdelete
 " Markdown {{{
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
+let g:vim_markdown_folding_disabled = 1
 "}}}
 
 " Easymotion config {{{

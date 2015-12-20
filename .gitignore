@@ -7,3 +7,4 @@ vim/user.vim
 zsh_history
 zsh/cache/
 gitconfig
+vim/.init.vim-rplugin~

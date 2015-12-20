@@ -19,9 +19,8 @@
     ~/.iTerm2: iterm2/
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
-    ~/.viminfo: viminfo
     ~/.vimrc: vimrc
-    ~/.vim/init.vim: vimrc
+    ~/.config/nvim: vim/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
