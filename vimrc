@@ -16,11 +16,12 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   " Hack to get C-h working in neovim
   nmap <BS> <C-W>h
-  "tnoremap <Esc> <C-\><C-n>
- "set ttimeout
- "set ttimeoutlen=0
+  tnoremap <Esc> <C-\><C-n>
+  set ttimeout
+  set ttimeoutlen=0
 else
   set viminfo='20,\"100,:20,%,n~/.viminfo
+  set encoding=utf-8 "nvim sets the encoding by default to utf-8
 endif
 
 " Extra user or machine specific settings
@@ -40,9 +41,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugins {{{
-"NeoBundle 'dbext.vim'
-NeoBundle 'Valloric/YouCompleteMe'
-"NeoBundle 'regedarek/ZoomWin'
+"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'troydm/zoomwintab.vim'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
@@ -51,19 +50,18 @@ NeoBundle 'lfilho/cosco.vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'Raimondi/delimitMate'
+"NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'mattn/emmet-vim'
-"NeoBundle 'othree/eregex.vim'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree.git'
+"NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'scrooloose/syntastic.git'
+"NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'moll/vim-bbye'
+"NeoBundle 'moll/vim-bbye'
 NeoBundle 'jeetsukumaran/vim-buffergator'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ap/vim-css-color'
@@ -71,22 +69,25 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'airblade/vim-gitgutter.git'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'plasticboy/vim-markdown'
-"NeoBundle 'joker1007/vim-markdown-quote-syntax'
 NeoBundle 'rcmdnk/vim-markdown'
 NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'jistr/vim-nerdtree-tabs'
+"NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'benekastah/neomake'
-
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'othree/html5-syntax.vim.git'
+NeoBundle 'othree/html5.vim.git'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'tpope/vim-vinegar.git'
+NeoBundle 'qpkorr/vim-bufkill'
+NeoBundle 'Shougo/deoplete.nvim'
 "}}}
 
 call neobundle#end()
@@ -109,7 +110,7 @@ endif
 " }}}
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 set shell=bash                  " Vim expects a POSIX-compliant shell
@@ -160,11 +161,12 @@ set splitbelow
 set splitright
 
 set termencoding=utf-8
-set encoding=utf-8
 set lazyredraw                  " don't update the display while executing macros
 set laststatus=2                " tell VIM to always put a status line in, even
                                 "    if there is only one window
 set cmdheight=2                 " use a status bar that is 2 rows high
+
+set tildeop                     " the tilde command "~" behaves like an operator.
 
 filetype plugin indent on
 
@@ -197,6 +199,7 @@ set shiftround                  " use multiple of shiftwidth when indenting with
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set autoindent                  " always set autoindenting on
 set copyindent                  " copy the previous indentation on autoindenting
+set relativenumber              " show relative line numbers
 set number                      " always show line numbers
 set showmatch                   " set show matching parenthesis
 set ignorecase                  " ignore case when searching
@@ -284,13 +287,14 @@ map <Space><Space> <leader><leader>
 
 " remap command to ö
 nnoremap ö :
-nnoremap <leader>ö ö
+nnoremap <leader>ö q:
+
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 noremap! <F1> <Esc>
 
 nnoremap <leader>Q :q<CR>    " Quickly close the current window
-nnoremap <leader>q :Bdelete<CR>   " Quickly close the current buffer
+nnoremap <leader>q :BD<CR>   " Quickly close the current buffer
 
 " Use Q for formatting the current paragraph (or visual selection)
 vnoremap Q gq
@@ -463,7 +467,7 @@ if has("autocmd")
   augroup end
   "}}}
 
-  augroup mkd_files, markdown_files "{{{
+  augroup markdown_files "{{{
     au!
 
     autocmd filetype markdown set tw=80 wrap
@@ -479,7 +483,7 @@ if has("autocmd")
     augroup end
       "}}}
 
-  augroup javascript_files *.js "{{{
+  augroup javascript_files "{{{
     au!
 
     autocmd filetype javascript setlocal listchars=tab:\ \ ,trail:·,extends:#,nbsp:·
@@ -491,6 +495,10 @@ if has("autocmd")
     " Toggling True/False
     autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+    let g:neomake_javascript_enabled_makers = ['eslint']
+
+    let g:used_javascript_libs = 'angularjs, angularui, angularuirouter, handlebars, jquery, backbone, react, underscore'
 
     autocmd BufWritePost * Neomake
 
@@ -521,7 +529,27 @@ autocmd BufReadPost *
   \   exe "normal! g`\"" |
   \ endif
 
+" Init Airline
 autocmd VimEnter * call AirlineInit()
+
+" This function will handle all issues between YCM and UltiSnips.
+" http://stackoverflow.com/questions/14896327/ultisnips-and-youcompleteme
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+autocmd BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
 "augroup resCur
   "autocmd!
   "if has("folding")
@@ -575,7 +603,7 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
 " Use The Silver Searcher over grep, iff possible
 if executable('ag')
   " Define "Ag" command
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
+  command! -nargs=+ -complete=file -bar Ag silent! grep! <args> | cwindow | redraw!
 
   " bind <leader>/ to grep shortcut
   nnoremap <leader>/ :Ag<SPACE>
@@ -660,13 +688,17 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
-let g:syntastic_html_tidy_exec = 'tidy5'
+"let g:syntastic_html_tidy_exec = 'tidy5'
 
 let g:syntastic_html_tidy_ignore_errors = [
   \  'missing <li',
   \  'plain text isn''t allowed in <head> elements',
   \  '</head> isn''t allowed in <body> elements',
   \  'discarding unexpected <body>',
+  \  'proprietary attribute "itemprop"',
+  \  'proprietary attribute "itemscope"',
+  \  'proprietary attribute "itemtype"',
+  \  'trimming empty'
   \ ]
   "\  '<base> escaping malformed URI reference',
   "\  '<script> escaping malformed URI reference',
@@ -677,7 +709,17 @@ let g:syntastic_html_tidy_ignore_errors = [
 "}}}
 
 " JSX config {{{
-  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+"}}}
+
+" ultisnips {{{
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsListSnippets="<c-e>"
+
+" this mapping Enter key to <C-y> to chose the current highlight item
+" and close the selection list, same as other IDEs.
+" CONFLICT with some plugins like tpope/Endwise
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 "}}}
 
 " Cosco {{{
@@ -685,15 +727,16 @@ command! CommaOrSemiColon call cosco#commaOrSemiColon()
 "}}}
 
 " Emmet {{{
-let g:user_emmet_leader_key="<C-ü>"
-let user_emmet_expandabbr_key = '<leader>e'
+"let g:user_emmet_leader_key="<C-ü>"
+"let g:user_emmet_leader_key="<tab>"
+"let user_emmet_expandabbr_key = '<leader>e'
 "}}}
 
 " BBye {{{
 " delete buffer without closing window
 " https://github.com/majutsushi/etc/blob/16c6ac49638b0a3faeff789e8b1fda1cb5209644/vim/vimrc#L519
 " now handled by plugin vim-bbye
-cabbrev bd Bdelete
+"cabbrev bd Bdelete
 "}}}
 
 " Markdown {{{
@@ -766,7 +809,7 @@ function! PulseCursorLine()
   execute current_window . 'wincmd w'
 endfunction
 
-function HighlightNearCursor()
+function! HighlightNearCursor()
   if !exists("s:highlightcursor")
     match Todo /\k*\%#\k*/
     let s:highlightcursor=1
@@ -850,20 +893,14 @@ endfor
 " }}}
 " }}}
 
-"set omnifunc=syntaxcomplete#Complete
-"let g:tern_map_keys=1
-"let g:tern_show_argument_hints="yes"
+" Experimental {{{
+"cabbrev bd BD
+let g:netrw_liststyle = 3
 
-"let g:ycm_semantic_triggers =  {
-  "\   'c' : ['->', '.'],
-  "\   'objc' : ['->', '.'],
-  "\   'ocaml' : ['.', '#'],
-  "\   'cpp,objcpp' : ['->', '.', '::'],
-  "\   'perl' : ['->'],
-  "\   'php' : ['->', '::'],
-  "\   'cs,java,javascript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  "\   'vim' : ['re![_a-zA-Z]+[_\w]*\.'],
-  "\   'ruby' : ['.', '::'],
-  "\   'lua' : ['.', ':'],
-  "\   'erlang' : [':'],
-  "\ }
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+" Use smartcase.
+let g:deoplete#enable_smart_case = 1
+" mustache abbreviations
+let g:mustache_abbreviations = 1
+" }}}
