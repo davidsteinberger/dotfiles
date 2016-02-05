@@ -60,7 +60,8 @@ NeoBundle 'ervandew/supertab'
 "NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'marijnh/tern_for_vim'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 "NeoBundle 'moll/vim-bbye'
 NeoBundle 'jeetsukumaran/vim-buffergator'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -88,6 +89,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'tpope/vim-vinegar.git'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'Shougo/deoplete.nvim'
+NeoBundle 'lervag/vimtex'
 "}}}
 
 call neobundle#end()
@@ -624,13 +626,13 @@ if executable('ag')
     \ --ignore Applications
     \ --ignore Library
     \ --ignore Adlm
-    \ --ignore Mail alias
+    \ --ignore Mail\ alias
     \ --ignore Misc\ 2
     \ --ignore npmrc
     \ --ignore node_modules
     \ --ignore .tmp
     \ --ignore Diverses
-    \ --ignore Cloud Drive
+    \ --ignore Cloud\ Drive
     \ --ignore eibPort
     \ --ignore g3cf
     \ --ignore g3
@@ -759,6 +761,7 @@ let g:EasyMotion_smartcase = 1
 " }}}
 
 " Airline {{{
+let g:airline_theme='solarized'
 " Make sure powerline fonts are used
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
