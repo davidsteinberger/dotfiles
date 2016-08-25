@@ -6,6 +6,16 @@ snippet .new "New javascript file template" !b
 }());
 endsnippet
 
+snippet def
+define('$1', [
+	$2
+], function(
+	$3
+) {
+	${VISUAL}$0
+});
+endsnippet
+
 snippet us "use strict" b
 'use strict';
 endsnippet

@@ -17,6 +17,8 @@ if has('nvim')
   " Hack to get C-h working in neovim
   nmap <BS> <C-W>h
   tnoremap <Esc> <C-\><C-n>
+  set ttyfast
+  set lazyredraw
   set ttimeout
   set ttimeoutlen=0
 else
@@ -41,7 +43,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugins {{{
-"NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'troydm/zoomwintab.vim'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
@@ -49,20 +50,16 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lfilho/cosco.vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
-NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'scrooloose/nerdcommenter'
 "NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'ervandew/supertab'
-"NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'marijnh/tern_for_vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
-"NeoBundle 'moll/vim-bbye'
 NeoBundle 'jeetsukumaran/vim-buffergator'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ap/vim-css-color'
@@ -90,6 +87,7 @@ NeoBundle 'tpope/vim-vinegar.git'
 NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'lervag/vimtex'
+NeoBundle 'bendavis78/vim-polymer'
 "}}}
 
 call neobundle#end()
@@ -488,23 +486,24 @@ if has("autocmd")
   augroup javascript_files "{{{
     au!
 
-    autocmd filetype javascript setlocal listchars=tab:\ \ ,trail:·,extends:#,nbsp:·
-    autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
+    autocmd filetype javascript,typescript setlocal listchars=tab:\ \ ,trail:·,extends:#,nbsp:·
+    autocmd filetype javascript,typescript setlocal foldmethod=marker foldmarker={,}
 
-    autocmd filetype javascript nnoremap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
-    autocmd filetype javascript inoremap <silent> ,. <c-o>:call cosco#commaOrSemiColon()<CR>
+    autocmd filetype javascript,typescript nnoremap <silent> <leader>, :call cosco#commaOrSemiColon()<CR>
+    autocmd filetype javascript,typescript inoremap <silent> ,. <c-o>:call cosco#commaOrSemiColon()<CR>
 
     " Toggling True/False
-    autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
-    autocmd filetype javascript autocmd BufWritePre <buffer> :%s/\s\+$//e
+    autocmd filetype javascript,typescript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+    autocmd filetype javascript,typescript autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-    let g:neomake_javascript_enabled_makers = ['eslint']
+    "let g:neomake_javascript_enabled_makers = ['eslint']
+    "let g:neomake_typescript_enabled_makers = ['jshint']
 
     let g:used_javascript_libs = 'angularjs, angularui, angularuirouter, handlebars, jquery, backbone, react, underscore'
 
     autocmd BufWritePost * Neomake
 
-    autocmd FileType javascript setlocal omnifunc=tern#Complete
+    "autocmd FileType javascript,typescript setlocal omnifunc=tern#Complete
   augroup end
   "}}}
 
