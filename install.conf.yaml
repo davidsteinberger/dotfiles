@@ -5,13 +5,14 @@
   - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
   - [touch viminfo, create viminfo]
   - [touch gitconfig, create gitconfig]
+  - 
+    command: ['sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"', install oh-my-zsh]
+    stdout: true
 
 - link:
     ~/.dotfiles: ''
     ~/.bashrc: bashrc
     ~/.zshrc: zshrc
-    ~/.zsh: zsh
-    ~/.zshrc.zni: zshrc.zni
     ~/.bash_profile: bash_profile
     ~/.common_profile: common_profile
     ~/.gitconfig: gitconfig

@@ -14,9 +14,6 @@ endif
 if has('nvim')
   set shada='20,\"100,:20,%,n~/.nviminfo
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  " Hack to get C-h working in neovim
-  nmap <BS> <C-W>h
-  tnoremap <Esc> <C-\><C-n>
   set ttyfast
   set lazyredraw
   set ttimeout
@@ -43,7 +40,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugins {{{
-NeoBundle 'troydm/zoomwintab.vim'
+"NeoBundle 'troydm/zoomwintab.vim'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
 NeoBundle 'kchmck/vim-coffee-script'
@@ -464,6 +461,9 @@ if has("autocmd")
     autocmd filetype html let b:closetag_html_style=1
     autocmd filetype html set foldmethod=indent
     "autocmd filetype html autocmd BufWritePre <buffer> :%s/\s\+$//e
+    "
+    let g:neomake_html_enabled_makers = ['eslint', 'tidy']
+
   augroup end
   "}}}
 
@@ -496,10 +496,12 @@ if has("autocmd")
     autocmd filetype javascript,typescript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript,typescript autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-    "let g:neomake_javascript_enabled_makers = ['eslint']
     "let g:neomake_typescript_enabled_makers = ['jshint']
+    let g:neomake_javascript_enabled_makers = ['eslint']
 
     let g:used_javascript_libs = 'angularjs, angularui, angularuirouter, handlebars, jquery, backbone, react, underscore'
+
+    let tern#is_show_argument_hints_enabled = 1
 
     autocmd BufWritePost * Neomake
 
@@ -744,6 +746,14 @@ command! CommaOrSemiColon call cosco#commaOrSemiColon()
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 let g:vim_markdown_folding_disabled = 1
+"}}}
+
+" Neomake {{{
+let g:neomake_html_eslint_maker = {
+  \ 'args': ['-f', 'compact'],
+  \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+  \ '%W%f: line %l\, col %c\, Warning - %m'
+  \ }
 "}}}
 
 " Easymotion config {{{

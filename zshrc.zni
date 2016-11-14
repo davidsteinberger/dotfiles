@@ -1,9 +1,0 @@
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _complete _ignored
-zstyle ':completion:*' matcher-list 'r:|[._-]=** r:|=**'
-zstyle :compinstall filename '/Users/davidsteinberger/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
