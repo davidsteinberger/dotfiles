@@ -14,8 +14,8 @@ endif
 if has('nvim')
   set shada='20,\"100,:20,%,n~/.nviminfo
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  set ttyfast
-  set lazyredraw
+  "set ttyfast
+  "set lazyredraw
   set ttimeout
   set ttimeoutlen=0
 else
@@ -85,6 +85,7 @@ NeoBundle 'qpkorr/vim-bufkill'
 NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'lervag/vimtex'
 NeoBundle 'bendavis78/vim-polymer'
+"NeoBundle 'webdesus/polymer-ide.vim'
 "}}}
 
 call neobundle#end()
@@ -462,7 +463,8 @@ if has("autocmd")
     autocmd filetype html set foldmethod=indent
     "autocmd filetype html autocmd BufWritePre <buffer> :%s/\s\+$//e
     "
-    let g:neomake_html_enabled_makers = ['eslint', 'tidy']
+    "let g:neomake_html_enabled_makers = ['eslint', 'tidy']
+    let g:neomake_html_enabled_makers = ['eslint']
 
   augroup end
   "}}}
@@ -712,7 +714,7 @@ let g:syntastic_html_tidy_ignore_errors = [
 "}}}
 
 " JSX config {{{
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+"let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 "}}}
 
 " ultisnips {{{

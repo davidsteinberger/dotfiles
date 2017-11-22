@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/davidsteinberger/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -84,7 +84,7 @@ export ARCHFLAGS="-arch x86_64"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-DEFAULT_USER=davidsteinberger
+DEFAULT_USER=$(whoami)
 
 source `brew --prefix`/etc/profile.d/z.sh
 
@@ -98,3 +98,6 @@ alias ll='ls -GFhl'
 alias tmux-myplant-web="tmuxinator myplant-web"
 alias tmux-myplant-operations="tmuxinator myplant-operations"
 alias tmux-myplant-springxd="tmuxinator springxd"
+
+#sudo ifconfig lo0 alias 127.227.0.1 up
+#sudo ifconfig lo0 alias 127.229.0.1 up

@@ -17,5 +17,6 @@ PATH="/opt/oracle/instantclient_11_2:$PATH"
 #export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 stty -ixon -ixoff
