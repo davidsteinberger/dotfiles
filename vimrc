@@ -40,52 +40,52 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Plugins {{{
-"NeoBundle 'troydm/zoomwintab.vim'
+NeoBundle 'w0rp/ale'
 NeoBundle 'jiangmiao/auto-pairs.git'
 NeoBundle 'docunext/closetag.vim'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'lfilho/cosco.vim'
 NeoBundle 'JulesWang/css.vim'
 NeoBundle 'FelikZ/ctrlp-py-matcher'
 NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'carlitux/deoplete-ternjs', { 'build': { 'mac': 'npm install -g tern', 'unix': 'npm install -g tern' }}
+NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'othree/html5-syntax.vim.git'
+NeoBundle 'othree/html5.vim.git'
+NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 "NeoBundle 'scrooloose/nerdtree.git'
+NeoBundle 'mhartington/nvim-typescript'
+"NeoBundle 'webdesus/polymer-ide.vim'
 NeoBundle 'mtth/scratch.vim'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'marijnh/tern_for_vim'
+NeoBundle 'SirVer/ultisnips'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'jeetsukumaran/vim-buffergator'
+NeoBundle 'qpkorr/vim-bufkill'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'ap/vim-css-color'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'joukevandermaas/vim-ember-hbs'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'airblade/vim-gitgutter.git'
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 NeoBundle 'rcmdnk/vim-markdown'
-NeoBundle 'mustache/vim-mustache-handlebars'
 "NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'bendavis78/vim-polymer'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'benekastah/neomake'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'othree/html5-syntax.vim.git'
-NeoBundle 'othree/html5.vim.git'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
-NeoBundle 'SirVer/ultisnips'
 NeoBundle 'tpope/vim-vinegar.git'
-NeoBundle 'qpkorr/vim-bufkill'
-NeoBundle 'Shougo/deoplete.nvim'
 NeoBundle 'lervag/vimtex'
-NeoBundle 'bendavis78/vim-polymer'
-"NeoBundle 'webdesus/polymer-ide.vim'
+NeoBundle 'HerringtonDarkholme/yats'
 "}}}
 
 call neobundle#end()
@@ -463,9 +463,6 @@ if has("autocmd")
     autocmd filetype html set foldmethod=indent
     "autocmd filetype html autocmd BufWritePre <buffer> :%s/\s\+$//e
     "
-    "let g:neomake_html_enabled_makers = ['eslint', 'tidy']
-    let g:neomake_html_enabled_makers = ['eslint']
-
   augroup end
   "}}}
 
@@ -498,16 +495,7 @@ if has("autocmd")
     autocmd filetype javascript,typescript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     autocmd filetype javascript,typescript autocmd BufWritePre <buffer> :%s/\s\+$//e
 
-    "let g:neomake_typescript_enabled_makers = ['jshint']
-    let g:neomake_javascript_enabled_makers = ['eslint']
-
     let g:used_javascript_libs = 'angularjs, angularui, angularuirouter, handlebars, jquery, backbone, react, underscore'
-
-    let tern#is_show_argument_hints_enabled = 1
-
-    autocmd BufWritePost * Neomake
-
-    "autocmd FileType javascript,typescript setlocal omnifunc=tern#Complete
   augroup end
   "}}}
 
@@ -714,7 +702,7 @@ let g:syntastic_html_tidy_ignore_errors = [
 "}}}
 
 " JSX config {{{
-"let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 "}}}
 
 " ultisnips {{{
@@ -731,31 +719,10 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 command! CommaOrSemiColon call cosco#commaOrSemiColon()
 "}}}
 
-" Emmet {{{
-"let g:user_emmet_leader_key="<C-ü>"
-"let g:user_emmet_leader_key="<tab>"
-"let user_emmet_expandabbr_key = '<leader>e'
-"}}}
-
-" BBye {{{
-" delete buffer without closing window
-" https://github.com/majutsushi/etc/blob/16c6ac49638b0a3faeff789e8b1fda1cb5209644/vim/vimrc#L519
-" now handled by plugin vim-bbye
-"cabbrev bd Bdelete
-"}}}
-
 " Markdown {{{
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 let g:vim_markdown_folding_disabled = 1
-"}}}
-
-" Neomake {{{
-let g:neomake_html_eslint_maker = {
-  \ 'args': ['-f', 'compact'],
-  \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-  \ '%W%f: line %l\, col %c\, Warning - %m'
-  \ }
 "}}}
 
 " Easymotion config {{{
@@ -917,4 +884,13 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " mustache abbreviations
 let g:mustache_abbreviations = 1
+
+let g:ale_linters = {
+\  'typescript': ['tslint', 'tsserver']
+\}
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_completion_enabled = 1
+
+let g:deoplete#enable_at_startup = 1
 " }}}
