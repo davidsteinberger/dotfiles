@@ -12,7 +12,7 @@ if has('vim_starting')
 endif
 
 if has('nvim')
-  set shada='20,\"100,:20,%,n~/.nviminfo
+  "set shada='20,\"100,:20,%,n~/.nviminfo
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   "set ttyfast
   "set lazyredraw
@@ -499,6 +499,13 @@ if has("autocmd")
   augroup end
   "}}}
 
+  augroup typescript_files "{{{
+    au!
+
+    autocmd BufNewFile,BufRead *.ts,*.tsx setlocal filetype=typescript
+  augroup end
+  "}}}
+
   augroup textile_files "{{{
     au!
 
@@ -732,6 +739,7 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+map <Leader>L <Plug>(easymotion-bd-jk)
 " keep cursor colum when JK motion
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion"
 " Turn on case insensitive feature
@@ -891,6 +899,4 @@ let g:ale_linters = {
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_completion_enabled = 1
-
-let g:deoplete#enable_at_startup = 1
 " }}}

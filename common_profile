@@ -19,4 +19,20 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
+#alias kubectl="$HOME/Documents/myplant/kubectl"
+
+alias sp=". $HOME/dotfiles/set_proxy.sh \$1"
+alias up="source $HOME/dotfiles/set_proxy.sh off"
+
+export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
+export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
+
+alias java8='export JAVA_HOME=$JAVA_8_HOME'
+alias java11='export JAVA_HOME=$JAVA_11_HOME'
+
+# default to Java 11
+java11
+
 stty -ixon -ixoff
+
+export PATH="$HOME/.fastlane/bin:$PATH"
