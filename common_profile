@@ -36,3 +36,4 @@ java11
 stty -ixon -ixoff
 
 export PATH="$HOME/.fastlane/bin:$PATH"
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
