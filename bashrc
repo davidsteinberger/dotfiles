@@ -36,3 +36,5 @@ source ~/.common_profile
 [[ -r /usr/local/etc/bash_completion.d/nvm ]] && . /usr/local/etc/bash_completion.d/nvm # Bash completion for nvm
 [[ -r /usr/local/etc/bash_completion.d/tmux ]] && . /usr/local/etc/bash_completion.d/tmux #
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
