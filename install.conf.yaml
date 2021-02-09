@@ -9,19 +9,15 @@
   - [touch gitconfig, create gitconfig]
   - [rm -rf ~/.oh-my-zsh]
   - 
-    command: ['sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"', install oh-my-zsh]
+    command: ['ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"', install oh-my-zsh]
     stdout: true
   - [rm ~/.zshrc]
 
 - link:
     ~/.dotfiles: ''
-    ~/.bashrc: bashrc
     ~/.zshrc: zshrc
-    ~/.bash_profile: bash_profile
-    ~/.common_profile: common_profile
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
-    ~/.iTerm2: iterm2/
     ~/.tmux.conf: tmux.conf
     ~/.vim: vim/
     ~/.vimrc: vimrc
@@ -30,3 +26,9 @@
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - 
+    command: ['./misc_install_script.sh', miscellaneous installs]
+    stdout: true
+  -
+    command: ['./post_install_message.sh', post install message]
+    stdout: true

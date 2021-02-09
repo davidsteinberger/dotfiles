@@ -3,6 +3,8 @@ vim/bundle/*
 !vim/bundle/NeoBundle.lock
 NERDTreeBookmarks
 viminfo
+vim/autoload/plug.vim
+vim/plugged
 vim/user.vim
 zsh_history
 zsh/cache/
