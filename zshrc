@@ -119,6 +119,7 @@ fi
 #alias ls='ls -GFh'
 # Same as above, but in long listing format
 #alias ll='ls -GFhl'
+alias tm="tmux new -A -s $(whoami)"
 alias sp=". $HOME/dotfiles/set_proxy.sh \$1"
 alias up="source $HOME/dotfiles/set_proxy.sh off"
 alias ga="git add ."
