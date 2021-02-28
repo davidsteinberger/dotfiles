@@ -83,6 +83,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+fpath=(
+  ~/.dotfiles/zsh
+  "${fpath[@]}"
+)
+
+autoload -Uz fp ll kp ks tmuxify
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -110,11 +116,29 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls='ls -GFh'
+#alias ls='ls -GFh'
 # Same as above, but in long listing format
-alias ll='ls -GFhl'
+#alias ll='ls -GFhl'
 alias sp=". $HOME/dotfiles/set_proxy.sh \$1"
 alias up="source $HOME/dotfiles/set_proxy.sh off"
+alias ga="git add ."
+alias gc="git commit -m ${1}"
+alias gd="git diff"
+alias gdt="git difftool"
+alias gmt="git mergetool"
+alias gp="git push ${1} ${2}"
+alias gco="git checkout ${1} ${2}"
+alias gpl="git pull ${1} ${2}"
+alias grb="git rebase ${1} ${2}"
+alias gs="git status"
+alias la="ls -al"
+alias lf="ls -al | grep ${1}"
+alias ls="ls -Gl"
+alias vv="$EDITOR ~/.vimrc"
+alias zx="source ~/.zshrc"
+alias zz="$EDITOR ~/.zshrc"
+alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
+alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -133,3 +157,5 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+tmuxify
