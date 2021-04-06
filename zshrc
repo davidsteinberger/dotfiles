@@ -140,8 +140,28 @@ alias zx="source ~/.zshrc"
 alias zz="$EDITOR ~/.zshrc"
 alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
+alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
+
+# gpg
+export KEYID=0x7EF2450C17A54023
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+function secret {  # list preferred id last
+  output="$(dirname $(realpath ${1}))/$(basename ${1}).$(date +%F).enc"
+  gpg --encrypt --armor \
+    --output ${output} \
+    -r ${KEYID} \
+    -r mail.steinberger@gmail.com \
+    "${1}" && echo "${1} -> ${output}" }
+
+function reveal {
+  output=$(echo "${1}" | rev | cut -c16- | rev)
+  gpg --decrypt --output ${output} "${1}" \
+    && echo "${1} -> ${output}" }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
