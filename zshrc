@@ -178,5 +178,7 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+export PATH="${PATH}:${HOME}/.krew/bin"
+
 
 tmuxify
