@@ -303,7 +303,9 @@ nnoremap z5 :set foldlevel=5<cr>
 
 
 nnoremap <leader>Q :q<CR>    " Quickly close the current window
-nnoremap <leader>q :BD<CR>   " Quickly close the current buffer
+"nnoremap <leader>q :BD<CR>   " Quickly close the current buffer
+nnoremap <silent><leader>q :Bd<CR>
+command! Bd bp|bd #
 
 " Use Q for formatting the current paragraph (or visual selection)
 vnoremap Q gq
@@ -426,7 +428,12 @@ nmap <silent> <leader>N <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>n <Plug>(coc-diagnostic-next)
 " }}}
 
+nmap gcc <Plug>NERDCommenterInvert
+vmap gcc <Plug>NERDCommenterInvert
 " Nicer buffer navigation {{{
+
+let g:netrw_fastbrowse = 0
+
 nnoremap <leader>b :Buffers<CR>
 nnoremap <Tab> :call NextBufferTab()<CR>
 nnoremap <S-Tab> :call PrevBufferTab()<CR>
@@ -453,7 +460,7 @@ tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
 nnoremap <silent> <C-p> :Files<CR>
 
 " Bind "//" to a fzf-powered buffer search
-nmap // :BLines<CR>
+nmap <leader>/ :BLines<CR>
 
 " Bind "??" to a fzf-powered project search
 nmap ?? :Rg!<CR>
@@ -593,7 +600,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>f  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
@@ -637,9 +644,9 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
