@@ -354,14 +354,14 @@ colors:
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
   #
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
+  style: Underline
 
   # Vi mode cursor style
   #
@@ -691,7 +691,7 @@ key_bindings:
   - { key: 37,      mods: Alt, chars: "@" }
   - { key: 26,      mods: Alt|Shift, chars: "\\" }
   - { key: 26,      mods: Alt, chars: "|" }
-  #- { key: 45,      mods: Alt, chars: "~" }
+    #  - { key: 45,      mods: Alt, chars: "~" }
   - { key: 23,      mods: Alt, chars: "[" }
   - { key: 22,      mods: Alt, chars: "]" }
 

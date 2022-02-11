@@ -77,7 +77,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(brew tmux git npm nvm osx z kubectl)
+plugins=(brew tmux git npm nvm macos z kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,6 +119,7 @@ fi
 #alias ls='ls -GFh'
 # Same as above, but in long listing format
 #alias ll='ls -GFhl'
+#alias yarn="nocorrect yarn"
 alias tm="tmux new -A -s $(whoami)"
 alias sp=". $HOME/dotfiles/set_proxy.sh \$1"
 alias up="source $HOME/dotfiles/set_proxy.sh off"
@@ -180,5 +181,9 @@ export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="${PATH}:${HOME}/.krew/bin"
 
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
-tmuxify
+
+#tmuxify
