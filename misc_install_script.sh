@@ -8,6 +8,11 @@ $(brew --prefix)/opt/fzf/install
 brew cask install font-fira-code
 brew install --cask gpg-suite
 
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
 #brew cask install alacritty
 
 # install tmuxinator
