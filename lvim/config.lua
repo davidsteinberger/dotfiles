@@ -33,10 +33,18 @@ vim.opt.listchars = {
 map("n", "<Space>", "<NOP>", DEFAULT_OPTIONS)
 vim.g.mapleader = " "
 
+-- Remap colon
 map("n", "ö", ":", {noremap = true})
 map("n", "<leader>ö", "q:", {noremap = true})
 
-  -- Deal with visual line wraps
+--Save
+map("i", "<C-s>", "<C-o>:w<cr>", DEFAULT_OPTIONS)
+map("n", "<C-s>", ":w<cr>", DEFAULT_OPTIONS)
+
+-- ESC terminal
+map("t", "<Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
+
+-- Deal with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", EXPR_OPTIONS)
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", EXPR_OPTIONS)
 
@@ -44,11 +52,18 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", EXPR_OPTIONS)
 map("n", "<TAB>", ":bnext<CR>", DEFAULT_OPTIONS)
 map("n", "<S-TAB>", ":bprevious<CR>", DEFAULT_OPTIONS)
 
+-- Cancel search highlighting with ESC
+map("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", DEFAULT_OPTIONS)
+
 -- Resizing panes
 map("n", "<Left>", ":vertical resize -1<CR>", DEFAULT_OPTIONS)
 map("n", "<Right>", ":vertical resize +1<CR>", DEFAULT_OPTIONS)
 map("n", "<Up>", ":resize -1<CR>", DEFAULT_OPTIONS)
 map("n", "<Down>", ":resize +1<CR>", DEFAULT_OPTIONS)
+
+-- Move selected line / block of text in visual mode
+map("x", "K", ":move '<-2<CR>gv-gv", DEFAULT_OPTIONS)
+map("x", "J", ":move '>+1<CR>gv-gv", DEFAULT_OPTIONS)
 
 --[[
 lvim is the global options object
@@ -68,7 +83,7 @@ lvim.colorscheme = "gruvbox"
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.insert_mode["<C-s>"] = "<C-o>:w<cr>"
+-- lvim.keys.insert_mode["<C-s>"] = "<C-o>:w<cr>"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- lvim.keys.normal_mode["ö"] = ":"
 -- unmap a default keymapping
@@ -99,15 +114,15 @@ lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules"
 -- lvim.builtin.which_key.mappings["ö"] = { name = "which_key_ignore" }
 -- lvim.builtin.which_key.active = false
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
--- }
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Trouble",
+  r = { "<cmd>Trouble lsp_references<cr>", "References" },
+  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -160,20 +175,24 @@ lvim.lsp.diagnostics.virtual_text = false
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
 --   { command = "black", filetypes = { "python" } },
 --   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+  {
+    command = "eslint",
+    filetypes = { "typescript", "typescriptreact" },
+  },
+  {
+    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -195,12 +214,59 @@ lvim.lsp.diagnostics.virtual_text = false
 
 -- Additional Plugins
 lvim.plugins = {
-  {"morhetz/gruvbox"}
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
+  {"morhetz/gruvbox"},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    setup = function()
+      vim.g.indentLine_enabled = 1
+      vim.g.indent_blankline_char = "▏"
+      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
+      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_show_trailing_blankline_indent = false
+      vim.g.indent_blankline_show_first_indent_level = false
+    end
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    cmd = "TroubleToggle",
+  },
+  {
+    "tpope/vim-fugitive",
+    cmd = {
+      "G",
+      "Git",
+      "Gdiffsplit",
+      "Gread",
+      "Gwrite",
+      "Ggrep",
+      "GMove",
+      "GDelete",
+      "GBrowse",
+      "GRemove",
+      "GRename",
+      "Glgrep",
+      "Gedit"
+    },
+    ft = {"fugitive"}
+  },
+  {
+    "tpope/vim-surround",
+    keys = {"c", "d", "y"}
+  },
+  {
+    "sidebar-nvim/sidebar.nvim",
+    config = function()
+      require("sidebar-nvim").setup({ open = false, side = "right"})
+    end
+  }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
