@@ -24,6 +24,9 @@ nnoremap <leader>Y :%y+<CR>
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
+" copy relative path
+nnoremap cp :let @+=fnamemodify(expand("%"), ":~:.")<CR>
+
 function!   QuickFixOpenAll()
     if empty(getqflist())
         return
@@ -173,13 +176,23 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
+    keys = {"c", "d", "y"}
   },
   {
     "sidebar-nvim/sidebar.nvim",
     config = function()
       require("sidebar-nvim").setup({ open = false, side = "right"})
     end
-  }
+  },
+  {
+    "phaazon/hop.nvim",
+    event = "BufRead",
+    config = function()
+      require("hop").setup()
+      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+    end,
+  },
 }
 
 -- generic LSP settings
@@ -190,7 +203,7 @@ local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
     command = "prettier",
-    extra_args = { "--print-with", "100" },
+    extra_args = { "--print-with", "80" },
     filetypes = { "typescript", "typescriptreact" },
   },
 }
@@ -220,6 +233,7 @@ lspconfig.tsserver.setup({
  
         -- disable tsserver formatting
         client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
 
         -- defaults
         ts_utils.setup({
@@ -273,9 +287,9 @@ lspconfig.tsserver.setup({
         ts_utils.setup_client(client)
 
         -- no default maps, so you may want to define some here
-        local opts = { silent = true }
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
-        vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
+        -- local opts = { silent = true }
+        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
+        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
+        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
     end,
 })
