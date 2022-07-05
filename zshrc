@@ -182,7 +182,10 @@ export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="${PATH}:${HOME}/.krew/bin"
 
 export GOPATH=$HOME/go
+export FLUTTERPATH=$HOME/development/flutter
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+export PATH="$PATH:${FLUTTERPATH}/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 #tmuxify

@@ -1,6 +1,6 @@
 local map = vim.api.nvim_set_keymap
-DEFAULT_OPTIONS = {noremap = true, silent = true}
-EXPR_OPTIONS = {noremap = true, expr = true, silent = true}
+DEFAULT_OPTIONS = { noremap = true, silent = true }
+EXPR_OPTIONS = { noremap = true, expr = true, silent = true }
 
 vim.cmd([[
 " Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
@@ -49,8 +49,8 @@ map("n", "<Space>", "<NOP>", DEFAULT_OPTIONS)
 vim.g.mapleader = " "
 
 -- Remap colon
-map("n", "ö", ":", {noremap = true})
-map("n", "<leader>ö", "q:", {noremap = true})
+map("n", "ö", ":", { noremap = true })
+map("n", "<leader>ö", "q:", { noremap = true })
 
 --Save
 map("i", "<C-s>", "<C-o>:w<cr>", DEFAULT_OPTIONS)
@@ -90,7 +90,7 @@ lvim.colorscheme = "gruvbox"
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
-lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules"}
+lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
   "<cmd>TSLspImportAll<CR>", "Import All"
 }
@@ -104,11 +104,11 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
 }
 
-lvim.builtin.dashboard.active = true
+--lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+--lvim.builtin.nvimtree.setup.view.side = "left"
+--lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -130,16 +130,16 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {"morhetz/gruvbox"},
-  {"jose-elias-alvarez/nvim-lsp-ts-utils"},
+  { "morhetz/gruvbox" },
+  { "jose-elias-alvarez/nvim-lsp-ts-utils" },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     setup = function()
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
-      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+      vim.g.indent_blankline_buftype_exclude = { "terminal" }
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
     end
@@ -172,16 +172,16 @@ lvim.plugins = {
       "Glgrep",
       "Gedit"
     },
-    ft = {"fugitive"}
+    ft = { "fugitive" }
   },
   {
     "tpope/vim-surround",
-    keys = {"c", "d", "y"}
+    keys = { "c", "d", "y" }
   },
   {
     "sidebar-nvim/sidebar.nvim",
     config = function()
-      require("sidebar-nvim").setup({ open = false, side = "right"})
+      require("sidebar-nvim").setup({ open = false, side = "right" })
     end
   },
   {
@@ -224,72 +224,72 @@ linters.setup {
 -- nvim-lsp-ts-utils
 local lspconfig = require("lspconfig")
 lspconfig.tsserver.setup({
-    -- Needed for inlayHints. Merge this table with your settings or copy
-    -- it from the source if you want to add your own init_options.
-    init_options = require("nvim-lsp-ts-utils").init_options,
-    --
-    on_attach = function(client, bufnr)
-        local ts_utils = require("nvim-lsp-ts-utils")
- 
-        -- disable tsserver formatting
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
+  -- Needed for inlayHints. Merge this table with your settings or copy
+  -- it from the source if you want to add your own init_options.
+  init_options = require("nvim-lsp-ts-utils").init_options,
+  --
+  on_attach = function(client, bufnr)
+    local ts_utils = require("nvim-lsp-ts-utils")
 
-        -- defaults
-        ts_utils.setup({
-            debug = false,
-            disable_commands = false,
-            enable_import_on_completion = false,
+    -- disable tsserver formatting
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
 
-            -- import all
-            import_all_timeout = 5000, -- ms
-            -- lower numbers = higher priority
-            import_all_priorities = {
-                same_file = 1, -- add to existing import statement
-                local_files = 2, -- git files or files with relative path markers
-                buffer_content = 3, -- loaded buffer content
-                buffers = 4, -- loaded buffer names
-            },
-            import_all_scan_buffers = 100,
-            import_all_select_source = false,
-            -- if false will avoid organizing imports
-            always_organize_imports = true,
+    -- defaults
+    ts_utils.setup({
+      debug = false,
+      disable_commands = false,
+      enable_import_on_completion = false,
 
-            -- filter diagnostics
-            filter_out_diagnostics_by_severity = {},
-            filter_out_diagnostics_by_code = {},
+      -- import all
+      import_all_timeout = 5000, -- ms
+      -- lower numbers = higher priority
+      import_all_priorities = {
+        same_file = 1, -- add to existing import statement
+        local_files = 2, -- git files or files with relative path markers
+        buffer_content = 3, -- loaded buffer content
+        buffers = 4, -- loaded buffer names
+      },
+      import_all_scan_buffers = 100,
+      import_all_select_source = false,
+      -- if false will avoid organizing imports
+      always_organize_imports = true,
 
-            -- inlay hints
-            auto_inlay_hints = true,
-            inlay_hints_highlight = "Comment",
-            inlay_hints_priority = 200, -- priority of the hint extmarks
-            inlay_hints_throttle = 150, -- throttle the inlay hint request
-            inlay_hints_format = { -- format options for individual hint kind
-                Type = {},
-                Parameter = {},
-                Enum = {},
-                -- Example format customization for `Type` kind:
-                -- Type = {
-                --     highlight = "Comment",
-                --     text = function(text)
-                --         return "->" .. text:sub(2)
-                --     end,
-                -- },
-            },
+      -- filter diagnostics
+      filter_out_diagnostics_by_severity = {},
+      filter_out_diagnostics_by_code = {},
 
-            -- update imports on file move
-            update_imports_on_move = true,
-            require_confirmation_on_move = true,
-            watch_dir = nil,
-        })
+      -- inlay hints
+      auto_inlay_hints = true,
+      inlay_hints_highlight = "Comment",
+      inlay_hints_priority = 200, -- priority of the hint extmarks
+      inlay_hints_throttle = 150, -- throttle the inlay hint request
+      inlay_hints_format = { -- format options for individual hint kind
+        Type = {},
+        Parameter = {},
+        Enum = {},
+        -- Example format customization for `Type` kind:
+        -- Type = {
+        --     highlight = "Comment",
+        --     text = function(text)
+        --         return "->" .. text:sub(2)
+        --     end,
+        -- },
+      },
 
-        -- required to fix code action ranges and filter diagnostics
-        ts_utils.setup_client(client)
+      -- update imports on file move
+      update_imports_on_move = true,
+      require_confirmation_on_move = true,
+      watch_dir = nil,
+    })
 
-        -- no default maps, so you may want to define some here
-        -- local opts = { silent = true }
-        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
-        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
-        -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
-    end,
+    -- required to fix code action ranges and filter diagnostics
+    ts_utils.setup_client(client)
+
+    -- no default maps, so you may want to define some here
+    -- local opts = { silent = true }
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
+  end,
 })
