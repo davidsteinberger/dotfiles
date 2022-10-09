@@ -91,12 +91,9 @@ map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
 -- lvim
 lvim.log.level = "warn"
 lvim.format_on_save = true
--- vim.g.gruvbox_contrast_dark = 'hard'
--- vim.g.gruvbox_invert_selection = 0
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_background_color = 'dark'
 vim.g.gruvbox_baby_use_original_palette = false
--- vim.g.gruvbox_baby_transparent_mode = 1
 lvim.colorscheme = "gruvbox-baby"
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
@@ -140,9 +137,6 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  -- { "morhetz/gruvbox" },
-  -- { "gruvbox-community/gruvbox", },
-  -- { "ellisonleao/gruvbox.nvim" },
   { "luisiacc/gruvbox-baby" },
   { "jose-elias-alvarez/nvim-lsp-ts-utils" },
   {
@@ -230,9 +224,6 @@ lvim.builtin.cmp.mapping["<C-H>"] = function(fallback)
     fallback()
   end
 end
--- lvim.builtin.cmp.completion.keyword_length = 2
--- lvim.builtin.telescope.defaults.layout_config.width = 0.95
--- lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 
 lvim.builtin.cmp.formatting.max_width = 50
 
@@ -277,11 +268,8 @@ local with_yarn_pnp = function(source)
 end
 
 local sources = {
-  -- prettier,
   with_yarn_pnp(null_ls.builtins.formatting.prettier),
-  -- eslint, -- = with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
   with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
-  -- eslint_action, -- = with_yarn_pnp(null_ls.builtins.code_actions.eslint),
   with_yarn_pnp(null_ls.builtins.code_actions.eslint)
 }
 
