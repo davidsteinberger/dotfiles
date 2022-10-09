@@ -137,6 +137,17 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
+  { 'folke/tokyonight.nvim' },
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config = function()
+      -- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+      vim.g.catppuccin_flavour = "mocha"
+      require("catppuccin").setup()
+      vim.api.nvim_command "colorscheme catppuccin"
+    end
+  },
   { "luisiacc/gruvbox-baby" },
   { "jose-elias-alvarez/nvim-lsp-ts-utils" },
   {
