@@ -142,6 +142,7 @@ alias zz="$EDITOR ~/.zshrc"
 alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
+alias flutter="fvm flutter"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -174,18 +175,20 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.local/bin:$PATH"
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
 export PATH="${PATH}:${HOME}/.krew/bin"
+export PATH="${HOME}/fvm/default/bin${PATH}"
 
 export GOPATH=$HOME/go
-export FLUTTERPATH=$HOME/development/flutter
 export GOROOT="$(brew --prefix golang)/libexec"
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
-export PATH="$PATH:${FLUTTERPATH}/bin"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
+
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-#tmuxify
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
