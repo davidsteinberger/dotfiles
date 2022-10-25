@@ -98,6 +98,9 @@ lvim.colorscheme = "gruvbox-baby"
 lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
+lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
+lvim.builtin.terminal.start_in_insert = false
+
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
   "<cmd>TSLspImportAll<CR>", "Import All"
@@ -114,7 +117,7 @@ lvim.builtin.which_key.mappings["t"] = {
   v = { "<cmd>DiagnosticVirtual<cr>", "Toggle Diagnostics Virtual" },
 }
 
-lvim.builtin.notify.active = true
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -137,7 +140,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  { 'folke/tokyonight.nvim' },
+  {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
   {
     "catppuccin/nvim",
     as = "catppuccin",
@@ -147,18 +155,6 @@ lvim.plugins = {
     end
   },
   { "luisiacc/gruvbox-baby" },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    setup = function()
-      vim.g.indentLine_enabled = 1
-      vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
-      vim.g.indent_blankline_buftype_exclude = { "terminal" }
-      vim.g.indent_blankline_show_trailing_blankline_indent = false
-      vim.g.indent_blankline_show_first_indent_level = false
-    end
-  },
   {
     "windwp/nvim-ts-autotag",
     event = "InsertEnter",
@@ -191,7 +187,7 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
-    keys = { "c", "d", "y" }
+    -- keys = { "c", "d", "y", "s" }
   },
   {
     "sidebar-nvim/sidebar.nvim",
@@ -211,7 +207,18 @@ lvim.plugins = {
   {
     "github/copilot.vim"
   },
+  {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
 }
+
+-- hop
+vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+
+--markdown
+vim.g.mkdp_auto_close = 0
 
 -- copilot
 vim.g.copilot_no_tab_map = true
