@@ -2,64 +2,43 @@ local map = vim.api.nvim_set_keymap
 DEFAULT_OPTIONS = { noremap = true, silent = true }
 EXPR_OPTIONS = { noremap = true, expr = true, silent = true }
 
-vim.cmd([[
-" Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
-" yanked stack (also, in visual mode)
-nnoremap <silent> <leader>d "_d
-vnoremap <silent> <leader>d "_d
-" apply the same to ,x
-nnoremap <silent> <leader>x "_x
-vnoremap <silent> <leader>x "_x
-
-" paste and keep the  p register
-xnoremap <leader>p "_dP
-
-" turn off reference hightlight
-" autocmd FileType * hi! link LspReferenceText 0
-
-" copy the current word or visually selected text to the clipboard
-autocmd FileType * nnoremap <buffer> <nowait> <leader>y "+yiw
-vnoremap <leader>y "+y
-
-" copy entire buffer
-autocmd FileType * nnoremap <leader>Y :%y+<CR>
-
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
-
-" copy relative path
-nnoremap cp :let @+=fnamemodify(expand("%"), ":~:.")<CR>
-
-function!   QuickFixOpenAll()
-    if empty(getqflist())
-        return
-    endif
-    let s:prev_val = ""
-    for d in getqflist()
-        let s:curr_val = bufname(d.bufnr)
-        if (s:curr_val != s:prev_val)
-            exec "edit " . s:curr_val
-        endif
-        let s:prev_val = s:curr_val
-    endfor
-endfunction
-command! QuickFixOpenAll         call QuickFixOpenAll()
-]])
-
 vim.opt.relativenumber = true
 
 map("n", "<Space>", "<NOP>", DEFAULT_OPTIONS)
 vim.g.mapleader = " "
 
+-- Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
+map("n", "<leader>d", '"_d', DEFAULT_OPTIONS)
+map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
+
+-- apply the same to ,x
+map("n", "<leader>x", '"_x', DEFAULT_OPTIONS)
+map("v", "<leader>x", '"_x', DEFAULT_OPTIONS)
+
+-- paste and keep the  p register
+map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
+
+-- copy the current word or visually selected text to the clipboard
+map("n", "<leader>y", '"+yiw', DEFAULT_OPTIONS)
+map("v", "<leader>y", '"+y', DEFAULT_OPTIONS)
+
+-- copy entire buffer
+map("n", "<leader>Y", ':%y+<CR>', DEFAULT_OPTIONS)
+
+-- copy relative path
+map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
+
 -- Remap colon
 map("n", "ö", ":", { noremap = true })
-map("n", "<leader>ö", "q:", { noremap = true })
-map("v", "öö", "<ESC>", DEFAULT_OPTIONS);
-map("n", "ä", ":nohlsearch<CR>", DEFAULT_OPTIONS);
+-- map("n", ";;", ";", { noremap = true })
+map("n", ";", ":", { noremap = true })
+map("n", ":", ";", { noremap = true })
+map("v", ";", ":", { noremap = true })
+map("v", ":", ";", { noremap = true })
 
 --Save
-map("i", "<C-s>", "<C-o>:w<cr>", DEFAULT_OPTIONS)
-map("n", "<C-s>", ":w<cr>", DEFAULT_OPTIONS)
+map("i", "<C-s>", "<C-o>:up<CR>", { noremap = true })
+map("n", "<C-s>", ":up<CR>", { noremap = true })
 
 -- ESC terminal
 map("t", "<Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
@@ -88,19 +67,22 @@ map("x", "J", ":move '>+1<CR>gv-gv", DEFAULT_OPTIONS)
 map("n", "<leader>9", ":set notimeout<cr>", DEFAULT_OPTIONS)
 map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
 
--- lvim
-lvim.log.level = "warn"
-lvim.format_on_save = true
+map("n", "<C-c>", ":compiler tsc | setlocal makeprg=yarn\\ tsc\\ --noEmit | make | copen<CR>", { noremap = true })
+
+-- theme
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_background_color = 'dark'
 vim.g.gruvbox_baby_use_original_palette = false
+
+-- lvim
+lvim.format_on_save = true
+lvim.log.level = "warn"
 lvim.colorscheme = "gruvbox-baby"
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
-lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
+lvim.builtin.which_key.setup.plugins.registers = true
+lvim.builtin.terminal.active = true
 lvim.builtin.terminal.start_in_insert = false
-
+lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
   "<cmd>TSLspImportAll<CR>", "Import All"
@@ -116,9 +98,6 @@ lvim.builtin.which_key.mappings["t"] = {
   t = { "<cmd>DiagnosticToggle<cr>", "Toggle Diagnostics" },
   v = { "<cmd>DiagnosticVirtual<cr>", "Toggle Diagnostics Virtual" },
 }
-
--- lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -137,9 +116,16 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.cmp.formatting.max_width = 50
+
+-- generic LSP settings
+lvim.lsp.diagnostics.virtual_text = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "christoomey/vim-tmux-navigator"
+  },
   {
     "max397574/better-escape.nvim",
     config = function()
@@ -200,8 +186,8 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("hop").setup()
-      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "s", ";HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "S", ";HopWord<cr>", { silent = true })
     end,
   },
   {
@@ -212,10 +198,6 @@ lvim.plugins = {
     run = function() vim.fn["mkdp#util#install"]() end,
   }
 }
-
--- hop
-vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 
 --markdown
 vim.g.mkdp_auto_close = 0
@@ -240,11 +222,7 @@ lvim.builtin.cmp.mapping["<C-H>"] = function(fallback)
   end
 end
 
-lvim.builtin.cmp.formatting.max_width = 50
-
--- generic LSP settings
-lvim.lsp.diagnostics.virtual_text = true
-
+-- null-ls
 local null_ls = require("null-ls")
 
 vim.api.nvim_create_user_command("NullLsToggle", function()
@@ -284,13 +262,15 @@ end
 
 local sources = {
   with_yarn_pnp(null_ls.builtins.formatting.prettier),
-  -- with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
-  -- with_yarn_pnp(null_ls.builtins.code_actions.eslint)
+  with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
+  with_yarn_pnp(null_ls.builtins.code_actions.eslint)
 }
 
 null_ls.register({ sources = sources })
 
-require("lvim.lsp.manager").setup('eslint')
+-- experimental
+
+-- require("lvim.lsp.manager").setup('eslint')
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
 require("lvim.lsp.manager").setup("tailwindcss", {
   settings = {
@@ -308,3 +288,39 @@ require("lvim.lsp.manager").setup("tailwindcss", {
   },
 
 })
+
+lvim.builtin.dap.active = true
+local dap = require("dap")
+
+dap.adapters.delve = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = 'dlv',
+    args = { 'dap', '-l', '127.0.0.1:${port}' },
+  }
+}
+-- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+dap.configurations.go = {
+  {
+    type = "delve",
+    name = "Debug",
+    request = "launch",
+    program = "${file}"
+  },
+  {
+    type = "delve",
+    name = "Debug test", -- configuration for debugging test files
+    request = "launch",
+    mode = "test",
+    program = "${file}"
+  },
+  -- works with go.mod packages and sub packages
+  {
+    type = "delve",
+    name = "Debug test (go.mod)",
+    request = "launch",
+    mode = "test",
+    program = "./${relativeFileDirname}"
+  }
+}
