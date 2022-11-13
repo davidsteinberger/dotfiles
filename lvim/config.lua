@@ -25,6 +25,9 @@ map("v", "<leader>y", '"+y', DEFAULT_OPTIONS)
 -- copy entire buffer
 map("n", "<leader>Y", ':%y+<CR>', DEFAULT_OPTIONS)
 
+-- select from beginnig to end of line
+map("n", "<leader>v", "v_o$", DEFAULT_OPTIONS)
+
 -- copy relative path
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
 
@@ -81,7 +84,7 @@ lvim.colorscheme = "gruvbox-baby"
 lvim.leader = "space"
 lvim.builtin.which_key.setup.plugins.registers = true
 lvim.builtin.terminal.active = true
-lvim.builtin.terminal.start_in_insert = false
+lvim.builtin.terminal.start_in_insert = true
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
@@ -123,6 +126,15 @@ lvim.lsp.diagnostics.virtual_text = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+      }
+    end
+  },
   {
     "christoomey/vim-tmux-navigator"
   },
