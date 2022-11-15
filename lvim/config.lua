@@ -8,8 +8,8 @@ map("n", "<Space>", "<NOP>", DEFAULT_OPTIONS)
 vim.g.mapleader = " "
 
 -- Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
-map("n", "<leader>d", '"_d', DEFAULT_OPTIONS)
-map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
+-- map("n", "<leader>d", '"_d', DEFAULT_OPTIONS)
+-- map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
 
 -- apply the same to ,x
 map("n", "<leader>x", '"_x', DEFAULT_OPTIONS)
@@ -69,8 +69,6 @@ map("x", "J", ":move '>+1<CR>gv-gv", DEFAULT_OPTIONS)
 
 map("n", "<leader>9", ":set notimeout<cr>", DEFAULT_OPTIONS)
 map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
-
-map("n", "<C-c>", ":compiler tsc | setlocal makeprg=yarn\\ tsc\\ --noEmit | make | copen<CR>", { noremap = true })
 
 -- theme
 vim.g.gruvbox_baby_telescope_theme = 1

@@ -1,20 +1,23 @@
-- clean: ['~']
+- clean: ["~"]
 
 - shell:
-  - [mkdir -p ~/.config]
-  - [mkdir -p ~/.config/alacritty]
-  - [touch vim/user.vim, create user.vim]
-  - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
-  - [touch viminfo, create viminfo]
-  - [touch gitconfig, create gitconfig]
-  - [rm -rf ~/.oh-my-zsh]
-  - 
-    command: ['ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"', install oh-my-zsh]
-    stdout: true
-  - [rm ~/.zshrc]
+    - [mkdir -p ~/.config]
+    - [mkdir -p ~/.config/alacritty]
+    - [touch vim/user.vim, create user.vim]
+    - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
+    - [touch viminfo, create viminfo]
+    - [touch gitconfig, create gitconfig]
+    - [rm -rf ~/.oh-my-zsh]
+    - command:
+        [
+          'ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"',
+          install oh-my-zsh,
+        ]
+      stdout: true
+    - [rm ~/.zshrc]
 
 - link:
-    ~/.dotfiles: ''
+    ~/.dotfiles: ""
     ~/.zshrc: zshrc
     ~/.p10k.zsh: p10k.zsh
     ~/.gitconfig: gitconfig
@@ -24,12 +27,12 @@
     ~/.vimrc: vimrc
     ~/.config/nvim: vim/
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.config/karabiner: karabiner/
+    ~/.config/lvim: lvim/
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
-  - 
-    command: ['./misc_install_script.sh', miscellaneous installs]
-    stdout: true
-  -
-    command: ['./post_install_message.sh', post install message]
-    stdout: true
+    - [git submodule update --init --recursive, Installing submodules]
+    - command: ["./misc_install_script.sh", miscellaneous installs]
+      stdout: true
+    - command: ["./post_install_message.sh", post install message]
+      stdout: true
