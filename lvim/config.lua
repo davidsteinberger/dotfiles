@@ -44,7 +44,7 @@ map("i", "<C-s>", "<C-o>:up<CR>", { noremap = true })
 map("n", "<C-s>", ":up<CR>", { noremap = true })
 
 -- ESC terminal
-map("t", "<Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
+-- map("t", "<Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
 
 -- Deal with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", EXPR_OPTIONS)
@@ -125,7 +125,15 @@ lvim.lsp.diagnostics.virtual_text = true
 -- Additional Plugins
 lvim.plugins = {
   {
-    'rmagatti/auto-session',
+    'Shatur/neovim-session-manager',
+    config = function()
+      require('session_manager').setup({
+        autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir
+      });
+    end
+  },
+  {
+    -- 'rmagatti/auto-session',
     config = function()
       require("auto-session").setup {
         log_level = "error",
