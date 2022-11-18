@@ -29,6 +29,8 @@
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/karabiner: karabiner/
     ~/.config/lvim: lvim/
+    ~/.config/kitty: kitty/
+    ~/.config/wezterm: wezterm/
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
