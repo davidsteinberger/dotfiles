@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 return {
+  send_composed_key_when_left_alt_is_pressed = true,
   window_padding = {
     left = 0,
     right = 0,

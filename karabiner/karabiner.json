@@ -30,7 +30,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "@"
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "vk_none"
                                     }
                                 ],
                                 "type": "basic"
@@ -418,7 +424,13 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "@"
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "left_shift"
+                                        ]
+                                    },
+                                    {
+                                        "key_code": "vk_none"
                                     }
                                 ],
                                 "type": "basic"
@@ -880,7 +892,7 @@
                         "vendor_id": 13364
                     },
                     "ignore": true,
-                    "manipulate_caps_lock_led": true,
+                    "manipulate_caps_lock_led": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
                 },
