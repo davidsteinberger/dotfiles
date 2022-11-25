@@ -71,9 +71,17 @@ map("n", "<leader>9", ":set notimeout<cr>", DEFAULT_OPTIONS)
 map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
 
 -- theme
+local c = require('gruvbox-baby.colors').config()
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_background_color = 'dark'
 vim.g.gruvbox_baby_use_original_palette = false
+vim.g.gruvbox_baby_transparent_mode = true
+vim.g.gruvbox_baby_highlights = {
+  -- Search = { fg = c.background, bg = c.medium_gray },
+  Search = { bg = c.medium_gray },
+  -- QuickFixLine = { fg = c.background, bg = c.medium_gray }
+  QuickFixLine = { bg = c.light_gray }
+}
 
 -- lvim
 lvim.format_on_save = true
@@ -120,10 +128,27 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.cmp.formatting.max_width = 50
 
 -- generic LSP settings
-lvim.lsp.diagnostics.virtual_text = true
+lvim.lsp.diagnostics.virtual_text = false
+
+vim.g.nightflyTransparent = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "savq/melange"
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require('kanagawa').setup({
+        transparent = true,
+        theme = 'light'
+      })
+    end
+  },
+  {
+    "bluz71/vim-nightfly-colors"
+  },
   {
     'Shatur/neovim-session-manager',
     config = function()
@@ -154,9 +179,11 @@ lvim.plugins = {
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-      -- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-      vim.g.catppuccin_flavour = "mocha"
-    end
+      require("catppuccin").setup({
+        transparent_background = true,
+      })
+    end,
+    -- run = ":CatppuccinCompile",
   },
   { "luisiacc/gruvbox-baby" },
   {
@@ -247,13 +274,13 @@ vim.api.nvim_create_user_command("NullLsToggle", function()
   require("null-ls").toggle({})
 end, {})
 
-vim.g.dianostics_virtual = true
+vim.g.diagnostics_virtual = false
 vim.api.nvim_create_user_command("DiagnosticVirtual", function()
-  if vim.g.dianostics_virtual then
-    vim.g.dianostics_virtual = false
+  if vim.g.diagnostics_virtual then
+    vim.g.diagnostics_virtual = false
     vim.diagnostic.config({ virtual_text = false })
   else
-    vim.g.dianostics_virtual = true
+    vim.g.diagnostics_virtual = true
     vim.diagnostic.config({ virtual_text = true })
   end
 end, {})
