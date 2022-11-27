@@ -94,7 +94,7 @@ lvim.builtin.terminal.start_in_insert = true
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
-  "<cmd>TSLspImportAll<CR>", "Import All"
+  "<cmd>TypescriptAddMissingImports<CR>", "Import All"
 }
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
@@ -134,6 +134,12 @@ vim.g.nightflyTransparent = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    "jose-elias-alvarez/typescript.nvim",
+    config = function()
+      require("typescript").setup({})
+    end
+  },
   {
     "savq/melange"
   },
@@ -180,7 +186,7 @@ lvim.plugins = {
     as = "catppuccin",
     config = function()
       require("catppuccin").setup({
-        transparent_background = true,
+        transparent_background = false,
       })
     end,
     -- run = ":CatppuccinCompile",
@@ -307,8 +313,8 @@ end
 
 local sources = {
   with_yarn_pnp(null_ls.builtins.formatting.prettier),
-  with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
-  with_yarn_pnp(null_ls.builtins.code_actions.eslint)
+  -- with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
+  -- with_yarn_pnp(null_ls.builtins.code_actions.eslint)
 }
 
 null_ls.register({ sources = sources })
@@ -316,7 +322,9 @@ null_ls.register({ sources = sources })
 -- experimental
 
 -- require("lvim.lsp.manager").setup('eslint')
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" })
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "eslint" }, 1, 1)
+require("lvim.lsp.manager").setup('eslint')
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" }, 1, 1)
 require("lvim.lsp.manager").setup("tailwindcss", {
   settings = {
     tailwindCSS = {
