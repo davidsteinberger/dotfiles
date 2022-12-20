@@ -194,3 +194,4 @@ export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

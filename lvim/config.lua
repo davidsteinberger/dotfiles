@@ -67,8 +67,11 @@ map("n", "<Down>", ":resize +1<CR>", DEFAULT_OPTIONS)
 map("x", "K", ":move '<-2<CR>gv-gv", DEFAULT_OPTIONS)
 map("x", "J", ":move '>+1<CR>gv-gv", DEFAULT_OPTIONS)
 
-map("n", "<leader>9", ":set notimeout<cr>", DEFAULT_OPTIONS)
+map("n", "<leader>0", ":set notimeout<cr>", DEFAULT_OPTIONS)
 map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
+
+map("n", "<C-d>", "<C-d>zz", DEFAULT_OPTIONS)
+map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
 
 -- theme
 local c = require('gruvbox-baby.colors').config()
@@ -134,6 +137,9 @@ vim.g.nightflyTransparent = true
 
 -- Additional Plugins
 lvim.plugins = {
+  {
+    'eandrju/cellular-automaton.nvim'
+  },
   {
     "jose-elias-alvarez/typescript.nvim",
     config = function()
