@@ -80,10 +80,10 @@ vim.g.gruvbox_baby_background_color = 'dark'
 vim.g.gruvbox_baby_use_original_palette = false
 vim.g.gruvbox_baby_transparent_mode = true
 vim.g.gruvbox_baby_highlights = {
-  -- Search = { fg = c.background, bg = c.medium_gray },
-  Search = { bg = c.medium_gray },
-  -- QuickFixLine = { fg = c.background, bg = c.medium_gray }
-  QuickFixLine = { bg = c.light_gray }
+    --  -- Search = { fg = c.background, bg = c.medium_gray },
+    --  Search = { bg = c.medium_gray },
+    -- QuickFixLine = { fg = c.background, bg = c.medium_gray }
+    QuickFixLine = { bg = c.light_gray }
 }
 
 -- lvim
@@ -97,33 +97,33 @@ lvim.builtin.terminal.start_in_insert = true
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
-  "<cmd>TypescriptAddMissingImports<CR>", "Import All"
+    "<cmd>TypescriptAddMissingImports<CR>", "Import All"
 }
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-  l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
-  t = { "<cmd>DiagnosticToggle<cr>", "Toggle Diagnostics" },
-  v = { "<cmd>DiagnosticVirtual<cr>", "Toggle Diagnostics Virtual" },
+    name = "+Trouble",
+    r = { "<cmd>Trouble lsp_references<cr>", "References" },
+    f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
+    d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
+    q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+    l = { "<cmd>Trouble loclist<cr>", "LocationList" },
+    w = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
+    t = { "<cmd>DiagnosticToggle<cr>", "Toggle Diagnostics" },
+    v = { "<cmd>DiagnosticVirtual<cr>", "Toggle Diagnostics Virtual" },
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "css",
+    "rust",
+    "java",
+    "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -133,127 +133,139 @@ lvim.builtin.cmp.formatting.max_width = 50
 -- generic LSP settings
 lvim.lsp.diagnostics.virtual_text = false
 
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+    )
+
 vim.g.nightflyTransparent = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    'eandrju/cellular-automaton.nvim'
-  },
-  {
-    "jose-elias-alvarez/typescript.nvim",
-    config = function()
-      require("typescript").setup({})
-    end
-  },
-  {
-    "savq/melange"
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    config = function()
-      require('kanagawa').setup({
-        transparent = true,
-        theme = 'light'
-      })
-    end
-  },
-  {
-    "bluz71/vim-nightfly-colors"
-  },
-  {
-    'Shatur/neovim-session-manager',
-    config = function()
-      require('session_manager').setup({
-        autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir
-      });
-    end
-  },
-  {
-    -- 'rmagatti/auto-session',
-    config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-      }
-    end
-  },
-  {
-    "christoomey/vim-tmux-navigator"
-  },
-  {
-    "max397574/better-escape.nvim",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    as = "catppuccin",
-    config = function()
-      require("catppuccin").setup({
-        transparent_background = false,
-      })
-    end,
-    -- run = ":CatppuccinCompile",
-  },
-  { "luisiacc/gruvbox-baby" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  },
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  {
-    "tpope/vim-fugitive",
-    cmd = {
-      "G",
-      "Git",
-      "Gdiffsplit",
-      "Gread",
-      "Gwrite",
-      "Ggrep",
-      "GMove",
-      "GDelete",
-      "GBrowse",
-      "GRemove",
-      "GRename",
-      "Glgrep",
-      "Gedit"
+    {
+        'hrsh7th/cmp-nvim-lsp'
     },
-    ft = { "fugitive" }
-  },
-  {
-    "tpope/vim-surround",
-    -- keys = { "c", "d", "y", "s" }
-  },
-  {
-    "sidebar-nvim/sidebar.nvim",
-    config = function()
-      require("sidebar-nvim").setup({ open = false, side = "right" })
-    end
-  },
-  {
-    "phaazon/hop.nvim",
-    event = "BufRead",
-    config = function()
-      require("hop").setup()
-      vim.api.nvim_set_keymap("n", "s", ";HopChar2<cr>", { silent = true })
-      vim.api.nvim_set_keymap("n", "S", ";HopWord<cr>", { silent = true })
-    end,
-  },
-  {
-    "github/copilot.vim"
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  }
+    {
+        'eandrju/cellular-automaton.nvim'
+    },
+    {
+        "jose-elias-alvarez/typescript.nvim",
+        config = function()
+          require("typescript").setup({})
+        end
+    },
+    {
+        "savq/melange"
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+          require('kanagawa').setup({
+              transparent = true,
+              theme = 'light'
+          })
+        end
+    },
+    {
+        "bluz71/vim-nightfly-colors"
+    },
+    {
+        'Shatur/neovim-session-manager',
+        config = function()
+          require('session_manager').setup({
+              autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir
+          });
+        end
+    },
+    {
+        -- 'rmagatti/auto-session',
+        config = function()
+          require("auto-session").setup {
+              log_level = "error",
+              auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+          }
+        end
+    },
+    {
+        "christoomey/vim-tmux-navigator"
+    },
+    {
+        "max397574/better-escape.nvim",
+        config = function()
+          require("better_escape").setup()
+        end,
+    },
+    {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function()
+          require("catppuccin").setup({
+              transparent_background = false,
+          })
+        end,
+        -- run = ":CatppuccinCompile",
+    },
+    { "luisiacc/gruvbox-baby" },
+    {
+        "windwp/nvim-ts-autotag",
+        event = "InsertEnter",
+        config = function()
+          require("nvim-ts-autotag").setup()
+        end,
+    },
+    {
+        "folke/trouble.nvim",
+        cmd = "TroubleToggle",
+    },
+    {
+        "tpope/vim-fugitive",
+        cmd = {
+            "G",
+            "Git",
+            "Gdiffsplit",
+            "Gread",
+            "Gwrite",
+            "Ggrep",
+            "GMove",
+            "GDelete",
+            "GBrowse",
+            "GRemove",
+            "GRename",
+            "Glgrep",
+            "Gedit"
+        },
+        ft = { "fugitive" }
+    },
+    {
+        "tpope/vim-surround",
+        -- keys = { "c", "d", "y", "s" }
+    },
+    {
+        "sidebar-nvim/sidebar.nvim",
+        config = function()
+          require("sidebar-nvim").setup({ open = false, side = "right" })
+        end
+    },
+    {
+        "phaazon/hop.nvim",
+        event = "BufRead",
+        config = function()
+          require("hop").setup()
+          vim.api.nvim_set_keymap("n", "s", ";HopChar2<cr>", { silent = true })
+          vim.api.nvim_set_keymap("n", "S", ";HopWord<cr>", { silent = true })
+        end,
+    },
+    {
+        "github/copilot.vim"
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    }
 }
 
 --markdown
@@ -313,14 +325,14 @@ local is_pnp = vim.fn.findfile('.pnp.cjs', '.')
 
 local with_yarn_pnp = function(source)
   return source.with({
-    dynamic_command = is_pnp and command_resolver.from_yarn_pnp() or nil,
-  })
+          dynamic_command = is_pnp and command_resolver.from_yarn_pnp() or nil,
+      })
 end
 
 local sources = {
-  with_yarn_pnp(null_ls.builtins.formatting.prettier),
-  -- with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
-  -- with_yarn_pnp(null_ls.builtins.code_actions.eslint)
+    with_yarn_pnp(null_ls.builtins.formatting.prettier),
+    with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
+    with_yarn_pnp(null_ls.builtins.code_actions.eslint)
 }
 
 null_ls.register({ sources = sources })
@@ -329,57 +341,56 @@ null_ls.register({ sources = sources })
 
 -- require("lvim.lsp.manager").setup('eslint')
 -- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "eslint" }, 1, 1)
-require("lvim.lsp.manager").setup('eslint')
+-- require("lvim.lsp.manager").setup('eslint')
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" }, 1, 1)
 require("lvim.lsp.manager").setup("tailwindcss", {
-  settings = {
-    tailwindCSS = {
-      experimental = {
-        classRegex = {
-          'tw`([^`]*)',
-          'tw="([^"]*)',
-          'tw={"([^"}]*)',
-          'tw\\.\\w+`([^`]*)',
-          'tw\\(.*?\\)`([^`]*)',
+    settings = {
+        tailwindCSS = {
+            experimental = {
+                classRegex = {
+                    'tw`([^`]*)',
+                    'tw="([^"]*)',
+                    'tw={"([^"}]*)',
+                    'tw\\.\\w+`([^`]*)',
+                    'tw\\(.*?\\)`([^`]*)',
+                },
+            },
         },
-      },
     },
-  },
-
 })
 
 lvim.builtin.dap.active = true
 local dap = require("dap")
 
 dap.adapters.delve = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = 'dlv',
-    args = { 'dap', '-l', '127.0.0.1:${port}' },
-  }
+    type = 'server',
+    port = '${port}',
+    executable = {
+        command = 'dlv',
+        args = { 'dap', '-l', '127.0.0.1:${port}' },
+    }
 }
 -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
 dap.configurations.go = {
-  {
-    type = "delve",
-    name = "Debug",
-    request = "launch",
-    program = "${file}"
-  },
-  {
-    type = "delve",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}"
-  },
-  -- works with go.mod packages and sub packages
-  {
-    type = "delve",
-    name = "Debug test (go.mod)",
-    request = "launch",
-    mode = "test",
-    program = "./${relativeFileDirname}"
-  }
+    {
+        type = "delve",
+        name = "Debug",
+        request = "launch",
+        program = "${file}"
+    },
+    {
+        type = "delve",
+        name = "Debug test", -- configuration for debugging test files
+        request = "launch",
+        mode = "test",
+        program = "${file}"
+    },
+    -- works with go.mod packages and sub packages
+    {
+        type = "delve",
+        name = "Debug test (go.mod)",
+        request = "launch",
+        mode = "test",
+        program = "./${relativeFileDirname}"
+    }
 }

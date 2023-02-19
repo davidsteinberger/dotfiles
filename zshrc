@@ -187,7 +187,8 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH="${HOME}/fvm/default/bin${PATH}"
 
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+# export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/usr/local/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
