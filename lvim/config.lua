@@ -44,7 +44,7 @@ map("i", "<C-s>", "<C-o>:up<CR>", { noremap = true })
 map("n", "<C-s>", ":up<CR>", { noremap = true })
 
 -- ESC terminal
--- map("t", "<Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
+map("t", "<Esc><Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
 
 -- Deal with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", EXPR_OPTIONS)
@@ -93,8 +93,6 @@ lvim.log.level = "warn"
 lvim.colorscheme = "kanagawa"
 lvim.leader = "space"
 lvim.builtin.which_key.setup.plugins.registers = true
--- lvim.builtin.terminal.active = true
--- lvim.builtin.terminal.start_in_insert = true
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
 lvim.builtin.which_key.mappings["lA"] = {
@@ -158,19 +156,21 @@ lvim.plugins = {
     end
   },
   {
-    "savq/melange"
-  },
-  {
     "rebelot/kanagawa.nvim",
     config = function()
       require('kanagawa').setup({
-        transparent = true,
+        colors = {
+          theme = {
+            all = {
+              ui = {
+                bg_gutter = "none"
+              }
+            }
+          }
+        }
       })
       require("kanagawa").load("wave")
     end
-  },
-  {
-    "bluz71/vim-nightfly-colors"
   },
   {
     'Shatur/neovim-session-manager',
@@ -335,6 +335,21 @@ vim.api.nvim_create_user_command("DiagnosticToggle", function()
     vim.g.diagnostics_active = true
     vim.diagnostic.show()
   end
+end, {})
+
+vim.g.transparent = false
+vim.api.nvim_create_user_command("TransparentToggle", function()
+  local theme = vim.g.colors_name
+  if vim.g.transparent then
+    vim.g.transparent = false
+    require('kanagawa').setup({ transparent = false, theme = theme })
+  else
+    vim.g.transparent = true
+    require('kanagawa').setup({ transparent = true, theme = theme })
+  end
+  print("theme: " .. theme)
+  -- require('kanagawa').load()
+  vim.cmd.colorscheme(theme)
 end, {})
 
 -- experimental
