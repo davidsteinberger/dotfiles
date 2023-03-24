@@ -44,7 +44,7 @@ map("i", "<C-s>", "<C-o>:up<CR>", { noremap = true })
 map("n", "<C-s>", ":up<CR>", { noremap = true })
 
 -- ESC terminal
-map("t", "<Esc><Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
+map("t", "<C-Esc>", "<C-\\><C-n>", DEFAULT_OPTIONS)
 
 -- Deal with visual line wraps
 map("n", "k", "v:count == 0 ? 'gk' : 'k'", EXPR_OPTIONS)
