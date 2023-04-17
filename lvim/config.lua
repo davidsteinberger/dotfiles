@@ -141,6 +141,8 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
 )
 
+lvim.builtin.telescope.pickers.find_files.no_ignore = true
+
 -- Additional Plugins
 lvim.plugins = {
   {
@@ -294,7 +296,7 @@ end
 local null_ls = require("null-ls")
 
 local command_resolver = require("null-ls.helpers.command_resolver")
-local is_pnp = vim.fn.findfile('.pnp.cjs', '.') ~= ''
+local is_pnp = vim.fn.findfile('.pnp.cjs', '.;') ~= ''
 
 local with_yarn_pnp = function(source)
   return source.with({

@@ -143,8 +143,8 @@ alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
-alias vim="lvim"
-alias nvim="lvim"
+# alias vim="lvim"
+# alias nvim="lvim"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -166,6 +166,23 @@ function reveal {
   output=$(echo "${1}" | rev | cut -c16- | rev)
   gpg --decrypt --output ${output} "${1}" \
     && echo "${1} -> ${output}" }
+
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=kickstart nvim"
+alias nvim-chad="NVIM_APPNAME=NvChad nvim"
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+function nvims() {
+  items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
