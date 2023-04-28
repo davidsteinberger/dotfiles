@@ -1,18 +1,19 @@
-local map = vim.api.nvim_set_keymap
+-- local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 DEFAULT_OPTIONS = { noremap = true, silent = true }
 EXPR_OPTIONS = { noremap = true, expr = true, silent = true }
 
 vim.opt.relativenumber = true
+vim.opt.cmdheight = 0
+vim.opt.showcmdloc = "statusline"
 
 map("n", "<Space>", "<NOP>", DEFAULT_OPTIONS)
 vim.g.mapleader = " "
 
--- Use <leader>d (or ,dd or ,dj or 20,dd) to delete a line without adding it to the
--- map("n", "<leader>d", '"_d', DEFAULT_OPTIONS)
--- map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
+-- Use <leader>d to delete without adding it to the default register
+map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
 
 -- apply the same to ,x
-map("n", "<leader>x", '"_x', DEFAULT_OPTIONS)
 map("v", "<leader>x", '"_x', DEFAULT_OPTIONS)
 
 -- paste and keep the  p register
@@ -73,19 +74,23 @@ map("n", "<leader>)", ":set timeout<cr>", DEFAULT_OPTIONS)
 map("n", "<C-d>", "<C-d>zz", DEFAULT_OPTIONS)
 map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
 
+map("n", "]d", function() vim.diagnostic.goto_next() end, DEFAULT_OPTIONS)
+map("n", "[d", function() vim.diagnostic.goto_next() end, DEFAULT_OPTIONS)
+
+map("i", "<C-h>", function() vim.lsp.buf.signature_help() end, EXPR_OPTIONS)
+
 -- theme
-local c = require('gruvbox-baby.colors').config()
-vim.g.gruvbox_baby_telescope_theme = 1
-vim.g.gruvbox_baby_background_color = 'dark'
-vim.g.gruvbox_baby_use_original_palette = false
-vim.g.gruvbox_baby_transparent_mode = true
-vim.g.gruvbox_baby_highlights = {
-  --  -- Search = { fg = c.background, bg = c.medium_gray },
-  --  Search = { bg = c.medium_gray },
-  -- QuickFixLine = { fg = c.background, bg = c.medium_gray }
-  QuickFixLine = { bg = c.light_gray }
-}
-vim.g.nightflyTransparent = true
+-- local c = require('gruvbox-baby.colors').config()
+-- vim.g.gruvbox_baby_telescope_theme = 1
+-- vim.g.gruvbox_baby_background_color = 'dark'
+-- vim.g.gruvbox_baby_use_original_palette = false
+-- vim.g.gruvbox_baby_transparent_mode = true
+-- vim.g.gruvbox_baby_highlights = {
+--   --  -- Search = { fg = c.background, bg = c.medium_gray },
+--   --  Search = { bg = c.medium_gray },
+--   -- QuickFixLine = { fg = c.background, bg = c.medium_gray }
+--   QuickFixLine = { bg = c.light_gray }
+-- }
 
 -- lvim
 lvim.format_on_save = true
@@ -94,7 +99,48 @@ lvim.colorscheme = "kanagawa"
 lvim.leader = "space"
 lvim.builtin.which_key.setup.plugins.registers = true
 lvim.keys.normal_mode["<C-t>"] = ":ToggleTerm<cr>"
+
 lvim.builtin.telescope.defaults.file_ignore_patterns = { ".yarn", "node_modules" }
+lvim.builtin.telescope.defaults.borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' }
+-- https://github.com/LunarVim/LunarVim/issues/2286#issuecomment-1049097981
+lvim.builtin.telescope.defaults.layout_config = {
+  width = 0.90,
+  height = 0.85,
+  -- preview_cutoff = 120,
+  prompt_position = "top",
+  horizontal = {
+    preview_width = function(_, cols, _)
+      return math.floor(cols * 0.6)
+    end,
+  },
+  vertical = {
+    width = 0.9,
+    height = 0.85,
+    preview_height = 0.5,
+  },
+  flex = {
+    horizontal = {
+      preview_width = 0.9,
+    },
+  },
+}
+lvim.builtin.telescope.defaults.layout_strategy = "flex"
+lvim.builtin.which_key.mappings["f"] = {
+  function()
+    require("lvim.core.telescope.custom-finders").find_project_files()
+  end,
+  "Find Project Files",
+}
+lvim.builtin.which_key.mappings["s"]["f"] = {
+  function()
+    require "telescope.builtin".find_files({
+      hidden = true,
+      no_ignore = true
+    })
+  end,
+  "Find File",
+}
+
 lvim.builtin.which_key.mappings["lA"] = {
   "<cmd>TypescriptAddMissingImports<CR>", "Import All"
 }
@@ -131,23 +177,10 @@ lvim.builtin.cmp.formatting.max_width = 50
 
 -- generic LSP settings
 lvim.lsp.diagnostics.virtual_text = false
-
-local lspconfig = require('lspconfig')
-local lsp_defaults = lspconfig.util.default_config
-
-lsp_defaults.capabilities = vim.tbl_deep_extend(
-  'force',
-  lsp_defaults.capabilities,
-  require('cmp_nvim_lsp').default_capabilities()
-)
-
-lvim.builtin.telescope.pickers.find_files.no_ignore = true
+lvim.lsp.diagnostics.float.format = nil
 
 -- Additional Plugins
 lvim.plugins = {
-  {
-    'hrsh7th/cmp-nvim-lsp'
-  },
   {
     'eandrju/cellular-automaton.nvim'
   },
@@ -158,6 +191,14 @@ lvim.plugins = {
     end
   },
   {
+    "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  -- { "hrsh7th/cmp-nvim-lsp-signature-help" },
+  {
     "rebelot/kanagawa.nvim",
     config = function()
       require('kanagawa').setup({
@@ -165,7 +206,7 @@ lvim.plugins = {
           theme = {
             all = {
               ui = {
-                bg_gutter = "none"
+                bg_gutter = "none",
               }
             }
           }
@@ -183,15 +224,6 @@ lvim.plugins = {
     end
   },
   {
-    -- 'rmagatti/auto-session',
-    config = function()
-      require("auto-session").setup {
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
-      }
-    end
-  },
-  {
     "christoomey/vim-tmux-navigator"
   },
   {
@@ -202,22 +234,14 @@ lvim.plugins = {
   },
   {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
     config = function()
       require("catppuccin").setup({
-        -- transparent_background = false,
+        transparent_background = false,
       })
     end,
-    -- run = ":CatppuccinCompile",
   },
   { "luisiacc/gruvbox-baby" },
-  {
-    "windwp/nvim-ts-autotag",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  },
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
@@ -243,13 +267,6 @@ lvim.plugins = {
   },
   {
     "tpope/vim-surround",
-    -- keys = { "c", "d", "y", "s" }
-  },
-  {
-    "sidebar-nvim/sidebar.nvim",
-    config = function()
-      require("sidebar-nvim").setup({ open = false, side = "right" })
-    end
   },
   {
     "phaazon/hop.nvim",
@@ -265,7 +282,7 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+    build = function() vim.fn["mkdp#util#install"]() end,
   }
 }
 
@@ -275,22 +292,22 @@ vim.g.mkdp_auto_close = 0
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
-map("i", "<C-H>", 'copilot#Accept("<CR>")', EXPR_OPTIONS)
+map("i", "<C-Y>", 'copilot#Accept("<CR>")', EXPR_OPTIONS)
 map("i", "<C-J>", 'copilot#Previous()', EXPR_OPTIONS)
 map("i", "<C-K>", 'copilot#Next()', EXPR_OPTIONS)
-local cmp = require "cmp"
--- lvim.builtin.cmp.mapping = cmp.mapping.preset.insert({
---   ["<C-j>"] = nil
--- })
-lvim.builtin.cmp.mapping["<C-H>"] = function(fallback)
-  cmp.mapping.abort()
-  local copilot_keys = vim.fn["copilot#Accept"]()
-  if copilot_keys ~= "" then
-    vim.api.nvim_feedkeys(copilot_keys, "i", true)
-  else
-    fallback()
-  end
-end
+-- local cmp = require "cmp"
+-- lvim.builtin.cmp.mapping["<C-H>"] = function(fallback)
+--   cmp.mapping.abort()
+--   local copilot_keys = vim.fn["copilot#Accept"]()
+--   if copilot_keys ~= "" then
+--     vim.api.nvim_feedkeys(copilot_keys, "i", true)
+--   else
+--     fallback()
+--   end
+-- end
+vim.list_extend(lvim.builtin.cmp.sources, {
+  { name = "nvim_lsp_signature_help" },
+}, 1, 1)
 
 -- null-ls
 local null_ls = require("null-ls")
@@ -350,14 +367,13 @@ vim.api.nvim_create_user_command("TransparentToggle", function()
     require('kanagawa').setup({ transparent = true, theme = theme })
   end
   print("theme: " .. theme)
-  -- require('kanagawa').load()
   vim.cmd.colorscheme(theme)
 end, {})
 
 -- experimental
 
--- require("lvim.lsp.manager").setup('eslint')
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "eslint" }, 1, 1)
+lvim.lsp.installer.setup.automatic_installation.exclude = { "eslint" }
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "eslint" }, 1, 1)
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "tailwindcss" }, 1, 1)
 require("lvim.lsp.manager").setup("tailwindcss", {
   settings = {
