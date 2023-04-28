@@ -75,7 +75,7 @@ map("n", "<C-d>", "<C-d>zz", DEFAULT_OPTIONS)
 map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
 
 map("n", "]d", function() vim.diagnostic.goto_next() end, DEFAULT_OPTIONS)
-map("n", "[d", function() vim.diagnostic.goto_next() end, DEFAULT_OPTIONS)
+map("n", "[d", function() vim.diagnostic.goto_prev() end, DEFAULT_OPTIONS)
 
 map("i", "<C-h>", function() vim.lsp.buf.signature_help() end, EXPR_OPTIONS)
 
