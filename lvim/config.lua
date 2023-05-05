@@ -292,7 +292,7 @@ vim.g.mkdp_auto_close = 0
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
-map("i", "<C-Y>", 'copilot#Accept("<CR>")', EXPR_OPTIONS)
+map("i", "<C-Y>", 'copilot#Accept("<CR>")', { noremap = true, expr = true, silent = true, replace_keycodes = false })
 map("i", "<C-J>", 'copilot#Previous()', EXPR_OPTIONS)
 map("i", "<C-K>", 'copilot#Next()', EXPR_OPTIONS)
 -- local cmp = require "cmp"

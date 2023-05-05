@@ -16,7 +16,7 @@ return {
     'Nerd Font',
     'Mono',
   },
-  font_size = 18.0,
+  font_size = 16.0,
   -- color_scheme = 'Gruvbox Dark',
   force_reverse_video_cursor = true,
   colors = {
