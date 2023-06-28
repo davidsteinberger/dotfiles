@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -77,6 +79,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+zstyle ':omz:plugins:nvm' lazy yes
 plugins=(brew tmux git npm nvm macos z kubectl dotenv)
 
 source $ZSH/oh-my-zsh.sh
@@ -87,6 +90,15 @@ fpath=(
   ~/.dotfiles/zsh
   "${fpath[@]}"
 )
+
+# improve startup time
+# https://gist.github.com/ctechols/ca1035271ad134841284
+autoload -Uz compinit 
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 
 autoload -Uz fp ll kp ks tmuxify
 
@@ -143,8 +155,8 @@ alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
-# alias vim="lvim"
-# alias nvim="lvim"
+alias vim="lvim"
+alias nvim="lvim"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -187,10 +199,6 @@ function nvims() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 export PATH="$HOME/.local/bin:$PATH"
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
@@ -204,7 +212,6 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export PATH="${HOME}/fvm/default/bin${PATH}"
 
 export GOPATH=$HOME/go
-# export GOROOT="$(brew --prefix golang)/libexec"
 export GOROOT="/usr/local/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
@@ -212,4 +219,6 @@ export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+# zprof

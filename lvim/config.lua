@@ -156,6 +156,16 @@ lvim.builtin.which_key.mappings["t"] = {
   v = { "<cmd>DiagnosticVirtual<cr>", "Toggle Diagnostics Virtual" },
 }
 
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+  "Test Method" }
+lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+  "Test Method DAP" }
+lvim.builtin.which_key.mappings["df"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+lvim.builtin.which_key.mappings["dF"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
@@ -176,12 +186,94 @@ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.cmp.formatting.max_width = 50
 
 -- generic LSP settings
-lvim.lsp.diagnostics.virtual_text = false
-lvim.lsp.diagnostics.float.format = nil
+-- lvim.lsp.diagnostics.virtual_text = false
+vim.diagnostic.config({
+  virtual_text = false,
+})
+-- lvim.lsp.diagnostics.float.format = nil
 
 -- Additional Plugins
 lvim.plugins = {
+  "ChristianChiarulli/swenv.nvim",
+  "stevearc/dressing.nvim",
+  "mfussenegger/nvim-dap-python",
+  "nvim-neotest/neotest-python",
+  "nvim-neotest/neotest",
+  -- {
+  --   "David-Kunz/jester",
+  --   config = function()
+  --     require("jester").setup({
+  --       path_to_jest_run = 'yarn jest',   -- used to run tests
+  --       path_to_jest_debug = 'yarn jest', -- used for debugging
+  --       dap = {
+  --         -- console = "externalTerminal",
+  --       }
+  --     })
+  --   end
+  -- },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-go",
+      "neotest-python",
+      "haydenmeade/neotest-jest",
+      -- Your other test adapters here
+    },
+    config = function()
+      -- get neotest namespace (api call creates or returns namespace)
+      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            local message =
+                diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            return message
+          end,
+        },
+      }, neotest_ns)
+      require("neotest").setup({
+        -- your neotest config here
+        -- output = {
+        --   enable = true,
+        --   open_on_run = true,
+        -- },
+        -- output_panel = {
+        --   open = 'rightbelow vsplit | resize 30',
+        -- },
+        adapters = {
+          require('neotest-jest')({
+            jestCommand = "yarn test --",
+            -- jestConfigFile = "jest.config.js",
+            env = { CI = true },
+            cwd = function()
+              -- return "/Users/davidsteinberger/Documents/myplant/github/maintenance-operations-app/"
+              return vim.fn.getcwd()
+            end,
+          }),
+          require("neotest-go"),
+          require("neotest-python")({
+            -- Extra arguments for nvim-dap configuration
+            -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+            dap = {
+              justMyCode = false,
+              console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG", "--quiet" },
+            runner = "pytest",
+          })
+
+        },
+      })
+    end,
+  },
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup()
+    end,
+  },
+  {
+
     'eandrju/cellular-automaton.nvim'
   },
   {
@@ -282,7 +374,10 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    build = function() vim.fn["mkdp#util#install"]() end,
+    ft = "markdown",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   }
 }
 
@@ -394,35 +489,35 @@ require("lvim.lsp.manager").setup("tailwindcss", {
 lvim.builtin.dap.active = true
 local dap = require("dap")
 
-dap.adapters.delve = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = 'dlv',
-    args = { 'dap', '-l', '127.0.0.1:${port}' },
-  }
-}
--- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
-dap.configurations.go = {
-  {
-    type = "delve",
-    name = "Debug",
-    request = "launch",
-    program = "${file}"
-  },
-  {
-    type = "delve",
-    name = "Debug test", -- configuration for debugging test files
-    request = "launch",
-    mode = "test",
-    program = "${file}"
-  },
-  -- works with go.mod packages and sub packages
-  {
-    type = "delve",
-    name = "Debug test (go.mod)",
-    request = "launch",
-    mode = "test",
-    program = "./${relativeFileDirname}"
-  }
-}
+-- dap.adapters.delve = {
+--   type = 'server',
+--   port = '${port}',
+--   executable = {
+--     command = 'dlv',
+--     args = { 'dap', '-l', '127.0.0.1:${port}' },
+--   }
+-- }
+-- -- https://github.com/go-delve/delve/blob/master/Documentation/usage/dlv_dap.md
+-- dap.configurations.go = {
+--   {
+--     type = "delve",
+--     name = "Debug",
+--     request = "launch",
+--     program = "${file}"
+--   },
+--   {
+--     type = "delve",
+--     name = "Debug test", -- configuration for debugging test files
+--     request = "launch",
+--     mode = "test",
+--     program = "${file}"
+--   },
+--   -- works with go.mod packages and sub packages
+--   {
+--     type = "delve",
+--     name = "Debug test (go.mod)",
+--     request = "launch",
+--     mode = "test",
+--     program = "./${relativeFileDirname}"
+--   }
+-- }
