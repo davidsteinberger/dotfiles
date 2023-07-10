@@ -233,20 +233,15 @@ lvim.plugins = {
       }, neotest_ns)
       require("neotest").setup({
         -- your neotest config here
-        -- output = {
-        --   enable = true,
-        --   open_on_run = true,
-        -- },
-        -- output_panel = {
-        --   open = 'rightbelow vsplit | resize 30',
-        -- },
+        quickfix = {
+          open = false,
+        },
         adapters = {
           require('neotest-jest')({
-            jestCommand = "yarn test --",
-            -- jestConfigFile = "jest.config.js",
+            jestCommand = "yarn test",
+            debug = true,
             env = { CI = true },
             cwd = function()
-              -- return "/Users/davidsteinberger/Documents/myplant/github/maintenance-operations-app/"
               return vim.fn.getcwd()
             end,
           }),
@@ -420,7 +415,8 @@ end
 local sources = {
   with_yarn_pnp(null_ls.builtins.formatting.prettier),
   with_yarn_pnp(null_ls.builtins.diagnostics.eslint),
-  with_yarn_pnp(null_ls.builtins.code_actions.eslint)
+  with_yarn_pnp(null_ls.builtins.code_actions.eslint),
+  null_ls.builtins.diagnostics.golangci_lint
 }
 
 null_ls.register({ sources = sources })
