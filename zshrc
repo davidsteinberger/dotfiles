@@ -155,8 +155,8 @@ alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
-alias vim="lvim"
-alias nvim="lvim"
+# alias vim="lvim"
+# alias nvim="lvim"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
