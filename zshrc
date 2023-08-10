@@ -81,7 +81,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 # zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' autoload true
-plugins=(brew tmux git npm nvm macos z kubectl dotenv)
+plugins=(brew tmux git npm nvm macos z kubectl dotenv pass)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -156,8 +156,7 @@ alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
-# alias vim="lvim"
-# alias nvim="lvim"
+alias pw="pass show -c"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
@@ -184,6 +183,7 @@ alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+export NVIM_APPNAME=LazyVim
 
 function nvims() {
   items=("default" "kickstart" "LazyVim" "NvChad" "AstroNvim")
