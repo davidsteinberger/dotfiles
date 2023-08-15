@@ -39,13 +39,6 @@ map("n", "<leader>v", "v_o$", DEFAULT_OPTIONS)
 -- copy relative path
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
 
--- Remap colon
--- map("n", ";;", ";", { noremap = true })
--- map("n", ";", ":", { noremap = true, silent = false })
--- map("n", ":", ";", { noremap = true, silent = false })
--- map("v", ";", ":", { noremap = true, silent = false })
--- map("v", ":", ";", { noremap = true, silent = false })
-
 map("n", "<c-h>", ":TmuxNavigateLeft<cr>", { silent = true, noremap = true })
 map("n", "<c-l>", ":TmuxNavigateRight<cr>", { silent = true, noremap = true })
 map("n", "<c-j>", ":TmuxNavigateDown<cr>", { silent = true, noremap = true })
@@ -56,6 +49,9 @@ map("n", "<Left>", ":vertical resize -1<CR>", DEFAULT_OPTIONS)
 map("n", "<Right>", ":vertical resize +1<CR>", DEFAULT_OPTIONS)
 map("n", "<Up>", ":resize -1<CR>", DEFAULT_OPTIONS)
 map("n", "<Down>", ":resize +1<CR>", DEFAULT_OPTIONS)
+
+map("n", "<TAB>", ":bnext<CR>", DEFAULT_OPTIONS)
+map("n", "<S-TAB>", ":bprevious<CR>", DEFAULT_OPTIONS)
 
 map("n", "<C-d>", "<C-d>zz", DEFAULT_OPTIONS)
 map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
@@ -69,4 +65,18 @@ vim.api.nvim_create_user_command("DiagnosticVirtual", function()
     vim.g.diagnostics_virtual = true
     vim.diagnostic.config({ virtual_text = true })
   end
+end, {})
+
+vim.g.transparent = false
+vim.api.nvim_create_user_command("TransparentToggle", function()
+  local theme = vim.g.colors_name
+  if vim.g.transparent then
+    vim.g.transparent = false
+    require("kanagawa").setup({ transparent = false, theme = theme })
+  else
+    vim.g.transparent = true
+    require("kanagawa").setup({ transparent = true, theme = theme })
+  end
+  print("theme: " .. theme)
+  vim.cmd.colorscheme(theme)
 end, {})

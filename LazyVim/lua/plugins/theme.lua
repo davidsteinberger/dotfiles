@@ -19,13 +19,17 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+    event = "VeryLazy",
     config = function()
       require("catppuccin").setup({
         transparent_background = false,
       })
     end,
   },
-  { "folke/tokyonight.nvim" },
+  {
+    "folke/tokyonight.nvim",
+    event = "VeryLazy",
+  },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",

@@ -3,7 +3,7 @@ return {
   {
     "nvim-neotest/neotest",
     event = "VeryLazy",
-    requires = {
+    dependencies = {
       "nvim-neotest/neotest-go",
       "neotest-python",
       "haydenmeade/neotest-jest",
