@@ -115,7 +115,7 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='lvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -179,6 +179,7 @@ function reveal {
   gpg --decrypt --output ${output} "${1}" \
     && echo "${1} -> ${output}" }
 
+# nvim
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
 alias nvim-kick="NVIM_APPNAME=kickstart nvim"
 alias nvim-chad="NVIM_APPNAME=NvChad nvim"
@@ -197,11 +198,13 @@ function nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
+# lazygit
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PATH="$HOME/.local/bin:$PATH"
-# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"

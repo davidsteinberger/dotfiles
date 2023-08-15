@@ -1,0 +1,8 @@
+os:
+  edit: nvim {{filename}}
+
+git:
+  pull:
+    mode: "rebase"
+  paging:
+    pager: delta --paging=never --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"

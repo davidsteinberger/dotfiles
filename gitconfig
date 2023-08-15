@@ -1,0 +1,55 @@
+[user]
+  name = David Steinberger
+  email = mail.steinberger@gmail.com
+	signingkey = 0x7EF2450C17A54023
+
+[core]
+  excludesfile = /Users/davidsteinberger/.gitignore_global
+  quotepath = false
+  autocrlf = input
+  pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+
+[interactive]
+    diffFilter = delta --color-only --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+
+[push]
+  default = simple
+
+[http]
+	sslVerify = false
+
+[commit]
+	gpgsign = true
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
+
+[delta "light-mode"]
+  navigate = true
+  side-by-side = true
+  light = true
+
+[delta "dark-mode"]
+  navigate = true
+  side-by-side = true
+  syntax-theme = gruvbox-dark
+  plus-style = syntax "#333333"
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[pull]
+	rebase = true
+
+[rebase]
+	autoStash = true
+
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true

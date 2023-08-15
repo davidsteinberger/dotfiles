@@ -37,4 +37,18 @@ return {
       colorscheme = "kanagawa",
     },
   },
+  {
+    "f-person/auto-dark-mode.nvim",
+    config = {
+      update_interval = 1000,
+      set_dark_mode = function()
+        require("kanagawa").setup({ theme = "wave", transparent = true })
+        vim.api.nvim_set_option("background", "dark")
+      end,
+      set_light_mode = function()
+        require("kanagawa").setup({ theme = "lotus", transparent = false })
+        vim.api.nvim_set_option("background", "light")
+      end,
+    },
+  },
 }

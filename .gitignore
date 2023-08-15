@@ -8,5 +8,5 @@ vim/plugged
 vim/user.vim
 zsh_history
 zsh/cache/
-gitconfig
+lazygit/state.yml
 vim/.init.vim-rplugin~
