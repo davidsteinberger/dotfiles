@@ -157,6 +157,7 @@ alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
 alias pw="pass show -c"
+alias pwo="pass otp show -c"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 

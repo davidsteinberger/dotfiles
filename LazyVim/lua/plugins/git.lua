@@ -24,6 +24,7 @@ return {
     keys = {
       { "<leader>ghf", "<cmd>G<cr>", desc = "Fugitive" },
       { "<leader>ght", "<cmd>0GcLog<cr>", desc = "TimeMachine" },
+      { "y<C-G>", "<cmd>call setreg(v:register, fugitive#Object(@%))<cr>", desc = "Copy git object" },
     },
   },
 }

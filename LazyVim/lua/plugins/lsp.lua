@@ -10,6 +10,11 @@ return {
         underline = true,
       },
       servers = {
+        -- tsserver = {
+        --   root_dir = function(...)
+        --     return require("lspconfig.util").root_pattern(".git")(...)
+        --   end,
+        -- },
         tailwindcss = {
           settings = {
             tailwindCSS = {
