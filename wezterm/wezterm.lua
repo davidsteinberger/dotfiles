@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 return {
-	-- window_background_opacity = 0.95,
-	window_background_opacity = 0.97,
+	window_background_opacity = 0.87,
+	-- window_background_opacity = 0.97,
 	send_composed_key_when_right_alt_is_pressed = true,
 	window_padding = {
 		left = 0,
@@ -17,7 +17,6 @@ return {
 		"Mono",
 	}),
 	font_size = 16.0,
-	-- color_scheme = 'Gruvbox Dark',
 	force_reverse_video_cursor = true,
 	colors = {
 		foreground = "#dcd7ba",

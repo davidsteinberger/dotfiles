@@ -24,4 +24,12 @@ return {
       { "<leader>bl", "<cmd>BufferLineCloseRight<cr>", desc = "Close all to the right" },
     },
   },
+  {
+    "folke/flash.nvim",
+    opts = {
+      modes = {
+        search = { enabled = false },
+      },
+    },
+  },
 }
