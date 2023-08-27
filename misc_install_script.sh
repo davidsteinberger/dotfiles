@@ -1,7 +1,15 @@
 #!/bin/bash
 
 # install required brew packages
-brew install coreutils findutils gawk gnu-tar gnu-sed gnutls gnu-indent gnu-getopt git git-gui grep kubernetes-cli argoproj/tap/kubectl-argo-rollouts neovim nvm ssh-copy-id tmux watchman wget z zsh zsh-completions fzf ripgrep gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
+brew install \
+	coreutils findutils gawk gnu-tar gnu-sed gnutls gnu-indent gnu-getopt grep \
+	git git-gui jesseduffield/lazygit/lazygit \
+	kubernetes-cli \
+	neovim nvm ssh-copy-id tmux watchman wget \
+	z zsh zsh-completions \
+	fzf ripgrep \
+	gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac \
+	pass pass-otp
 
 $(brew --prefix)/opt/fzf/install
 
@@ -9,17 +17,7 @@ brew cask install font-fira-code
 brew install --cask gpg-suite
 
 brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
-
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
-
-#brew cask install alacritty
-
-# install tmuxinator
-#sudo gem install tmuxinator
+brew install --cask font-fira-code-nerd-font
 
 # install node
 nvm install --lts
-
-# install powerline-fonts
-cp ./fonts2/* ~/Library/Fonts

@@ -17,18 +17,8 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
--- Use <leader>d to delete without adding it to the default register
-map("v", "<leader>d", '"_d', DEFAULT_OPTIONS)
-
--- apply the same to ,x
-map("v", "<leader>x", '"_x', DEFAULT_OPTIONS)
-
 -- paste and keep the  p register
 map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
-
--- copy the current word or visually selected text to the clipboard
-map("n", "<leader>y", '"+yiw', DEFAULT_OPTIONS)
-map("v", "<leader>y", '"+y', DEFAULT_OPTIONS)
 
 -- copy entire buffer
 map("n", "<leader>Y", ":%y+<CR>", DEFAULT_OPTIONS)

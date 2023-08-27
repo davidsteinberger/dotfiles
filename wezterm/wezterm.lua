@@ -11,10 +11,8 @@ return {
 	},
 	hide_tab_bar_if_only_one_tab = true,
 	font = wezterm.font_with_fallback({
-		"Comic Code Ligatures",
-		"Fira Code",
-		"Nerd Font",
-		"Mono",
+		"ComicCodeLigatures Nerd Font",
+		"FiraMono Nerd Font",
 	}),
 	font_size = 16.0,
 	-- force_reverse_video_cursor = true,
