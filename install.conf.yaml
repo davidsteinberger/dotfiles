@@ -1,21 +1,21 @@
-- clean: ["~"]
+- clean: [ "~" ]
 
 - shell:
-    - [mkdir -p ~/.config]
-    - [mkdir -p ~/.config/alacritty]
-    - [mkdir -p ~/.tmux/themes]
-    - [touch vim/user.vim, create user.vim]
-    - [touch vim/NERDTreeBookmarks, create NERDTreeBookmarks]
-    - [touch viminfo, create viminfo]
-    - [touch gitconfig, create gitconfig]
-    - [rm -rf ~/.oh-my-zsh]
+    - [ mkdir -p ~/.config ]
+    - [ mkdir -p ~/.config/alacritty ]
+    - [ mkdir -p ~/.tmux/themes ]
+    - [ touch vim/user.vim, create user.vim ]
+    - [ touch vim/NERDTreeBookmarks, create NERDTreeBookmarks ]
+    - [ touch viminfo, create viminfo ]
+    - [ touch gitconfig, create gitconfig ]
+    - [ rm -rf ~/.oh-my-zsh ]
     - command:
         [
           'ZSH= sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"',
-          install oh-my-zsh,
+          install oh-my-zsh
         ]
       stdout: true
-    - [rm ~/.zshrc]
+    - [ rm ~/.zshrc ]
 
 - link:
     ~/.dotfiles: ""
@@ -36,8 +36,11 @@
     ~/.config/wezterm: wezterm/
 
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
-    - command: ["./misc_install_script.sh", miscellaneous installs]
+    - [
+        git submodule update --init --recursive,
+        Installing submodules
+      ]
+    - command: [ "./misc_install_script.sh", miscellaneous installs ]
       stdout: true
-    - command: ["./post_install_message.sh", post install message]
+    - command: [ "./post_install_message.sh", post install message ]
       stdout: true

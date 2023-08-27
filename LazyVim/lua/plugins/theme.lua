@@ -1,19 +1,30 @@
+function DarkMode()
+  require("kanagawa").setup({
+    theme = "wave",
+    transparent = true,
+    colors = {
+      theme = {
+        all = {
+          ui = {
+            bg_gutter = "none",
+          },
+        },
+      },
+    },
+  })
+  vim.api.nvim_set_option("background", "dark")
+end
+
+function LightMode()
+  require("kanagawa").setup({ theme = "lotus", transparent = false })
+  vim.api.nvim_set_option("background", "light")
+end
+
 return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      require("kanagawa").setup({
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "none",
-              },
-            },
-          },
-        },
-      })
-      require("kanagawa").load("wave")
+      DarkMode()
     end,
   },
   {
@@ -30,7 +41,6 @@ return {
     "folke/tokyonight.nvim",
     event = "VeryLazy",
   },
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
@@ -42,12 +52,10 @@ return {
     config = {
       update_interval = 1000,
       set_dark_mode = function()
-        require("kanagawa").setup({ theme = "wave", transparent = true })
-        vim.api.nvim_set_option("background", "dark")
+        DarkMode()
       end,
       set_light_mode = function()
-        require("kanagawa").setup({ theme = "lotus", transparent = false })
-        vim.api.nvim_set_option("background", "light")
+        LightMode()
       end,
     },
   },

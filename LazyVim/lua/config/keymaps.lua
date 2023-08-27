@@ -57,15 +57,10 @@ vim.api.nvim_create_user_command("DiagnosticVirtual", function()
   end
 end, {})
 
-vim.g.transparent = true
-vim.api.nvim_create_user_command("TransparentToggle", function()
-  if vim.g.transparent then
-    vim.g.transparent = false
-    require("kanagawa").setup({ theme = "lotus", transparent = false })
-    vim.api.nvim_set_option("background", "light")
-  else
-    vim.g.transparent = true
-    require("kanagawa").setup({ theme = "wave", transparent = true })
-    vim.api.nvim_set_option("background", "dark")
-  end
+vim.api.nvim_create_user_command("DarkMode", function()
+  DarkMode()
+end, {})
+
+vim.api.nvim_create_user_command("LightMode", function()
+  LightMode()
 end, {})
