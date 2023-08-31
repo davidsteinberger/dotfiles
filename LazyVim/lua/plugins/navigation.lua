@@ -32,4 +32,33 @@ return {
       },
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
+        mappings = {
+          i = {
+            ["<c-q>"] = function(...)
+              local actions = require("telescope.actions")
+              -- return require("telescope.actions").send_selected_to_qflist(...)
+              actions.smart_send_to_qflist(...)
+              actions.open_qflist(...)
+            end,
+          },
+        },
+      },
+    },
+  },
+  {
+    "goolord/alpha-nvim",
+    opts = {
+      config = {
+        opts = {
+          autostart = false,
+        },
+      },
+    },
+  },
 }

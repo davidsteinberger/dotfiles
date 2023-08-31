@@ -1,7 +1,6 @@
 local wezterm = require("wezterm")
 return {
-	window_background_opacity = 0.87,
-	-- window_background_opacity = 0.97,
+	window_background_opacity = 0.89,
 	send_composed_key_when_right_alt_is_pressed = true,
 	window_padding = {
 		left = 0,
