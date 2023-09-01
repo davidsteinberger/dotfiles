@@ -29,4 +29,11 @@ return {
 		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
 		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
 	},
+	keys = {
+		{
+			key = "Enter",
+			mods = "ALT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+	},
 }

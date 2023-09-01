@@ -24,7 +24,7 @@ map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
 map("n", "<leader>Y", ":%y+<CR>", DEFAULT_OPTIONS)
 
 -- select from beginnig to end of line
-map("n", "<leader>v", "v_o$", DEFAULT_OPTIONS)
+map("n", "<leader>v", "v_og_", DEFAULT_OPTIONS)
 
 -- copy relative path
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
