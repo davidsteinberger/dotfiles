@@ -54,9 +54,19 @@ return {
     opts = {
       config = {
         opts = {
-          autostart = false,
+          -- autostart = false,
         },
       },
     },
+  },
+  {
+    "nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.preselect = cmp.PreselectMode.None
+      opts.completion = {
+        completeopt = "noselect",
+      }
+    end,
   },
 }
