@@ -18,6 +18,7 @@ brew install --cask gpg-suite
 
 brew tap homebrew/cask-fonts
 brew install --cask font-fira-code-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
 
 # install node
 nvm install --lts
