@@ -1,6 +1,45 @@
 local wezterm = require("wezterm")
+
+local function configs(dark, light)
+	local appearance = wezterm.gui.get_appearance()
+	if appearance:find("Dark") then
+		return dark
+	else
+		return light
+	end
+end
+
+local colorsDark = {
+	foreground = "#dcd7ba",
+	background = "#1f1f28",
+	cursor_bg = "#c8c093",
+	-- cursor_fg = "#c8c093",
+	cursor_border = "#c8c093",
+	selection_fg = "#c8c093",
+	selection_bg = "#2d4f67",
+	scrollbar_thumb = "#16161d",
+	split = "#16161d",
+	ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
+	brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
+	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+}
+
+local colorsLight = {
+	foreground = "#545464",
+	background = "#f2ecbc",
+	cursor_bg = "#c8c093",
+	-- cursor_fg = "#c8c093",
+	cursor_border = "#c8c093",
+	selection_fg = "#c8c093",
+	selection_bg = "#2d4f67",
+	scrollbar_thumb = "#16161d",
+	split = "#16161d",
+	ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
+	brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
+	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
+}
 return {
-	window_background_opacity = 0.89,
+	window_background_opacity = configs(0.89, 1),
 	send_composed_key_when_right_alt_is_pressed = true,
 	window_padding = {
 		left = 0,
@@ -16,20 +55,7 @@ return {
 	}),
 	font_size = 16.0,
 	-- force_reverse_video_cursor = true,
-	colors = {
-		foreground = "#dcd7ba",
-		background = "#1f1f28",
-		cursor_bg = "#c8c093",
-		-- cursor_fg = "#c8c093",
-		cursor_border = "#c8c093",
-		selection_fg = "#c8c093",
-		selection_bg = "#2d4f67",
-		scrollbar_thumb = "#16161d",
-		split = "#16161d",
-		ansi = { "#090618", "#c34043", "#76946a", "#c0a36e", "#7e9cd8", "#957fb8", "#6a9589", "#c8c093" },
-		brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
-		indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
-	},
+	colors = configs(colorsDark, colorsLight),
 	keys = {
 		{
 			key = "Enter",
