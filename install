@@ -20,6 +20,9 @@ stow wezterm
 
 stow -t /Applications Applications
 
-echo "Run ./install_packages.sh"
+# install tmux plugin manager
+rm -rf ~/.tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Start tmux with 'tmux', then run the command 'tmux source ~/.tmux.conf'"
 
-echo "Start tmux with 'tmux', then run the command 'source-file ~/.tmux.conf'"
+echo "Run ./install_packages.sh"
