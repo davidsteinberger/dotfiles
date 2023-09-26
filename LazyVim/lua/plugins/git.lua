@@ -22,9 +22,17 @@ return {
     },
     ft = { "fugitive" },
     keys = {
-      { "<leader>ghf", "<cmd>G<cr>", desc = "Fugitive" },
-      { "<leader>ght", "<cmd>0GcLog<cr>", desc = "TimeMachine" },
+      { "<leader>gf", desc = "Fugitive" },
+      { "<leader>gff", "<cmd>G<cr>", desc = "Fugitive" },
+      { "<leader>gft", "<cmd>0GcLog<cr>", desc = "TimeMachine" },
       { "y<C-G>", "<cmd>call setreg(v:register, fugitive#Object(@%))<cr>", desc = "Copy git object" },
+      { "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle deleted" },
+      { "<leader>gtb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle line blame" },
     },
+    setup = function()
+      vim.cmd([[
+:command! -nargs=1 Browse silent execute '!open' shellescape(<q-args>,1)
+]])
+    end,
   },
 }
