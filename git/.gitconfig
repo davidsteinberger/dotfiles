@@ -4,7 +4,6 @@
 	signingkey = 0x7EF2450C17A54023
 
 [core]
-  excludesfile = /Users/davidsteinberger/.gitignore_global
   quotepath = false
   autocrlf = input
   pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"

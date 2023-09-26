@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
 
-set -e
+# install oh-my-zsh
+rm -rf ~/.zshrc ~/.oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+rm ~/.zshrc
 
-CONFIG="install.conf.yaml"
-DOTBOT_DIR="dotbot"
+# install powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+stow zsh
+stow git
+stow tmux
+stow alacritty
+stow karabiner
+stow lvim
+stow LazyVim
+stow kitty
+stow wezterm
 
-cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+stow -t /Applications Applications
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+echo "Run ./install_packages.sh"
+
+echo "Start tmux with 'tmux', then run the command 'source-file ~/.tmux.conf'"

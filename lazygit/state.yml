@@ -1,0 +1,84 @@
+lastupdatecheck: 0
+recentrepos:
+- /Users/davidsteinberger/dotfiles
+- /Users/davidsteinberger/Documents/myplant/github/mp-commons
+- /Users/davidsteinberger/Documents/myplant/github/commercial-app
+- /Users/davidsteinberger/Downloads/dash/myplant_components
+- /Users/davidsteinberger/Documents/myplant/github/landing-page
+- /Users/davidsteinberger/Documents/myplant/github/pmt-app
+- /Users/davidsteinberger/Documents/myplant/github/remote-engine-operation-app
+- /Users/davidsteinberger/Documents/myplant/github/energy-management-simulation-app
+- /Users/davidsteinberger/Documents/myplant/github/energy-management-app
+- /Users/davidsteinberger/Documents/myplant/github/web-client
+- /Users/davidsteinberger/Downloads/dash/my_dash_component
+- /Users/davidsteinberger/Documents/myplant/github/xt4-hmi-app
+- /Users/davidsteinberger/Documents/myplant/github/maintenance-operations-app
+- /Users/davidsteinberger/Documents/myplant/github/maintenance-app
+- /Users/davidsteinberger/Documents/myplant/github/performance-app
+- /Users/davidsteinberger/Documents/myplant/github/myfactory-react-app
+- /Users/davidsteinberger/Documents/myplant/github/internal-user-permissions
+- /Users/davidsteinberger/Documents/myplant/github/quality-tool-ui
+- /Users/davidsteinberger/Documents/myplant/github/deployment-quality-tool
+- /Users/davidsteinberger/Downloads/dash/example1
+- /Users/davidsteinberger/Documents/myplant/github/deployment-pmt
+- /Users/davidsteinberger/Downloads/graphql
+- /Users/davidsteinberger/Documents/myplant/github/deployment-myfactory
+- /Users/davidsteinberger/Documents/myplant/github/deployment-maas
+- /Users/davidsteinberger/Documents/myplant/github/deployment-maintenance
+- /Users/davidsteinberger/Documents/myplant/github/deployment-energy-management
+- /Users/davidsteinberger/Documents/myplant/github/deployment-maintenance-distributor
+- /Users/davidsteinberger/Documents/myplant/github/prefect-prod-staging-dump
+- /Users/davidsteinberger/Documents/myplant/github/ticket-gateway
+- /Users/davidsteinberger/Downloads/wundergraph
+- /Users/davidsteinberger/Documents/myplant/github/customer-match
+- /Users/davidsteinberger/Documents/myplant/github/deployment-remote-engine-operation
+- /Users/davidsteinberger/Documents/myplant/github/pmt-user-importer
+- /Users/davidsteinberger/Documents/myplant/github/components
+- /Users/davidsteinberger/Documents/myplant/github/quality-tool-sfdc-api
+- /Users/davidsteinberger/Documents/myplant/github/quality-tool-api
+- /Users/davidsteinberger/Documents/myplant/github/file-storage-service
+- /Users/davidsteinberger/Documents/myplant/github/esm2prog
+- /Users/davidsteinberger/Documents/myplant/github/maintenance-plans
+- /Users/davidsteinberger/Documents/myplant/github/maintenance-forecast
+- /Users/davidsteinberger/Documents/myplant/github/service-requests
+- /Users/davidsteinberger/Documents/myplant/github/event-workflow-agent
+- /Users/davidsteinberger/Documents/myplant/github/user-preferences-service
+- /Users/davidsteinberger/Documents/myplant/github/alarms-mapping-service
+- /Users/davidsteinberger/Documents/myplant/github/pmt-app-api
+- /Users/davidsteinberger/Documents/myplant/github/asset-territory-sync
+- /Users/davidsteinberger/Documents/myplant/github/search-service
+- /Users/davidsteinberger/Documents/myplant/github/oil-lab-ingestion-commons
+- /Users/davidsteinberger/Documents/myplant/github/esm-gateway-sync
+- /Users/davidsteinberger/.local/share/LazyVim/lazy/alpha-nvim
+- /Users/davidsteinberger/Documents/myplant/github/deployment-performance
+- /Users/davidsteinberger/Documents/myplant/github/deployment-hydra
+- /Users/davidsteinberger/Downloads/gql-subgraph-server
+- /Users/davidsteinberger/Downloads/my-app
+- /Users/davidsteinberger/Documents/myplant/github/app-store-api
+- /Users/davidsteinberger/Downloads/hydra
+- /Users/davidsteinberger/Documents/myplant/github/seshat
+- /Users/davidsteinberger/Documents/myplant/github/pa-api
+- /Users/davidsteinberger/Documents/myplant/github/maas-api
+- /Users/davidsteinberger/Documents/myplant/github/notification-service
+- /Users/davidsteinberger/Documents/myplant/github/localization-service
+- /Users/davidsteinberger/Documents/myplant/github/myac-sync
+- /Users/davidsteinberger/Documents/myplant/github/diane-upload
+- /Users/davidsteinberger/Documents/myplant/github/rule-based-analytics-service
+- /Users/davidsteinberger/Documents/myplant/github/template-kotlin-cron-job
+- /Users/davidsteinberger/Documents/myplant/github/commons
+- /Users/davidsteinberger/Documents/myplant/github/contact-service
+- /Users/davidsteinberger/Documents/myplant/github/deployment-zammad
+- /Users/davidsteinberger/Documents/myplant/github/deployment
+- /Users/davidsteinberger/Downloads/superset
+- /Users/davidsteinberger/Documents/myplant/github/superset
+- /Users/davidsteinberger/Documents/myplant/github/myfactory-data-ingestion
+- /Users/davidsteinberger/Documents/myplant/github/myfactory-api
+startuppopupversion: 5
+customcommandshistory:
+- git commit -nm "wip"
+- git commit -m "version bump"
+- 'git commit -nm "chore: version bump"'
+- 'git commit -nm "chore: all apps page and updates"'
+- git commit -n --amend
+hidecommandlog: false
+ignorewhitespaceindiffview: false

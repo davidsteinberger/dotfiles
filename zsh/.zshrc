@@ -88,7 +88,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 fpath=(
-  ~/.dotfiles/zsh
+  ~/.zfuncs
   "${fpath[@]}"
 )
 

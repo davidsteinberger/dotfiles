@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/davidsteinberger/Documents/myplant/github/edge-agent/agent-net/EdgeMonitor.Net4/Content/dist/node_modules/px-theme'
-let g:netrw_dirhist_2='/Users/davidsteinberger/Documents/myplant/github/edge-agent/agent-net/EdgeMonitor.Net4/Content/dist/node_modules/px-theme/css'
-let g:netrw_dirhist_3='/Users/davidsteinberger/Documents/myplant/github/edge-agent/agent-net/EdgeMonitor.Net4/Content'
-let g:netrw_dirhist_4='/Users/davidsteinberger/Documents/myplant/github/edge-agent/agent-net/EdgeMonitor.Net4'
-let g:netrw_dirhist_5='/Users/davidsteinberger/Downloads/predix-repo-migration/mp-map'

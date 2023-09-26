@@ -2,6 +2,7 @@
 
 # install required brew packages
 brew install \
+	stow \
 	coreutils findutils gawk gnu-tar gnu-sed gnutls gnu-indent gnu-getopt grep \
 	git git-gui jesseduffield/lazygit/lazygit \
 	kubernetes-cli \
