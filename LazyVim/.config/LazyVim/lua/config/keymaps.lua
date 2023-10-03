@@ -57,9 +57,9 @@ vim.api.nvim_create_user_command("DiagnosticVirtual", function()
   end
 end, {})
 
-vim.api.nvim_create_user_command("DarkMode", function()
-  DarkMode()
-end, {})
+vim.api.nvim_create_user_command("DarkMode", function(opts)
+  DarkMode(opts.args == "true")
+end, { nargs = "?" })
 
 vim.api.nvim_create_user_command("LightMode", function()
   LightMode()

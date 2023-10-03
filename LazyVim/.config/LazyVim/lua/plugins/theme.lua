@@ -1,7 +1,8 @@
-function DarkMode()
+-- @param transparent: boolean?
+function DarkMode(transparent)
   require("kanagawa").setup({
     theme = "wave",
-    transparent = true,
+    transparent = transparent or false,
     colors = {
       theme = {
         all = {
@@ -41,7 +42,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      DarkMode()
+      DarkMode(true)
     end,
   },
   {
@@ -69,7 +70,7 @@ return {
     config = {
       update_interval = 1000,
       set_dark_mode = function()
-        DarkMode()
+        DarkMode(true)
       end,
       set_light_mode = function()
         LightMode()
