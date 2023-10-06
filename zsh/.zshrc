@@ -87,6 +87,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+bindkey \^U backward-kill-line
+
 fpath=(
   ~/.zfuncs
   "${fpath[@]}"
@@ -101,7 +103,7 @@ else
 	compinit -C;
 fi;
 
-autoload -Uz fp ll kp ks tmuxify
+autoload -Uz fp ll kp ks update_terminfo
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'

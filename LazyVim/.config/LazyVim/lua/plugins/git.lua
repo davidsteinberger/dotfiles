@@ -29,7 +29,7 @@ return {
       { "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle deleted" },
       { "<leader>gtb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle line blame" },
     },
-    setup = function()
+    config = function()
       vim.cmd([[
         :command! -nargs=1 Browse silent execute '!open' shellescape(<q-args>,1)
       ]])

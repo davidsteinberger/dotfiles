@@ -81,4 +81,7 @@ return {
       },
     },
   },
+  {
+    "tpope/vim-rsi",
+  },
 }
