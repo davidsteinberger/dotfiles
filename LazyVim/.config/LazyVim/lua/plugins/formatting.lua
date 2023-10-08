@@ -1,18 +1,41 @@
 return {
   {
-    "nvimtools/none-ls.nvim",
-    opts = function(_, opts)
-      local null_ls = require("null-ls")
-
-      local command_resolver = require("null-ls.helpers.command_resolver")
+    "stevearc/conform.nvim",
+    opts = function()
       local is_pnp = vim.fn.findfile(".pnp.cjs", ".;") ~= ""
-
-      local with_yarn_pnp = function(source)
-        return source.with({
-          dynamic_command = is_pnp and command_resolver.from_yarn_pnp() or nil,
-        })
+      if is_pnp then
+        local yarn_bin = vim.fn.system("yarn bin prettier"):gsub("%s+", "")
+        local prettier = require("conform.formatters.prettier")
+        prettier.command = "node"
+        prettier.args = {
+          "--require",
+          "./.pnp.cjs",
+          yarn_bin,
+          "--stdin-filepath",
+          "$FILENAME",
+        }
       end
-      table.insert(opts.sources, with_yarn_pnp(null_ls.builtins.formatting.prettier))
+      return {
+        formatters_by_ft = {
+          ["javascript"] = { { "prettier" } },
+          ["javascriptreact"] = { { "prettier" } },
+          ["typescript"] = { { "prettier" } },
+          ["typescriptreact"] = { { "prettier" } },
+          ["vue"] = { { "prettier" } },
+          ["css"] = { { "prettier" } },
+          ["scss"] = { { "prettier" } },
+          ["less"] = { { "prettier" } },
+          ["html"] = { { "prettier" } },
+          ["json"] = { { "prettier" } },
+          ["jsonc"] = { { "prettier" } },
+          ["yaml"] = { { "prettier" } },
+          ["markdown"] = { { "prettier" } },
+          ["markdown.mdx"] = { { "prettier" } },
+          ["graphql"] = { { "prettier" } },
+          ["handlebars"] = { { "prettier" } },
+          ["python"] = { { "black" } },
+        },
+      }
     end,
   },
 }
