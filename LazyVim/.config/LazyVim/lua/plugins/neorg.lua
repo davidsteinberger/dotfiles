@@ -23,6 +23,11 @@ return {
           },
           ["core.summary"] = {},
           ["core.export"] = {},
+          ["core.export.markdown"] = {
+            config = {
+              extensions = "all",
+            },
+          },
         },
       })
     end,

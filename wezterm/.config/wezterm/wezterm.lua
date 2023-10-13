@@ -39,7 +39,7 @@ local colorsLight = {
 	indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
 }
 return {
-	window_background_opacity = configs(0.89, 1),
+	window_background_opacity = configs(0.95, 1),
 	send_composed_key_when_right_alt_is_pressed = true,
 	window_padding = {
 		left = 0,

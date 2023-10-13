@@ -1,8 +1,8 @@
 return {
   {
-    "goolord/alpha-nvim",
+    "dashboard-nvim",
     keys = {
-      { "<leader>;", "<cmd>Alpha<cr>", desc = "Dashboard" },
+      { "<leader>;", "<cmd>Dashboard<cr>", desc = "Dashboard" },
     },
   },
 }

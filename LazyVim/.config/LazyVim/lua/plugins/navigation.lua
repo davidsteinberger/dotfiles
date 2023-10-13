@@ -50,26 +50,19 @@ return {
       },
     },
   },
-  {
-    "goolord/alpha-nvim",
-    opts = {
-      config = {
-        opts = {
-          -- autostart = false,
-        },
-      },
-    },
-  },
-  {
-    "nvim-cmp",
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.preselect = cmp.PreselectMode.None
-      opts.completion = {
-        completeopt = "noselect",
-      }
-    end,
-  },
+  -- {
+  --   "nvim-cmp",
+  --   opts = function(_, opts)
+  --     local cmp = require("cmp")
+  --     opts.preselect = cmp.PreselectMode.None
+  --     opts.completion = {
+  --       completeopt = "noselect",
+  --       experimental = {
+  --         ghost_text = false, -- this feature conflict with copilot.vim's preview.
+  --       },
+  --     }
+  --   end,
+  -- },
   {
     "echasnovski/mini.animate",
     opts = {
