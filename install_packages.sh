@@ -6,8 +6,8 @@ brew install \
 	coreutils findutils gawk gnu-tar gnu-sed gnutls gnu-indent gnu-getopt grep \
 	git git-gui jesseduffield/lazygit/lazygit \
 	kubernetes-cli \
-	neovim nvm ssh-copy-id tmux watchman wget \
-	z zsh zsh-completions \
+	neovim fnm ssh-copy-id tmux watchman wget \
+	zsh starship \
 	fzf ripgrep \
 	gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac \
 	pass pass-otp
@@ -22,4 +22,4 @@ brew install --cask font-fira-code-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
 
 # install node
-nvm install --lts
+fnm install --lts
