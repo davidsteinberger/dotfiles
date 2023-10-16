@@ -52,6 +52,7 @@ return {
 		"ComicCodeLigatures Nerd Font",
 		"FiraCode Nerd Font",
 		"JetBrainsMono Nerd Font",
+		"MesloLGS NF",
 	}),
 	font_size = 16.0,
 	-- force_reverse_video_cursor = true,
