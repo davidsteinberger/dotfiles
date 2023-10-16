@@ -7,10 +7,16 @@ fpath=(
 )
 
 # general settings
+## emacs style keybindings
 bindkey -e
 bindkey \^U backward-kill-line
 bindkey \^K kill-line
+## shift tab navigation in menu
 bindkey '^[[Z' reverse-menu-complete
+## C-x C-e to edit command line in editor
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 zstyle ':completion:*' menu yes select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'

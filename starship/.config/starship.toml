@@ -39,10 +39,10 @@ style = "bg:#1d2230"
 format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
 
 [cmd_duration]
-format = ' last command: [$duration](bold yellow)'
+format = ' last command: [$duration](bold)'
 
 [os]
-format = '[$symbol](bold white) '   
+format = '[$symbol](bold) '
 disabled = false
 
 [os.symbols]
@@ -51,7 +51,7 @@ Macos = '󰀵'
 # Shows the hostname
 [hostname]
 ssh_only = false
-format = 'on [$hostname](bold yellow) '
+format = 'on [$hostname](bold) '
 disabled = false
 ssh_symbol = " "
 
@@ -66,12 +66,12 @@ symbol = " "
 format = 'via [$symbol$branch]($style)'
 # truncation_length = 4
 truncation_symbol = '…/'
-style = 'bold green'
+style = 'bold'
 
 # Shows current git status
 [git_status]
 format = '[ $all_status$ahead_behind]($style)'
-style = 'bold green'
+style = 'bold'
 conflicted = '🏳'
 up_to_date = ''
 untracked = ' '
@@ -113,8 +113,8 @@ symbol = " "
 
 [memory_usage]
 symbol = "󰍛 "
-disabled = true
-style='bold dimmed white'
+disabled = false
+style='bold dimmed'
 threshold = 1
 format = "$symbol [${ram}(|${swap})]($style) "
 
