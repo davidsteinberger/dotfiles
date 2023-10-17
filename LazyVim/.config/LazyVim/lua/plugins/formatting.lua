@@ -15,7 +15,7 @@ return {
           "$FILENAME",
         }
       end
-      opts.formatters_by_ft = {
+      opts.formatters_by_ft= vim.tbl_extend("force", opts.formatters_by_ft, {
         ["javascript"] = { { "prettier" } },
         ["javascriptreact"] = { { "prettier" } },
         ["typescript"] = { { "prettier" } },
@@ -33,7 +33,7 @@ return {
         ["graphql"] = { { "prettier" } },
         ["handlebars"] = { { "prettier" } },
         ["python"] = { { "black" } },
-      }
+      })
     end,
   },
 }
