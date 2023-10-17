@@ -1,6 +1,5 @@
-# export ZDOTDIR=~/
-export ZSH_CACHE_DIR=~/
-export ZSH=~/
+export ZSH_CACHE_DIR=${ZDOTDIR:-~}/.cache
+export ZSH=${ZDOTDIR:-~}/
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8

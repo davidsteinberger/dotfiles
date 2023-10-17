@@ -1,0 +1,2 @@
+fnm completions --shell zsh > "${ZDOTDIR:-$HOME}/.zcompletions/_fnm"
+kubectl completion zsh > "${ZDOTDIR:-$HOME}/.zcompletions/_kubectl"

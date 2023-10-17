@@ -24,7 +24,8 @@ $package\
 $buf\
 $memory_usage\
 $fill \
-[](#1C3A5E)$time[](#1C3A5E)$cmd_duration
+$cmd_duration \
+[](#1C3A5E)$time[](#1C3A5E)
 [└─>](bold green) """
 
 continuation_prompt = '▶▶ '

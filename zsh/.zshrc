@@ -68,7 +68,7 @@ fi
   fi
 } &!
 
-autoload -Uz fp ll kp ks update_terminfo secret reveal nvims
+autoload -Uz fp kp ks update_terminfo update_completions secret reveal nvims 
 
 # aliases
 source ${ZDOTDIR:-~}/.zaliases.zsh

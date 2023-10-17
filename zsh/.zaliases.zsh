@@ -1,6 +1,4 @@
 alias tm="tmux new -A -s $(whoami)"
-alias sp=". $HOME/dotfiles/set_proxy.sh \$1"
-alias up="source $HOME/dotfiles/set_proxy.sh off"
 alias ga="git add ."
 alias gc="git commit -m ${1}"
 alias gd="git diff"
@@ -14,7 +12,6 @@ alias gs="git status"
 alias la="ls -al"
 alias lf="ls -al | grep ${1}"
 alias ls="ls -Gl"
-alias vv="$EDITOR ~/.vimrc"
 alias zx="source ~/.zshrc"
 alias zz="$EDITOR ~/.zshrc"
 alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
@@ -23,6 +20,14 @@ alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
 alias pw="pass show -c"
 alias pwo="pass otp show -c"
+## eza
+alias ls="eza --icons" # ls
+alias ll='eza -lbF --git --icons' # list, size, type, git
+alias llm='eza -lbF --git --icons --sort=modified' # long list, modified date sort
+alias la='eza -lbhHigUmuSa --time-style=long-iso --git --icons' # all list
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --icons' # all + extended list
+alias lS='eza -1' # one column, just names
+alias lt='eza --tree --level=2 --icons' # tree
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 

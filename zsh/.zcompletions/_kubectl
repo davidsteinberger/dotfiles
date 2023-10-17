@@ -15,7 +15,6 @@ compdef _kubectl kubectl
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #compdef kubectl
-compdef _kubectl kubectl
 
 # zsh completion for kubectl                              -*- shell-script -*-
 
@@ -34,9 +33,8 @@ _kubectl()
     local shellCompDirectiveNoFileComp=4
     local shellCompDirectiveFilterFileExt=8
     local shellCompDirectiveFilterDirs=16
-    local shellCompDirectiveKeepOrder=32
 
-    local lastParam lastChar flagPrefix requestComp out directive comp lastComp noSpace keepOrder
+    local lastParam lastChar flagPrefix requestComp out directive comp lastComp noSpace
     local -a completions
 
     __kubectl_debug "\n========= starting completion logic =========="
@@ -154,11 +152,6 @@ _kubectl()
         noSpace="-S ''"
     fi
 
-    if [ $((directive & shellCompDirectiveKeepOrder)) -ne 0 ]; then
-        __kubectl_debug "Activating keep order."
-        keepOrder="-V"
-    fi
-
     if [ $((directive & shellCompDirectiveFilterFileExt)) -ne 0 ]; then
         # File extension filtering
         local filteringCmd
@@ -194,7 +187,7 @@ _kubectl()
         return $result
     else
         __kubectl_debug "Calling _describe"
-        if eval _describe $keepOrder "completions" completions $flagPrefix $noSpace; then
+        if eval _describe "completions" completions $flagPrefix $noSpace; then
             __kubectl_debug "_describe found some completions"
 
             # Return the success of having called _describe
