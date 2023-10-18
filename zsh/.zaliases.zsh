@@ -28,6 +28,7 @@ alias la='eza -lbhHigUmuSa --time-style=long-iso --git --icons' # all list
 alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --icons' # all + extended list
 alias lS='eza -1' # one column, just names
 alias lt='eza --tree --level=2 --icons' # tree
+alias fzf="fzf --cycle  --multi --bind 'tab:toggle-up,btab:toggle-down'"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 

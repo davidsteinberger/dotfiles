@@ -42,7 +42,7 @@ return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      DarkMode(true)
+      DarkMode()
     end,
   },
   {
@@ -70,7 +70,7 @@ return {
     config = {
       update_interval = 1000,
       set_dark_mode = function()
-        DarkMode(true)
+        DarkMode()
       end,
       set_light_mode = function()
         LightMode()
