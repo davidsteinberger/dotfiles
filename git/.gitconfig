@@ -35,10 +35,20 @@
   plus-style = syntax "#333333"
 
 [merge]
-  conflictstyle = diff3
+  ; conflictstyle = diff3
+  tool = vimdiff
+
+[mergetool]
+  hideResolved = true
+  keepBackup = false
 
 [diff]
   colorMoved = default
+  tool = vimdiff
+
+[mergetool "vimdiff"]
+  hideResolved = true
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [pull]
 	rebase = true

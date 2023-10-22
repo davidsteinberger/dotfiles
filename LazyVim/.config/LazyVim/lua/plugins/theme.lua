@@ -31,11 +31,17 @@ function DarkMode(transparent)
   vim.api.nvim_set_option("background", "dark")
   vim.cmd("highlight TelescopeBorder guibg=none")
   vim.cmd("highlight TelescopeTitle guibg=none")
+  local colors = require("kanagawa.colors").setup({ theme = "wave" })
+  local theme_colors = colors.theme
+  vim.cmd("highlight DiffDelete guifg=" .. theme_colors.ui.bg .. " guibg=none")
 end
 
 function LightMode()
   require("kanagawa").setup({ theme = "lotus", transparent = false })
   vim.api.nvim_set_option("background", "light")
+  local colors = require("kanagawa.colors").setup({ theme = "lotus" })
+  local theme_colors = colors.theme
+  vim.cmd("highlight DiffDelete guifg=" .. theme_colors.ui.bg .. " guibg=none")
 end
 
 return {
