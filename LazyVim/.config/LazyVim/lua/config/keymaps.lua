@@ -28,6 +28,7 @@ map("n", "<leader>v", "v_og_", DEFAULT_OPTIONS)
 
 -- copy relative path
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
+map("n", "cP", ':let @+=expand("%:p")<CR>', DEFAULT_OPTIONS)
 
 map("n", "<c-h>", ":TmuxNavigateLeft<cr>", { silent = true, noremap = true })
 map("n", "<c-l>", ":TmuxNavigateRight<cr>", { silent = true, noremap = true })

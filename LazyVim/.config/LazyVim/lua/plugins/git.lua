@@ -1,4 +1,4 @@
-local _lmEnabled = true
+local _lmEnabled = false
 local toggleLineMap = function()
   if _lmEnabled then
     _lmEnabled = false
@@ -7,16 +7,6 @@ local toggleLineMap = function()
     _lmEnabled = true
     vim.cmd("set diffopt+=linematch:60")
   end
-end
-
-local diffget = function(buf)
-  local c = "diffget " .. buf
-  vim.cmd("set diffopt&")
-  vim.cmd(c)
-  vim.cmd([[
-    set diffopt+=linematch:60
-    diffupdate
-  ]])
 end
 
 return {
@@ -54,14 +44,11 @@ return {
     config = function()
       vim.cmd([[
         :command! -nargs=1 Browse silent execute '!open' shellescape(<q-args>,1)
-        :set diffopt+=linematch:60
+        :set diffopt+=vertical
+        :set diffopt+=internal,algorithm:patience
+        :set diffopt+=indent-heuristic
+        :set diffopt+=algorithm:histogram
       ]])
-      vim.keymap.set("n", "dg2", function()
-        diffget("//2")
-      end)
-      vim.keymap.set("n", "dg3", function()
-        diffget("//3")
-      end)
     end,
   },
 }
