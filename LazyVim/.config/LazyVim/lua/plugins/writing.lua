@@ -28,24 +28,6 @@ return {
         })
       end,
     },
-    {
-      "lukas-reineke/headlines.nvim",
-      optional = true,
-      opts = function()
-        local opts = {}
-        for _, ft in ipairs({ "markdown", "norg", "rmd", "org" }) do
-          opts[ft] = {
-            fat_headlines = false,
-            headline_highlights = {},
-          }
-          for i = 1, 2 do
-            table.insert(opts[ft].headline_highlights, "Headline" .. i)
-          end
-        end
-        return opts
-      end,
-      ft = { "markdown", "norg", "rmd", "org" },
-    },
   },
   {
     "NStefan002/speedtyper.nvim",
