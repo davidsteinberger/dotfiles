@@ -23,6 +23,7 @@ stow kitty
 stow wezterm
 
 stow -t /Applications Applications
+stow keyboard
 
 # install tmux plugin manager
 rm -rf ~/.tmux/plugins
