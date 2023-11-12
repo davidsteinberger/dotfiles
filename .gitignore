@@ -1,3 +1,4 @@
 .DS_Store
 tmux/.tmux/plugins
 lazygit/state.yml
+karabiner/.config/karabiner/automatic_backups

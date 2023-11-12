@@ -6,7 +6,7 @@ brew install \
 	coreutils findutils gawk gnu-tar gnu-sed gnutls gnu-indent gnu-getopt grep \
 	git git-gui jesseduffield/lazygit/lazygit \
 	kubernetes-cli \
-	neovim fnm ssh-copy-id tmux watchman wget \
+	neovim fnm pyenv ssh-copy-id tmux watchman wget \
 	zsh starship \
 	fzf ripgrep eza \
 	gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac \
