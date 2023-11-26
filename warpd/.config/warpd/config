@@ -1,0 +1,26 @@
+left:w
+right:b
+up: f
+down:p
+
+grid_up:f
+grid_down:p
+grid_left:w
+grid_right:b
+
+
+grid_keys:j l m n
+
+
+scroll_up:c
+scroll_down:d
+
+
+start:^
+end:$
+
+cursor_size:10
+
+exit:z
+
+buttons: h , .

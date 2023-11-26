@@ -21,6 +21,7 @@ stow lvim
 stow LazyVim
 stow kitty
 stow wezterm
+stow warpd
 
 stow -t /Applications Applications
 
