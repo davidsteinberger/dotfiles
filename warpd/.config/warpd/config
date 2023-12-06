@@ -9,7 +9,7 @@ grid_left:w
 grid_right:b
 
 
-grid_keys:j l m n
+grid_keys:b j g m
 
 
 scroll_up:c
@@ -23,4 +23,4 @@ cursor_size:10
 
 exit:z
 
-buttons: h , .
+buttons: n e i
