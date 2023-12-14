@@ -50,19 +50,25 @@ return {
       },
     },
   },
-  -- {
-  --   "nvim-cmp",
-  --   opts = function(_, opts)
-  --     local cmp = require("cmp")
-  --     opts.preselect = cmp.PreselectMode.None
-  --     opts.completion = {
-  --       completeopt = "noselect",
-  --       experimental = {
-  --         ghost_text = false, -- this feature conflict with copilot.vim's preview.
-  --       },
-  --     }
-  --   end,
-  -- },
+  {
+    "nvim-cmp",
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
+        ["<CR>"] = cmp.mapping({
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm({ select = true }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        }),
+      })
+    end,
+  },
   {
     "echasnovski/mini.animate",
     opts = {
