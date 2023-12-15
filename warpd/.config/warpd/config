@@ -1,15 +1,15 @@
-left:w
-right:b
-up: f
-down:p
+left:j
+right:y
+up:u
+down:l
 
-grid_up:f
-grid_down:p
-grid_left:w
-grid_right:b
+grid_up:u
+grid_down:l
+grid_left:j
+grid_right:y
 
 
-grid_keys:b j g m
+grid_keys:p b t g
 
 
 scroll_up:c
