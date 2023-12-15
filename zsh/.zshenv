@@ -16,6 +16,7 @@ export NVIM_APPNAME=LazyVim
 # lazygit
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export PATH="$HOME/.pub-cache/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
