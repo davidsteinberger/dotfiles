@@ -93,4 +93,7 @@ eval "$(starship init zsh)"
 # fnm
 eval "$(fnm env --use-on-cd)"
 
+# openapi
+export export OPENAI_API_KEY=`pass show api/tokens/openai`
+
 # zprof

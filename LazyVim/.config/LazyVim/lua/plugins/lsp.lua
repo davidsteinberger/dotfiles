@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     keys = {
-      { "<leader>tv", "<cmd>DiagnosticVirtual<cr>", desc = "Toggle Diagnostics Virtual" },
+      { "<leader>uv", "<cmd>DiagnosticVirtual<cr>", desc = "Toggle Diagnostics Virtual" },
     },
     opts = {
       diagnostics = {

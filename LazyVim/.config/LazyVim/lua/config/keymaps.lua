@@ -17,6 +17,9 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- delete to blackhole register
+map("x", "<BS>", '"_d', DEFAULT_OPTIONS)
+
 -- paste and keep the  p register
 map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
 

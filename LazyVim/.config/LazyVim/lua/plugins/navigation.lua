@@ -32,6 +32,9 @@ return {
         search = { enabled = false },
       },
     },
+    keys = {
+      { "S", false, mode = { "v", "x" } },
+    },
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -64,8 +67,29 @@ return {
             end
           end,
           s = cmp.mapping.confirm({ select = true }),
-          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
+      })
+    end,
+  },
+  {
+    "nvim-treesitter",
+    opts = {
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          node_incremental = "v",
+          node_decremental = "V",
+          scope_incremental = "<M-v>",
+        },
+      },
+    },
+  },
+  {
+    "echasnovski/mini.surround",
+    keys = function(_, keys)
+      return vim.list_extend(keys, {
+        { "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], mode = { "v" } },
       })
     end,
   },
