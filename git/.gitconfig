@@ -11,6 +11,12 @@
 [interactive]
     diffFilter = delta --color-only --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 
+[pager]
+  blame  = delta
+  diff   = delta
+  reflog = delta
+  show   = delta
+
 [push]
   default = simple
 
