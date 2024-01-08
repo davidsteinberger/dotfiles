@@ -18,11 +18,17 @@ return {
           opts = { skip = true },
         },
       },
-      -- lsp = {
-      --   hover = {
-      --     enabled = false,
-      --   },
-      -- },
+    },
+  },
+  {
+    "echasnovski/mini.animate",
+    opts = {
+      open = {
+        enable = false,
+      },
+      close = {
+        enable = false,
+      },
     },
   },
 }

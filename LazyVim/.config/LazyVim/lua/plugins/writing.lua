@@ -37,7 +37,7 @@ return {
   },
   {
     "epwalsh/obsidian.nvim",
-    version = "*",
+    -- version = "*",
     lazy = true,
     ft = "markdown",
     dependencies = {
@@ -86,7 +86,6 @@ return {
       end,
       disable_frontmatter = true,
       open_app_foreground = true,
-
       daily_notes = {
         folder = "Journal",
         date_format = "%Y/%m-%B/%Y-%m-%d",
