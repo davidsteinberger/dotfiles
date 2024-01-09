@@ -42,6 +42,7 @@ map("n", "<c-RIGHT>", ":TmuxNavigateRight<cr>", { silent = true, noremap = true 
 map("n", "<c-DOWN>", ":TmuxNavigateDown<cr>", { silent = true, noremap = true })
 map("n", "<c-UP>", ":TmuxNavigateUp<cr>", { silent = true, noremap = true })
 map("i", "<c-c>", "<ESC>", { silent = true, noremap = true })
+map({ "i", "v" }, "<m-i>", "<ESC>", { silent = true, noremap = true })
 
 -- Resizing panes
 -- map("n", "<Left>", ":vertical resize -1<CR>", DEFAULT_OPTIONS)
