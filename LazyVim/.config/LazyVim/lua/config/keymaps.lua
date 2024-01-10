@@ -58,8 +58,6 @@ map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
 map("n", "<PageDown>", "<C-d>zz", DEFAULT_OPTIONS)
 map("n", "<PageUp>", "<C-u>zz", DEFAULT_OPTIONS)
 
-map("n", "<CR>", "<cmd>e #<cr>", DEFAULT_OPTIONS)
-
 vim.g.diagnostics_virtual = false
 vim.api.nvim_create_user_command("DiagnosticVirtual", function()
   if vim.g.diagnostics_virtual then
