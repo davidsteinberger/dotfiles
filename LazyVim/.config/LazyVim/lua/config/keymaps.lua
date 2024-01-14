@@ -33,6 +33,9 @@ map("n", "<leader>v", "v_og_", DEFAULT_OPTIONS)
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
 map("n", "cP", ':let @+=expand("%:p")<CR>', DEFAULT_OPTIONS)
 
+-- restore cursor position after joining lines
+map("n", "J", "mzJ`z", DEFAULT_OPTIONS)
+
 map("n", "<c-h>", ":TmuxNavigateLeft<cr>", { silent = true, noremap = true })
 map("n", "<c-l>", ":TmuxNavigateRight<cr>", { silent = true, noremap = true })
 map("n", "<c-j>", ":TmuxNavigateDown<cr>", { silent = true, noremap = true })
