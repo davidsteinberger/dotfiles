@@ -28,6 +28,45 @@ return {
     end,
   },
   {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<M-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+      })
+
+      -- hide copilot suggestions when cmp menu is open
+      -- to prevent odd behavior/garbled up suggestions
+      -- local cmp_status_ok, cmp = pcall(require, "cmp")
+      -- if cmp_status_ok then
+      --   cmp.event:on("menu_opened", function()
+      --     vim.b.copilot_suggestion_hidden = true
+      --   end)
+      --
+      --   cmp.event:on("menu_closed", function()
+      --     vim.b.copilot_suggestion_hidden = false
+      --   end)
+      -- end
+    end,
+  },
+  {
     "nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
@@ -40,13 +79,20 @@ return {
       end
 
       local luasnip = require("luasnip")
+      local suggestions = require("copilot.suggestion")
       local cmp = require("cmp")
+      table.insert(opts.sources, { name = "emoji" })
+      opts.experimental = {
+        ghost_text = false,
+      }
       opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if suggestions.is_visible() then
+            return suggestions.accept()
+          elseif cmp.visible() then
             local entry = cmp.get_selected_entry()
             if not entry then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
             else
               cmp.confirm()
             end
@@ -62,7 +108,7 @@ return {
           if cmp.visible() then
             local entry = cmp.get_selected_entry()
             if not entry then
-              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+              cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
             else
               cmp.confirm()
             end
