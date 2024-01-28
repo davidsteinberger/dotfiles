@@ -68,7 +68,7 @@ fi
   fi
 } &!
 
-autoload -Uz fp kp ks update_terminfo update_completions secret reveal nvims 
+autoload -Uz fp kp ks update_terminfo update_completions secret reveal nvims
 
 # aliases
 source ${ZDOTDIR:-~}/.zaliases.zsh
@@ -93,7 +93,9 @@ eval "$(starship init zsh)"
 # fnm
 eval "$(fnm env --use-on-cd)"
 
-# openapi
-export export OPENAI_API_KEY=`pass show api/tokens/openai`
+# opam
+[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
 # zprof
