@@ -32,6 +32,7 @@ return {
     opts = {
       modes = {
         search = { enabled = false },
+        char = { enabled = false },
       },
     },
     keys = {

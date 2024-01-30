@@ -22,6 +22,13 @@ map("x", "<BS>", '"_d', DEFAULT_OPTIONS)
 
 -- change word
 map("n", "<BS>w", "ciw", DEFAULT_OPTIONS)
+map("n", "<BS>p", "cw", DEFAULT_OPTIONS)
+map("n", "<BS>'", "cw'", DEFAULT_OPTIONS)
+map("n", '<BS>"', 'cw"', DEFAULT_OPTIONS)
+
+-- select word
+map("v", "<M-Right>", "e", DEFAULT_OPTIONS)
+map("v", "<M-Left>", "b", DEFAULT_OPTIONS)
 
 -- paste and keep the  p register
 map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
@@ -49,8 +56,8 @@ map("n", "<c-DOWN>", ":TmuxNavigateDown<cr>", { silent = true, noremap = true })
 map("n", "<c-UP>", ":TmuxNavigateUp<cr>", { silent = true, noremap = true })
 
 map("i", "<c-c>", "<ESC>", { silent = true, noremap = true })
-map({ "n", "i", "v" }, "<m-i>", "<ESC>`^", { silent = true, noremap = true })
-map({ "i", "v" }, "<ESC>", "<ESC>`^", { silent = true, noremap = true })
+map({ "n", "i", "v" }, "<m-i>", "<ESC>", { silent = true, noremap = true })
+map({ "i", "v" }, "<ESC>", "<ESC>", { silent = true, noremap = true })
 
 -- Resizing panes
 -- map("n", "<Left>", ":vertical resize -1<CR>", DEFAULT_OPTIONS)

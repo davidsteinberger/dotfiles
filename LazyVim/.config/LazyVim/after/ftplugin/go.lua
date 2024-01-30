@@ -1,6 +1,6 @@
 local map = vim.api.nvim_set_keymap
 DEFAULT_OPTIONS = { noremap = true, silent = true }
-map("n", "<Leader>cc", ":compiler go | Make<CR>", DEFAULT_OPTIONS)
+map("n", "<Leader>cc", ":compiler! go | Make<CR>", DEFAULT_OPTIONS)
 -- map(
 --   "n",
 --   "<Leader>cg",
