@@ -25,6 +25,8 @@ stow warpd
 
 stow -t /Applications Applications
 
+touch ~/.zlocal.zsh
+
 # install tmux plugin manager
 rm -rf ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm

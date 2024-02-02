@@ -98,4 +98,6 @@ eval "$(fnm env --use-on-cd)"
 
 zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
+source ${ZDOTDIR:-~}/.zlocal.zsh
+
 # zprof
