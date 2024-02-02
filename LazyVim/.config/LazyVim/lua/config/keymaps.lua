@@ -65,10 +65,8 @@ map({ "i", "v" }, "<ESC>", "<ESC>", { silent = true, noremap = true })
 -- map("n", "<Up>", ":resize -1<CR>", DEFAULT_OPTIONS)
 -- map("n", "<Down>", ":resize +1<CR>", DEFAULT_OPTIONS)
 
-map("n", "<TAB>", ":bnext<CR>", DEFAULT_OPTIONS)
-map("n", "<S-TAB>", ":bprevious<CR>", DEFAULT_OPTIONS)
-
-map("n", "<C-d>", "<C-d>zz", DEFAULT_OPTIONS)
+map("n", "<TAB>", ":BufferLineCycleNext<CR>", DEFAULT_OPTIONS)
+map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
 map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
 map("n", "<PageDown>", "<C-d>zz", DEFAULT_OPTIONS)
 map("n", "<PageUp>", "<C-u>zz", DEFAULT_OPTIONS)
