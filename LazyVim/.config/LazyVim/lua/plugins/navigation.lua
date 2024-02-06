@@ -6,7 +6,7 @@ return {
     "max397574/better-escape.nvim",
     config = function()
       require("better_escape").setup({
-        mapping = { "jk", "jj", "ii", "uu" },
+        mapping = { "jk", "jj", "ii" },
       })
     end,
   },
@@ -28,7 +28,7 @@ return {
   },
   {
     "folke/flash.nvim",
-    vscode = false,
+    -- vscode = false,
     opts = {
       modes = {
         search = { enabled = false },
