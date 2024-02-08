@@ -118,8 +118,20 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<Down>"] = cmp.mapping.select_next_item(),
-        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<Down>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<Up>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<CR>"] = cmp.mapping({
           i = function(fallback)
             if cmp.visible() and cmp.get_active_entry() then
