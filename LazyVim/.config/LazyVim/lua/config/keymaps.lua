@@ -21,10 +21,11 @@ end
 map("x", "<BS>", '"_d', DEFAULT_OPTIONS)
 
 -- change word
-map("n", "<BS>w", "ciw", DEFAULT_OPTIONS)
-map("n", "<BS>p", "cw", DEFAULT_OPTIONS)
-map("n", "<BS>'", "cw'", DEFAULT_OPTIONS)
-map("n", '<BS>"', 'cw"', DEFAULT_OPTIONS)
+map("n", "<BS><BS>", '"_diw', DEFAULT_OPTIONS)
+map("n", "<BS>w", '"_ciw', DEFAULT_OPTIONS)
+map("n", "<BS>p", '"_cw', DEFAULT_OPTIONS)
+map("n", "<BS>'", "\"_ci'", DEFAULT_OPTIONS)
+map("n", '<BS>"', '"_ci"', DEFAULT_OPTIONS)
 
 -- select word
 map("v", "<M-Right>", "e", DEFAULT_OPTIONS)
