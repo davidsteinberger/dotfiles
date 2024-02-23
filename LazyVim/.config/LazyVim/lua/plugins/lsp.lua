@@ -6,7 +6,7 @@ return {
     },
     opts = {
       diagnostics = {
-        virtual_text = false,
+        virtual_text = true,
         underline = true,
       },
       servers = {
