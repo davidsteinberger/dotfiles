@@ -54,10 +54,11 @@ local conceal_html_class = function(bufnr)
   end
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "InsertLeave" }, {
-  group = group,
-  pattern = { "*.html", "*.tsx", "*.jsx" },
-  callback = function()
-    conceal_html_class(vim.api.nvim_get_current_buf())
-  end,
-})
+-- // errors out in 0.10.0
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "InsertLeave" }, {
+--   group = group,
+--   pattern = { "*.html", "*.tsx", "*.jsx" },
+--   callback = function()
+--     conceal_html_class(vim.api.nvim_get_current_buf())
+--   end,
+-- })

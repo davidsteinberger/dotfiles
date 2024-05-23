@@ -68,6 +68,7 @@ return {
   },
   {
     "nvim-cmp",
+    -- commit = "b356f2c",
     dependencies = {
       "hrsh7th/cmp-emoji",
     },

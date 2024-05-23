@@ -5,10 +5,6 @@ return {
       { "<leader>uv", "<cmd>DiagnosticVirtual<cr>", desc = "Toggle Diagnostics Virtual" },
     },
     opts = {
-      diagnostics = {
-        virtual_text = true,
-        underline = true,
-      },
       servers = {
         -- tsserver = {
         --   root_dir = function(...)
