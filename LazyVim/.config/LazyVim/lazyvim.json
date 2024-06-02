@@ -1,5 +1,6 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.coding.copilot-chat",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.markdown"
@@ -7,5 +8,5 @@
   "news": {
     "NEWS.md": "4964"
   },
-  "version": 4
+  "version": 5
 }

@@ -68,9 +68,10 @@ map({ "i", "v" }, "<ESC>", "<ESC>", { silent = true, noremap = true })
 
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", DEFAULT_OPTIONS)
 map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
-map("n", "<C-u>", "<C-u>zz", DEFAULT_OPTIONS)
-map("n", "<PageDown>", "<C-d>zz", DEFAULT_OPTIONS)
-map("n", "<PageUp>", "<C-u>zz", DEFAULT_OPTIONS)
+map("n", "<C-f>", "M<C-f>zz", DEFAULT_OPTIONS)
+map("n", "<C-u>", "M<C-u>zz", DEFAULT_OPTIONS)
+map("n", "<PageDown>", "M<C-d>zz", DEFAULT_OPTIONS)
+map("n", "<PageUp>", "M<C-u>zz", DEFAULT_OPTIONS)
 
 vim.g.diagnostics_virtual = true
 vim.api.nvim_create_user_command("DiagnosticVirtual", function()
