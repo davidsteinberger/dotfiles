@@ -1,6 +1,7 @@
 -- @param transparent: boolean?
 function DarkMode(transparent)
-  require("kanagawa").setup({
+  local kanagawa = require("kanagawa")
+  kanagawa.setup({
     theme = "wave",
     transparent = transparent or false,
     colors = {
@@ -14,8 +15,7 @@ function DarkMode(transparent)
     },
     overrides = function(colors) -- add/modify highlights
       local theme = colors.theme
-      return {
-        NormalFloat = { bg = "none" },
+      local obj = {
         FloatBorder = { bg = "none" },
         FloatTitle = { bg = "none" },
 
@@ -26,9 +26,14 @@ function DarkMode(transparent)
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
       }
+      if transparent == true then
+        obj.NormalFloat = { bg = "none" }
+      end
+      return obj
     end,
   })
-  vim.api.nvim_set_option("background", "dark")
+  kanagawa.load()
+  vim.api.nvim_set_option_value("background", "dark", {})
   vim.cmd("highlight TelescopeBorder guibg=none")
   vim.cmd("highlight TelescopeTitle guibg=none")
   -- local colors = require("kanagawa.colors").setup({ theme = "wave" })
@@ -37,8 +42,10 @@ function DarkMode(transparent)
 end
 
 function LightMode()
-  require("kanagawa").setup({ theme = "lotus", transparent = false })
-  vim.api.nvim_set_option("background", "light")
+  local kanagawa = require("kanagawa")
+  kanagawa.setup({ theme = "lotus", transparent = false })
+  kanagawa.load()
+  vim.api.nvim_set_option_value("background", "light", {})
   -- local colors = require("kanagawa.colors").setup({ theme = "lotus" })
   -- local theme_colors = colors.theme
   -- vim.cmd("highlight DiffDelete guifg=" .. theme_colors.ui.bg .. " guibg=none")
