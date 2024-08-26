@@ -22,6 +22,7 @@ stow LazyVim
 stow kitty
 stow wezterm
 stow warpd
+stow aerospace
 
 stow -t /Applications Applications
 
