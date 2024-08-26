@@ -4,6 +4,20 @@ return {
   },
   {
     "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup({
+        mappings = {
+          i = {
+            j = {
+              v = "<Esc>",
+            },
+            v = {
+              j = "<Esc>",
+            },
+          },
+        },
+      })
+    end,
   },
   {
     "s1n7ax/nvim-window-picker",
