@@ -28,8 +28,8 @@ map("n", "<BS>'", "\"_ci'", DEFAULT_OPTIONS)
 map("n", '<BS>"', '"_ci"', DEFAULT_OPTIONS)
 
 -- select word
-map("v", "<M-Right>", "e", DEFAULT_OPTIONS)
-map("v", "<M-Left>", "b", DEFAULT_OPTIONS)
+-- map("v", "<M-Right>", "e", DEFAULT_OPTIONS)
+-- map("v", "<M-Left>", "b", DEFAULT_OPTIONS)
 
 -- paste and keep the  p register
 map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
