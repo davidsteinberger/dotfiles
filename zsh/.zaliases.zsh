@@ -21,16 +21,20 @@ alias flutter="fvm flutter"
 alias pw="pass show -c"
 alias pwo="pass otp show -c"
 ## eza
-alias ls="eza --icons" # ls
-alias ll='eza -lbF --git --icons' # list, size, type, git
-alias llm='eza -lbF --git --icons --sort=modified' # long list, modified date sort
-alias la='eza -lbhHigUmuSa --time-style=long-iso --git --icons' # all list
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --icons' # all + extended list
+alias ls="eza --icons=always" # ls
+alias ll='eza -lbF --git --icons=always' # list, size, type, git
+alias llm='eza -lbF --git --icons=always --sort=modified' # long list, modified date sort
+alias la='eza -lbhHigUmuSa --time-style=long-iso --git --icons=always' # all list
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --icons=always' # all + extended list
 alias lS='eza -1' # one column, just names
-alias lt='eza --tree --level=2 --icons' # tree
+alias lt='eza --tree --level=2 --icons=always' # tree
 alias fzf="fzf --cycle  --multi --bind 'tab:toggle-up,btab:toggle-down'"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
+
+alias init="initTPM && initApps";
+alias initApps="cd ~/dotfiles/ && stow -t /Applications Applications";
+alias initTPM="rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
 
 # nvim
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"

@@ -27,7 +27,7 @@
 	gpgsign = true
 
 [gpg]
-	program = /opt/homebrew/bin/gpg
+	program = /etc/profiles/per-user/david/bin/gpg
 
 [delta "light-mode"]
   navigate = true

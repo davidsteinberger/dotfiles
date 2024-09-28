@@ -15,7 +15,6 @@ stow zsh
 stow starship
 stow git
 stow tmux
-stow alacritty
 stow karabiner
 stow lvim
 stow LazyVim

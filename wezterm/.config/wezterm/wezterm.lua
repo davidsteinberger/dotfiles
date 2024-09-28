@@ -57,7 +57,8 @@ return {
 	}),
 	font_size = 16.0,
 	-- force_reverse_video_cursor = true,
-	colors = configs(colorsDark, colorsLight),
+	-- colors = configs(colorsDark, colorsLight),
+	color_scheme = configs("Catppuccin Mocha", "Catppuccin Latte"),
 	keys = {
 		{
 			key = "Enter",

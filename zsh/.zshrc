@@ -46,10 +46,10 @@ setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording
 
-# antidote
-zstyle ':antidote:bundle' use-friendly-names 'yes'
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load ${ZDOTDIR:-~}/.zsh_plugins.txt
+# antidote (now handled by nix)
+# zstyle ':antidote:bundle' use-friendly-names 'yes'
+# source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+# antidote load ${ZDOTDIR:-~}/.zsh_plugins.txt
 
 ## https://getantidote.github.io/completions
 autoload -Uz compinit
@@ -80,7 +80,12 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+else
+  source <(fzf --zsh)
+  fzf --zsh > ~/.fzf.zsh
+fi
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # pyenv
