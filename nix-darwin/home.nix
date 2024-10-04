@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 let
   link = config.lib.file.mkOutOfStoreSymlink;
-in 
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "david";
-  home.homeDirectory = "/Users/david";
+  # home.username = "${username}";
+  # home.homeDirectory = "/Users/${config.home.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -130,8 +130,8 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.zsh = { 
-    enable = true; 
+  programs.zsh = {
+    enable = true;
     shellAliases = {
       initHM = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
       update = "home-manager switch --flake ~/dotfiles/nix-darwin";
