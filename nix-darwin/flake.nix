@@ -61,9 +61,7 @@
           "wezterm"
           "nikitabobko/tap/aerospace"
         ];
-        homebrew.brews = [
-          "argocd"
-        ];
+        homebrew.brews = [ ];
       };
     in
     {

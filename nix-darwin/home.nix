@@ -39,6 +39,7 @@ in
     cowsay
     stow
     gitFull
+    git-credential-manager
     lazygit
     delta
     neovim
@@ -71,6 +72,7 @@ in
 
     redis
     awscli2
+    argo-rollouts
   ];
 
   fonts.fontconfig.enable = true;
