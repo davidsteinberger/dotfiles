@@ -27,7 +27,7 @@
 	gpgsign = true
 
 [gpg]
-	program = /etc/profiles/per-user/david/bin/gpg
+	program = /run/current-system/sw/bin/gpg
 
 [delta "light-mode"]
   navigate = true

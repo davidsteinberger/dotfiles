@@ -64,7 +64,7 @@ in
     ssh-copy-id
     watchman
 
-    gnupg
+    # gnupg
     yubikey-personalization
     yubikey-manager
     pinentry_mac
