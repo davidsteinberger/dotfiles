@@ -68,6 +68,9 @@ in
     yubikey-personalization
     yubikey-manager
     pinentry_mac
+
+    redis
+    awscli2
   ];
 
   fonts.fontconfig.enable = true;
