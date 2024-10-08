@@ -32,9 +32,9 @@ alias fzf="fzf --cycle  --multi --bind 'tab:toggle-up,btab:toggle-down'"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
 
-alias init="initTPM && initApps";
-alias initApps="cd ~/dotfiles/ && stow -t /Applications Applications";
-alias initTPM="rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
+alias init="inittpm && initapps";
+alias initapps="cd ~/dotfiles/ && stow -t /Applications Applications";
+alias inittpm="rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
 
 # nvim
 alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"

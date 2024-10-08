@@ -16,11 +16,13 @@
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
 
-      configuration = { pkgs, ... }: {
+      configuration = { pkgs, config, ... }: {
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
           gnupg
+          keepassxc
+          obsidian
         ];
 
         # Auto upgrade nix package and the daemon service.
@@ -45,6 +47,7 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "${system}";
+        nixpkgs.config.allowUnfree = true;
 
         ### custom
         security.pam.enableSudoTouchIdAuth = true;
@@ -53,15 +56,51 @@
           dock.mru-spaces = false;
           finder.AppleShowAllExtensions = true;
           finder.FXPreferredViewStyle = "Nlsv";
+          NSGlobalDomain.AppleICUForce24HourTime = true;
+          NSGlobalDomain.KeyRepeat = 2;
         };
 
+        system.activationScripts.applications.text =
+          let
+            env = pkgs.buildEnv {
+              name = "system-applications";
+              paths = config.environment.systemPackages;
+              pathsToLink = "/Applications";
+            };
+          in
+          pkgs.lib.mkForce ''
+            # Set up applications.
+            echo "setting up /Applications..." >&2
+            rm -rf /Applications/Nix\ Apps
+            mkdir -p /Applications/Nix\ Apps
+            find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+            while read src; do
+              app_name=$(basename "$src")
+                echo "copying $src" >&2
+                ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+                done
+          '';
+
         # Homebrew needs to be installed on its own!
-        homebrew.enable = true;
-        homebrew.casks = [
-          "wezterm"
-          "nikitabobko/tap/aerospace"
-        ];
-        homebrew.brews = [ ];
+        homebrew = {
+          enable = true;
+          casks = [
+            "wezterm"
+            "nikitabobko/tap/aerospace"
+          ];
+          brews = [
+            "mas"
+            "syncthing"
+          ];
+          masApps = {
+            Yubico = 1497506650;
+            Bitwarden = 1352778147;
+          };
+          onActivation = {
+            cleanup = "zap";
+            autoUpdate = true;
+          };
+        };
       };
     in
     {
