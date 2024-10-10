@@ -87,10 +87,17 @@
           casks = [
             "wezterm"
             "nikitabobko/tap/aerospace"
+            "db-browser-for-sqlite"
           ];
           brews = [
             "mas"
             "syncthing"
+            "openssl"
+            "readline"
+            "sqlite3"
+            "xz"
+            "zlib"
+            "tcl-tk"
           ];
           masApps = {
             Yubico = 1497506650;
