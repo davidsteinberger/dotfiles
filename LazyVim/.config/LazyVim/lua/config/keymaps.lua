@@ -42,7 +42,7 @@ map("n", "<leader>v", "v_og_", DEFAULT_OPTIONS)
 
 -- copy relative path
 map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
-map("n", "cP", ':let @+=expand("%:p")<CR>', DEFAULT_OPTIONS)
+map("n", "cpp", ':let @+=expand("%:p")<CR>', DEFAULT_OPTIONS)
 
 -- restore cursor position after joining lines
 map("n", "J", "mzJ`z", DEFAULT_OPTIONS)
