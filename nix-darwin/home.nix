@@ -65,6 +65,9 @@ in
     ssh-copy-id
     watchman
 
+    # lang
+    go
+
     # gnupg
     yubikey-personalization
     yubikey-manager
@@ -73,6 +76,11 @@ in
     redis
     awscli2
     argo-rollouts
+
+    # qmk
+    qmk
+    gcc-arm-embedded
+    dfu-util
   ];
 
   fonts.fontconfig.enable = true;
