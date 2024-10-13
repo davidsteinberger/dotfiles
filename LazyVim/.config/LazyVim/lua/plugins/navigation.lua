@@ -38,14 +38,25 @@ return {
   {
     "folke/flash.nvim",
     -- vscode = false,
-    opts = {
-      modes = {
-        search = { enabled = false },
-        char = { enabled = false },
-      },
-    },
+    -- opts = {
+    --   modes = {
+    --     search = { enabled = false },
+    --     char = { enabled = false },
+    --   },
+    -- },
     keys = {
       { "S", false, mode = { "v", "x" } },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          if string.sub(vim.api.nvim_buf_get_name(0), 1, 8) ~= "fugitive" then
+            require("flash").jump()
+            return
+          end
+        end,
+        desc = "Flash",
+      },
     },
   },
   {
