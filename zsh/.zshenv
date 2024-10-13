@@ -37,7 +37,7 @@ GOPATH="$(go env GOPATH)"
 export PATH="$GOPATH/bin:$PATH"
 
 # rust
-source "$HOME/.cargo/env"
+# source "$HOME/.cargo/env"
 
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 

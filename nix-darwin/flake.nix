@@ -23,6 +23,7 @@
           gnupg
           keepassxc
           obsidian
+          kitty
         ];
 
         # Auto upgrade nix package and the daemon service.

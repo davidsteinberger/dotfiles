@@ -67,6 +67,8 @@ in
 
     # lang
     go
+    rustup
+    opam
 
     # gnupg
     yubikey-personalization
