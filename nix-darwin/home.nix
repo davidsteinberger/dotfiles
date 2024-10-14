@@ -49,8 +49,7 @@ in
     fzf
     ripgrep
     eza
-    pass
-    passExtensions.pass-otp
+    (pass.withExtensions (exts: [ exts.pass-otp exts.pass-import ]))
     tmux
     cmake
     ninja
