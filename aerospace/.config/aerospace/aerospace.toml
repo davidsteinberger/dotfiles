@@ -229,6 +229,6 @@ if.app-id = 'com.github.wez.wezterm'
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
-# if.app-id = 'com.omnigroup.OmniDiskSweeper'
+if.during-aerospace-startup = true
 run = 'move-node-to-workspace 9'
 

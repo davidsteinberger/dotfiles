@@ -147,9 +147,11 @@ in
   programs.zsh = {
     enable = true;
     shellAliases = {
-      hm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
-      rebuild = "darwin-rebuild switch --flake ~/dotfiles/nix-darwin";
-      update = "home-manager switch --flake ~/dotfiles/nix-darwin";
+      rebuild = "darwin-rebuild switch --flake ~/dotfiles/nix-darwin && exit";
+      inithm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
+      hmswitch = "home-manager switch --flake ~/dotfiles/nix-darwin";
+      hm = "hmswitch || inithm";
+      update = "nix flake update --flake ~/dotfiles/nix-darwin";
     };
     initExtra = builtins.readFile ../zsh/.zshrc;
     envExtra = builtins.readFile ../zsh/.zshenv;
