@@ -52,6 +52,14 @@
 
         ### custom
         security.pam.enableSudoTouchIdAuth = true;
+        # https://write.rog.gr/writing/using-touchid-with-tmux/#creating-a-etcpamdsudo_local-file-using-nix-darwin
+        environment = {
+          etc."pam.d/sudo_local".text = ''
+            # Managed by Nix Darwin
+            auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
+            auth       sufficient     pam_tid.so
+          '';
+        };
         system.defaults = {
           dock.autohide = true;
           dock.mru-spaces = false;
