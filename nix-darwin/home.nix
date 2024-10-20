@@ -68,6 +68,7 @@ in
     go
     rustup
     opam
+    dune_3
 
     # gnupg
     yubikey-personalization

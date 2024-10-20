@@ -1,0 +1,16 @@
+init="inittpm && initapps";
+initapps="cd ~/dotfiles/ && stow -t /Applications Applications";
+inittpm="rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
+
+initapps() {
+  npm install -g \
+    @bitwarden/cli
+  cd ~/dotfiles/ && stow -t /Applications Applications
+}
+
+inittpm() {
+  rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
+inittpm && initapps
+

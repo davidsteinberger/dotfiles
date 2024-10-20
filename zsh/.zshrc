@@ -68,7 +68,7 @@ fi
   fi
 } &!
 
-autoload -Uz fp kp ks update_terminfo update_completions secret reveal nvims
+autoload -Uz init bw fp kp ks update_terminfo update_completions secret reveal nvims
 
 # aliases
 source ${ZDOTDIR:-~}/.zaliases.zsh
@@ -112,5 +112,8 @@ eval "$(fnm env --use-on-cd)"
 zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
 source ${ZDOTDIR:-~}/.zlocal.zsh
+
+# bitwarden cli
+# bw > /dev/null 2>&1
 
 # zprof
