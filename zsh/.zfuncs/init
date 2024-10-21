@@ -14,5 +14,10 @@ init_tpm() {
   rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-init_tpm && init_apps
+init_opam() {
+  opam init
+  opam update
+}
+
+init_tpm && init_apps && init_opam
 

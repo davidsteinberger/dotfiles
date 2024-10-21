@@ -18,8 +18,6 @@ alias kr="defaults write -g ApplePressAndHoldEnabled -bool false"
 alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
-alias pw="pass show -c"
-alias pwo="pass otp show -c"
 ## eza
 alias ls="eza --icons=always" # ls
 alias ll='eza -lbF --git --icons=always' # list, size, type, git

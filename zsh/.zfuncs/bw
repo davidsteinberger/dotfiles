@@ -12,7 +12,6 @@ bw() {
     esac
 
     if [ "$bw_session" = "$err_token_not_found" ]; then
-      echo "unset"
       unset bw_session
     fi
 

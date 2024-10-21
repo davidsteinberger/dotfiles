@@ -3,8 +3,7 @@
     "lazyvim.plugins.extras.coding.copilot-chat",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.lang.clangd",
-    "lazyvim.plugins.extras.lang.markdown",
-    "lazyvim.plugins.extras.lang.ocaml"
+    "lazyvim.plugins.extras.lang.markdown"
   ],
   "news": {
     "NEWS.md": "6520"
