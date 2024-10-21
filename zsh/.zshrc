@@ -113,7 +113,4 @@ zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
 source ${ZDOTDIR:-~}/.zlocal.zsh
 
-# bitwarden cli
-# bw > /dev/null 2>&1
-
 # zprof
