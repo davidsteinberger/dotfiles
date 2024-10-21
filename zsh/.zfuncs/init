@@ -1,16 +1,18 @@
-init="inittpm && initapps";
-initapps="cd ~/dotfiles/ && stow -t /Applications Applications";
-inittpm="rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm";
-
-initapps() {
+init_apps() {
   npm install -g \
-    @bitwarden/cli
+    @bitwarden/cli \
+    @graphql-inspector/cli \
+    aws-azure-login \
+    corepack \
+    wgc \
+    yarn
+
   cd ~/dotfiles/ && stow -t /Applications Applications
 }
 
-inittpm() {
+init_tpm() {
   rm -rf ~/.tmux && git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-inittpm && initapps
+init_tpm && init_apps
 

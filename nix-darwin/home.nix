@@ -149,9 +149,9 @@ in
     enable = true;
     shellAliases = {
       rebuild = "darwin-rebuild switch --flake ~/dotfiles/nix-darwin && exit";
-      inithm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
-      hmswitch = "home-manager switch --flake ~/dotfiles/nix-darwin";
-      hm = "hmswitch || inithm";
+      init_hm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
+      hm_switch = "home-manager switch --flake ~/dotfiles/nix-darwin";
+      hm = "hm_switch || init_hm";
       update = "nix flake update --flake ~/dotfiles/nix-darwin";
     };
     initExtra = builtins.readFile ../zsh/.zshrc;
