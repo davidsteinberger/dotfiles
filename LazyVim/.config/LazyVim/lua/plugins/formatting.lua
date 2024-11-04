@@ -10,7 +10,6 @@ return {
           return
         end
         pnp = vim.fn.fnamemodify(pnp, ":p")
-        -- local root = pnp:gsub(".pnp.cjs", "")
         local yarn_bin = vim.fn.system("yarn bin prettier"):gsub("%s+", "")
         local prettier = require("conform.formatters.prettier")
         prettier.command = "node"

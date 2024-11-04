@@ -9,20 +9,40 @@ return {
       local is_pnp = pnp ~= ""
       local vtsls = opts.servers.vtsls
       if is_pnp then
+        local root = vim.fn.fnamemodify(pnp, ":p:h")
         vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls, {
           init_options = { hostInfo = "neovim" },
           settings = {
             typescript = {
-              tsdk = "./.yarn/sdks/typescript/lib",
+              tsdk = root .. "/.yarn/sdks/typescript/lib",
             },
           },
         })
       end
 
-      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
-        tailwindcss = {
-          settings = {
+      opts.setup = {
+        tailwindcss = function(_, opts)
+          local tw = LazyVim.lsp.get_raw_config("tailwindcss")
+          opts.filetypes = opts.filetypes or {}
+
+          -- Add default filetypes
+          vim.list_extend(opts.filetypes, tw.default_config.filetypes)
+
+          -- Remove excluded filetypes
+          --- @param ft string
+          opts.filetypes = vim.tbl_filter(function(ft)
+            return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+          end, opts.filetypes)
+
+          -- Additional settings for Phoenix projects
+          opts.settings = {
             tailwindCSS = {
+              includeLanguages = {
+                elixir = "html-eex",
+                eelixir = "html-eex",
+                heex = "html-eex",
+              },
+
               experimental = {
                 classRegex = {
                   "tw`([^`]*)",
@@ -33,8 +53,14 @@ return {
                 },
               },
             },
-          },
-        },
+          }
+
+          -- Add additional filetypes
+          vim.list_extend(opts.filetypes, opts.filetypes_include or {})
+        end,
+      }
+
+      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
         vtsls = vtsls,
       })
     end,
