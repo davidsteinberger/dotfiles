@@ -9,9 +9,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util }:
     let
       system = "aarch64-darwin";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -21,9 +22,9 @@
         # $ nix-env -qaP | grep wget
         environment.systemPackages = with pkgs; [
           gnupg
-          keepassxc
+          # keepassxc
           obsidian
-          kitty
+          # kitty
         ];
 
         # Auto upgrade nix package and the daemon service.
@@ -65,30 +66,34 @@
           dock.mru-spaces = false;
           finder.AppleShowAllExtensions = true;
           finder.FXPreferredViewStyle = "Nlsv";
-          NSGlobalDomain.AppleICUForce24HourTime = true;
-          NSGlobalDomain.KeyRepeat = 2;
+          NSGlobalDomain = {
+            AppleICUForce24HourTime = true;
+            KeyRepeat = 2;
+            AppleKeyboardUIMode = 3;
+            "com.apple.keyboard.fnState" = true;
+          };
         };
 
-        system.activationScripts.applications.text =
-          let
-            env = pkgs.buildEnv {
-              name = "system-applications";
-              paths = config.environment.systemPackages;
-              pathsToLink = "/Applications";
-            };
-          in
-          pkgs.lib.mkForce ''
-            # Set up applications.
-            echo "setting up /Applications..." >&2
-            rm -rf /Applications/Nix\ Apps
-            mkdir -p /Applications/Nix\ Apps
-            find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-            while read src; do
-              app_name=$(basename "$src")
-                echo "copying $src" >&2
-                ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-                done
-          '';
+        # system.activationScripts.applications.text =
+        #   let
+        #     env = pkgs.buildEnv {
+        #       name = "system-applications";
+        #       paths = config.environment.systemPackages;
+        #       pathsToLink = "/Applications";
+        #     };
+        #   in
+        #   pkgs.lib.mkForce ''
+        #     # Set up applications.
+        #     echo "setting up /Applications..." >&2
+        #     rm -rf /Applications/Nix\ Apps
+        #     mkdir -p /Applications/Nix\ Apps
+        #     find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+        #     while read src; do
+        #       app_name=$(basename "$src")
+        #         echo "copying $src" >&2
+        #         ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+        #         done
+        #   '';
 
         # Homebrew needs to be installed on its own!
         homebrew = {
@@ -97,6 +102,8 @@
             "wezterm"
             "nikitabobko/tap/aerospace"
             "db-browser-for-sqlite"
+            "kitty"
+            "keepassxc"
           ];
           brews = [
             "mas"
@@ -125,6 +132,7 @@
       darwinConfigurations."david" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
+          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager = {
@@ -139,6 +147,7 @@
       darwinConfigurations."dastein1" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
+          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager = {
