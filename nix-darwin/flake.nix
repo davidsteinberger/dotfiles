@@ -23,7 +23,7 @@
         environment.systemPackages = with pkgs; [
           gnupg
           # keepassxc
-          obsidian
+          # obsidian
           # kitty
         ];
 
@@ -104,6 +104,7 @@
             "db-browser-for-sqlite"
             "kitty"
             "keepassxc"
+            "obsidian"
           ];
           brews = [
             "mas"
