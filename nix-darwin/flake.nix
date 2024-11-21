@@ -115,6 +115,7 @@
             "xz"
             "zlib"
             "tcl-tk"
+            "fvm"
           ];
           masApps = {
             Yubico = 1497506650;

@@ -180,8 +180,8 @@ alt-shift-9 = 'move-node-to-workspace 9'
 # alt-shift-d = 'fullscreen'
 alt-shift-f = 'fullscreen'
 alt-shift-b = 'balance-sizes'
-cmd-h = [] # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
+# cmd-h = [] # Disable "hide application"
+# cmd-alt-h = [] # Disable "hide others"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'

@@ -83,6 +83,9 @@ in
     qmk
     gcc-arm-embedded
     dfu-util
+
+    # db
+    mysql84
   ];
 
   fonts.fontconfig.enable = true;
