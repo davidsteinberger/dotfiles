@@ -40,7 +40,7 @@ in
     # '')
     cowsay
     stow
-    gitFull
+    # gitFull
     git-credential-manager
     lazygit
     delta
