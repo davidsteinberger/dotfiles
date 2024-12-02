@@ -106,6 +106,9 @@
             "keepassxc"
             "obsidian"
           ];
+          taps = [
+            "leoafarias/fvm"
+          ];
           brews = [
             "mas"
             "syncthing"
