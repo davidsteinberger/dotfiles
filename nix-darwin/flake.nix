@@ -110,7 +110,7 @@
             "leoafarias/fvm"
           ];
           brews = [
-            "git"
+            # "git"
             "mas"
             "syncthing"
             "openssl"

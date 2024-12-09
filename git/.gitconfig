@@ -22,6 +22,8 @@
 
 [http]
 	sslVerify = false
+	postBuffer = 157286400
+	version = HTTP/2
 
 [commit]
 	gpgsign = true
@@ -61,10 +63,3 @@
 
 [rebase]
 	autoStash = true
-
-[credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager
-
-[credential "https://dev.azure.com"]
-	useHttpPath = true
