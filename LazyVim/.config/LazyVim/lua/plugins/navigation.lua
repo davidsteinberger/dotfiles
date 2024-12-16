@@ -59,31 +59,54 @@ return {
       },
     },
   },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-    opts = {
-      defaults = {
-        mappings = {
-          i = {
-            ["<c-q>"] = function(...)
-              local actions = require("telescope.actions")
-              -- return require("telescope.actions").send_selected_to_qflist(...)
-              actions.smart_send_to_qflist(...)
-              actions.open_qflist(...)
-            end,
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   dependencies = {
+  --     "nvim-telescope/telescope-fzf-native.nvim",
+  --     build = "make",
+  --     config = function()
+  --       require("telescope").load_extension("fzf")
+  --     end,
+  --   },
+  --   opts = {
+  --     defaults = {
+  --       mappings = {
+  --         i = {
+  --           ["<c-q>"] = function(...)
+  --             local actions = require("telescope.actions")
+  --             -- return require("telescope.actions").send_selected_to_qflist(...)
+  --             actions.smart_send_to_qflist(...)
+  --             actions.open_qflist(...)
+  --           end,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "tpope/vim-rsi",
+  },
+  {
+    "ibhagwan/fzf-lua",
+    optional = true,
+    keys = {
+      {
+        "<leader>fp",
+        LazyVim.pick("files", { cwd = require("lazy.core.config").options.root }),
+        desc = "Find Plugin File",
+      },
+      {
+        "<leader>sp",
+        function()
+          local dirs = { "~/dotfiles/LazyVim/.config/LazyVim/lua/plugins" }
+          require("fzf-lua").live_grep({
+            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
+            search = "/",
+            formatter = "path.filename_first",
+          })
+        end,
+        desc = "Search Plugin Spec",
+      },
+    },
   },
 }

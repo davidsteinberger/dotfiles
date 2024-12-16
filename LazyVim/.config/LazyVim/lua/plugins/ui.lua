@@ -21,15 +21,26 @@ return {
       },
     },
   },
-  {
-    "echasnovski/mini.animate",
-    opts = {
-      open = {
-        enable = false,
-      },
-      close = {
-        enable = false,
-      },
-    },
-  },
+  -- {
+  --   "echasnovski/mini.animate",
+  --   opts = {
+  --     open = {
+  --       enable = false,
+  --     },
+  --     close = {
+  --       enable = false,
+  --     },
+  --   },
+  -- },
+  -- lazy.nvim
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     zen = {
+  --       -- your zen configuration comes here
+  --       -- or leave it empty to use the default settings
+  --       -- refer to the configuration section below
+  --     },
+  --   },
+  -- },
 }

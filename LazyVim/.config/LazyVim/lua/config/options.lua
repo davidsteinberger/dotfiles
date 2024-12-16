@@ -18,3 +18,12 @@ vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
   end
   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
 end
+
+vim.opt.mousescroll = "ver:1,hor:4"
+
+vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_ruff = "ruff"
+
+-- better coop with fzf-lua
+vim.env.FZF_DEFAULT_OPTS = ""
+vim.g.ai_cmp = false

@@ -3,19 +3,20 @@
 -- Add any additional keymaps here
 
 DEFAULT_OPTIONS = { noremap = true, silent = true }
-local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    if opts.remap and not vim.g.vscode then
-      opts.remap = nil
-    end
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
-end
+-- local function map(mode, lhs, rhs, opts)
+--   local keys = require("lazy.core.handler").handlers.keys
+--   ---@cast keys LazyKeysHandler
+--   -- do not create the keymap if a lazy keys handler exists
+--   if not keys.active[keys.parse({ lhs, mode = mode }).id] then
+--     opts = opts or {}
+--     opts.silent = opts.silent ~= false
+--     if opts.remap and not vim.g.vscode then
+--       opts.remap = nil
+--     end
+--     vim.keymap.set(mode, lhs, rhs, opts)
+--   end
+-- end
+local map = vim.keymap.set
 
 -- delete to blackhole register
 map("x", "<BS>", '"_d', DEFAULT_OPTIONS)
@@ -69,10 +70,10 @@ map("i", "<c-c>", "<ESC>", { silent = true, noremap = true })
 
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", DEFAULT_OPTIONS)
 map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
-map("n", "<C-f>", "M<C-f>zz", DEFAULT_OPTIONS)
-map("n", "<C-u>", "M<C-u>zz", DEFAULT_OPTIONS)
-map("n", "<PageDown>", "M<C-d>zz", DEFAULT_OPTIONS)
-map("n", "<PageUp>", "M<C-u>zz", DEFAULT_OPTIONS)
+-- map("n", "<C-f>", "M<C-f>zz", DEFAULT_OPTIONS)
+-- map("n", "<C-u>", "M<C-u>zz", DEFAULT_OPTIONS)
+-- map("n", "<PageDown>", "M<C-d>zz", DEFAULT_OPTIONS)
+-- map("n", "<PageUp>", "M<C-u>zz", DEFAULT_OPTIONS)
 
 vim.g.diagnostics_virtual = true
 vim.api.nvim_create_user_command("DiagnosticVirtual", function()

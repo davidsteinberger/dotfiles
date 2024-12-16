@@ -11,7 +11,19 @@ return {
         },
       }
       vim.list_extend(opts.ensure_installed, {
+        "cmake",
+        "css",
+        "devicetree",
+        "gitcommit",
+        "gitignore",
+        "go",
         "graphql",
+        "http",
+        "kconfig",
+        "ninja",
+        "nix",
+        "scss",
+        "sql",
       })
     end,
   },
