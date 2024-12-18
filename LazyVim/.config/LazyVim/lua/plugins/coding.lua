@@ -222,4 +222,21 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = { "html", "svelte", "astro", "vue", "typescriptreact", "php", "blade", "typescriptreact" },
   },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        list = {
+          selection = "auto_insert",
+        },
+      },
+      keymap = {
+        -- preset = "super-tab",
+        ["<Tab>"] = {
+          LazyVim.cmp.map({ "ai_accept", "snippet_forward" }),
+          "fallback",
+        },
+      },
+    },
+  },
 }

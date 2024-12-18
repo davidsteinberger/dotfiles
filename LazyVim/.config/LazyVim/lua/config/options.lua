@@ -27,3 +27,5 @@ vim.g.lazyvim_python_ruff = "ruff"
 -- better coop with fzf-lua
 vim.env.FZF_DEFAULT_OPTS = ""
 vim.g.ai_cmp = false
+
+vim.g.lazyvim_blink_main = true
