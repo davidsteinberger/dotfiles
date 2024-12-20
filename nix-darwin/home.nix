@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-let
-  link = config.lib.file.mkOutOfStoreSymlink;
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   # home.username = "${username}";
@@ -51,7 +53,7 @@ in
     fzf
     ripgrep
     eza
-    (pass.withExtensions (exts: [ exts.pass-otp exts.pass-import ]))
+    (pass.withExtensions (exts: [exts.pass-otp exts.pass-import]))
     tmux
     cmake
     ninja
@@ -88,6 +90,11 @@ in
 
     # db
     mysql84
+
+    # nix
+    nixfmt-rfc-style
+    alejandra
+    nixd
   ];
 
   fonts.fontconfig.enable = true;

@@ -62,6 +62,24 @@ return {
 
       opts.servers = vim.tbl_deep_extend("force", opts.servers, {
         vtsls = vtsls,
+        nixd = require("lspconfig").nixd.setup({
+          cmd = { "nixd" },
+          settings = {
+            nixd = {
+              nixpks = {
+                expr = "import <nixpkgs> {}",
+              },
+              formatting = {
+                command = { "alejandra" },
+              },
+              -- options = {
+              --   home_manager = {
+              --     expr = '(builtins.getFlake "/Users/davidsteinberger/dotfiles/nix-darwin/flake.nix").homeConfigurations.davidsteinberger.options',
+              --   },
+              -- },
+            },
+          },
+        }),
       })
     end,
   },
