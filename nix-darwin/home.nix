@@ -132,6 +132,7 @@ in {
     "kitty".source = link "${config.home.homeDirectory}/dotfiles/kitty/.config/kitty";
     "warpd".source = link "${config.home.homeDirectory}/dotfiles/warpd/.config/warpd";
     "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace";
+    "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
   };
 
   # Home Manager can also manage your environment variables through
@@ -167,7 +168,10 @@ in {
       update = "nix flake update --flake ~/dotfiles/nix-darwin";
     };
     initExtra = builtins.readFile ../zsh/.zshrc;
-    envExtra = builtins.readFile ../zsh/.zshenv;
+    # envExtra = builtins.readFile ../zsh/.zshenv;
+    envExtra = ''
+      source ${config.home.homeDirectory}/dotfiles/zsh/.zshenv
+    '';
     enableCompletion = false;
     # localVariables = {
     #   NIX_ZSH_FILES = builtins.toString ../zsh;

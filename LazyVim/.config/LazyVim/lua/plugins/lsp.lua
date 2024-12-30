@@ -72,11 +72,11 @@ return {
               formatting = {
                 command = { "alejandra" },
               },
-              -- options = {
-              --   home_manager = {
-              --     expr = '(builtins.getFlake "/Users/davidsteinberger/dotfiles/nix-darwin/flake.nix").homeConfigurations.davidsteinberger.options',
-              --   },
-              -- },
+              options = {
+                home_manager = {
+                  expr = '(builtins.getFlake "/Users/david/dotfiles/nix-darwin").homeConfigurations.david.options',
+                },
+              },
             },
           },
         }),

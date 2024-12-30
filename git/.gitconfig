@@ -43,20 +43,19 @@
   plus-style = syntax "#333333"
 
 [merge]
-  ; conflictstyle = diff3
-  tool = vimdiff
+  tool = nvim
 
 [mergetool]
   hideResolved = true
   keepBackup = false
+  prompt = false
+
+[mergetool "nvim"]
+  cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\" -c DiffviewOpen"
 
 [diff]
   colorMoved = default
   tool = vimdiff
-
-[mergetool "vimdiff"]
-  hideResolved = true
-  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [pull]
 	rebase = true

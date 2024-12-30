@@ -114,6 +114,7 @@
           "kitty"
           "keepassxc"
           "obsidian"
+          "ghostty"
         ];
         taps = [
           "leoafarias/fvm"
