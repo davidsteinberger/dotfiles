@@ -5,18 +5,23 @@ return {
       "haydenmeade/neotest-jest",
       -- Your other test adapters here
     },
-    opts = {
-      adapters = {
+    opts = function(_, opts)
+      local jestCommand = "npm test --"
+      local hasYarn = vim.fn.executable("yarn") == 1
+      if hasYarn then
+        jestCommand = "yarn test"
+      end
+      opts.adapters = {
         ["neotest-jest"] = {
-          jestCommand = "yarn test",
+          jestCommand = jestCommand,
           debug = true,
           -- env = { CI = true },
           cwd = function()
             return vim.fn.getcwd()
           end,
         },
-      },
-    },
+      }
+    end,
   },
   {
     "nvim-neotest/neotest",
