@@ -88,9 +88,6 @@ in {
     gcc-arm-embedded
     dfu-util
 
-    # db
-    mysql84
-
     # nix
     nixfmt-rfc-style
     alejandra
@@ -157,6 +154,8 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.direnv.enable = true;
 
   programs.zsh = {
     enable = true;

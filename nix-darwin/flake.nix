@@ -130,6 +130,7 @@
           "zlib"
           "tcl-tk"
           "fvm"
+          "mysql"
         ];
         masApps = {
           Yubico = 1497506650;
