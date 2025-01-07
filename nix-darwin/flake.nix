@@ -135,6 +135,7 @@
         masApps = {
           Yubico = 1497506650;
           Bitwarden = 1352778147;
+          Spotify = 324684580;
         };
         onActivation = {
           cleanup = "zap";
