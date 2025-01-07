@@ -16,7 +16,6 @@ stow starship
 stow git
 stow tmux
 stow karabiner
-stow lvim
 stow LazyVim
 stow kitty
 stow wezterm

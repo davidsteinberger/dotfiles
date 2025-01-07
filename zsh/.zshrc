@@ -52,20 +52,17 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording
 # antidote load ${ZDOTDIR:-~}/.zsh_plugins.txt
 
 ## https://getantidote.github.io/completions
+autoload -Uz zrecompile
 autoload -Uz compinit
 ZSH_COMPDUMP=${ZSH_COMPDUMP:-${ZDOTDIR:-~}/.zcompdump}
 
 # cache .zcompdump for about a day
-if [[ $ZSH_COMPDUMP(#qNmh-20) ]]; then
-  compinit -C -d "$ZSH_COMPDUMP"
-else
-  compinit -i -d "$ZSH_COMPDUMP"; touch "$ZSH_COMPDUMP"
+if [[ -s $ZSH_COMPDUMP(#qN.mh+24) ]]; then
+    compinit -i -d $ZSH_COMPDUMP 
 fi
+compinit -C -d $ZSH_COMPDUMP
 {
-  # compile .zcompdump
-  if [[ -s "$ZSH_COMPDUMP" && (! -s "${ZSH_COMPDUMP}.zwc" || "$ZSH_COMPDUMP" -nt "${ZSH_COMPDUMP}.zwc") ]]; then
-    zcompile "$ZSH_COMPDUMP"
-  fi
+  zrecompile -q -p -M $ZSH_COMPDUMP
 } &!
 
 autoload -Uz init bw fp kp ks update_terminfo update_completions secret reveal nvims
