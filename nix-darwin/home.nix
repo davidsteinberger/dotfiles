@@ -67,6 +67,7 @@ in {
     kubectl
     ssh-copy-id
     watchman
+    kubernetes-helm
 
     # lang
     go
