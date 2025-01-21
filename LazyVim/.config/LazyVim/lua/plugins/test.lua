@@ -11,7 +11,7 @@ return {
       if hasYarn then
         jestCommand = "yarn test"
       end
-      opts.adapters = {
+      opts.adapters = vim.tbl_extend("force", opts.adapters, {
         ["neotest-jest"] = {
           jestCommand = jestCommand,
           debug = true,
@@ -20,7 +20,7 @@ return {
             return vim.fn.getcwd()
           end,
         },
-      }
+      })
     end,
   },
   {
