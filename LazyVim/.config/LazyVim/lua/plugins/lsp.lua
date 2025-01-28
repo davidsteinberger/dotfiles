@@ -5,21 +5,6 @@ return {
       { "<leader>uv", "<cmd>DiagnosticVirtual<cr>", desc = "Toggle Diagnostics Virtual" },
     },
     opts = function(_, opts)
-      local pnp = vim.fn.findfile(".pnp.cjs", ".;")
-      local is_pnp = pnp ~= ""
-      local vtsls = opts.servers.vtsls
-      if is_pnp then
-        local root = vim.fn.fnamemodify(pnp, ":p:h")
-        vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls, {
-          init_options = { hostInfo = "neovim" },
-          settings = {
-            typescript = {
-              tsdk = root .. "/.yarn/sdks/typescript/lib",
-            },
-          },
-        })
-      end
-
       opts.setup = {
         tailwindcss = function(_, opts)
           local tw = LazyVim.lsp.get_raw_config("tailwindcss")
@@ -60,7 +45,31 @@ return {
         end,
       }
 
+      local pnp = vim.fn.findfile(".pnp.cjs", ".;")
+      local is_pnp = pnp ~= ""
+      local vtsls = opts.servers.vtsls
+      if is_pnp then
+        local root = vim.fn.fnamemodify(pnp, ":p:h")
+        vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls, {
+          init_options = { hostInfo = "neovim" },
+          settings = {
+            typescript = {
+              tsdk = root .. "/.yarn/sdks/typescript/lib",
+            },
+          },
+        })
+      end
+
+      local eslint = opts.servers.eslint
+      eslint = vim.tbl_deep_extend("force", eslint, {
+        flags = {
+          allow_incremental_sync = false,
+          debounce_text_changes = 1000,
+        },
+      })
+
       opts.servers = vim.tbl_deep_extend("force", opts.servers, {
+        eslint = eslint,
         vtsls = vtsls,
         nixd = require("lspconfig").nixd.setup({
           cmd = { "nixd" },
