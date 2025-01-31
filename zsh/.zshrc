@@ -57,13 +57,15 @@ autoload -Uz compinit
 ZSH_COMPDUMP=${ZSH_COMPDUMP:-${ZDOTDIR:-~}/.zcompdump}
 
 # cache .zcompdump for about a day
-if [[ -s $ZSH_COMPDUMP(#qN.mh+24) ]]; then
-    compinit -i -d $ZSH_COMPDUMP 
-fi
-compinit -C -d $ZSH_COMPDUMP
-{
+if [[ -n "$ZSH_COMPDUMP"(#qN.mm+24) ]]; then
+  echo "compdump needs recompilation ($ZSH_COMPDUMP)"
+  compinit -i -d $ZSH_COMPDUMP 
+  touch $ZSH_COMPDUMP
   zrecompile -q -p -M $ZSH_COMPDUMP
-} &!
+else
+  echo "compdump exists ($ZSH_COMPDUMP)"
+  compinit -C -d $ZSH_COMPDUMP
+fi
 
 autoload -Uz init bw fp kp ks update_terminfo update_completions secret reveal nvims
 
