@@ -75,6 +75,10 @@ map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
 -- map("n", "<PageDown>", "M<C-d>zz", DEFAULT_OPTIONS)
 -- map("n", "<PageUp>", "M<C-u>zz", DEFAULT_OPTIONS)
 
+map("n", "<leader>;", function()
+  Snacks.dashboard()
+end)
+
 vim.g.diagnostics_virtual = true
 vim.api.nvim_create_user_command("DiagnosticVirtual", function()
   if vim.g.diagnostics_virtual then
