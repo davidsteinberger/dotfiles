@@ -58,12 +58,10 @@ ZSH_COMPDUMP=${ZSH_COMPDUMP:-${ZDOTDIR:-~}/.zcompdump}
 
 # cache .zcompdump for about a day
 if [[ -n "$ZSH_COMPDUMP"(#qN.mm+24) ]]; then
-  echo "compdump needs recompilation ($ZSH_COMPDUMP)"
   compinit -i -d $ZSH_COMPDUMP 
   touch $ZSH_COMPDUMP
   zrecompile -q -p -M $ZSH_COMPDUMP
 else
-  echo "compdump exists ($ZSH_COMPDUMP)"
   compinit -C -d $ZSH_COMPDUMP
 fi
 
