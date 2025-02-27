@@ -36,10 +36,6 @@
         # kitty
       ];
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
@@ -61,7 +57,7 @@
       nixpkgs.config.allowUnfree = true;
 
       ### custom
-      security.pam.enableSudoTouchIdAuth = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
       # https://write.rog.gr/writing/using-touchid-with-tmux/#creating-a-etcpamdsudo_local-file-using-nix-darwin
       environment = {
         etc."pam.d/sudo_local".text = ''
@@ -120,7 +116,6 @@
           "leoafarias/fvm"
         ];
         brews = [
-          # "git"
           "mas"
           "syncthing"
           "openssl"
