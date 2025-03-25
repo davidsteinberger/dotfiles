@@ -126,6 +126,9 @@
           "tcl-tk"
           "fvm"
           "mysql"
+          "lazydocker"
+          "derailed/k9s/k9s"
+          "kubectx"
         ];
         masApps = {
           Yubico = 1497506650;
@@ -150,6 +153,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users."david" = import ./home.nix;
+            backupFileExtension = "backup";
           };
           users.users."david".home = "/Users/david";
         }
@@ -165,6 +169,7 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             users."davidsteinberger" = import ./home.nix;
+            backupFileExtension = "backup";
           };
           users.users."davidsteinberger".home = "/Users/davidsteinberger";
         }

@@ -131,6 +131,7 @@ in {
     "warpd".source = link "${config.home.homeDirectory}/dotfiles/warpd/.config/warpd";
     "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace";
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
+    "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
   };
 
   # Home Manager can also manage your environment variables through
@@ -163,7 +164,7 @@ in {
     shellAliases = {
       rebuild = "darwin-rebuild switch --flake ~/dotfiles/nix-darwin && exit";
       init_hm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
-      hm_switch = "home-manager switch --flake ~/dotfiles/nix-darwin";
+      hm_switch = "home-manager switch -b backup --flake ~/dotfiles/nix-darwin";
       hm = "hm_switch || init_hm";
       update = "nix flake update --flake ~/dotfiles/nix-darwin";
     };
