@@ -46,7 +46,7 @@ in {
     git-credential-manager
     lazygit
     delta
-    neovim
+    # neovim
     starship
     fnm
     pyenv

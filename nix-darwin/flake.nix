@@ -129,6 +129,8 @@
           "lazydocker"
           "derailed/k9s/k9s"
           "kubectx"
+          "stern"
+          "neovim"
         ];
         masApps = {
           Yubico = 1497506650;
