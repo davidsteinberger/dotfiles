@@ -57,7 +57,7 @@ autoload -Uz compinit
 ZSH_COMPDUMP=${ZSH_COMPDUMP:-${ZDOTDIR:-~}/.zcompdump}
 
 # cache .zcompdump for about a day
-if [[ -n "$ZSH_COMPDUMP"(#qN.mm+24) ]]; then
+if [[ ! -e "$ZSH_COMPDUMP" || -n "$ZSH_COMPDUMP"(#qN.mh+24) ]]; then
   compinit -i -d $ZSH_COMPDUMP 
   touch $ZSH_COMPDUMP
   zrecompile -q -p -M $ZSH_COMPDUMP
