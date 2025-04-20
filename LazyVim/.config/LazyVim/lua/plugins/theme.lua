@@ -13,42 +13,37 @@ function DarkMode(transparent)
         },
       },
     },
-    overrides = function(colors) -- add/modify highlights
+    overrides = function(colors)
       local theme = colors.theme
-      local obj = {
+      return {
+        NormalFloat = { bg = "none" },
         FloatBorder = { bg = "none" },
         FloatTitle = { bg = "none" },
 
+        -- Save an hlgroup with dark background and dimmed foreground
+        -- so that you can use it where your still want darker windows.
+        -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
         NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
-        Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+        -- Popular plugins that open floats will link to NormalFloat by default;
+        -- set their background accordingly if you wish to keep them dark and borderless
+        LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+        MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+
+        Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
         PmenuSbar = { bg = theme.ui.bg_m1 },
         PmenuThumb = { bg = theme.ui.bg_p2 },
       }
-      if transparent == true then
-        obj.NormalFloat = { bg = "none" }
-      end
-      return obj
     end,
   })
-  kanagawa.load()
-  vim.api.nvim_set_option_value("background", "dark", {})
-  vim.cmd("highlight TelescopeBorder guibg=none")
-  vim.cmd("highlight TelescopeTitle guibg=none")
-  -- local colors = require("kanagawa.colors").setup({ theme = "wave" })
-  -- local theme_colors = colors.theme
-  -- vim.cmd("highlight DiffDelete guifg=" .. theme_colors.ui.fg_dim .. " guibg=none")
+  vim.cmd("colorscheme kanagawa")
 end
 
 function LightMode()
   local kanagawa = require("kanagawa")
   kanagawa.setup({ theme = "lotus", transparent = false })
-  kanagawa.load()
-  vim.api.nvim_set_option_value("background", "light", {})
-  -- local colors = require("kanagawa.colors").setup({ theme = "lotus" })
-  -- local theme_colors = colors.theme
-  -- vim.cmd("highlight DiffDelete guifg=" .. theme_colors.ui.bg .. " guibg=none")
+  vim.cmd("colorscheme kanagawa-lotus")
 end
 
 return {
@@ -56,6 +51,14 @@ return {
     "rebelot/kanagawa.nvim",
     config = function()
       DarkMode()
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "kanagawa",
+        callback = function()
+          vim.api.nvim_set_hl(0, "StatusLine", { link = "lualine_c_normal" })
+        end,
+      })
     end,
   },
   {
@@ -72,12 +75,12 @@ return {
     "folke/tokyonight.nvim",
     event = "VeryLazy",
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "kanagawa",
-    },
-  },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "kanagawa",
+  --   },
+  -- },
   {
     "f-person/auto-dark-mode.nvim",
     config = {
