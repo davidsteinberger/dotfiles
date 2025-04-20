@@ -19,13 +19,16 @@ alias knr="defaults write -g ApplePressAndHoldEnabled -bool true"
 alias switch-keys="gpg-connect-agent \"scd serialno\" \"learn --force\" /bye"
 alias flutter="fvm flutter"
 ## eza
-alias ls="eza --icons=always" # ls
-alias ll='eza -lbF --git --icons=always' # list, size, type, git
-alias llm='eza -lbF --git --icons=always --sort=modified' # long list, modified date sort
-alias la='eza -lbhHigUmuSa --time-style=long-iso --git --icons=always' # all list
-alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --icons=always' # all + extended list
-alias lS='eza -1' # one column, just names
-alias lt='eza --tree --level=2 --icons=always' # tree
+alias ls='eza --color=always --group-directories-first --icons'
+alias ll='eza -la --icons --octal-permissions --group-directories-first'
+alias l='eza -bGF --header --git --color=always --group-directories-first --icons'
+alias llm='eza -lbGd --header --git --sort=modified --color=always --group-directories-first --icons' 
+alias la='eza --long --all --group --group-directories-first'
+alias lx='eza -lbhHigUmuSa@ --time-style=long-iso --git --color-scale --color=always --group-directories-first --icons'
+
+alias lS='eza -1 --color=always --group-directories-first --icons'
+alias lt='eza --tree --level=2 --color=always --group-directories-first --icons'
+alias l.="eza -a | grep -E '^\.'"
 alias fzf="fzf --cycle  --multi --bind 'tab:toggle-up,btab:toggle-down'"
 
 alias ibrew='arch -x86_64 /usr/local/bin/brew'
