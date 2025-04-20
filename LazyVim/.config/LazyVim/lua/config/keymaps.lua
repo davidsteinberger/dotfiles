@@ -3,19 +3,6 @@
 -- Add any additional keymaps here
 
 DEFAULT_OPTIONS = { noremap = true, silent = true }
--- local function map(mode, lhs, rhs, opts)
---   local keys = require("lazy.core.handler").handlers.keys
---   ---@cast keys LazyKeysHandler
---   -- do not create the keymap if a lazy keys handler exists
---   if not keys.active[keys.parse({ lhs, mode = mode }).id] then
---     opts = opts or {}
---     opts.silent = opts.silent ~= false
---     if opts.remap and not vim.g.vscode then
---       opts.remap = nil
---     end
---     vim.keymap.set(mode, lhs, rhs, opts)
---   end
--- end
 local map = vim.keymap.set
 
 -- delete to blackhole register
@@ -28,12 +15,8 @@ map("n", "<BS>p", '"_cw', DEFAULT_OPTIONS)
 map("n", "<BS>'", "\"_ci'", DEFAULT_OPTIONS)
 map("n", '<BS>"', '"_ci"', DEFAULT_OPTIONS)
 
--- select word
--- map("v", "<M-Right>", "e", DEFAULT_OPTIONS)
--- map("v", "<M-Left>", "b", DEFAULT_OPTIONS)
-
 -- paste and keep the  p register
-map("x", "<leader>p", '"_dP', DEFAULT_OPTIONS)
+map("x", "<leader>pp", '"_dP', DEFAULT_OPTIONS)
 
 -- copy entire buffer
 map("n", "<leader>Y", ":%y+<CR>", DEFAULT_OPTIONS)
@@ -58,22 +41,9 @@ map("n", "<M-h>", ":TmuxNavigateDown<cr>", { silent = true, noremap = true })
 map("n", "<M-a>", ":TmuxNavigateUp<cr>", { silent = true, noremap = true })
 
 map("i", "<c-c>", "<ESC>", { silent = true, noremap = true })
--- map({ "n", "i", "v" }, "<m-i>", "<ESC>", { silent = true, noremap = true })
--- map({ "n", "i", "v" }, "ï", "<ESC>", { silent = true, noremap = true })
--- map({ "i", "v" }, "<ESC>", "<ESC>", { silent = true, noremap = true })
-
--- Resizing panes
--- map("n", "<Left>", ":vertical resize -1<CR>", DEFAULT_OPTIONS)
--- map("n", "<Right>", ":vertical resize +1<CR>", DEFAULT_OPTIONS)
--- map("n", "<Up>", ":resize -1<CR>", DEFAULT_OPTIONS)
--- map("n", "<Down>", ":resize +1<CR>", DEFAULT_OPTIONS)
 
 map("n", "<TAB>", ":BufferLineCycleNext<CR>", DEFAULT_OPTIONS)
 map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
--- map("n", "<C-f>", "M<C-f>zz", DEFAULT_OPTIONS)
--- map("n", "<C-u>", "M<C-u>zz", DEFAULT_OPTIONS)
--- map("n", "<PageDown>", "M<C-d>zz", DEFAULT_OPTIONS)
--- map("n", "<PageUp>", "M<C-u>zz", DEFAULT_OPTIONS)
 
 map("n", "<leader>;", function()
   Snacks.dashboard()
