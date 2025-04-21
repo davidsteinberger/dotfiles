@@ -19,6 +19,7 @@ function _bw {
   case $state in
     cmnds)
       commands=(
+        "sdk-version:Print the SDK version."
         "login:Log into a user account."
         "logout:Log out of the current user account."
         "lock:Lock the vault and destroy active session keys."
@@ -51,6 +52,9 @@ function _bw {
   esac
 
   case "$words[1]" in
+    sdk-version)
+      _bw_sdk-version
+      ;;
     login)
       _bw_login
       ;;
@@ -130,6 +134,10 @@ function _bw {
       _bw_serve
       ;;
   esac
+}
+
+function _bw_sdk-version {
+  
 }
 
 function _bw_login {
