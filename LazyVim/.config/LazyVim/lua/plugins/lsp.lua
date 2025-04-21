@@ -1,9 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    keys = {
-      { "<leader>uv", "<cmd>DiagnosticVirtual<cr>", desc = "Toggle Diagnostics Virtual" },
-    },
     opts = function(_, opts)
       opts.setup = {
         tailwindcss = function(_, opts)

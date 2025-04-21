@@ -68,6 +68,8 @@ in {
     ssh-copy-id
     watchman
     kubernetes-helm
+    imagemagick
+    fd
 
     # lang
     go

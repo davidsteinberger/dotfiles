@@ -51,19 +51,12 @@ return {
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype) and vim.bo.buftype ~= "prompt"
       end,
-      completion = {
-        list = {
-          selection = {
-            preselect = false,
-            auto_insert = false,
-          },
-        },
-      },
-      -- keymap = {
-      --   -- preset = "super-tab",
-      --   ["<Tab>"] = {
-      --     LazyVim.cmp.map({ "ai_accept", "snippet_forward" }),
-      --     "fallback",
+      -- completion = {
+      --   list = {
+      --     selection = {
+      --       preselect = false,
+      --       auto_insert = false,
+      --     },
       --   },
       -- },
     },
@@ -79,5 +72,33 @@ return {
         },
       },
     },
+  },
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      mappings = {
+        add = "sa", -- Add surrounding in Normal and Visual modes
+        delete = "sd", -- Delete surrounding
+        find = "sf", -- Find surrounding (to the right)
+        find_left = "sF", -- Find surrounding (to the left)
+        highlight = "sh", -- Highlight surrounding
+        replace = "sr", -- Replace surrounding
+        update_n_lines = "sn", -- Update `n_lines`
+      },
+    },
+  },
+  { "echasnovski/mini.operators", version = "*", event = "VeryLazy", opts = {} },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "gr", false }
+      keys[#keys + 1] = {
+        "<leadergr",
+        "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>",
+        desc = "References",
+        nowait = true,
+      }
+    end,
   },
 }

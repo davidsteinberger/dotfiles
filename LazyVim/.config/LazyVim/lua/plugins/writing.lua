@@ -68,6 +68,9 @@ return {
         alias_format = "%Y-%m-%d",
         template = "Daily template.md",
       },
+      ui = {
+        enable = false,
+      },
     },
     keys = {
       {
