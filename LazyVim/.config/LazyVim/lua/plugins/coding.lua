@@ -51,14 +51,14 @@ return {
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype) and vim.bo.buftype ~= "prompt"
       end,
-      -- completion = {
-      --   list = {
-      --     selection = {
-      --       preselect = false,
-      --       auto_insert = false,
-      --     },
-      --   },
-      -- },
+      completion = {
+        list = {
+          selection = {
+            preselect = false,
+            -- auto_insert = false,
+          },
+        },
+      },
     },
   },
   {

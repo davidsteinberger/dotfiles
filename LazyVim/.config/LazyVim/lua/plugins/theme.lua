@@ -1,6 +1,7 @@
 -- @param transparent: boolean?
 function DarkMode(transparent)
   local kanagawa = require("kanagawa")
+  ---@diagnostic disable-next-line: missing-fields
   kanagawa.setup({
     theme = "wave",
     transparent = transparent or false,
@@ -42,6 +43,7 @@ end
 
 function LightMode()
   local kanagawa = require("kanagawa")
+  ---@diagnostic disable-next-line: missing-fields
   kanagawa.setup({ theme = "lotus", transparent = false })
   vim.cmd("colorscheme kanagawa-lotus")
 end
