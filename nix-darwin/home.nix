@@ -53,7 +53,10 @@ in {
     fzf
     ripgrep
     eza
-    (pass.withExtensions (exts: [exts.pass-otp exts.pass-import]))
+    (pass.withExtensions (exts: [
+      exts.pass-otp
+      exts.pass-import
+    ]))
     tmux
     cmake
     ninja
@@ -70,6 +73,7 @@ in {
     kubernetes-helm
     imagemagick
     fd
+    gnupatch
 
     # lang
     go

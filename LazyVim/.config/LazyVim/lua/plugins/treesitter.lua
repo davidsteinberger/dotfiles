@@ -24,6 +24,7 @@ return {
         "nix",
         "scss",
         "sql",
+        "yaml",
       })
     end,
   },

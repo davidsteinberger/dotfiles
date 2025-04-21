@@ -15,6 +15,7 @@ init_tpm() {
 }
 
 init_opam() {
+  rm -rf ~/.opam
   opam init
   opam update
 }
