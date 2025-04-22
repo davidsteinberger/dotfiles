@@ -1,3 +1,9 @@
+-- conditionally map <cr> to flash
+vim.keymap.set("n", "<cr>", function()
+  local buftype = vim.fn.win_gettype()
+  return buftype == "" and "<cmd>lua require('flash').jump()<cr>" or "<cr>"
+end, { noremap = true, expr = true })
+
 return {
   {
     "christoomey/vim-tmux-navigator",
@@ -27,39 +33,12 @@ return {
         "ss",
         mode = { "n", "x", "o" },
         function()
-          if string.sub(vim.api.nvim_buf_get_name(0), 1, 8) ~= "fugitive" then
-            require("flash").jump()
-            return
-          end
+          return require("flash").jump()
         end,
-        desc = "Flash",
       },
     },
   },
   {
     "tpope/vim-rsi",
-  },
-  {
-    "ibhagwan/fzf-lua",
-    optional = true,
-    keys = {
-      {
-        "<leader>fp",
-        LazyVim.pick("files", { cwd = require("lazy.core.config").options.root }),
-        desc = "Find Plugin File",
-      },
-      {
-        "<leader>sp",
-        function()
-          local dirs = { "~/dotfiles/LazyVim/.config/LazyVim/lua/plugins" }
-          require("fzf-lua").live_grep({
-            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
-            search = "/",
-            formatter = "path.filename_first",
-          })
-        end,
-        desc = "Search Plugin Spec",
-      },
-    },
   },
 }
