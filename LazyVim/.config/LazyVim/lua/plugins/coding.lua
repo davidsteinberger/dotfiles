@@ -78,6 +78,20 @@ return {
       })
     end,
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        mode = { "n", "v" },
+        {
+          "gs",
+        },
+        {
+          "gx",
+        },
+      },
+    },
+  },
   { "echasnovski/mini.operators", version = "*", event = "VeryLazy", opts = {} },
   {
     "neovim/nvim-lspconfig",
