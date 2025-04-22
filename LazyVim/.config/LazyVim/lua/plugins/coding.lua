@@ -94,8 +94,11 @@ return {
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       keys[#keys + 1] = { "gr", false }
       keys[#keys + 1] = {
-        "<leadergr",
-        "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>",
+        "<leader>gr",
+        -- "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>",
+        function()
+          Snacks.picker.lsp_references()
+        end,
         desc = "References",
         nowait = true,
       }
