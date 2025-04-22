@@ -35,6 +35,7 @@ return {
         function()
           return require("flash").jump()
         end,
+        desc = "Flash",
       },
     },
   },
