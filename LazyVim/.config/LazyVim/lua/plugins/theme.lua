@@ -38,7 +38,7 @@ function DarkMode(transparent)
       }
     end,
   })
-  vim.cmd("colorscheme kanagawa")
+  vim.cmd("colorscheme kanagawa-wave")
 end
 
 function LightMode()
