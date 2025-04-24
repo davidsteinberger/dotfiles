@@ -1,5 +1,5 @@
 .DS_Store
-tmux/.tmux/plugins
+tmux/.config/tmux/plugins
 lazygit/.config/lazygit/state.yml
 LazyVim/.config/LazyVim/typrstats
 karabiner/.config/karabiner/automatic_backups

@@ -123,7 +123,6 @@ in {
 
     ".gitconfig".source = link "${config.home.homeDirectory}/dotfiles/git/.gitconfig";
     ".gitignore".source = link "${config.home.homeDirectory}/dotfiles/git/.gitignore";
-    ".tmux.conf".source = link "${config.home.homeDirectory}/dotfiles/tmux/.tmux.conf";
   };
 
   xdg.configFile = {
@@ -138,6 +137,7 @@ in {
     "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace";
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
+    "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
   };
 
   # Home Manager can also manage your environment variables through

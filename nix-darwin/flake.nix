@@ -131,6 +131,7 @@
           "kubectx"
           "stern"
           "neovim"
+          "cormacrelf/tap/dark-notify"
         ];
         masApps = {
           Yubico = 1497506650;
