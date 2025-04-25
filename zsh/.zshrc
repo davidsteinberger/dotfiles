@@ -106,6 +106,10 @@ eval "$(fnm env --use-on-cd)"
 # opam
 [[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
+# go
+GOPATH="$(go env GOPATH)"
+export PATH="$GOPATH/bin:$PATH"
+
 zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
 source ${ZDOTDIR:-~}/.zlocal.zsh

@@ -4,6 +4,7 @@ return {
     cmd = { "Dispatch", "Make", "Focus", "Start" },
     config = function()
       vim.g.dispatch_no_tmux_make = 1
+      vim.g.dispatch_no_tmux_start = 1
     end,
   },
   {

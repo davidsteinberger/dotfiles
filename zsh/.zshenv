@@ -32,9 +32,9 @@ export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export PATH="${HOME}/fvm/default/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.krew/bin"
 
-# go
-GOPATH="$(go env GOPATH)"
-export PATH="$GOPATH/bin:$PATH"
+# # go
+# GOPATH="$(go env GOPATH)"
+# export PATH="$GOPATH/bin:$PATH"
 
 # rust
 # source "$HOME/.cargo/env"
