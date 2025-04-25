@@ -9,7 +9,7 @@
   pager = delta --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 
 [interactive]
-    diffFilter = delta --color-only --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
+  diffFilter = delta --color-only --features "$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo dark-mode || echo light-mode)"
 
 [pager]
   blame  = delta
@@ -39,8 +39,6 @@
 [delta "dark-mode"]
   navigate = true
   side-by-side = true
-  syntax-theme = gruvbox-dark
-  plus-style = syntax "#333333"
 
 [merge]
   tool = nvim
