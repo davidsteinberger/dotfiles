@@ -57,7 +57,7 @@ return {
       { "<leader>gft", "<cmd>0GcLog<cr>", desc = "TimeMachine" },
       { "<leader>gfl", toggleLineMap, desc = "Toggle linematch" },
       { "<leader>gfv", "<cmd>:Gdiffsplit :1 | Gvdiffsplit!<CR>", desc = "3-way merge" },
-      { "y<C-G>", "<cmd>call setreg(v:register, fugitive#Object(@%))<cr>", desc = "Copy git object" },
+      { "<leader>gfc", "<cmd>call setreg(v:register, fugitive#Object(@%))<cr>", desc = "Copy git object" },
       { "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>", desc = "Toggle deleted" },
       { "<leader>gtb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle line blame" },
     },

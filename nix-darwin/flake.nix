@@ -132,6 +132,7 @@
           "stern"
           "neovim"
           "cormacrelf/tap/dark-notify"
+          "portaudio"
         ];
         masApps = {
           Yubico = 1497506650;

@@ -20,5 +20,11 @@ init_opam() {
   opam update
 }
 
-init_tpm && init_apps && init_opam
+init_aider() {
+  python -m pip install aider-install
+  pyenv rehash
+  aider-install
+}
+
+init_tpm && init_apps && init_opam && init_aider
 
