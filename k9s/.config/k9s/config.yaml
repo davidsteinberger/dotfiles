@@ -1,5 +1,5 @@
 k9s:
-  liveViewAutoRefresh: false
+  liveViewAutoRefresh: true
   screenDumpDir: /Users/davidsteinberger/Library/Application Support/k9s/screen-dumps
   refreshRate: 2
   maxConnRetry: 5
