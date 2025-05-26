@@ -2,11 +2,13 @@
   description = "Davids Darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
@@ -160,6 +162,9 @@
             backupFileExtension = "backup";
           };
           users.users."david".home = "/Users/david";
+          system = {
+            primaryUser = "david";
+          };
         }
       ];
     };
@@ -176,6 +181,9 @@
             backupFileExtension = "backup";
           };
           users.users."davidsteinberger".home = "/Users/davidsteinberger";
+          system = {
+            primaryUser = "davidsteinberger";
+          };
         }
       ];
     };
