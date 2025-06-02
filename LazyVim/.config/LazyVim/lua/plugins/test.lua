@@ -7,7 +7,8 @@ return {
     },
     opts = function(_, opts)
       local jestCommand = "npm test --"
-      local hasYarn = vim.fn.executable("yarn") == 1
+      local yarnLockFile = vim.fn.findfile("yarn.lock", ".;")
+      local hasYarn = yarnLockFile ~= ""
       if hasYarn then
         jestCommand = "yarn test"
       end
