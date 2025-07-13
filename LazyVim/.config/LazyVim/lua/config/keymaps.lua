@@ -6,24 +6,24 @@ DEFAULT_OPTIONS = { noremap = true, silent = true }
 local map = vim.keymap.set
 
 -- delete to blackhole register
-map("x", "<BS>", '"_d', DEFAULT_OPTIONS)
+map("x", "<bs>", '"_d', DEFAULT_OPTIONS)
 
 -- change word
-map("n", "<BS><BS>", '"_diw', DEFAULT_OPTIONS)
-map("n", "<BS>w", '"_ciw', DEFAULT_OPTIONS)
-map("n", "<BS>p", '"_cw', DEFAULT_OPTIONS)
-map("n", "<BS>'", "\"_ci'", DEFAULT_OPTIONS)
-map("n", '<BS>"', '"_ci"', DEFAULT_OPTIONS)
+map("n", "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
+map("n", "<bs>w", '"_ciw', DEFAULT_OPTIONS)
+map("n", "<bs>p", '"_cw', DEFAULT_OPTIONS)
+map("n", "<bs>'", "\"_ci'", DEFAULT_OPTIONS)
+map("n", '<bs>"', '"_ci"', DEFAULT_OPTIONS)
 
 -- copy entire buffer
-map("n", "<leader>Y", ":%y+<CR>", DEFAULT_OPTIONS)
+map("n", "<leader>Y", ":%y+<cr>", DEFAULT_OPTIONS)
 
 -- select from beginnig to end of line
 map("n", "<leader>v", "v_og_", DEFAULT_OPTIONS)
 
 -- copy relative path
-map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<CR>', DEFAULT_OPTIONS)
-map("n", "cpp", ':let @+=expand("%:p")<CR>', DEFAULT_OPTIONS)
+map("n", "cp", ':let @+=fnamemodify(expand("%"), ":~:.")<cr>', DEFAULT_OPTIONS)
+map("n", "cpp", ':let @+=expand("%:p")<cr>', DEFAULT_OPTIONS)
 
 -- restore cursor position after joining lines
 map("n", "J", "mzJ`z", DEFAULT_OPTIONS)
@@ -32,15 +32,18 @@ map("n", "<c-h>", ":TmuxNavigateLeft<cr>", DEFAULT_OPTIONS)
 map("n", "<c-l>", ":TmuxNavigateRight<cr>", DEFAULT_OPTIONS)
 map("n", "<c-j>", ":TmuxNavigateDown<cr>", DEFAULT_OPTIONS)
 map("n", "<c-k>", ":TmuxNavigateUp<cr>", DEFAULT_OPTIONS)
-map("n", "<M-y>", ":TmuxNavigateLeft<cr>", DEFAULT_OPTIONS)
-map("n", "<M-e>", ":TmuxNavigateRight<cr>", DEFAULT_OPTIONS)
-map("n", "<M-h>", ":TmuxNavigateDown<cr>", DEFAULT_OPTIONS)
-map("n", "<M-a>", ":TmuxNavigateUp<cr>", DEFAULT_OPTIONS)
+map("n", "<m-y>", ":TmuxNavigateLeft<cr>", DEFAULT_OPTIONS)
+map("n", "<m-e>", ":TmuxNavigateRight<cr>", DEFAULT_OPTIONS)
+map("n", "<m-h>", ":TmuxNavigateDown<cr>", DEFAULT_OPTIONS)
+map("n", "<m-a>", ":TmuxNavigateUp<cr>", DEFAULT_OPTIONS)
 
-map("i", "<c-c>", "<ESC>", DEFAULT_OPTIONS)
+map("i", "<c-c>", "<esc>", DEFAULT_OPTIONS)
 
-map("n", "<TAB>", ":BufferLineCycleNext<CR>", DEFAULT_OPTIONS)
-map("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", DEFAULT_OPTIONS)
+map("n", "<tab>", ":BufferLineCycleNext<cr>", DEFAULT_OPTIONS)
+map("n", "<s-tab>", ":BufferLineCyclePrev<cr>", DEFAULT_OPTIONS)
+-- <TAB> and <C-I> are the same keycode, so we need to remap it
+map("n", "<m-i>", "<c-i>", DEFAULT_OPTIONS)
+map("n", "<m-o>", "<c-o>", DEFAULT_OPTIONS)
 
 map("n", "<leader>;", function()
   Snacks.dashboard()
