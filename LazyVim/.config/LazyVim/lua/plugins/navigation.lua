@@ -1,7 +1,7 @@
 -- conditionally map <cr> to flash
 vim.keymap.set("n", "<cr>", function()
-  local buftype = vim.fn.win_gettype()
-  return buftype == "" and "<cmd>lua require('flash').jump()<cr>" or "<cr>"
+  local win_type = vim.fn.win_gettype()
+  return vim.bo.buftype == "" and win_type == "" and "<cmd>lua require('flash').jump()<cr>" or "<cr>"
 end, { noremap = true, expr = true })
 
 return {
