@@ -66,6 +66,7 @@ in {
     gnutar
     gnused
     gnugrep
+    zstd
     wget
     kubectl
     ssh-copy-id
