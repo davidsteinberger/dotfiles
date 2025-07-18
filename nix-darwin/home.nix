@@ -123,6 +123,8 @@ in {
 
     ".gitconfig".source = link "${config.home.homeDirectory}/dotfiles/git/.gitconfig";
     ".gitignore".source = link "${config.home.homeDirectory}/dotfiles/git/.gitignore";
+    ".aider.conf.yml".source = link "${config.home.homeDirectory}/dotfiles/aider/.aider.conf.yml";
+    ".aider.model.metadata.json".source = link "${config.home.homeDirectory}/dotfiles/aider/.aider.model.metadata.json";
   };
 
   xdg.configFile = {
@@ -138,6 +140,7 @@ in {
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
+    "opencode".source = link "${config.home.homeDirectory}/dotfiles/opencode/.config/opencode";
   };
 
   # Home Manager can also manage your environment variables through
@@ -169,7 +172,7 @@ in {
     enable = true;
     shellAliases = {
       rebuild = "sudo darwin-rebuild switch --flake ~/dotfiles/nix-darwin && exit";
-      init_hm = "nix run home-manager/master -- switch --flake ~/dotfiles/nix-darwin";
+      init_hm = "nix run home-manager/master -- switch -b backup --flake ~/dotfiles/nix-darwin";
       hm_switch = "home-manager switch -b backup --flake ~/dotfiles/nix-darwin";
       hm = "hm_switch || init_hm";
       update = "nix flake update --flake ~/dotfiles/nix-darwin";
