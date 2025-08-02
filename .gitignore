@@ -4,4 +4,5 @@ lazygit/.config/lazygit/state.yml
 LazyVim/.config/LazyVim/typrstats
 karabiner/.config/karabiner/automatic_backups
 .aider*
+!aider/*
 OpenCode.md
