@@ -40,6 +40,9 @@ in {
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    aerc
+    spotify-player
+    cmatrix
     cowsay
     stow
     gitFull
@@ -142,6 +145,7 @@ in {
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
     "opencode".source = link "${config.home.homeDirectory}/dotfiles/opencode/.config/opencode";
+    "aerc".source = link "${config.home.homeDirectory}/dotfiles/aerc/.config/aerc";
   };
 
   # Home Manager can also manage your environment variables through

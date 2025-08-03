@@ -20,6 +20,7 @@
 -- end
 
 vim.opt.mousescroll = "ver:1,hor:4"
+vim.o.swapfile = false
 
 -- vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"

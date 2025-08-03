@@ -1,0 +1,3 @@
+local session
+session=$(tmux list-sessions -F "#{session_name}" | fzf)
+[[ -n "$session" ]] && tmux kill-session -t "$session"

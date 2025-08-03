@@ -65,7 +65,7 @@ else
   compinit -C -d $ZSH_COMPDUMP
 fi
 
-autoload -Uz init bw fp kp ks update_terminfo update_completions secret reveal nvims
+autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims
 
 # aliases
 source ${ZDOTDIR:-~}/.zaliases.zsh

@@ -1,0 +1,4 @@
+local session
+session=$(tmux list-sessions -F "#{session_name}: #{session_windows} windows" | fzf --preview 'tmux list-windows -t {1}' | cut -d: -f1)
+[[ -n "$session" ]] && tmux attach -t "$session"
+

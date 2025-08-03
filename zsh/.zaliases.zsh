@@ -1,4 +1,3 @@
-alias tm="tmux new -A -s $(whoami)"
 alias ga="git add ."
 alias gc="git commit -m ${1}"
 alias gd="git diff"
@@ -42,3 +41,6 @@ alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 alias v="nvim"
 alias n="npm"
 alias k="k9s"
+
+# tmux
+alias tm="tmux new -A -s $(whoami)"
