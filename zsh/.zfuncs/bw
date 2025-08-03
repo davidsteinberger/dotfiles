@@ -1,9 +1,8 @@
 bw() {
   bw_exec=$(sh -c "which bw")
-  local -r bw_session_file='/var/root/.bitwarden.session' # Only accessible as root
+  local bw_session  
 
   _read_token_from_file() {
-
     local -r err_token_not_found="Token not found, please run bw --regenerate-session-key"
     case $1 in
     '--force')
@@ -15,44 +14,35 @@ bw() {
       unset bw_session
     fi
 
-    # If the session key env variable is not set, read it from the file
-    # if file it not there, ask user to regenerate it
-
     if [ -z "$bw_session" ]; then
-      bw_session="$(
-        sh -c "sudo cat $bw_session_file 2> /dev/null"
-        # shellcheck disable=SC2181
-        if [ "$?" -ne "0" ]; then
-          echo "$err_token_not_found"
-          sudo -k # De-elevate privileges
-          exit 1
-        fi
-        sudo -k # De-elevate privileges
-      )"
+      bw_session="$(sudo security find-generic-password -a root -s BW_SESSION -w 2>/dev/null)"
 
-      # shellcheck disable=SC2181
-      if [ "$bw_session" = "$err_token_not_found" ]; then
+      if [ $? -ne 0 ]; then
         echo "$err_token_not_found"
+        sudo --reset-timestamp
         return 1
       fi
+
+      sudo --reset-timestamp
     fi
   }
 
   case $1 in
   '--regenerate-session-key')
+    sudo security delete-generic-password -a root -s BW_SESSION 2>/dev/null
     echo "Regenerating session key, this has invalidated all existing sessions..."
-    sudo rm -f /var/root/.bitwarden.session && ${bw_exec} logout 2>/dev/null # Invalidate all existing sessions
+    ${bw_exec} logout 2>/dev/null
 
-    ${bw_exec} login "${BW_USER}" --raw | sudo tee /var/root/.bitwarden.session &>/dev/null # Generate new session key
+    new_session=$(${bw_exec} login "${BW_USER}" --raw)
+    sudo security add-generic-password -U -a root -s BW_SESSION -w "${new_session}"
 
-    _read_token_from_file --force # Read the new session key for immediate use
-    sudo -k                       # De-elevate privileges, only doing this now so _read_token_from_file can resuse the same sudo session
+    _read_token_from_file --force
+    sudo --reset-timestamp
     ;;
 
   'login' | 'logout' | 'config')
     ${bw_exec} "$@"
     ;;
-
 
   '--help' | '-h' | '')
     ${bw_exec} "$@"
