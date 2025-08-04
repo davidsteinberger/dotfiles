@@ -59,14 +59,11 @@
       nixpkgs.config.allowUnfree = true;
 
       ### custom
-      security.pam.services.sudo_local.touchIdAuth = true;
-      # https://write.rog.gr/writing/using-touchid-with-tmux/#creating-a-etcpamdsudo_local-file-using-nix-darwin
-      environment = {
-        etc."pam.d/sudo_local".text = ''
-          # Managed by Nix Darwin
-          auth       optional       ${pkgs.pam-reattach}/lib/pam/pam_reattach.so ignore_ssh
-          auth       sufficient     pam_tid.so
-        '';
+      security.pam.services.sudo_local = {
+        enable = true;
+        reattach = true;
+        touchIdAuth = true;
+        watchIdAuth = true;
       };
       system.defaults = {
         dock.autohide = true;
