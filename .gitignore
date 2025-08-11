@@ -2,6 +2,7 @@
 tmux/.config/tmux/plugins
 lazygit/.config/lazygit/state.yml
 LazyVim/.config/LazyVim/typrstats
+LazyVim/.config/LazyVim/lua/plugins/local.lua
 karabiner/.config/karabiner/automatic_backups
 .aider*
 !aider/*
