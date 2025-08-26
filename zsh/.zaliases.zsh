@@ -46,6 +46,7 @@ alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 alias v="nvim"
 alias n="npm"
 alias k="k9s"
+alias o="opencode"
 
 # tmux
 alias tm="tmux new -A -s $(whoami)"
