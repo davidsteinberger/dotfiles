@@ -76,6 +76,7 @@
           AppleKeyboardUIMode = 3;
           "com.apple.keyboard.fnState" = true;
         };
+        spaces.spans-displays = true;
       };
 
       # system.activationScripts.applications.text =
