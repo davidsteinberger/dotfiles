@@ -233,6 +233,10 @@ if.app-id = 'com.spotify.client'
 run = 'move-node-to-workspace 8'
 
 [[on-window-detected]]
+check-further-callbacks = true
+run = 'layout floating'
+
+[[on-window-detected]]
 if.during-aerospace-startup = true
 run = 'move-node-to-workspace 9'
 

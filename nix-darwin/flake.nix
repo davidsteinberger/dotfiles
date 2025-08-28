@@ -66,17 +66,24 @@
         watchIdAuth = true;
       };
       system.defaults = {
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        finder.AppleShowAllExtensions = true;
-        finder.FXPreferredViewStyle = "Nlsv";
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+          expose-group-apps = true;
+        };
+        spaces = {
+          spans-displays = true;
+        };
+        finder = {
+          AppleShowAllExtensions = true;
+          FXPreferredViewStyle = "Nlsv";
+        };
         NSGlobalDomain = {
           AppleICUForce24HourTime = true;
           KeyRepeat = 2;
           AppleKeyboardUIMode = 3;
           "com.apple.keyboard.fnState" = true;
         };
-        spaces.spans-displays = true;
       };
 
       # system.activationScripts.applications.text =
