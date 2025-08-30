@@ -46,16 +46,6 @@ return {
           },
         },
       },
-      sources = {
-        providers = {
-          opencode = {
-            module = "opencode.cmp.blink",
-          },
-        },
-        per_filetype = {
-          opencode_ask = { "opencode", "buffer" },
-        },
-      },
     },
   },
   {
