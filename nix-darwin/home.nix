@@ -73,7 +73,6 @@ in {
     wget
     kubectl
     ssh-copy-id
-    watchman
     kubernetes-helm
     imagemagick
     fd

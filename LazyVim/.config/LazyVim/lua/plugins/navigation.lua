@@ -42,4 +42,16 @@ return {
   {
     "tpope/vim-rsi",
   },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        formatters = {
+          file = {
+            truncate = 100,
+          },
+        },
+      },
+    },
+  },
 }
