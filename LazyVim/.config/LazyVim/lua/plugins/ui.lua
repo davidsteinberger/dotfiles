@@ -6,7 +6,7 @@ return {
       routes = {
         {
           filter = {
-            event = "msg_show",
+            event = "notify",
             any = {
               { find = "No information available" },
               { find = "%d+L, %d+B" },
