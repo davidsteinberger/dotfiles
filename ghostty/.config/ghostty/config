@@ -1,5 +1,5 @@
 theme = dark:catppuccin-macchiato,light:catppuccin-latte
-font-size = 16
+font-size = 14
 macos-option-as-alt = left
 background-opacity = 0.95
 font-family = "ComicCodeLigatures Nerd Font"
