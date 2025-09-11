@@ -17,7 +17,7 @@ map("n", "<Leader>m", function()
     .. package_manager
     .. " "
     .. tsc_cmd
-    .. " 2>&1 | sed -r 's|^(src)|"
+    .. " 2>&1 | sed -r 's|^(src\\|stories\\|test)|"
     .. vim.fn.shellescape(root)
     .. "\\//\\1|g'"
 
