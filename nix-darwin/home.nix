@@ -56,6 +56,7 @@ in {
     fzf
     zoxide
     atuin
+    carapace
     nushell
     ripgrep
     eza
@@ -196,12 +197,11 @@ in {
     antidote = {
       enable = true;
       plugins = [
-        "ohmyzsh/ohmyzsh path:plugins/pass kind:fpath"
+        "romkatv/zsh-defer"
         "ohmyzsh/ohmyzsh path:plugins/dotenv"
         "zsh-users/zsh-autosuggestions kind:defer"
         "zap-zsh/zap-prompt"
         "zsh-users/zsh-syntax-highlighting"
-        "zsh-users/zsh-completions"
       ];
     };
   };

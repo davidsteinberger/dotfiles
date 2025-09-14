@@ -18,9 +18,6 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-zstyle ':completion:*' menu yes select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
-
 unsetopt BEEP
 setopt AUTO_CD
 setopt GLOB_DOTS
@@ -66,6 +63,11 @@ else
 fi
 
 autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims
+
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+source <(carapace _carapace)
 
 # aliases
 source ${ZDOTDIR:-~}/.zaliases.zsh
