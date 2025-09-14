@@ -114,4 +114,10 @@ zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
 source ${ZDOTDIR:-~}/.zlocal.zsh
 
+# zoxide
+eval "$(zoxide init zsh)"
+
+# atuin
+eval "$(atuin init zsh --disable-up-arrow)"
+
 # zprof

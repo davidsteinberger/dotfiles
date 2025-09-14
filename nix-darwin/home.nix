@@ -54,6 +54,9 @@ in {
     fnm
     pyenv
     fzf
+    zoxide
+    atuin
+    nushell
     ripgrep
     eza
     (pass.withExtensions (exts: [
@@ -199,7 +202,6 @@ in {
         "zap-zsh/zap-prompt"
         "zsh-users/zsh-syntax-highlighting"
         "zsh-users/zsh-completions"
-        "agkozak/zsh-z"
       ];
     };
   };
