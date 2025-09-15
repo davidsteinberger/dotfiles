@@ -127,6 +127,7 @@ in {
     ".zfuncs".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zfuncs";
     ".zaliases.zsh".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zaliases.zsh";
     ".zdefer.zsh".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zdefer.zsh";
+    ".hushlogin".source = link "${config.home.homeDirectory}/dotfiles/zsh/.hushlogin";
 
     ".gitconfig".source = link "${config.home.homeDirectory}/dotfiles/git/.gitconfig";
     ".gitignore".source = link "${config.home.homeDirectory}/dotfiles/git/.gitignore";
