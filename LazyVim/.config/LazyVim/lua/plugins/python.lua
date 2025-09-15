@@ -1,5 +1,9 @@
 return {
   {
+    "linux-cultist/venv-selector.nvim",
+    branch = "main",
+  },
+  {
     "mfussenegger/nvim-dap-python",
     config = function()
       if vim.fn.has("win32") == 1 then

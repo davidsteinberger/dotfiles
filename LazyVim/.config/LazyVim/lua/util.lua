@@ -2,7 +2,7 @@ local M = {}
 local util = require("lspconfig").util
 
 function M.find_root()
-  return util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(vim.api.nvim_buf_get_name(0))
+  return util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git")(vim.api.nvim_buf_get_name(0))
 end
 
 function M.detect_package_manager()
