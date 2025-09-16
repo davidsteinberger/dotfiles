@@ -47,6 +47,7 @@ alias v="nvim"
 alias n="npm"
 alias k="k9s"
 alias o="opencode"
+alias a="aerospace enable on >/dev/null 2>&1 || open -a /Applications/AeroSpace.app"
 
 # tmux
 alias tm="tmux new -A -s $(whoami)"
