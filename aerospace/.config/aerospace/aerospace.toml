@@ -93,7 +93,6 @@ outer.right =      18
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
-alt-b = 'exec-and-forget open -a /Applications/Bitwarden.app'
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-z = 'exec-and-forget open -a /Applications/Zen\ Browser.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
