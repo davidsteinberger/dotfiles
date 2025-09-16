@@ -62,7 +62,7 @@ else
   compinit -C -d $ZSH_COMPDUMP
 fi
 
-autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims
+autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims ff
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'

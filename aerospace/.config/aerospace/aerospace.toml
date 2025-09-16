@@ -93,6 +93,12 @@ outer.right =      18
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
+alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
+alt-z = 'exec-and-forget open -a /Applications/Zen\ Browser.app'
+alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
+cmd-e = 'enable toggle'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-y = 'focus left'
 ctrl-alt-h = 'focus down'
