@@ -1,4 +1,4 @@
-theme = dark:catppuccin-macchiato,light:catppuccin-latte
+theme = dark:Catppuccin Macchiato,light:Catppuccin Latte
 font-size = 14
 macos-option-as-alt = left
 background-opacity = 0.95
