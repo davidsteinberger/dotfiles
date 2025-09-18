@@ -1,3 +1,8 @@
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
@@ -12,7 +17,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+# after-startup-command = ['exec-and-forget sketchybar']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -56,9 +61,17 @@ on-focus-changed = ['move-mouse window-lazy-center']
 inner.horizontal = 18
 inner.vertical =   18
 outer.left =       18
-outer.bottom =     18
-outer.top =        18
-outer.right =      18
+outer.bottom = [
+  { monitor."built-in" = 0 },
+  { monitor."main" = 18 },
+  18
+]
+outer.top = [
+{ monitor."built-in" = 18 },
+{ monitor."main" = 48 },
+18
+]
+outer.right =      48
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -94,9 +107,7 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
-alt-z = 'exec-and-forget open -a /Applications/Zen\ Browser.app'
-alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
-alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
+alt-z = 'exec-and-forget MOZ_DISABLE_SAFE_MODE_KEY=1 open -a /Applications/Zen\ Browser.app'
 alt-t = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
 cmd-e = 'enable toggle'
 

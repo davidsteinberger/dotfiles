@@ -121,6 +121,7 @@
         ];
         taps = [
           "leoafarias/fvm"
+          "FelixKratz/formulae"
         ];
         brews = [
           "mas"
@@ -141,6 +142,7 @@
           "cormacrelf/tap/dark-notify"
           "portaudio"
           "sst/tap/opencode"
+          "sketchybar"
         ];
         masApps = {
           Yubico = 1497506650;
