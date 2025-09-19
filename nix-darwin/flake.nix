@@ -70,6 +70,7 @@
           autohide = true;
           mru-spaces = false;
           expose-group-apps = true;
+          appswitcher-all-displays = true;
         };
         spaces = {
           spans-displays = true;
