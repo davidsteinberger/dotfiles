@@ -71,7 +71,7 @@ outer.bottom = [
   18
 ]
 outer.top = [
-  { monitor."built-in" = 24 },
+  { monitor."built-in" = 12},
   { monitor."main" = 48 },
   24
 ]
