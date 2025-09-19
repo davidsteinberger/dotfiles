@@ -137,7 +137,11 @@ local function updateWorkspaceMonitor()
 			workspace_monitor[space_index] = monitor_id
 		end
 		for workspace_index, _ in pairs(workspaces) do
-			workspaces[workspace_index]:set({
+			local workspace = workspaces[workspace_index]
+			workspace:set({
+				display = workspace_monitor[workspace_index],
+			})
+			workspace.spacer:set({
 				display = workspace_monitor[workspace_index],
 			})
 		end
@@ -201,10 +205,11 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 		workspaces[i].space_bracket = space_bracket
 
 		-- Padding space
-		sbar.add("item", "item.padding." .. i, {
+		local spacer = sbar.add("item", "item.padding." .. i, {
 			script = "",
-			width = 1,
+			width = 4,
 		})
+		workspaces[i].spacer = spacer
 
 		workspace:subscribe("aerospace_workspace_change", function(env)
 			onWorkspaceChanged(workspace, env.FOCUSED_WORKSPACE == i)

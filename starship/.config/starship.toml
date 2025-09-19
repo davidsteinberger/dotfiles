@@ -1,5 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = false
+
 format = """
 [](red)\
 $os\
@@ -156,6 +158,10 @@ vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+format = """
+
+$symbol 
+"""
 
 [cmd_duration]
 show_milliseconds = true
