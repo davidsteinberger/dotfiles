@@ -65,8 +65,9 @@ local function updateWindow(workspace_index, args)
 		for _, visible_workspace in ipairs(visible_workspaces) do
 			if no_app and workspace_index == visible_workspace["workspace"] then
 				local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
+				local workspace = workspaces[workspace_index]
 				icon_line = " —"
-				workspaces[workspace_index]:set({
+				workspace:set({
 					icon = { drawing = true },
 					label = {
 						string = icon_line,
@@ -80,22 +81,30 @@ local function updateWindow(workspace_index, args)
 					padding_left = 1,
 					display = monitor_id,
 				})
+				workspace.spacer:set({
+					display = monitor_id,
+					drawing = true,
+				})
 				return
 			end
 		end
+		local workspace = workspaces[workspace_index]
 		if no_app and workspace_index ~= focused_workspaces then
-			workspaces[workspace_index]:set({
+			workspace:set({
 				icon = { drawing = false },
 				label = { drawing = false },
 				background = { drawing = false },
 				padding_right = 0,
 				padding_left = 0,
 			})
+			workspace.spacer:set({
+				drawing = false,
+			})
 			return
 		end
 		if no_app and workspace_index == focused_workspaces then
 			icon_line = " —"
-			workspaces[workspace_index]:set({
+			workspace:set({
 				icon = { drawing = true },
 				label = {
 					string = icon_line,
@@ -108,14 +117,20 @@ local function updateWindow(workspace_index, args)
 				padding_right = 1,
 				padding_left = 1,
 			})
+			workspace.spacer:set({
+				drawing = true,
+			})
 		end
 
-		workspaces[workspace_index]:set({
+		workspace:set({
 			icon = { drawing = true },
 			label = { drawing = true, string = icon_line },
 			background = { drawing = true },
 			padding_right = 1,
 			padding_left = 1,
+		})
+		workspace.spacer:set({
+			drawing = true,
 		})
 	end)
 end
@@ -314,20 +329,20 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 	end)
 end)
 
-space_window_observer:subscribe("space_windows_change", function(env)
-	local icon_line = ""
-	local no_app = true
-	for app, _ in pairs(env.INFO.apps) do
-		no_app = false
-		local lookup = app_icons[app]
-		local icon = ((lookup == nil) and app_icons["Default"] or lookup)
-		icon_line = icon_line .. icon
-	end
-
-	if no_app then
-		icon_line = " —"
-	end
-	-- sbar.animate("tanh", 10, function()
-	-- 	workspaces[env.INFO.space]:set({ label = icon_line })
-	-- end)
-end)
+-- space_window_observer:subscribe("space_windows_change", function(env)
+-- 	local icon_line = ""
+-- 	local no_app = true
+-- 	for app, _ in pairs(env.INFO.apps) do
+-- 		no_app = false
+-- 		local lookup = app_icons[app]
+-- 		local icon = ((lookup == nil) and app_icons["Default"] or lookup)
+-- 		icon_line = icon_line .. icon
+-- 	end
+--
+-- 	if no_app then
+-- 		icon_line = " —"
+-- 	end
+-- 	-- sbar.animate("tanh", 10, function()
+-- 	-- 	workspaces[env.INFO.space]:set({ label = icon_line })
+-- 	-- end)
+-- end)
