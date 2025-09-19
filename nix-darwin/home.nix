@@ -147,7 +147,7 @@ in {
     "LazyVim".source = link "${config.home.homeDirectory}/dotfiles/LazyVim/.config/LazyVim";
     "kitty".source = link "${config.home.homeDirectory}/dotfiles/kitty/.config/kitty";
     "warpd".source = link "${config.home.homeDirectory}/dotfiles/warpd/.config/warpd";
-    "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace";
+    "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace-${config.home.username}";
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
