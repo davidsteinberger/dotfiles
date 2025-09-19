@@ -82,6 +82,8 @@ in {
     imagemagick
     fd
     gnupatch
+    gnumake
+    sketchybar-app-font
 
     # lang
     go
@@ -151,6 +153,7 @@ in {
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
     "opencode".source = link "${config.home.homeDirectory}/dotfiles/opencode/.config/opencode";
     "aerc".source = link "${config.home.homeDirectory}/dotfiles/aerc/.config/aerc";
+    "sketchybar".source = link "${config.home.homeDirectory}/dotfiles/sketchybar/.config/sketchybar";
   };
 
   # Home Manager can also manage your environment variables through

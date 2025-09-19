@@ -118,6 +118,9 @@
           "keepassxc"
           "obsidian"
           "ghostty"
+          "sf-symbols"
+          "font-sf-mono"
+          "font-sf-pro"
         ];
         taps = [
           "leoafarias/fvm"
@@ -142,6 +145,7 @@
           "cormacrelf/tap/dark-notify"
           "portaudio"
           "sst/tap/opencode"
+          "lua"
           "sketchybar"
         ];
         masApps = {
