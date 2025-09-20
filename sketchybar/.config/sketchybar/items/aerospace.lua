@@ -1,6 +1,4 @@
--- items/workspaces.lua
 local colors = require("colors")
-local icons = require("icons")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
@@ -61,48 +59,10 @@ local function updateWindow(workspace_index, args)
 		icon_line = icon_line .. " " .. icon
 	end
 
-	sbar.animate("tanh", 10, function()
-		for _, visible_workspace in ipairs(visible_workspaces) do
-			if no_app and workspace_index == visible_workspace["workspace"] then
-				local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
-				local workspace = workspaces[workspace_index]
-				icon_line = " —"
-				workspace:set({
-					icon = { drawing = true },
-					label = {
-						string = icon_line,
-						drawing = true,
-						-- padding_right = 20,
-						font = "sketchybar-app-font:Regular:16.0",
-						y_offset = -1,
-					},
-					background = { drawing = true },
-					padding_right = 1,
-					padding_left = 1,
-					display = monitor_id,
-				})
-				workspace.spacer:set({
-					display = monitor_id,
-					drawing = true,
-				})
-				return
-			end
-		end
-		local workspace = workspaces[workspace_index]
-		if no_app and workspace_index ~= focused_workspaces then
-			workspace:set({
-				icon = { drawing = false },
-				label = { drawing = false },
-				background = { drawing = false },
-				padding_right = 0,
-				padding_left = 0,
-			})
-			workspace.spacer:set({
-				drawing = false,
-			})
-			return
-		end
-		if no_app and workspace_index == focused_workspaces then
+	for _, visible_workspace in ipairs(visible_workspaces) do
+		if no_app and workspace_index == visible_workspace["workspace"] then
+			local monitor_id = visible_workspace["monitor-appkit-nsscreen-screens-id"]
+			local workspace = workspaces[workspace_index]
 			icon_line = " —"
 			workspace:set({
 				icon = { drawing = true },
@@ -116,15 +76,40 @@ local function updateWindow(workspace_index, args)
 				background = { drawing = true },
 				padding_right = 1,
 				padding_left = 1,
+				display = monitor_id,
 			})
 			workspace.spacer:set({
+				display = monitor_id,
 				drawing = true,
 			})
+			return
 		end
-
+	end
+	local workspace = workspaces[workspace_index]
+	if no_app and workspace_index ~= focused_workspaces then
+		workspace:set({
+			icon = { drawing = false },
+			label = { drawing = false },
+			background = { drawing = false },
+			padding_right = 0,
+			padding_left = 0,
+		})
+		workspace.spacer:set({
+			drawing = false,
+		})
+		return
+	end
+	if no_app and workspace_index == focused_workspaces then
+		icon_line = " —"
 		workspace:set({
 			icon = { drawing = true },
-			label = { drawing = true, string = icon_line },
+			label = {
+				string = icon_line,
+				drawing = true,
+				-- padding_right = 20,
+				font = "sketchybar-app-font:Regular:16.0",
+				y_offset = -1,
+			},
 			background = { drawing = true },
 			padding_right = 1,
 			padding_left = 1,
@@ -132,7 +117,18 @@ local function updateWindow(workspace_index, args)
 		workspace.spacer:set({
 			drawing = true,
 		})
-	end)
+	end
+
+	workspace:set({
+		icon = { drawing = true },
+		label = { drawing = true, string = icon_line },
+		background = { drawing = true },
+		padding_right = 1,
+		padding_left = 1,
+	})
+	workspace.spacer:set({
+		drawing = true,
+	})
 end
 
 local function updateWindows()
@@ -164,17 +160,14 @@ local function updateWorkspaceMonitor()
 end
 
 local function onWorkspaceChanged(workspace, selected)
-	sbar.animate("tanh", 10, function()
-		workspace:set({
-			icon = { highlight = selected },
-			label = { highlight = selected },
-			background = { border_color = selected and colors.black or colors.bg1 },
-		})
-		workspace.space_bracket:set({
-			background = { border_color = selected and colors.lavender or colors.bg2 },
-		})
-	end)
-	updateWindows()
+	workspace:set({
+		icon = { highlight = selected },
+		label = { highlight = selected },
+		background = { border_color = selected and colors.black or colors.bg1 },
+	})
+	workspace.space_bracket:set({
+		background = { border_color = selected and colors.lavender or colors.bg2 },
+	})
 end
 
 sbar.exec(query_workspaces, function(workspaces_and_monitors)
@@ -262,6 +255,7 @@ sbar.exec(query_workspaces, function(workspaces_and_monitors)
 	end)
 
 	-- initial setup
+	updateWindows()
 	updateWorkspaceMonitor()
 
 	sbar.exec(query_focused, function(focused_workspace)
