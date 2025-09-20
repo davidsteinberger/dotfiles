@@ -97,3 +97,14 @@ sbar.add("item", "widgets.battery.padding", {
 	position = "right",
 	width = settings.group_paddings,
 })
+
+battery:subscribe("theme_changed", function()
+	battery:set({
+		icon = {
+			color = colors.text,
+		},
+		label = {
+			color = colors.text,
+		},
+	})
+end)

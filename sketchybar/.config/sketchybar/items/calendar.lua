@@ -42,3 +42,14 @@ sbar.add("item", { position = "right", width = settings.group_paddings })
 cal:subscribe({ "forced", "routine", "system_woke" }, function(env)
 	cal:set({ icon = os.date("%a. %d %b."), label = os.date("%H:%M") })
 end)
+
+cal:subscribe("theme_changed", function()
+	cal:set({
+		icon = {
+			color = colors.text,
+		},
+		label = {
+			color = colors.text,
+		},
+	})
+end)

@@ -67,3 +67,14 @@ sbar.add("item", "widgets.cpu.padding", {
 	position = "right",
 	width = settings.group_paddings,
 })
+
+cpu:subscribe("theme_changed", function()
+	cpu:set({
+		icon = {
+			color = colors.text,
+		},
+		label = {
+			color = colors.text,
+		},
+	})
+end)

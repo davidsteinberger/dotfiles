@@ -181,7 +181,7 @@ wifi:subscribe({ "wifi_change", "system_woke" }, function(env)
 		wifi:set({
 			icon = {
 				string = connected and icons.wifi.connected or icons.wifi.disconnected,
-				color = connected and colors.white or colors.red,
+				color = connected and colors.text or colors.red,
 			},
 		})
 	end)
@@ -234,3 +234,14 @@ hostname:subscribe("mouse.clicked", copy_label_to_clipboard)
 ip:subscribe("mouse.clicked", copy_label_to_clipboard)
 mask:subscribe("mouse.clicked", copy_label_to_clipboard)
 router:subscribe("mouse.clicked", copy_label_to_clipboard)
+
+wifi:subscribe("theme_changed", function()
+	wifi:set({
+		icon = {
+			color = colors.text,
+		},
+		label = {
+			color = colors.text,
+		},
+	})
+end)
