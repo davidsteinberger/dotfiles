@@ -1,14 +1,23 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      opts.setup = {
+    opts = {
+      servers = {
+        tailwindcss = {
+          -- exclude a filetype from the default_config
+          filetypes_exclude = { "markdown" },
+          -- add additional filetypes to the default_config
+          filetypes_include = {},
+          -- to fully override the default_config, change the below
+          -- filetypes = {}
+        },
+      },
+      setup = {
         tailwindcss = function(_, opts)
-          local tw = LazyVim.lsp.get_raw_config("tailwindcss")
           opts.filetypes = opts.filetypes or {}
 
           -- Add default filetypes
-          vim.list_extend(opts.filetypes, tw.default_config.filetypes)
+          vim.list_extend(opts.filetypes, vim.lsp.config.tailwindcss.filetypes)
 
           -- Remove excluded filetypes
           --- @param ft string
@@ -24,7 +33,6 @@ return {
                 eelixir = "html-eex",
                 heex = "html-eex",
               },
-
               experimental = {
                 classRegex = {
                   "tw`([^`]*)",
@@ -40,8 +48,27 @@ return {
           -- Add additional filetypes
           vim.list_extend(opts.filetypes, opts.filetypes_include or {})
         end,
-      }
-
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      local eslint = opts.servers.eslint
+      eslint = vim.tbl_deep_extend("force", eslint, {
+        flags = {
+          allow_incremental_sync = false,
+          debounce_text_changes = 1000,
+        },
+      })
+      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
+        eslint = eslint,
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
       local pnp = vim.fn.findfile(".pnp.cjs", ".;")
       local is_pnp = pnp ~= ""
       local vtsls = opts.servers.vtsls
@@ -57,17 +84,15 @@ return {
         })
       end
 
-      local eslint = opts.servers.eslint
-      eslint = vim.tbl_deep_extend("force", eslint, {
-        flags = {
-          allow_incremental_sync = false,
-          debounce_text_changes = 1000,
-        },
-      })
-
       opts.servers = vim.tbl_deep_extend("force", opts.servers, {
-        eslint = eslint,
         vtsls = vtsls,
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
         nixd = require("lspconfig").nixd.setup({
           cmd = { "nixd" },
           settings = {

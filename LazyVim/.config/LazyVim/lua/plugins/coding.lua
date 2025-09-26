@@ -61,7 +61,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     opts = {
       mappings = {
         add = "sa", -- Add surrounding in Normal and Visual modes
@@ -97,7 +97,7 @@ return {
       },
     },
   },
-  { "echasnovski/mini.operators", version = "*", event = "VeryLazy", opts = {} },
+  { "nvim-mini/mini.operators", version = "*", event = "VeryLazy", opts = {} },
   {
     "neovim/nvim-lspconfig",
     opts = function()

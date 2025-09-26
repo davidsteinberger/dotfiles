@@ -19,6 +19,8 @@
 --   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
 -- end
 
+vim.o.diffopt = "filler,iwhite,internal,context:3,algorithm:minimal"
+
 vim.opt.mousescroll = "ver:1,hor:4"
 vim.o.swapfile = false
 
