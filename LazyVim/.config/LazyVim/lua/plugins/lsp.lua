@@ -1,3 +1,5 @@
+local util = require("util")
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -54,39 +56,30 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      local eslint = opts.servers.eslint
-      eslint = vim.tbl_deep_extend("force", eslint, {
+      local nodePath = util.is_yarn_pnp() and util.find_root() .. "/.yarn/sdks" or nil
+
+      opts.servers.eslint = vim.tbl_deep_extend("force", opts.servers.eslint or {}, {
+        settings = { nodePath = nodePath },
         flags = {
           allow_incremental_sync = false,
           debounce_text_changes = 1000,
         },
-      })
-      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
-        eslint = eslint,
       })
     end,
   },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      local pnp = vim.fn.findfile(".pnp.cjs", ".;")
-      local is_pnp = pnp ~= ""
-      local vtsls = opts.servers.vtsls
-      if is_pnp then
-        local root = vim.fn.fnamemodify(pnp, ":p:h")
-        vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls, {
+      if util.is_yarn_pnp() then
+        opts.servers.vtsls = vim.tbl_deep_extend("force", opts.servers.vtsls or {}, {
           init_options = { hostInfo = "neovim" },
           settings = {
             typescript = {
-              tsdk = root .. "/.yarn/sdks/typescript/lib",
+              tsdk = util.find_root() .. "/.yarn/sdks/typescript/lib",
             },
           },
         })
       end
-
-      opts.servers = vim.tbl_deep_extend("force", opts.servers, {
-        vtsls = vtsls,
-      })
     end,
   },
   {

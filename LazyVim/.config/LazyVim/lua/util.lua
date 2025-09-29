@@ -20,4 +20,9 @@ function M.detect_package_manager()
   end
 end
 
+function M.is_yarn_pnp()
+  local root = M.find_root()
+  return vim.fn.filereadable(root .. "/.pnp.cjs") == 1
+end
+
 return M

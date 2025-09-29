@@ -8,21 +8,17 @@ return {
       "haydenmeade/neotest-jest",
     },
     opts = function(_, opts)
-      local package_manager = util.detect_package_manager()
-      local jestCommand = "npm test --"
-      if package_manager == "yarn" then
-        jestCommand = "yarn test"
-      elseif package_manager == "pnpm" then
-        jestCommand = "pnpm test"
-      end
+      local commands = {
+        yarn = "yarn test",
+        pnpm = "pnpm test",
+      }
+      local jestCommand = commands[util.detect_package_manager()] or "npm test --"
 
       opts.adapters = vim.tbl_extend("force", opts.adapters, {
         ["neotest-jest"] = {
           jestCommand = jestCommand,
           debug = true,
-          cwd = function()
-            return util.find_root()
-          end,
+          cwd = util.find_root,
         },
       })
     end,
@@ -32,15 +28,20 @@ return {
     dependencies = {
       "marilari88/neotest-vitest",
     },
-    opts = {
-      adapters = {
+    opts = function(_, opts)
+      local commands = {
+        yarn = "yarn test",
+        pnpm = "pnpm test",
+      }
+      local vitestCommand = commands[util.detect_package_manager()] or "npm test"
+
+      opts.adapters = vim.tbl_extend("force", opts.adapters, {
         ["neotest-vitest"] = {
+          vitestCommand = vitestCommand,
           debug = true,
-          cwd = function()
-            return util.find_root()
-          end,
+          cwd = util.find_root,
         },
-      },
-    },
+      })
+    end,
   },
 }
