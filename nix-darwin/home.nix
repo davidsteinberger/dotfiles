@@ -151,6 +151,7 @@ in {
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
+    "atuin".source = link "${config.home.homeDirectory}/dotfiles/atuin/.config/atuin";
     "opencode".source = link "${config.home.homeDirectory}/dotfiles/opencode/.config/opencode";
     "aerc".source = link "${config.home.homeDirectory}/dotfiles/aerc/.config/aerc";
     "sketchybar".source = link "${config.home.homeDirectory}/dotfiles/sketchybar/.config/sketchybar";

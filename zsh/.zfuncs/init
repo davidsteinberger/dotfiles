@@ -1,11 +1,16 @@
+init_node() {
+  fnm install --lts
+}
+
 init_apps() {
-  npm install -g \
+  npm install -gf \
     @bitwarden/cli \
     @graphql-inspector/cli \
     aws-azure-login \
     corepack \
     wgc \
-    yarn
+    yarn \
+    tree-sitter-cli
 
   cd ~/dotfiles/ && stow -t /Applications Applications
 }
@@ -26,5 +31,5 @@ init_aider() {
   aider-install
 }
 
-init_tpm && init_apps && init_opam && init_aider
+init_tpm && init_node && init_apps && init_opam && init_aider
 
