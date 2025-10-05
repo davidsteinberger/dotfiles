@@ -22,6 +22,9 @@ end
 
 function M.is_yarn_pnp()
   local root = M.find_root()
+  if not root then
+    return false
+  end
   return vim.fn.filereadable(root .. "/.pnp.cjs") == 1
 end
 

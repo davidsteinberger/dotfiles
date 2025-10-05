@@ -31,5 +31,5 @@ vim.g.lazyvim_python_ruff = "ruff"
 vim.env.FZF_DEFAULT_OPTS = ""
 vim.g.ai_cmp = false
 
-vim.g.lazyvim_blink_main = true
+-- vim.g.lazyvim_blink_main = true
 vim.g.minipairs_disable = false

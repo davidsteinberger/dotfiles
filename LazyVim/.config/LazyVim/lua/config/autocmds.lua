@@ -26,3 +26,8 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
+
+vim.api.nvim_create_autocmd("VimLeave", {
+  pattern = "*",
+  command = "silent !zellij action switch-mode normal",
+})

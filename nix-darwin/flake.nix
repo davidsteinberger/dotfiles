@@ -148,6 +148,10 @@
           "sst/tap/opencode"
           "lua"
           "sketchybar"
+          {
+            name = "zellij";
+            args = ["HEAD"];
+          }
         ];
         masApps = {
           Yubico = 1497506650;

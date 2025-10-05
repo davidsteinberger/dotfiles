@@ -62,7 +62,7 @@ else
   compinit -C -d $ZSH_COMPDUMP
 fi
 
-autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims ff
+autoload -Uz init bw fp kp ks ts tn tk update_completions secret reveal nvims ff za
 
 zstyle ':completion:*' menu yes select
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
