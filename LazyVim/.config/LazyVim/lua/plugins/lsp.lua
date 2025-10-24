@@ -4,6 +4,32 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      -- make sure mason installs the server
+      servers = {
+        tsserver = {
+          enabled = false,
+        },
+        ts_ls = {
+          enabled = false,
+        },
+        vtsls = {
+          enabled = false,
+        },
+      },
+    },
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        expose_as_code_action = "all",
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
       servers = {
         tailwindcss = {
           -- exclude a filetype from the default_config

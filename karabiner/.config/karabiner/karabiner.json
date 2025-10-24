@@ -1043,7 +1043,11 @@
                 }
             ],
             "name": "US Ansi",
-            "virtual_hid_keyboard": { "country_code": 0 }
+            "selected": true,
+            "virtual_hid_keyboard": {
+                "country_code": 0,
+                "keyboard_type_v2": "ansi"
+            }
         },
         {
             "complex_modifications": {
@@ -1183,7 +1187,6 @@
                 }
             ],
             "name": "QMK",
-            "selected": true,
             "virtual_hid_keyboard": {
                 "country_code": 0,
                 "keyboard_type_v2": "ansi"
