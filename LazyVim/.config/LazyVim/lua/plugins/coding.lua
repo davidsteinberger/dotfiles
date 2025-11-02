@@ -100,18 +100,24 @@ return {
   { "nvim-mini/mini.operators", version = "*", event = "VeryLazy", opts = {} },
   {
     "neovim/nvim-lspconfig",
-    opts = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "gr", false }
-      keys[#keys + 1] = {
-        "<leader>gr",
-        -- "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>",
-        function()
-          Snacks.picker.lsp_references()
-        end,
-        desc = "References",
-        nowait = true,
-      }
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            -- Disable default "gr" mapping for LSP references
+            { "gr", false },
+            {
+              "<leader>gr",
+              -- "<cmd>FzfLua lsp_references      jump1=true ignore_current_line=true<cr>",
+              function()
+                Snacks.picker.lsp_references()
+              end,
+              desc = "References",
+              nowait = true,
+            },
+          },
+        },
+      },
+    },
   },
 }
