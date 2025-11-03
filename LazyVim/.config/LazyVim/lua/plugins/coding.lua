@@ -98,6 +98,16 @@ return {
     },
   },
   {
+    "nvim-mini/mini.move",
+    version = "*",
+    opts = {},
+    config = function(_, opts)
+      vim.schedule(function()
+        require("mini.move").setup(opts)
+      end)
+    end,
+  },
+  {
     "nvim-mini/mini.operators",
     version = "*",
     event = "VeryLazy",

@@ -13,7 +13,7 @@ keybinds clear-defaults=true {
     }
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
-        bind "Alt z" {
+        bind "Alt q" {
             // Disable the autolock plugin.
             MessagePlugin "autolock" {payload "disable";};
             // Unlock Zellij.
@@ -21,7 +21,7 @@ keybinds clear-defaults=true {
         }
     }
     shared {
-      bind "Alt Shift z" {
+      bind "Alt Shift q" {
         // Enable the autolock plugin.
         MessagePlugin "autolock" {payload "enable";};
       }
@@ -181,35 +181,56 @@ keybinds clear-defaults=true {
         bind "Alt Shift p" { ToggleGroupMarking; }
         bind "Ctrl q" { Quit; }
 
-        bind "Alt z" {
+        bind "Alt q" {
             // Disable the autolock plugin.
             MessagePlugin "autolock" {payload "disable";};
             // Lock Zellij.
             SwitchToMode "Locked";
         }
 
-        bind "Alt y" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
-                name "move_focus";
-                payload "left";
+        // bind "Alt y" {
+        //     MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+        //         name "move_focus";
+        //         payload "left";
+        //
+        //         // Plugin Configuration
+        //         move_mod "ctrl"; // Optional, should be added on every move command if changed.
+        //         use_arrow_keys "false"; // Optional, uses arrow keys instead of hjkl. Should be added to every command where you want to use it.
+        //     };
+        // }
+        //
+        // bind "Alt h" {
+        //     MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+        //         name "move_focus";
+        //         payload "down";
+        //
+        //         move_mod "ctrl";
+        //         use_arrow_keys "false";
+        //     };
+        // }
+        //
+        // bind "Alt a" {
+        //     MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+        //         name "move_focus";
+        //         payload "up";
+        //
+        //         move_mod "ctrl";
+        //         use_arrow_keys "false";
+        //     };
+        // }
+        //
+        // bind "Alt e" {
+        //     MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+        //         name "move_focus";
+        //         payload "right";
+        //
+        //         move_mod "ctrl"; // Optional, should be added on every command if you want to use it
+        //         use_arrow_keys "false";
+        //     };
+        // }
 
-                // Plugin Configuration
-                move_mod "ctrl"; // Optional, should be added on every move command if changed.
-                use_arrow_keys "false"; // Optional, uses arrow keys instead of hjkl. Should be added to every command where you want to use it.
-            };
-        }
-
-        bind "Alt h" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
-                name "move_focus";
-                payload "down";
-
-                move_mod "ctrl";
-                use_arrow_keys "false";
-            };
-        }
-
-        bind "Alt a" {
+        // Page navigation keys - same functionality as Alt keys
+        bind "Shift PageUp" {
             MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "up";
@@ -219,12 +240,32 @@ keybinds clear-defaults=true {
             };
         }
 
-        bind "Alt e" {
+        bind "Shift PageDown" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "down";
+
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
+
+        bind "Shift Home" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
+                name "move_focus";
+                payload "left";
+
+                move_mod "ctrl";
+                use_arrow_keys "false";
+            };
+        }
+
+        bind "Shift End" {
             MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.3.0/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "right";
 
-                move_mod "ctrl"; // Optional, should be added on every command if you want to use it
+                move_mod "ctrl";
                 use_arrow_keys "false";
             };
         }
