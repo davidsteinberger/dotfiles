@@ -97,7 +97,14 @@ return {
       },
     },
   },
-  { "nvim-mini/mini.operators", version = "*", event = "VeryLazy", opts = {} },
+  {
+    "nvim-mini/mini.operators",
+    version = "*",
+    event = "VeryLazy",
+    opts = {
+      replace = { prefix = "cr" },
+    },
+  },
   {
     "neovim/nvim-lspconfig",
     opts = {
