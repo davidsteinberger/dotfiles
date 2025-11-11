@@ -46,6 +46,17 @@ return {
           },
         },
       },
+      cmdline = {
+        enabled = true,
+        keymap = {
+          preset = "cmdline",
+          ["<Right>"] = { "select_next", "fallback" },
+          ["<Left>"] = { "select_prev", "fallback" },
+        },
+      },
+      keymap = {
+        ["<RIGHT>"] = { "select_and_accept", "fallback" },
+      },
     },
   },
   {
