@@ -38,14 +38,14 @@ return {
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
       end,
-      completion = {
-        list = {
-          selection = {
-            preselect = false,
-            -- auto_insert = false,
-          },
-        },
-      },
+      -- completion = {
+      --   list = {
+      --     selection = {
+      --       preselect = false,
+      --       -- auto_insert = false,
+      --     },
+      --   },
+      -- },
       cmdline = {
         enabled = true,
         keymap = {
@@ -54,9 +54,9 @@ return {
           ["<Left>"] = { "select_prev", "fallback" },
         },
       },
-      keymap = {
-        ["<RIGHT>"] = { "select_and_accept", "fallback" },
-      },
+      -- keymap = {
+      --   ["<RIGHT>"] = { "select_and_accept", "fallback" },
+      -- },
     },
   },
   {
