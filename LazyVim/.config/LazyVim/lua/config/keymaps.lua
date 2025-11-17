@@ -32,6 +32,8 @@ map("n", "<Home>", "<c-w><Left>", DEFAULT_OPTIONS)
 map("n", "<End>", "<c-w><Right>", DEFAULT_OPTIONS)
 map("n", "<S-Right>", ":BufferLineCycleNext<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Left>", ":BufferLineCyclePrev<cr>", DEFAULT_OPTIONS)
+map("n", "<S-Up>", "N", DEFAULT_OPTIONS)
+map("n", "<S-Down>", "n", DEFAULT_OPTIONS)
 
 map("n", "<S-PageUp>", ":ZellijNavigateUp<cr>", DEFAULT_OPTIONS)
 map("n", "<S-PageDown>", ":ZellijNavigateDown<cr>", DEFAULT_OPTIONS)
