@@ -113,7 +113,7 @@ alt-comma = 'layout accordion horizontal vertical'
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-z = 'exec-and-forget MOZ_DISABLE_SAFE_MODE_KEY=1 open -a /Applications/Zen\ Browser.app'
 alt-t = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
-cmd-e = 'enable toggle'
+# cmd-e = 'enable toggle'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-y = 'focus left'
