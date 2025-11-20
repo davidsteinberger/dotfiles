@@ -8,10 +8,20 @@ local map = vim.keymap.set
 -- delete to blackhole register
 map("x", "<bs>", '"_d', DEFAULT_OPTIONS)
 
--- change word
 map({ "n", "x", "v" }, "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
+
+-- shortcuts
 map("n", "<bs>w", '"_ciw', DEFAULT_OPTIONS)
 map("n", "<bs>p", '"_cw', DEFAULT_OPTIONS)
+map("n", "<bs>d", function()
+  vim.diagnostic.jump({ count = 1 })
+end, DEFAULT_OPTIONS)
+map("n", "<bs>D", function()
+  vim.diagnostic.jump({ count = -1 })
+end, DEFAULT_OPTIONS)
+map("n", "<bs>q", ":cnext<cr>", DEFAULT_OPTIONS)
+map("n", "<bs>Q", ":cprev<cr>", DEFAULT_OPTIONS)
+map("n", "<bs>b", ":bd<cr>", DEFAULT_OPTIONS)
 
 -- copy entire buffer
 map("n", "<leader>Y", ":%y+<cr>", DEFAULT_OPTIONS)
@@ -39,6 +49,7 @@ map("n", "<S-PageUp>", ":ZellijNavigateUp<cr>", DEFAULT_OPTIONS)
 map("n", "<S-PageDown>", ":ZellijNavigateDown<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Home>", ":ZellijNavigateLeft<cr>", DEFAULT_OPTIONS)
 map("n", "<S-End>", ":ZellijNavigateRight<cr>", DEFAULT_OPTIONS)
+-- map("n", "<S-TAB>", "[", DEFAULT_OPTIONS)
 
 map("i", "<c-c>", "<esc>", DEFAULT_OPTIONS)
 
