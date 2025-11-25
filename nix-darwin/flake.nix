@@ -122,6 +122,7 @@
           "sf-symbols"
           "font-sf-mono"
           "font-sf-pro"
+          "bruno"
         ];
         taps = [
           "leoafarias/fvm"
