@@ -1,0 +1,16 @@
+meta {
+  name: Returns a paginated list of subscriptions the user is allowed to see
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/subscription
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~offset: 
+}

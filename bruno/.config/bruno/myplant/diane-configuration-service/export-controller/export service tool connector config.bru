@@ -1,0 +1,15 @@
+meta {
+  name: export service tool connector config
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/export/:configId/stc
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

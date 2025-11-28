@@ -1,0 +1,15 @@
+meta {
+  name: Admin only batch delete for cascading asset delete
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/subscription/asset/:assetId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}

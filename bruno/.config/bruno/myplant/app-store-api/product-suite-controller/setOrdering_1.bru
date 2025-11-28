@@ -1,0 +1,17 @@
+meta {
+  name: setOrdering_1
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/product-suites/ordering
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "productSuiteIds": []
+  }
+}

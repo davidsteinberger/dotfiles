@@ -1,0 +1,15 @@
+meta {
+  name: Return details of a list of address by username
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/addresses/usernames/:username
+  body: none
+  auth: inherit
+}
+
+params:path {
+  username: 
+}

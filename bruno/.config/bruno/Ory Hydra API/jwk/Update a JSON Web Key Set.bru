@@ -1,0 +1,41 @@
+meta {
+  name: Update a JSON Web Key Set
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/admin/keys/:set
+  body: json
+  auth: inherit
+}
+
+params:path {
+  set: 
+}
+
+body:json {
+  {
+    "keys": [
+      {
+        "alg": "",
+        "crv": "",
+        "d": "",
+        "dp": "",
+        "dq": "",
+        "e": "",
+        "k": "",
+        "kid": "",
+        "kty": "",
+        "n": "",
+        "p": "",
+        "q": "",
+        "qi": "",
+        "use": "",
+        "x": "",
+        "x5c": [],
+        "y": ""
+      }
+    ]
+  }
+}

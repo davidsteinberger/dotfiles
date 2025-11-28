@@ -1,0 +1,86 @@
+meta {
+  name: Update an Insight
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/insights/:insightId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  insightId: {{insightId}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var insightId = "d73c2d38-79b2-4761-9a92-d063dea11190"
+  var name = "Mild Rain";
+  var conditions = {
+      "type": "OPERATOR",
+      "content": {
+          "operator": "AND"
+      },
+      "children": [{
+              "type": "OPERATOR",
+              "content": {
+                  "operator": "EQUAL"
+              },
+              "children": [{
+                      "type": "PARAMETER",
+                      "content": {
+                          "parameter": "precipitationType"
+                      }
+                  },
+                  {
+                      "type": "CONST",
+                      "content": {
+                          "const": 1
+                      }
+                  }
+              ]
+          },
+          {
+              "type": "OPERATOR",
+              "content": {
+                  "operator": "GREATER"
+              },
+              "children": [{
+                      "type": "PARAMETER",
+                      "content": {
+                          "parameter": "precipitationIntensity"
+                      }
+                  },
+                  {
+                      "type": "CONST",
+                      "content": {
+                          "const": 0.5
+                      }
+                  }
+              ]
+          }
+  
+      ]
+  };
+  
+  var body = {
+      name, // (Required) The name of the insight
+      conditions, // (Required) The conditions for which the linked locations will be checked
+  }
+  
+  bru.setEnvVar('insightId', insightId)
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

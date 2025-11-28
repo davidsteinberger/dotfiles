@@ -1,0 +1,11 @@
+meta {
+  name: Allows to remove multiple Relationships in a batch fashion
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/contact/relationship/batch
+  body: json
+  auth: inherit
+}

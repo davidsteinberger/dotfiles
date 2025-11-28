@@ -1,0 +1,25 @@
+meta {
+  name: Delete a Location
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/locations/:locationId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  locationId: {{locationId}}
+}
+
+script:pre-request {
+  var locationId = "5fb7dc8fd4f7cd0008a64456";
+  
+  bru.setEnvVar('locationId', locationId);
+}
+
+settings {
+  encodeUrl: true
+}

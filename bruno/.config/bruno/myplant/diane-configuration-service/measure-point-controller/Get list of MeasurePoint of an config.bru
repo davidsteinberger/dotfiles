@@ -1,0 +1,19 @@
+meta {
+  name: Get list of MeasurePoint of an config
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/measure-point/:configId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~type: 
+}
+
+params:path {
+  configId: 
+}

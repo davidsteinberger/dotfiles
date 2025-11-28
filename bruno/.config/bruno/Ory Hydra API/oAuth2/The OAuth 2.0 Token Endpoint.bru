@@ -1,0 +1,24 @@
+meta {
+  name: The OAuth 2.0 Token Endpoint
+  type: http
+  seq: 31
+}
+
+post {
+  url: {{baseUrl}}/oauth2/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}
+
+body:form-urlencoded {
+  client_id: 
+  code: 
+  grant_type: 
+  redirect_uri: 
+  refresh_token: 
+}

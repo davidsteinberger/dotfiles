@@ -1,0 +1,11 @@
+meta {
+  name: OpenID Connect Discovery
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/.well-known/openid-configuration
+  body: none
+  auth: inherit
+}

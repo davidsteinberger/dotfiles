@@ -1,0 +1,11 @@
+meta {
+  name: Allow to create multiple subscriptions in a single batch request
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/subscription/batch
+  body: json
+  auth: inherit
+}

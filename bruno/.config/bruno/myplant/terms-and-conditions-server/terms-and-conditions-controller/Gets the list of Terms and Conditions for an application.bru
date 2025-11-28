@@ -1,0 +1,15 @@
+meta {
+  name: Gets the list of Terms and Conditions for an application
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/:appName
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appName: 
+}

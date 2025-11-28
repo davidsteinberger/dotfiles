@@ -1,0 +1,15 @@
+meta {
+  name: Get parameter hierarchy of an config from the xt4 import
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/parameter/old-hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

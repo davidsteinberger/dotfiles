@@ -1,0 +1,15 @@
+meta {
+  name: Renew certificate
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/v1/certificates/:id/renew
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}

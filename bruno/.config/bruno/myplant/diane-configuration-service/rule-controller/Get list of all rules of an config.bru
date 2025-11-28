@@ -1,0 +1,15 @@
+meta {
+  name: Get list of all rules of an config
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/rule/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

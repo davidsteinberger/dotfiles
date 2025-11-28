@@ -1,0 +1,29 @@
+meta {
+  name: saveHierarchyEntries
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/measure-point-hierarchy/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "id": "",
+      "hierarchyName": "",
+      "name": "",
+      "measurePointName": "",
+      "parent": "",
+      "visibilityRuleId": "",
+      "position": 0
+    }
+  ]
+}

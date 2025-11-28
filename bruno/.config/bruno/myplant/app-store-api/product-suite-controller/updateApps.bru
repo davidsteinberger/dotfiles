@@ -1,0 +1,21 @@
+meta {
+  name: updateApps
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/product-suites/:id/apps
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "appIds": []
+  }
+}

@@ -1,0 +1,41 @@
+meta {
+  name: Create a Location
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/locations
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var name = "Tomorrow.io Headquarters";
+  var tags = ["Group 1", "Tom's team"];
+  var geometry = {
+      "type": "Point",
+      "coordinates": [
+          -71.0573512,42.3492721
+      ]
+  };
+  var body = {
+      name, // (Required) The name of the location
+      tags,
+      geometry, // (Required) The GeoJSON geometry representation of the location object
+  }
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

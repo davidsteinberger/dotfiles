@@ -1,0 +1,20 @@
+meta {
+  name: returns public diane XT5 server TLS certificate
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/v1/diane-xt5/:hw-serial/cert
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~format: 
+  ~additional-ips: 
+}
+
+params:path {
+  hw-serial: 
+}

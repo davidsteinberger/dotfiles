@@ -1,0 +1,15 @@
+meta {
+  name: updateMessageToArchived
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/messages/:id/archived
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Return details of a single contact by external system id
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/contact/external/:sourceSystemId/:externalId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  sourceSystemId: 
+  externalId: 
+}

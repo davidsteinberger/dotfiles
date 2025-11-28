@@ -1,0 +1,42 @@
+meta {
+  name: Retrieve Events (Advanced)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/events
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var location = {
+      "type": "Point",
+      "coordinates": [
+          -71.0573512,42.3492721
+      ]
+  }
+  var insights = ["fires"];
+  var buffer = 1;
+  
+  var body = {
+      location, // ID of a pre-defined location, GeoJSON geometry or latlong array
+      insights, // (Required) Pre-defined category names or custom insight IDs
+      buffer // The buffer around locations, in case of pre-defined insight categories (in km, defaults to 1)
+  }
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,22 @@
+meta {
+  name: Get Certificates
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/v1/certificates
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~username: 
+  ~latestOnly: 
+  ~expiryDate: 
+  ~serial: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

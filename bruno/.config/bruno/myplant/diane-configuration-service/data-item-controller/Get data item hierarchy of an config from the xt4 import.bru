@@ -1,0 +1,15 @@
+meta {
+  name: Get data item hierarchy of an config from the xt4 import
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/dataitem/old-hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

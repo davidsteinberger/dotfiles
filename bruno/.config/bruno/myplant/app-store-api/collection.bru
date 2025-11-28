@@ -1,0 +1,16 @@
+meta {
+  name: app-store-api
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: x-seshat-token
+  value: {{apiKey}}
+  placement: header
+}
+vars:pre-request {
+  baseUrl: {{host}}/ws/app-store
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Federated GraphQL
+  type: graphql
+  seq: 4
+}
+
+post {
+  url: {{host}}/ws/graphql
+  body: graphql
+  auth: inherit
+}
+
+body:graphql {
+  query Test {
+    asset(id: 1) {
+      id
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

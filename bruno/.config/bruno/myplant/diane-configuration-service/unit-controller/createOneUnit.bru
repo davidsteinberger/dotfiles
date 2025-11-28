@@ -1,0 +1,25 @@
+meta {
+  name: createOneUnit
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/unit/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  {
+    "name": "",
+    "offset": "",
+    "factor": "",
+    "unitTypeName": "",
+    "metric": false
+  }
+}

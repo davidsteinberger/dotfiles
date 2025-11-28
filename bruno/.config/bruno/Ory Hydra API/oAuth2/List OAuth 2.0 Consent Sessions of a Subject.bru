@@ -1,0 +1,18 @@
+meta {
+  name: List OAuth 2.0 Consent Sessions of a Subject
+  type: http
+  seq: 19
+}
+
+get {
+  url: {{baseUrl}}/admin/oauth2/auth/sessions/consent
+  body: none
+  auth: inherit
+}
+
+params:query {
+  subject: 
+  ~page_size: 
+  ~page_token: 
+  ~login_session_id: 
+}

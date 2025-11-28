@@ -1,0 +1,11 @@
+meta {
+  name: Adds a new subscription with given contents (POST)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/subscription
+  body: json
+  auth: inherit
+}

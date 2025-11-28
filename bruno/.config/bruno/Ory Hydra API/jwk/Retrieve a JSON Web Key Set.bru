@@ -1,0 +1,15 @@
+meta {
+  name: Retrieve a JSON Web Key Set
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/admin/keys/:set
+  body: none
+  auth: inherit
+}
+
+params:path {
+  set: 
+}

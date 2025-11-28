@@ -1,0 +1,22 @@
+meta {
+  name: export telegraf setting
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/export/:configId/telegraf
+  body: none
+  auth: inherit
+}
+
+params:query {
+  opcServer: 
+  ~category: 
+  ~includeAgent: 
+  ~authentication: 
+}
+
+params:path {
+  configId: 
+}

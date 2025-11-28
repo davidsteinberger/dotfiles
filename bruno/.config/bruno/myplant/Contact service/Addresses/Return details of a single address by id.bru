@@ -1,0 +1,15 @@
+meta {
+  name: Return details of a single address by id
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/addresses/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

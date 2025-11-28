@@ -1,0 +1,25 @@
+meta {
+  name: Reject OAuth 2.0 Login Request
+  type: http
+  seq: 14
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/login/reject
+  body: json
+  auth: inherit
+}
+
+params:query {
+  login_challenge: 
+}
+
+body:json {
+  {
+    "error": "",
+    "error_debug": "",
+    "error_description": "",
+    "error_hint": "",
+    "status_code": 0
+  }
+}

@@ -1,0 +1,16 @@
+meta {
+  name: getSession
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/assets/:assetId/webcam/:sessionId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+  sessionId: 
+}

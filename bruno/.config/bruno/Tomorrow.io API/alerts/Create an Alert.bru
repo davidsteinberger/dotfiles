@@ -1,0 +1,43 @@
+meta {
+  name: Create an Alert
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/alerts
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var name = "Mild Rain at the Tomorrow.io Headquarters";
+  var insight = "3314686b-0525-4cd0-908e-f110df44ab23";
+  var isActive = true;
+  var notifications = [
+    {"type": "PRIOR", "value": 30},
+    {"type": "START"},
+    {"type": "END"}
+  ];
+  
+  var body = {
+      name,  // (Required) The name of the alert
+      insight, // (Required) ID of a custom insight or pre-defined category
+      isActive, // Defines whether the alert triggers notifications to the webhook
+      notifications // The configuration of the notifications sent to the webhook (before, start and end of an event in which insight conditions are met)
+  };
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

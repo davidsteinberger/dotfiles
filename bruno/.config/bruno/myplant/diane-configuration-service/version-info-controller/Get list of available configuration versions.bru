@@ -1,0 +1,11 @@
+meta {
+  name: Get list of available configuration versions
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/version-info
+  body: none
+  auth: inherit
+}

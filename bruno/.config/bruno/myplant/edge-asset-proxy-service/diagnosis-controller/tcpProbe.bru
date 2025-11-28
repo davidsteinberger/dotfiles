@@ -1,0 +1,23 @@
+meta {
+  name: tcpProbe
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/asset/:assetId/diagnosis/tcp-probe
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}
+
+body:json {
+  {
+    "ipAddress": "",
+    "port": 0,
+    "timeoutMs": 0
+  }
+}

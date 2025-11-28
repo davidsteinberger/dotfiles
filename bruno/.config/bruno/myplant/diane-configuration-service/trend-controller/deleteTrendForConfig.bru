@@ -1,0 +1,15 @@
+meta {
+  name: deleteTrendForConfig
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/trend/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

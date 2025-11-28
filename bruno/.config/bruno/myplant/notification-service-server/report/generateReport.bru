@@ -1,0 +1,19 @@
+meta {
+  name: generateReport
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/report
+  body: none
+  auth: inherit
+}
+
+params:query {
+  from: 
+  to: 
+  csv: 
+  ~offset: 
+  ~limit: 
+}

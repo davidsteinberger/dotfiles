@@ -1,0 +1,18 @@
+meta {
+  name: creates an agent CA certificate from an CSR
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/v1/edge/agent-ca
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "csr": "",
+    "source": ""
+  }
+}

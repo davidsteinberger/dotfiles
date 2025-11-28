@@ -1,0 +1,15 @@
+meta {
+  name: Get list of all user roles in configuration versions
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/user-role/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

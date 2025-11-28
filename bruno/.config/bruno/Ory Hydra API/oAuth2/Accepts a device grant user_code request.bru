@@ -1,0 +1,21 @@
+meta {
+  name: Accepts a device grant user_code request
+  type: http
+  seq: 11
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/device/accept
+  body: json
+  auth: inherit
+}
+
+params:query {
+  device_challenge: 
+}
+
+body:json {
+  {
+    "user_code": ""
+  }
+}

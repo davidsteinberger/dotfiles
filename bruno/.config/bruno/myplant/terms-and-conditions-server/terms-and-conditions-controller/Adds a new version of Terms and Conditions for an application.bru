@@ -1,0 +1,27 @@
+meta {
+  name: Adds a new version of Terms and Conditions for an application
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/:appName
+  body: json
+  auth: inherit
+}
+
+params:path {
+  appName: 
+}
+
+body:json {
+  {
+    "id": 0,
+    "context": [
+      {
+        "language": "",
+        "content": ""
+      }
+    ]
+  }
+}

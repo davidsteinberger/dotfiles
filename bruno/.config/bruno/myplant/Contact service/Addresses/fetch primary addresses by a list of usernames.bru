@@ -1,0 +1,11 @@
+meta {
+  name: fetch primary addresses by a list of usernames
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/addresses/usernames
+  body: json
+  auth: inherit
+}

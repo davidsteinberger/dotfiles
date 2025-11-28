@@ -1,0 +1,71 @@
+meta {
+  name: saveMeasurePoint
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/measure-point/:configId
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~tagPrefix: 
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "itemId": 0,
+      "myPlantItemId": 0,
+      "myPlantDataItemId": 0,
+      "type": 0,
+      "dataType": "",
+      "plcTag": "",
+      "refreshInterval": 0,
+      "conversion": "",
+      "historicalNeeded": false,
+      "trendEnabled": false,
+      "readAccess": false,
+      "writeAccess": false,
+      "hysteresis": "",
+      "decimal": 0,
+      "min": "",
+      "max": "",
+      "compressionGroupName": "",
+      "trendCategoryName": "",
+      "unitTypeName": "",
+      "unit": "",
+      "visibilityRuleId": "",
+      "additionalPlcTags": [],
+      "messageNumber": 0,
+      "parameterTags": [],
+      "pidInfos": [],
+      "tagNumber": "",
+      "enabilityRuleId": "",
+      "relativeHysteresis": "",
+      "opcServerEnabled": false,
+      "category": 0,
+      "parameterNr": 0,
+      "writePlcTag": "",
+      "custTagNumber": "",
+      "offsetValue": "",
+      "minDataItem": "",
+      "maxDataItem": "",
+      "textEnum": "",
+      "messageTypeBinding": "",
+      "plantBroadcastEnabled": false,
+      "deadTime": 0,
+      "readRole": "",
+      "writeRole": "",
+      "writeRuleId": "",
+      "usedInHmi": false,
+      "usedInMyPlant": false
+    }
+  ]
+}

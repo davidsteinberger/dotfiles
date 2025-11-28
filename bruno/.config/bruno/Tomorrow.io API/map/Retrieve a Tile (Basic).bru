@@ -1,0 +1,41 @@
+meta {
+  name: Retrieve a Tile (Basic)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/map/tile/:zoom/:x/:y/:field/:timeFormat
+  body: none
+  auth: inherit
+}
+
+params:path {
+  zoom: {{zoom}}
+  x: {{x}}
+  y: {{y}}
+  field: {{field}}
+  timeFormat: {{timeFormat}}
+}
+
+script:pre-request {
+  var moment = require('moment');
+  var now = moment.utc();
+  
+  var zoom = 5;
+  var x = 2;
+  var y = 3;
+  var field = "precipitationIntensity";
+  var time = moment.utc(now).add(0, 'minutes').toISOString();
+  var format = "png"
+  
+  bru.setEnvVar('zoom', zoom);
+  bru.setEnvVar('x', x);
+  bru.setEnvVar('y', y);
+  bru.setEnvVar('field', field);
+  bru.setEnvVar('timeFormat', time + "." + format);
+}
+
+settings {
+  encodeUrl: true
+}

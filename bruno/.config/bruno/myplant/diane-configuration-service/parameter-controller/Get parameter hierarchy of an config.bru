@@ -1,0 +1,15 @@
+meta {
+  name: Get parameter hierarchy of an config
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/parameter/hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

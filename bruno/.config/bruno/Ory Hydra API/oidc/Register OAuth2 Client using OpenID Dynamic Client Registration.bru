@@ -1,0 +1,89 @@
+meta {
+  name: Register OAuth2 Client using OpenID Dynamic Client Registration
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/oauth2/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "access_token_strategy": "",
+    "allowed_cors_origins": [],
+    "audience": [],
+    "authorization_code_grant_access_token_lifespan": "",
+    "authorization_code_grant_id_token_lifespan": "",
+    "authorization_code_grant_refresh_token_lifespan": "",
+    "backchannel_logout_session_required": false,
+    "backchannel_logout_uri": "",
+    "client_credentials_grant_access_token_lifespan": "",
+    "client_id": "",
+    "client_name": "",
+    "client_secret": "",
+    "client_secret_expires_at": 0,
+    "client_uri": "",
+    "contacts": [],
+    "created_at": "",
+    "device_authorization_grant_access_token_lifespan": "",
+    "device_authorization_grant_id_token_lifespan": "",
+    "device_authorization_grant_refresh_token_lifespan": "",
+    "frontchannel_logout_session_required": false,
+    "frontchannel_logout_uri": "",
+    "grant_types": [],
+    "implicit_grant_access_token_lifespan": "",
+    "implicit_grant_id_token_lifespan": "",
+    "jwks": {
+      "keys": [
+        {
+          "alg": "",
+          "crv": "",
+          "d": "",
+          "dp": "",
+          "dq": "",
+          "e": "",
+          "k": "",
+          "kid": "",
+          "kty": "",
+          "n": "",
+          "p": "",
+          "q": "",
+          "qi": "",
+          "use": "",
+          "x": "",
+          "x5c": [],
+          "y": ""
+        }
+      ]
+    },
+    "jwks_uri": "",
+    "jwt_bearer_grant_access_token_lifespan": "",
+    "logo_uri": "",
+    "metadata": "",
+    "owner": "",
+    "policy_uri": "",
+    "post_logout_redirect_uris": [],
+    "redirect_uris": [],
+    "refresh_token_grant_access_token_lifespan": "",
+    "refresh_token_grant_id_token_lifespan": "",
+    "refresh_token_grant_refresh_token_lifespan": "",
+    "registration_access_token": "",
+    "registration_client_uri": "",
+    "request_object_signing_alg": "",
+    "request_uris": [],
+    "response_types": [],
+    "scope": "",
+    "sector_identifier_uri": "",
+    "skip_consent": false,
+    "skip_logout_consent": false,
+    "subject_type": "",
+    "token_endpoint_auth_method": "",
+    "token_endpoint_auth_signing_alg": "",
+    "tos_uri": "",
+    "updated_at": "",
+    "userinfo_signed_response_alg": ""
+  }
+}

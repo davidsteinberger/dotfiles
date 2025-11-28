@@ -1,0 +1,15 @@
+meta {
+  name: deleteCategoriesForConfig
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/category/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

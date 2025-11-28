@@ -1,0 +1,16 @@
+meta {
+  name: Delete one mapping from model
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/measure-point/mapping/:model/:itemId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  model: 
+  itemId: 
+}

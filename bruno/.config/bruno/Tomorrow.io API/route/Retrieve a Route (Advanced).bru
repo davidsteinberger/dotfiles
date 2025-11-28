@@ -1,0 +1,42 @@
+meta {
+  name: Retrieve a Route (Advanced)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/route
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var moment = require('moment');
+  var now = moment.utc();
+  
+  var startTime = moment.utc(now).add(60, 'minutes').toISOString();
+  var fields = ["precipitationIntensity"];
+  var timestep = "5m";
+  var legs = [{"duration":10,"location":{"coordinates":[[34.78187,32.08528],[34.78182,32.08529],[34.78172,32.08531],[34.78164,32.08531],[34.78152,32.08534],[34.7809,32.08549]],"type":"LineString"}},{"duration":5,"location":{"coordinates":[[34.7809,32.08549],[34.78098,32.08583],[34.78105,32.08614],[34.78117,32.08684],[34.78121,32.08705],[34.78135,32.08769],[34.78149,32.08832]],"type":"LineString"}}]
+  var units = "metric"
+  var timezone = "UTC"
+  
+  var body = {
+      startTime, // Start time in ISO 8601 format "2019-03-20T14:09:50Z" (defaults to now)
+      legs, // (Required) Collection of route segments, each represented as a pair of location object and a duration (in minutes)
+      fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if no suffix is specified)
+      timestep, // Timestep of the route: "5m", "10m", "15m", "30m", "60m"
+      units, // Units of field values, either "metric" or "imperial" (defaults to metric)
+      timezone // Timezone of time values, according to IANA Timezone Names (defaults to UTC)
+  }
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

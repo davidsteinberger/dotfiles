@@ -1,0 +1,40 @@
+meta {
+  name: Trust OAuth2 JWT Bearer Grant Type Issuer
+  type: http
+  seq: 24
+}
+
+post {
+  url: {{baseUrl}}/admin/trust/grants/jwt-bearer/issuers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "allow_any_subject": false,
+    "expires_at": "",
+    "issuer": "",
+    "jwk": {
+      "alg": "",
+      "crv": "",
+      "d": "",
+      "dp": "",
+      "dq": "",
+      "e": "",
+      "k": "",
+      "kid": "",
+      "kty": "",
+      "n": "",
+      "p": "",
+      "q": "",
+      "qi": "",
+      "use": "",
+      "x": "",
+      "x5c": [],
+      "y": ""
+    },
+    "scope": [],
+    "subject": ""
+  }
+}

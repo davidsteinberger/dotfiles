@@ -1,0 +1,47 @@
+meta {
+  name: Sales Orders Core Returns (D02)
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://oermxd02.oci.innio.com/ords/romeo/sales/orders/corereturns/?include_all_line_statuses=Y&only_core_return_relevant=Y&offset_period=90
+  body: text
+  auth: oauth2
+}
+
+params:query {
+  include_all_line_statuses: Y
+  only_core_return_relevant: Y
+  offset_period: 90
+}
+
+auth:oauth2 {
+  grant_type: client_credentials
+  access_token_url: https://oermxd02.oci.innio.com/ords/romeo/oauth/token
+  refresh_token_url: 
+  client_id: uYwqZAPCWHuEPdVIvrSDAIdY
+  client_secret: qKIEGxbWvDRaqMorzmAPaWSs
+  scope: 
+  credentials_placement: basic_auth_header
+  credentials_id: 
+  token_placement: header
+  token_header_prefix: 
+  auto_fetch_token: true
+  auto_refresh_token: false
+}
+
+body:text {
+  {
+      "parties": [
+          {"number": "3252"},
+          {"number": "44324"},
+          {"number": "386324"}
+      ]
+  }
+  
+}
+
+settings {
+  encodeUrl: false
+}

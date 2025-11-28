@@ -1,0 +1,15 @@
+meta {
+  name: getAppRequests
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/user-apps/requests
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~all: 
+}

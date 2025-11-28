@@ -1,0 +1,39 @@
+meta {
+  name: Link Locations
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/alerts/:alertId/locations/link
+  body: json
+  auth: inherit
+}
+
+params:path {
+  alertId: {{alertId}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var alertId = "01e4db7d-4446-4e61-b411-45e97bcc5909";
+  var locations = ["5fd9dfc6ffcd6e00075e4ac0"];
+  
+  var body = {
+      locations // (Required) The list of Point locations by ID to be linked to this alert
+  };
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+  bru.setEnvVar('alertId', alertId);
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,23 @@
+meta {
+  name: Create JSON Web Key
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/admin/keys/:set
+  body: json
+  auth: inherit
+}
+
+params:path {
+  set: 
+}
+
+body:json {
+  {
+    "alg": "",
+    "kid": "",
+    "use": ""
+  }
+}

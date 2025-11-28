@@ -1,0 +1,25 @@
+meta {
+  name: updateAppRequest
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/user-apps/requests/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "appId": 0,
+    "userName": "",
+    "created": "",
+    "status": "",
+    "reason": ""
+  }
+}

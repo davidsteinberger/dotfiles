@@ -1,0 +1,23 @@
+meta {
+  name: Update a Location
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/locations/:locationId
+  body: formUrlEncoded
+  auth: inherit
+}
+
+params:path {
+  locationId: {{locationId}}
+}
+
+body:form-urlencoded {
+  name: <NAME GOES HERE>
+}
+
+settings {
+  encodeUrl: true
+}

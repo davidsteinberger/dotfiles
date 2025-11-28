@@ -1,0 +1,27 @@
+meta {
+  name: Import the whole list of units of an config
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/unit/import/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "name": "",
+      "offset": "",
+      "factor": "",
+      "unitTypeName": "",
+      "metric": false
+    }
+  ]
+}

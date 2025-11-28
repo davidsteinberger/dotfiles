@@ -1,0 +1,15 @@
+meta {
+  name: Delete a address by id
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/addresses/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

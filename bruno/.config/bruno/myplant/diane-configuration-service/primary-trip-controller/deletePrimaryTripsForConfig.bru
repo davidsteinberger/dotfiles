@@ -1,0 +1,15 @@
+meta {
+  name: deletePrimaryTripsForConfig
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/primary-trip/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

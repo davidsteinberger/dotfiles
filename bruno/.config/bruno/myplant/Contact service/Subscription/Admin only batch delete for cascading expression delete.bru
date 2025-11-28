@@ -1,0 +1,15 @@
+meta {
+  name: Admin only batch delete for cascading expression delete
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{baseUrl}}/subscription/expression/:expressionId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  expressionId: 
+}

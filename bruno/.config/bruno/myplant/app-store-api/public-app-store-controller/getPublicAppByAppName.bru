@@ -1,0 +1,19 @@
+meta {
+  name: getPublicAppByAppName
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/public/store/:appName
+  body: none
+  auth: inherit
+}
+
+params:query {
+  language: 
+}
+
+params:path {
+  appName: 
+}

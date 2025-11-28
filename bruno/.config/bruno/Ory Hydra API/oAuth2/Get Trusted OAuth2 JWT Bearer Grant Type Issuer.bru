@@ -1,0 +1,15 @@
+meta {
+  name: Get Trusted OAuth2 JWT Bearer Grant Type Issuer
+  type: http
+  seq: 26
+}
+
+get {
+  url: {{baseUrl}}/admin/trust/grants/jwt-bearer/issuers/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

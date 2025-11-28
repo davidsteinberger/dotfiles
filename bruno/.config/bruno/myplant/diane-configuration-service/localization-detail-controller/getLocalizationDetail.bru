@@ -1,0 +1,16 @@
+meta {
+  name: getLocalizationDetail
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/localization-detail/:configId/:key
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  key: 
+}

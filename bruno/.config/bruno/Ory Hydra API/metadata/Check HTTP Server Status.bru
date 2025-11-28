@@ -1,0 +1,11 @@
+meta {
+  name: Check HTTP Server Status
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/health/alive
+  body: none
+  auth: inherit
+}

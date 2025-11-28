@@ -1,0 +1,25 @@
+meta {
+  name: Retrieve an Alert
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/alerts/:alertId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  alertId: {{alertId}}
+}
+
+script:pre-request {
+  var alertId = "01e4db7d-4446-4e61-b411-45e97bcc5909";
+  
+  bru.setEnvVar('alertId', alertId);
+}
+
+settings {
+  encodeUrl: true
+}

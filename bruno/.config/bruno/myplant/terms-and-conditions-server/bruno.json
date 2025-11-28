@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "terms-and-conditions-server",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

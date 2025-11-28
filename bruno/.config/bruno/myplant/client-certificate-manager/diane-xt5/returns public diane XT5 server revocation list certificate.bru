@@ -1,0 +1,15 @@
+meta {
+  name: returns public diane XT5 server revocation list certificate
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/v1/diane-xt5/:hw-serial/crl
+  body: none
+  auth: inherit
+}
+
+params:path {
+  hw-serial: 
+}

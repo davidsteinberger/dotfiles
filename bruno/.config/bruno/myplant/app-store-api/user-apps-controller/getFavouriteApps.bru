@@ -1,0 +1,11 @@
+meta {
+  name: getFavouriteApps
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/user-apps/favourite
+  body: none
+  auth: inherit
+}

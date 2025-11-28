@@ -1,0 +1,26 @@
+meta {
+  name: save a unit of an config
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/unit/:configId/:name
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  name: 
+}
+
+body:json {
+  {
+    "name": "",
+    "offset": "",
+    "factor": "",
+    "unitTypeName": "",
+    "metric": false
+  }
+}

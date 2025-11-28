@@ -1,0 +1,18 @@
+meta {
+  name: List OAuth 2.0 Clients
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/admin/clients
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~page_size: 
+  ~page_token: 
+  ~client_name: 
+  ~owner: 
+}

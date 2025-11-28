@@ -1,0 +1,11 @@
+meta {
+  name: Removes a single subscription
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/subscription
+  body: json
+  auth: inherit
+}

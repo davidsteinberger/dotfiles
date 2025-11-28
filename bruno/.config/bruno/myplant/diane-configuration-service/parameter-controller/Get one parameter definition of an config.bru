@@ -1,0 +1,16 @@
+meta {
+  name: Get one parameter definition of an config
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/parameter/:configId/:parameterId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  parameterId: 
+}

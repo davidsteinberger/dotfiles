@@ -1,0 +1,12 @@
+meta {
+  name: _auth
+  seq: 2
+}
+
+vars:pre-request {
+  username: {{process.env.MYPLANT_USERNAME}}
+  password: {{process.env.MYPLANT_PASSWORD}}
+  otpSecret: {{process.env.OTP_SECRET}}
+  appId: KBI40JLCZI1NN
+  localPort: 9090
+}

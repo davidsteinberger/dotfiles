@@ -1,0 +1,15 @@
+meta {
+  name: Allows to update a Relationship
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/contact/relationship/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

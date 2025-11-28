@@ -1,0 +1,25 @@
+meta {
+  name: Reject OAuth 2.0 Consent Request
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/consent/reject
+  body: json
+  auth: inherit
+}
+
+params:query {
+  consent_challenge: 
+}
+
+body:json {
+  {
+    "error": "",
+    "error_debug": "",
+    "error_description": "",
+    "error_hint": "",
+    "status_code": 0
+  }
+}

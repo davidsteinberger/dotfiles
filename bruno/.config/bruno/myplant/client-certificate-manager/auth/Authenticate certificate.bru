@@ -1,0 +1,23 @@
+meta {
+  name: Authenticate certificate
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/v1/auth
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "appId": "",
+    "serial": "",
+    "ttl": 0
+  }
+}

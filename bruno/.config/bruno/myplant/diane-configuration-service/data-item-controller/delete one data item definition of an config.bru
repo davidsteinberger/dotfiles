@@ -1,0 +1,16 @@
+meta {
+  name: delete one data item definition of an config
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/dataitem/:configId/:dataItemId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  dataItemId: 
+}

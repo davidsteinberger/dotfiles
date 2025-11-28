@@ -1,0 +1,15 @@
+meta {
+  name: Delete OAuth 2.0 Access Tokens from specific OAuth 2.0 Client
+  type: http
+  seq: 22
+}
+
+delete {
+  url: {{baseUrl}}/admin/oauth2/tokens
+  body: none
+  auth: inherit
+}
+
+params:query {
+  client_id: 
+}

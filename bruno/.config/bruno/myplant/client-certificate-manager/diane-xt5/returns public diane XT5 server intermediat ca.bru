@@ -1,0 +1,19 @@
+meta {
+  name: returns public diane XT5 server intermediat ca.
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/diane-xt5/:hw-serial/ca
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~format: 
+}
+
+params:path {
+  hw-serial: 
+}

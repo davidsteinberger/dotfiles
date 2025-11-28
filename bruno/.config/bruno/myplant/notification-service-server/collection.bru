@@ -1,0 +1,13 @@
+meta {
+  name: notification-service-server
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: x-seshat-token
+  value: {{apiKey}}
+  placement: header
+}

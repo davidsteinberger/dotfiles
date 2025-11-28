@@ -1,0 +1,27 @@
+meta {
+  name: saveRules
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/rule/import/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "ruleId": "",
+      "ruleName": "",
+      "rule": "",
+      "excludeBadQualityItems": false,
+      "ruleJsonLogic": ""
+    }
+  ]
+}

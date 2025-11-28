@@ -1,0 +1,33 @@
+meta {
+  name: save a trend of an config
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/trend/:configId/:trendId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  trendId: 
+}
+
+body:json {
+  {
+    "trendId": "",
+    "initialLoadedSeconds": 0,
+    "trendDataItems": [
+      {
+        "dataItemId": 0,
+        "showMarkersOnly": false,
+        "color": "",
+        "visibilityRuleId": "",
+        "position": 0,
+        "visible": false
+      }
+    ]
+  }
+}

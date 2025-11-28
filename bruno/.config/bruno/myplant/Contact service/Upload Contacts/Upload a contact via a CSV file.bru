@@ -1,0 +1,11 @@
+meta {
+  name: Upload a contact via a CSV file
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/contact/upload/csv
+  body: multipartForm
+  auth: inherit
+}

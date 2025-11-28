@@ -1,0 +1,15 @@
+meta {
+  name: getAppsForProductSuite
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/product-suites/:id/apps
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

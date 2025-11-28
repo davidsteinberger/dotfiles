@@ -1,0 +1,45 @@
+meta {
+  name: Update an Alert
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/alerts/:alertId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  alertId: {{alertId}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var alertId = "01e4db7d-4446-4e61-b411-45e97bcc5909";
+  var name = "Mild Rain at the Tomorrow.io Headquarters";
+  var notifications = [
+    {"type": "PRIOR", "value": 30},
+    {"type": "START"},
+    {"type": "END"}
+  ];
+  
+  var body = {
+      name,  // (Required) The name of the alert
+      notifications // The configuration of the notifications sent to the webhook (before, start and end of an event in which insight conditions are met)
+  };
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+  bru.setEnvVar('alertId', alertId);
+}
+
+settings {
+  encodeUrl: true
+}

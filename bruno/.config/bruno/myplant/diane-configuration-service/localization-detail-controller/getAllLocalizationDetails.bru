@@ -1,0 +1,21 @@
+meta {
+  name: getAllLocalizationDetails
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/localization-detail/:configId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~prefix: 
+  ~key: 
+  ~includeDefaultValues: 
+}
+
+params:path {
+  configId: 
+}

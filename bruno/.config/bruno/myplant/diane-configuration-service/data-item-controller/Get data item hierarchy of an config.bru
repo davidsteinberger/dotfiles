@@ -1,0 +1,15 @@
+meta {
+  name: Get data item hierarchy of an config
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/dataitem/hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

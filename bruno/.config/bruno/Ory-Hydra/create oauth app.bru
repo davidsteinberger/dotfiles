@@ -1,0 +1,51 @@
+meta {
+  name: create oauth app
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/clients
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "audience": [
+          "myPlant"
+      ],
+      "client_name": "{{ID}}",
+      "client_secret": "{{SECRET}}",
+      "grant_types": [
+          "authorization_code",
+          "refresh_token"
+      ],
+      "redirect_uris": {{URLS}},
+      "post_logout_redirect_uris": {{logoutUrls}},
+      "response_types": [
+          "code"
+      ],
+      "scope": "offline_access openid email profile my_plant",
+      "skip_consent": true,
+      "token_endpoint_auth_method": "client_secret_basic"
+  }
+  
+}
+
+script:pre-request {
+  const URL = require('url');
+  const urls = JSON.parse(bru.getVar("URLS"));
+  const domains = Array.from(new Set(urls.map(url => {
+    const { protocol, hostname, port } = URL.parse(url);
+    console.log('port', port);
+    return port ? `${protocol}//${hostname}:${port}` : `${protocol}//${hostname}`;
+  })));
+  bru.setEnvVar("logoutUrls", JSON.stringify(domains));
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

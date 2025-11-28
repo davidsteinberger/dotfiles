@@ -1,0 +1,11 @@
+meta {
+  name: Creates a new contact from given contact data
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/contact
+  body: json
+  auth: inherit
+}

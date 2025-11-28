@@ -1,0 +1,32 @@
+meta {
+  name: Update user by id
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/v1/users/:id
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "assetIds": [],
+    "assetVisibilityChecked": false,
+    "deletedAt": "",
+    "password": "",
+    "roleChecked": false,
+    "roles": [
+      {
+        "appId": "",
+        "appRole": ""
+      }
+    ],
+    "username": ""
+  }
+}

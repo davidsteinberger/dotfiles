@@ -1,0 +1,44 @@
+meta {
+  name: createApp
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/store
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "type": "",
+    "isPublic": false,
+    "appName": "",
+    "iconSrc": "",
+    "acronym": "",
+    "launchUrl": "",
+    "launchTarget": "",
+    "launchUrls": {},
+    "availablePermissionConfiguration": {
+      "organizationTypes": [],
+      "roles": [],
+      "rolesRegex": "",
+      "hasApplicationRoleForAppId": []
+    },
+    "enabledPermissionConfiguration": {},
+    "nameLocalization": [
+      {
+        "language": "",
+        "text": ""
+      }
+    ],
+    "shortDescriptionLocalization": [
+      {}
+    ],
+    "descriptionLocalization": [
+      {}
+    ],
+    "public": false
+  }
+}

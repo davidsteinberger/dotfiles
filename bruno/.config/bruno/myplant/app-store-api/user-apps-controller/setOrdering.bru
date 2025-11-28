@@ -1,0 +1,17 @@
+meta {
+  name: setOrdering
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/user-apps/ordering
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "appIds": []
+  }
+}

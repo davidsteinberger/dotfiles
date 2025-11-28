@@ -1,0 +1,21 @@
+meta {
+  name: change state of config, from draft to released. Only state field will be checked
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/version-info/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  {
+    "state": ""
+  }
+}

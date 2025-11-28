@@ -1,0 +1,11 @@
+meta {
+  name: Disable CSM by id
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/csms/:id
+  body: none
+  auth: inherit
+}

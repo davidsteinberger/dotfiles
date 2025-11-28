@@ -1,0 +1,11 @@
+meta {
+  name: Discover Well-Known JSON Web Keys
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/.well-known/jwks.json
+  body: none
+  auth: inherit
+}

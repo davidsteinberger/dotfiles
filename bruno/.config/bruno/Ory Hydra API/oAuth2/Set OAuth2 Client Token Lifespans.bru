@@ -1,0 +1,33 @@
+meta {
+  name: Set OAuth2 Client Token Lifespans
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/admin/clients/:id/lifespans
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "authorization_code_grant_access_token_lifespan": "",
+    "authorization_code_grant_id_token_lifespan": "",
+    "authorization_code_grant_refresh_token_lifespan": "",
+    "client_credentials_grant_access_token_lifespan": "",
+    "device_authorization_grant_access_token_lifespan": "",
+    "device_authorization_grant_id_token_lifespan": "",
+    "device_authorization_grant_refresh_token_lifespan": "",
+    "implicit_grant_access_token_lifespan": "",
+    "implicit_grant_id_token_lifespan": "",
+    "jwt_bearer_grant_access_token_lifespan": "",
+    "refresh_token_grant_access_token_lifespan": "",
+    "refresh_token_grant_id_token_lifespan": "",
+    "refresh_token_grant_refresh_token_lifespan": ""
+  }
+}

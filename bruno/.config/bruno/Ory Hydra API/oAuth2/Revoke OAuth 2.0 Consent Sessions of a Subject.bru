@@ -1,0 +1,18 @@
+meta {
+  name: Revoke OAuth 2.0 Consent Sessions of a Subject
+  type: http
+  seq: 18
+}
+
+delete {
+  url: {{baseUrl}}/admin/oauth2/auth/sessions/consent
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~subject: 
+  ~client: 
+  ~consent_request_id: 
+  ~all: 
+}

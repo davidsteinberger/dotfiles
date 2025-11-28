@@ -1,0 +1,20 @@
+meta {
+  name: Add Location Tags
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/locations/tags/add
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  locations: ["location id", "location id"]
+  tags: ["tag1", "tag2"]
+}
+
+settings {
+  encodeUrl: true
+}

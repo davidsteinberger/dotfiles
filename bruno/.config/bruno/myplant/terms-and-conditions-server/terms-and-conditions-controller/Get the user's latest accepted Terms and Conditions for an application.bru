@@ -1,0 +1,15 @@
+meta {
+  name: Get the user's latest accepted Terms and Conditions for an application
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/:appName/user/accepted
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appName: 
+}

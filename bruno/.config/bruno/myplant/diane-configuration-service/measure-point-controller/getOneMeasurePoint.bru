@@ -1,0 +1,16 @@
+meta {
+  name: getOneMeasurePoint
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/measure-point/:configId/:itemId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  itemId: 
+}

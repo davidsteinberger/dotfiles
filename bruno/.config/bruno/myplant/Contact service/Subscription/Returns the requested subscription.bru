@@ -1,0 +1,15 @@
+meta {
+  name: Returns the requested subscription
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/subscription/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

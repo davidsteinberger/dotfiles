@@ -1,0 +1,15 @@
+meta {
+  name: getVersionInfo
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/version-info/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

@@ -1,0 +1,31 @@
+meta {
+  name: updateCategories
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/category/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "name": "",
+      "refParameter": "",
+      "refTrend": "",
+      "refHmi": "",
+      "visibilityRuleId": "",
+      "priority": 0,
+      "children": [],
+      "icon": "",
+      "default": false
+    }
+  ]
+}

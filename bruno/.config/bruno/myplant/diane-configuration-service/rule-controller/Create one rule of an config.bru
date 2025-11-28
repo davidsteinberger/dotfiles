@@ -1,0 +1,25 @@
+meta {
+  name: Create one rule of an config
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/rule/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  {
+    "ruleId": "",
+    "ruleName": "",
+    "rule": "",
+    "excludeBadQualityItems": false,
+    "ruleJsonLogic": ""
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: get
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/product-suites/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

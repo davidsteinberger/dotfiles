@@ -1,0 +1,15 @@
+meta {
+  name: Update an existing image or create a new image of a contact
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/contact/:id/image
+  body: multipartForm
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

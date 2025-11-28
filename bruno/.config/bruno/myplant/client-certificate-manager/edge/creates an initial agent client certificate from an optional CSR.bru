@@ -1,0 +1,21 @@
+meta {
+  name: creates an initial agent client certificate from an optional CSR
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/v1/edge/agent-client/:hw-serial
+  body: json
+  auth: inherit
+}
+
+params:path {
+  hw-serial: 
+}
+
+body:json {
+  {
+    "csr": ""
+  }
+}

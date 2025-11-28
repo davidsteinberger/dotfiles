@@ -1,0 +1,15 @@
+meta {
+  name: getHierarchyEntries
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/measure-point-hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

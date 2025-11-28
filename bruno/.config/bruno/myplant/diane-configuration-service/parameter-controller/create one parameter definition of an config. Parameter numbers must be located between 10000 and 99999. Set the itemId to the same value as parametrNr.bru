@@ -1,0 +1,46 @@
+meta {
+  name: create one parameter definition of an config. Parameter numbers must be located between 10000 and 99999. Set the itemId to the same value as parametrNr
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/parameter/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  {
+    "itemId": 0,
+    "dataType": "",
+    "plcTag": "",
+    "refreshInterval": 0,
+    "conversion": "",
+    "decimal": 0,
+    "min": "",
+    "max": "",
+    "unitTypeName": "",
+    "unit": "",
+    "visibilityRuleId": "",
+    "additionalPlcTags": [],
+    "parameterTags": [],
+    "pidInfos": [],
+    "tagNumber": "",
+    "enabilityRuleId": "",
+    "parameterNr": 0,
+    "minDataItem": "",
+    "maxDataItem": "",
+    "textEnum": "",
+    "deadTime": 0,
+    "readRole": "",
+    "writeRole": "",
+    "writeRuleId": "",
+    "readRoleLevel": 0,
+    "writeRoleLevel": 0
+  }
+}

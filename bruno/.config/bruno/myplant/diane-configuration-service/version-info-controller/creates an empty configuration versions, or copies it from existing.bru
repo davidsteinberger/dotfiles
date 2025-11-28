@@ -1,0 +1,26 @@
+meta {
+  name: creates an empty configuration versions, or copies it from existing
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/version-info
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~sourceConfigId: 
+}
+
+body:json {
+  {
+    "id": 0,
+    "name": "",
+    "version": "",
+    "state": "",
+    "engineType": "",
+    "model": ""
+  }
+}

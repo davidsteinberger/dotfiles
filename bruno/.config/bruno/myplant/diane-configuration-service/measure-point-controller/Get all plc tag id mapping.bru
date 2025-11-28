@@ -1,0 +1,15 @@
+meta {
+  name: Get all plc tag id mapping
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{baseUrl}}/measure-point/mapping-xt4tag-id/:model
+  body: none
+  auth: inherit
+}
+
+params:path {
+  model: 
+}

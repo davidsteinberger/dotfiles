@@ -1,0 +1,16 @@
+meta {
+  name: Get one data item definition of an config
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/dataitem/:configId/:dataItemId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  dataItemId: 
+}

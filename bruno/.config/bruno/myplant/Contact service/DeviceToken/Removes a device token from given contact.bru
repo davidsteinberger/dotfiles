@@ -1,0 +1,11 @@
+meta {
+  name: Removes a device token from given contact
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/contact/device
+  body: json
+  auth: inherit
+}

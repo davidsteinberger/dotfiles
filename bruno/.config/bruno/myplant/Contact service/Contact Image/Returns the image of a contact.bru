@@ -1,0 +1,11 @@
+meta {
+  name: Returns the image of a contact
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/contact/:id/image
+  body: none
+  auth: inherit
+}

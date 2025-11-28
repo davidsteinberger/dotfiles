@@ -1,0 +1,24 @@
+meta {
+  name: updatePrimaryTrips
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/primary-trip/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "trip": 0,
+      "pattern": ""
+    }
+  ]
+}

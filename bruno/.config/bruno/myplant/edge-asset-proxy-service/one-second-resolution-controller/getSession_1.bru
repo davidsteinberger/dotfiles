@@ -1,0 +1,16 @@
+meta {
+  name: getSession_1
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/asset/:assetId/one-second-resolution/session/:sessionId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+  sessionId: 
+}

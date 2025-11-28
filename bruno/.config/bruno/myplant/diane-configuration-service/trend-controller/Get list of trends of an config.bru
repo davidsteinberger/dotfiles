@@ -1,0 +1,15 @@
+meta {
+  name: Get list of trends of an config
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/trend/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

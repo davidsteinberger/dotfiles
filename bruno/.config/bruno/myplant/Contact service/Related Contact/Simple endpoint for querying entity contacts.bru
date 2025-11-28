@@ -1,0 +1,17 @@
+meta {
+  name: Simple endpoint for querying entity contacts.
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/contact/related
+  body: none
+  auth: inherit
+}
+
+params:query {
+  targetType: 
+  targetId: 
+  ~relationshipType: 
+}

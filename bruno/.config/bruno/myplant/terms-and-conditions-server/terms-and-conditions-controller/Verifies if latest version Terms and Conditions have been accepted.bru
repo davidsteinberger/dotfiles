@@ -1,0 +1,15 @@
+meta {
+  name: Verifies if latest version Terms and Conditions have been accepted
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/:appName/user/verify
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appName: 
+}

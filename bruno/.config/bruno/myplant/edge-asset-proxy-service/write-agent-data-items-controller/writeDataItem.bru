@@ -1,0 +1,28 @@
+meta {
+  name: writeDataItem
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/assets/:assetId/data-item
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}
+
+body:json {
+  {
+    "model": "",
+    "serialNumber": "",
+    "values": [
+      {
+        "name": "",
+        "value": ""
+      }
+    ]
+  }
+}

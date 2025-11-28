@@ -1,0 +1,26 @@
+meta {
+  name: Change one rule of an config. Use the 'rule' field to update the expression. JSON logic will be created automatically
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/rule/:configId/:ruleId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  ruleId: 
+}
+
+body:json {
+  {
+    "ruleId": "",
+    "ruleName": "",
+    "rule": "",
+    "excludeBadQualityItems": false,
+    "ruleJsonLogic": ""
+  }
+}

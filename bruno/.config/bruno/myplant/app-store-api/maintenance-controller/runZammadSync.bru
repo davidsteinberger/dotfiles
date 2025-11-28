@@ -1,0 +1,11 @@
+meta {
+  name: runZammadSync
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/maintenance/sync
+  body: none
+  auth: inherit
+}

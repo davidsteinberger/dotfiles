@@ -1,0 +1,17 @@
+meta {
+  name: updateFavouriteApps
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/user-apps/favourite
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "appIds": []
+  }
+}

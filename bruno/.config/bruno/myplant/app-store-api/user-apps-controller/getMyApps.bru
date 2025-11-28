@@ -1,0 +1,16 @@
+meta {
+  name: getMyApps
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/user-apps
+  body: none
+  auth: inherit
+}
+
+params:query {
+  language: 
+  ~favourite: 
+}

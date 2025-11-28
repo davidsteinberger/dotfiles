@@ -1,0 +1,17 @@
+meta {
+  name: Tomorrow.io API
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: apikey
+  value: {{apikey}}
+  placement: header
+}
+vars:pre-request {
+  baseUrl: https://api.tomorrow.io/v4
+  locationId: 6183d156022c1b0008685cc6
+}

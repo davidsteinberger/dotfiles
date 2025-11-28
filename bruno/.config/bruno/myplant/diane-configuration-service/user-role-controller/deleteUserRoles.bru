@@ -1,0 +1,15 @@
+meta {
+  name: deleteUserRoles
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/user-role/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

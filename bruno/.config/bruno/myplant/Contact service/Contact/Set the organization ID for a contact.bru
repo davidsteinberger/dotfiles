@@ -1,0 +1,16 @@
+meta {
+  name: Set the organization ID for a contact
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/contact/:id/organization/:orgId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+  orgId: 
+}

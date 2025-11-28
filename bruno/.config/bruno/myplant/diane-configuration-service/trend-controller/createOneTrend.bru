@@ -1,0 +1,32 @@
+meta {
+  name: createOneTrend
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/trend/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  {
+    "trendId": "",
+    "initialLoadedSeconds": 0,
+    "trendDataItems": [
+      {
+        "dataItemId": 0,
+        "showMarkersOnly": false,
+        "color": "",
+        "visibilityRuleId": "",
+        "position": 0,
+        "visible": false
+      }
+    ]
+  }
+}

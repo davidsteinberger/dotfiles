@@ -1,0 +1,51 @@
+meta {
+  name: Retrieve Timelines (Basic)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/timelines?location={{location}}&fields={{fields}}&startTime={{startTime}}&endTime={{endTime}}&timesteps={{timesteps}}&units={{units}}&timezone={{timezone}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  location: {{location}}
+  fields: {{fields}}
+  startTime: {{startTime}}
+  endTime: {{endTime}}
+  timesteps: {{timesteps}}
+  units: {{units}}
+  timezone: {{timezone}}
+}
+
+script:pre-request {
+  var moment = require('moment');
+  var now = moment.utc();
+  
+  var startTime = moment.utc(now).add(0, 'minutes');
+  var endTime = moment.utc(startTime).add(360, 'minutes');
+  var fields = ["temperature","windSpeed","windDirection","humidity","precipitationIntensity","precipitationProbability","pressureSurfaceLevel","pressureSeaLevel","dewPoint","cloudCover"];
+  var timesteps = ["1h"];
+  var location = [47.7332302,12.1041899];
+  var units = "metric"
+  var timezone = "UTC"
+  
+  /*
+  bru.setEnvVar('startTime', startTime.toISOString());
+  bru.setEnvVar('endTime', endTime.toISOString());
+  bru.setEnvVar('fields', fields);
+  bru.setEnvVar('timesteps', timesteps);
+  bru.setEnvVar('location', location);
+  bru.setEnvVar('units', units);
+  bru.setEnvVar('timezone', timezone);
+  */
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+}

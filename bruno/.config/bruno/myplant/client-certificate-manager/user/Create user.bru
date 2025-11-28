@@ -1,0 +1,32 @@
+meta {
+  name: Create user
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/v1/users
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "assetIds": [],
+    "assetVisibilityChecked": false,
+    "createMyPlantUser": false,
+    "password": "",
+    "roleChecked": false,
+    "roles": [
+      {
+        "appId": "",
+        "appRole": ""
+      }
+    ],
+    "username": ""
+  }
+}

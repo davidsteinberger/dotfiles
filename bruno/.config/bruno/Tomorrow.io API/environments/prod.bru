@@ -1,0 +1,10 @@
+vars {
+  apikey: {{process.env.API_KEY}}
+  startTime: now
+  endTime: nowPlus6h
+  fields: temperature,windSpeed,windDirection,humidity,precipitationIntensity,precipitationProbability,pressureSurfaceLevel,pressureSeaLevel,dewPoint,cloudCover
+  timesteps: 1m
+  location: 47.7332302,12.1041899
+  units: metric
+  timezone: UTC
+}

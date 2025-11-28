@@ -1,0 +1,48 @@
+meta {
+  name: updateApp
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/store/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "type": "",
+    "appName": "",
+    "acronym": "",
+    "iconSrc": "",
+    "launchUrl": "",
+    "isPublic": false,
+    "launchTarget": "",
+    "launchUrls": {},
+    "availablePermissionConfiguration": {
+      "organizationTypes": [],
+      "roles": [],
+      "rolesRegex": "",
+      "hasApplicationRoleForAppId": []
+    },
+    "enabledPermissionConfiguration": {},
+    "nameLocalization": [
+      {
+        "language": "",
+        "text": ""
+      }
+    ],
+    "shortDescriptionLocalization": [
+      {}
+    ],
+    "descriptionLocalization": [
+      {}
+    ],
+    "public": false
+  }
+}

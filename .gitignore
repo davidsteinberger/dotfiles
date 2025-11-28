@@ -7,3 +7,4 @@ karabiner/.config/karabiner/automatic_backups
 .aider*
 !aider/*
 OpenCode.md
+.env

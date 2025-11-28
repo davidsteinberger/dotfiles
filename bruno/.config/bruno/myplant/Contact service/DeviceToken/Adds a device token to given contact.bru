@@ -1,0 +1,11 @@
+meta {
+  name: Adds a device token to given contact
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/contact/device
+  body: json
+  auth: inherit
+}

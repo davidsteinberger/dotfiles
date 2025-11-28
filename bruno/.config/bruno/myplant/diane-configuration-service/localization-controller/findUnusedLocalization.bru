@@ -1,0 +1,15 @@
+meta {
+  name: findUnusedLocalization
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/localization/unused-prefix/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

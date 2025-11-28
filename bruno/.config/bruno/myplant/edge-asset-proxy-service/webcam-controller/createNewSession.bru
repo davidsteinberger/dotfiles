@@ -1,0 +1,23 @@
+meta {
+  name: createNewSession
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/assets/:assetId/webcam
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}
+
+body:json {
+  {
+    "webCamConnectionString": "",
+    "myPlantConnectionString": "",
+    "sessionTimeToLiveTimeSpanInMilliSeconds": 0
+  }
+}

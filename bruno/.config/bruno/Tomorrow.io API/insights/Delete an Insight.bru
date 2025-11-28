@@ -1,0 +1,25 @@
+meta {
+  name: Delete an Insight
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/insights/:insightId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  insightId: {{insightId}}
+}
+
+script:pre-request {
+  var insightId = "d73c2d38-79b2-4761-9a92-d063dea11190";
+  
+  bru.setEnvVar('insightId', insightId);
+}
+
+settings {
+  encodeUrl: true
+}

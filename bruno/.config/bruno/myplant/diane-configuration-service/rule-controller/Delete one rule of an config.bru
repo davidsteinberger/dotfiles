@@ -1,0 +1,16 @@
+meta {
+  name: Delete one rule of an config
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/rule/:configId/:ruleId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  ruleId: 
+}

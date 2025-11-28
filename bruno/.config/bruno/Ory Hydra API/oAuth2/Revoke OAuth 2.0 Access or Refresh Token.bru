@@ -1,0 +1,22 @@
+meta {
+  name: Revoke OAuth 2.0 Access or Refresh Token
+  type: http
+  seq: 30
+}
+
+post {
+  url: {{baseUrl}}/oauth2/revoke
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: {{username}}
+  password: {{password}}
+}
+
+body:form-urlencoded {
+  client_id: 
+  client_secret: 
+  token: 
+}

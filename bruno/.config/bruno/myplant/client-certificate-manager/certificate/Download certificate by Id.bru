@@ -1,0 +1,21 @@
+meta {
+  name: Download certificate by Id
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/v1/certificates/:id/download
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password": ""
+  }
+}

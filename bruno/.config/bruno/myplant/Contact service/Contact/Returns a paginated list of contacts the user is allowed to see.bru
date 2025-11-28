@@ -1,0 +1,18 @@
+meta {
+  name: Returns a paginated list of contacts the user is allowed to see
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/contact
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~offset: 
+  ~organizationId: 
+  ~includeAddress: 
+}

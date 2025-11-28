@@ -1,0 +1,16 @@
+meta {
+  name: getInboxStats
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/messages/stats
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~appId: 
+  ~username: 
+}

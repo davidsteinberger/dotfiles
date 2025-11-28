@@ -1,0 +1,11 @@
+meta {
+  name: OpenID Connect Front- and Back-channel Enabled Logout
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/oauth2/sessions/logout
+  body: none
+  auth: inherit
+}

@@ -1,0 +1,16 @@
+meta {
+  name: deleteOneLocalizationDetail
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/localization-detail/:configId/:key
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  key: 
+}

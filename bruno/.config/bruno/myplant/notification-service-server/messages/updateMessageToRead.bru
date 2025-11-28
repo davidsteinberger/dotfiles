@@ -1,0 +1,15 @@
+meta {
+  name: updateMessageToRead
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/messages/:id/read
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

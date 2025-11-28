@@ -1,0 +1,11 @@
+meta {
+  name: Creates and or updates externally managed contacts in a batch (requires admin token)
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/contact/external/batch
+  body: json
+  auth: inherit
+}

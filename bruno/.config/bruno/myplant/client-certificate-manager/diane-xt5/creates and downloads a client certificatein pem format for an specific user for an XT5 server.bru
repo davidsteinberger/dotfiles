@@ -1,0 +1,26 @@
+meta {
+  name: creates and downloads a client certificatein pem format for an specific user for an XT5 server
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/v1/diane-xt5/:hw-serial/client/:user-id
+  body: json
+  auth: inherit
+}
+
+params:query {
+  role: 
+}
+
+params:path {
+  hw-serial: 
+  user-id: 
+}
+
+body:json {
+  {
+    "password": ""
+  }
+}

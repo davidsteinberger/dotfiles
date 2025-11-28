@@ -1,0 +1,15 @@
+meta {
+  name: Return details of a list of addresses by contactId
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/addresses/contacts/:contactId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  contactId: 
+}

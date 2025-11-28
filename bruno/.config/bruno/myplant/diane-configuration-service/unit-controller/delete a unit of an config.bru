@@ -1,0 +1,16 @@
+meta {
+  name: delete a unit of an config
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/unit/:configId/:name
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  name: 
+}

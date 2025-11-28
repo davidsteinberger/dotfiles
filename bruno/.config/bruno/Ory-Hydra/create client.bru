@@ -1,0 +1,33 @@
+meta {
+  name: create client
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/admin/clients
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "audience": [
+          "myPlant"
+      ],
+      "client_name": "{{ID}}",
+      "client_secret": "{{SECRET}}",
+      "grant_types": [
+          "client_credentials"
+      ],    
+      "scope": "offline_access openid",
+      "skip_consent": true,
+      "token_endpoint_auth_method": "client_secret_post"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

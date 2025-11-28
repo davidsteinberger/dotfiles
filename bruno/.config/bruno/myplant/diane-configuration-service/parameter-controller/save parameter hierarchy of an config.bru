@@ -1,0 +1,26 @@
+meta {
+  name: save parameter hierarchy of an config
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/parameter/hierarchy/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "name": "",
+      "visibilityRuleId": "",
+      "items": [],
+      "folders": []
+    }
+  ]
+}

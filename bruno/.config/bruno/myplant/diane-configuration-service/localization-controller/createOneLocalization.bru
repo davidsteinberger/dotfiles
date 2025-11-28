@@ -1,0 +1,23 @@
+meta {
+  name: createOneLocalization
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/localization/:configId/:language/:key
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  language: 
+  key: 
+}
+
+body:json {
+  {
+    "localization": ""
+  }
+}

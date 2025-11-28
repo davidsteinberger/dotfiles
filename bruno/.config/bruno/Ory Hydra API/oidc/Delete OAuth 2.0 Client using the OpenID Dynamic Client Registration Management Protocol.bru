@@ -1,0 +1,19 @@
+meta {
+  name: Delete OAuth 2.0 Client using the OpenID Dynamic Client Registration Management Protocol
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/oauth2/register/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

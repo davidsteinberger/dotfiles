@@ -1,0 +1,19 @@
+meta {
+  name: Get OAuth2 Client using OpenID Dynamic Client Registration
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/oauth2/register/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{token}}
+}

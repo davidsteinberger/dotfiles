@@ -1,0 +1,20 @@
+meta {
+  name: Remove Location Tags
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/locations/tags/remove
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  locations: ["location id", "location id"]
+  tags: ["tag1", "tag2"]
+}
+
+settings {
+  encodeUrl: true
+}

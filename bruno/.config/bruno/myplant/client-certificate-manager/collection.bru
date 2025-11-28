@@ -1,0 +1,15 @@
+meta {
+  name: client-certificate-manager
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+vars:pre-request {
+  baseUrl: {{host}}/ws/client-certificate-manager
+}

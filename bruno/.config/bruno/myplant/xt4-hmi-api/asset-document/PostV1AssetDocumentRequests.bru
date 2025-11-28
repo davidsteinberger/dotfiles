@@ -1,0 +1,25 @@
+meta {
+  name: PostV1AssetDocumentRequests
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/v1/asset-document-requests
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "assetId": 0,
+    "documentName": "",
+    "email": "",
+    "language": "",
+    "url": ""
+  }
+}

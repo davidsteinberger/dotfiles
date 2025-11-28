@@ -1,0 +1,15 @@
+meta {
+  name: Delete OAuth 2.0 Client
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/admin/clients/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

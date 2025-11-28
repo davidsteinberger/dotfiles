@@ -1,0 +1,29 @@
+meta {
+  name: Accept OAuth 2.0 Login Request
+  type: http
+  seq: 13
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/login/accept
+  body: json
+  auth: inherit
+}
+
+params:query {
+  login_challenge: 
+}
+
+body:json {
+  {
+    "acr": "",
+    "amr": [],
+    "context": "",
+    "extend_session_lifespan": false,
+    "force_subject_identifier": "",
+    "identity_provider_session_id": "",
+    "remember": false,
+    "remember_for": 0,
+    "subject": ""
+  }
+}

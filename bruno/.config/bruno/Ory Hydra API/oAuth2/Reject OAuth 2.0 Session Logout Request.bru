@@ -1,0 +1,15 @@
+meta {
+  name: Reject OAuth 2.0 Session Logout Request
+  type: http
+  seq: 17
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/logout/reject
+  body: none
+  auth: inherit
+}
+
+params:query {
+  logout_challenge: 
+}

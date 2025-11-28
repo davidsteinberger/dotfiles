@@ -1,0 +1,16 @@
+meta {
+  name: Allows to remove a Relationship (DELETE)
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/contact/relationshiptype
+  body: none
+  auth: inherit
+}
+
+params:query {
+  relationshipType: 
+  orgId: 
+}

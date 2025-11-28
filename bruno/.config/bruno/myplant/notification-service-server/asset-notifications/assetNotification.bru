@@ -1,0 +1,21 @@
+meta {
+  name: assetNotification
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/notify
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "assetId": 0,
+    "notificationType": "",
+    "metadata": {},
+    "expressionId": 0,
+    "details": {}
+  }
+}

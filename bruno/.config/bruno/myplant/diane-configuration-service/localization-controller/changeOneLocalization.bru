@@ -1,0 +1,23 @@
+meta {
+  name: changeOneLocalization
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/localization/:configId/:language/:key
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  language: 
+  key: 
+}
+
+body:json {
+  {
+    "localization": ""
+  }
+}

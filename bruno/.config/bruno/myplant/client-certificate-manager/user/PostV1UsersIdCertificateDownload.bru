@@ -1,0 +1,25 @@
+meta {
+  name: PostV1UsersIdCertificateDownload
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/v1/users/:id/certificate/download
+  body: json
+  auth: bearer
+}
+
+params:query {
+  domain: 
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "password": ""
+  }
+}

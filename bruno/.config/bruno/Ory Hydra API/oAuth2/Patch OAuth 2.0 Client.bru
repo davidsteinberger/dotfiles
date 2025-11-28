@@ -1,0 +1,26 @@
+meta {
+  name: Patch OAuth 2.0 Client
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/admin/clients/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  [
+    {
+      "from": "",
+      "op": "",
+      "path": "",
+      "value": ""
+    }
+  ]
+}

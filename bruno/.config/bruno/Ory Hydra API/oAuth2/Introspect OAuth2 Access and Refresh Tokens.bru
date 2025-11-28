@@ -1,0 +1,16 @@
+meta {
+  name: Introspect OAuth2 Access and Refresh Tokens
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{baseUrl}}/admin/oauth2/introspect
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:form-urlencoded {
+  scope: 
+  token: 
+}

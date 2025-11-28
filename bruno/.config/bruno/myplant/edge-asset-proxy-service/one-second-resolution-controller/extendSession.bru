@@ -1,0 +1,20 @@
+meta {
+  name: extendSession
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/asset/:assetId/one-second-resolution/session/:sessionId/extend
+  body: none
+  auth: inherit
+}
+
+params:query {
+  sessionTimeToLiveTimeSpanInMilliSeconds: 
+}
+
+params:path {
+  assetId: 
+  sessionId: 
+}

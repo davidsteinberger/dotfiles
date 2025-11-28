@@ -1,0 +1,32 @@
+meta {
+  name: PostV1Certificates
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/v1/certificates
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "assetIds": [],
+    "autoCreateUser": false,
+    "createMyPlantUser": false,
+    "domains": [],
+    "password": "",
+    "roles": [
+      {
+        "appId": "",
+        "appRole": ""
+      }
+    ],
+    "username": ""
+  }
+}

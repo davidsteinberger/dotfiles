@@ -1,0 +1,29 @@
+meta {
+  name: Accept OAuth 2.0 Consent Request
+  type: http
+  seq: 9
+}
+
+put {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/consent/accept
+  body: json
+  auth: inherit
+}
+
+params:query {
+  consent_challenge: 
+}
+
+body:json {
+  {
+    "context": "",
+    "grant_access_token_audience": [],
+    "grant_scope": [],
+    "remember": false,
+    "remember_for": 0,
+    "session": {
+      "access_token": "",
+      "id_token": ""
+    }
+  }
+}

@@ -1,0 +1,11 @@
+meta {
+  name: Returns a paginated and filtered list of subscriptions with params from post body
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/subscription/find
+  body: json
+  auth: inherit
+}

@@ -1,0 +1,16 @@
+meta {
+  name: Revokes OAuth 2.0 Login Sessions by either a Subject or a SessionID
+  type: http
+  seq: 20
+}
+
+delete {
+  url: {{baseUrl}}/admin/oauth2/auth/sessions/login
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~subject: 
+  ~sid: 
+}

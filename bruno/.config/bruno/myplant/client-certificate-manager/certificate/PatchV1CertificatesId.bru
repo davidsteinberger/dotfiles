@@ -1,0 +1,17 @@
+meta {
+  name: PatchV1CertificatesId
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{baseUrl}}/v1/certificates/:id
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": ""
+  }
+}

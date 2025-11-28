@@ -1,0 +1,23 @@
+meta {
+  name: createOneLocalizationDetail
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/localization-detail/:configId/:key
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+  key: 
+}
+
+body:json {
+  {
+    "key": "",
+    "maxLength": 0
+  }
+}

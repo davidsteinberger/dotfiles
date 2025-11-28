@@ -1,0 +1,15 @@
+meta {
+  name: deleteVersionInfo_1
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/measure-point-hierarchy/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

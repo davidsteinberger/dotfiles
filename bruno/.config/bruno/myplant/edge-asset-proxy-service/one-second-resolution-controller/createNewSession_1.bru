@@ -1,0 +1,25 @@
+meta {
+  name: createNewSession_1
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/asset/:assetId/one-second-resolution/session
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}
+
+body:json {
+  {
+    "ipAddress": "",
+    "mqttServerConnectionString": "",
+    "sessionTimeToLiveTimeSpanInMilliSeconds": 0,
+    "sendOnlyChanges": false,
+    "myPlantToOpcTagMappings": {}
+  }
+}

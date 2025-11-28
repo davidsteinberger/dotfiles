@@ -1,0 +1,19 @@
+meta {
+  name: Return details of a single contact by username
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/contact/user/:username
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~includeAddress: 
+}
+
+params:path {
+  username: 
+}

@@ -1,0 +1,18 @@
+meta {
+  name: createAppRequest
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/user-apps/requests
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "appId": 0,
+    "reason": ""
+  }
+}

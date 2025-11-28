@@ -1,0 +1,20 @@
+meta {
+  name: Returns a paginated list of external contacts managed by the given source system
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/contact/external/:sourceSystemId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~offset: 
+}
+
+params:path {
+  sourceSystemId: 
+}

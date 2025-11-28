@@ -1,0 +1,80 @@
+meta {
+  name: Create an Insight
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/insights
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var name = "Mild Rain";
+  var conditions = {
+      "type": "OPERATOR",
+      "content": {
+          "operator": "AND"
+      },
+      "children": [{
+              "type": "OPERATOR",
+              "content": {
+                  "operator": "EQUAL"
+              },
+              "children": [{
+                      "type": "PARAMETER",
+                      "content": {
+                          "parameter": "precipitationType"
+                      }
+                  },
+                  {
+                      "type": "CONST",
+                      "content": {
+                          "const": 1
+                      }
+                  }
+              ]
+          },
+          {
+              "type": "OPERATOR",
+              "content": {
+                  "operator": "GREATER"
+              },
+              "children": [{
+                      "type": "PARAMETER",
+                      "content": {
+                          "parameter": "precipitationIntensity"
+                      }
+                  },
+                  {
+                      "type": "CONST",
+                      "content": {
+                          "const": 0.5
+                      }
+                  }
+              ]
+          }
+  
+      ]
+  };
+  
+  var body = {
+      name, // (Required) The name of the insight
+      conditions, // (Required) The conditions for which the linked locations will be checked
+  }
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

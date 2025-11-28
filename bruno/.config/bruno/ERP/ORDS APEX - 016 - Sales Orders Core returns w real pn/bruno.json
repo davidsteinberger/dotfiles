@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "ORDS APEX - 016 - Sales Orders Core returns w real pn",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,36 @@
+meta {
+  name: update
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/product-suites/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
+
+body:json {
+  {
+    "iconSrc": "",
+    "bgColor": "",
+    "productSuiteName": "",
+    "nameLocalization": [
+      {
+        "language": "",
+        "text": ""
+      }
+    ],
+    "shortDescriptionLocalization": [
+      {}
+    ],
+    "descriptionLocalization": [
+      {}
+    ],
+    "orderNum": 0
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Closes a remote session
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/remote-connection/session/:sessionId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  sessionId: 
+}

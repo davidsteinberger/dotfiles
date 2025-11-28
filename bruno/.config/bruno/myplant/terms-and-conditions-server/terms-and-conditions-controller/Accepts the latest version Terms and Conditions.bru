@@ -1,0 +1,16 @@
+meta {
+  name: Accepts the latest version Terms and Conditions
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/:appName/user/accept/:termsAndConditionsId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appName: 
+  termsAndConditionsId: 
+}

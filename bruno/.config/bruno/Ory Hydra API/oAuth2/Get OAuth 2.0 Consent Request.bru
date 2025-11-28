@@ -1,0 +1,15 @@
+meta {
+  name: Get OAuth 2.0 Consent Request
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/admin/oauth2/auth/requests/consent
+  body: none
+  auth: inherit
+}
+
+params:query {
+  consent_challenge: 
+}

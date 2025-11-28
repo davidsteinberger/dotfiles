@@ -1,0 +1,15 @@
+meta {
+  name: deleteMeasurePointForConfig
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{baseUrl}}/measure-point/:configId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}

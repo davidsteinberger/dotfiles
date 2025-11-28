@@ -1,0 +1,31 @@
+meta {
+  name: save all mappings for model
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/measure-point/mapping/:model
+  body: json
+  auth: inherit
+}
+
+params:path {
+  model: 
+}
+
+body:json {
+  [
+    {
+      "itemId": 0,
+      "myplantItemName": "",
+      "xt4HmiTag": "",
+      "xt4HmiTag2": "",
+      "dianeWinTag": "",
+      "xt3OpcDaTag": "",
+      "xt4OpcUaTag": "",
+      "xt5OpcUaTag": "",
+      "xt5HealthOpcUaTag": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+meta {
+  name: Retrieve Events (Basic)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/events?location={{location}}&insights={{insights}}&buffer={{buffer}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  location: {{location}}
+  insights: {{insights}}
+  buffer: {{buffer}}
+}
+
+script:pre-request {
+  var location = [42.3492721,-71.0573512];
+  var insights = ["fires"];
+  var buffer = 1;
+  
+  bru.setEnvVar('location', location);
+  bru.setEnvVar('insights', insights);
+  bru.setEnvVar('buffer', buffer);
+  
+}
+
+settings {
+  encodeUrl: true
+}

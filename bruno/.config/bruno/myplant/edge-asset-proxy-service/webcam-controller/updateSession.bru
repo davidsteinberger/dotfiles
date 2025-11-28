@@ -1,0 +1,22 @@
+meta {
+  name: updateSession
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{baseUrl}}/assets/:assetId/webcam/:sessionId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+  sessionId: 
+}
+
+body:json {
+  {
+    "sessionTimeToLiveTimeSpanInMilliSeconds": 0
+  }
+}

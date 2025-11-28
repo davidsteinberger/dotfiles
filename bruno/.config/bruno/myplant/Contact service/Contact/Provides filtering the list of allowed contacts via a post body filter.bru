@@ -1,0 +1,15 @@
+meta {
+  name: Provides filtering the list of allowed contacts via a post body filter
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/contact/find
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~includeAddress: 
+}

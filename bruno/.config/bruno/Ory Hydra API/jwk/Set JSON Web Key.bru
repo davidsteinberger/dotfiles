@@ -1,0 +1,38 @@
+meta {
+  name: Set JSON Web Key
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/admin/keys/:set/:kid
+  body: json
+  auth: inherit
+}
+
+params:path {
+  set: 
+  kid: 
+}
+
+body:json {
+  {
+    "alg": "",
+    "crv": "",
+    "d": "",
+    "dp": "",
+    "dq": "",
+    "e": "",
+    "k": "",
+    "kid": "",
+    "kty": "",
+    "n": "",
+    "p": "",
+    "q": "",
+    "qi": "",
+    "use": "",
+    "x": "",
+    "x5c": [],
+    "y": ""
+  }
+}

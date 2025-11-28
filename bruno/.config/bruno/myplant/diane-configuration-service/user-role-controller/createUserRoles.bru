@@ -1,0 +1,29 @@
+meta {
+  name: createUserRoles
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/user-role/:configId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  configId: 
+}
+
+body:json {
+  [
+    {
+      "name": "",
+      "description": "",
+      "parentRoleName": "",
+      "level": 0,
+      "parentLevel": 0,
+      "localUsersEnabled": 0,
+      "limitUsersEnabled": 0
+    }
+  ]
+}

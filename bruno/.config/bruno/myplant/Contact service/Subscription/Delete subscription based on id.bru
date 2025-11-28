@@ -1,0 +1,15 @@
+meta {
+  name: Delete subscription based on id
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{baseUrl}}/subscription/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 
+}

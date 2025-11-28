@@ -1,0 +1,69 @@
+meta {
+  name: Retrieve Historical Timeline by polygon
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/historical
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {{body}}
+}
+
+script:pre-request {
+  var moment = require('moment');
+  var now = moment.utc();
+  
+  var startTime = moment.utc(now).add(-130, 'days').toISOString();
+  var endTime = moment.utc(now).add(-100, 'days').toISOString();
+  var fields = ["totalPrecipitationAccumulation","windSpeedMax", "windSpeed100", "temperatureMaxTime", "humidity"];
+  var timesteps = ["1d"];
+  var location = {"type": "Polygon",
+      "coordinates": [
+            [
+              [
+                -73.9710545539856,
+                40.767232894792066
+              ],
+              [
+                -73.97461652755737,
+                40.76815921628347
+              ],
+              [
+                -73.97667646408081,
+                40.76593277267437
+              ],
+              [
+                -73.97287845611572,
+                40.76429133217449
+              ],
+              [
+                -73.9710545539856,
+                40.767232894792066
+              ]
+            ]
+          ]
+    }
+  var units = "metric"
+  var timezone = "UTC"
+  
+  var body = {
+      startTime, // Start time in ISO 8601 format "2019-03-20T14:09:50Z" 
+      endTime, // End time in ISO 8601 format "2019-03-20T14:09:50Z"
+      fields, // (Required) Selected fields from our data layers (polygon/polyline default to Max, if not suffix is not specified)
+      timesteps, // Timesteps of the timelines: "1h", "1d"
+      location, // (Required) ID of a pre-defined location, latlong string, polygon or polyline
+      units, // Units of field values, either "metric" or "imperial" (defaults to metric)
+      timezone // Timezone of time values, according to IANA Timezone Names (defaults to UTC)
+  }
+  
+  bru.setEnvVar('body', JSON.stringify(body));
+}
+
+settings {
+  encodeUrl: true
+}

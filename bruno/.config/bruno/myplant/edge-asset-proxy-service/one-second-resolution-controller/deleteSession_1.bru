@@ -1,0 +1,16 @@
+meta {
+  name: deleteSession_1
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{baseUrl}}/asset/:assetId/one-second-resolution/session/:sessionId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+  sessionId: 
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Updates a contact by id with given contact data
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/contact/:id
+  body: json
+  auth: inherit
+}
+
+params:path {
+  id: 
+}
