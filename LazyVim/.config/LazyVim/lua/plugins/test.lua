@@ -16,7 +16,7 @@ return {
       opts.adapters = vim.tbl_extend("force", opts.adapters, {
         ["neotest-jest"] = {
           jestCommand = jestCommand,
-          debug = true,
+          -- debug = true,
           cwd = util.find_root,
         },
       })
@@ -37,7 +37,7 @@ return {
       opts.adapters = vim.tbl_extend("force", opts.adapters, {
         ["neotest-vitest"] = {
           vitestCommand = vitestCommand,
-          debug = true,
+          -- debug = true,
           cwd = util.find_root,
         },
       })
