@@ -153,6 +153,8 @@
             name = "zellij";
             args = ["HEAD"];
           }
+          "clojure/tools/clojure"
+          "borkdude/brew/babashka"
         ];
         masApps = {
           Yubico = 1497506650;

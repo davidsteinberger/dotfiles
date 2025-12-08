@@ -8,6 +8,13 @@ return {
     end,
   },
   {
+    "clojure-vim/vim-jack-in",
+    dependencies = {
+      "tpope/vim-dispatch",
+      "radenling/vim-dispatch-neovim",
+    },
+  },
+  {
     "piersolenski/wtf.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -38,14 +45,6 @@ return {
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
       end,
-      -- completion = {
-      --   list = {
-      --     selection = {
-      --       preselect = false,
-      --       -- auto_insert = false,
-      --     },
-      --   },
-      -- },
       cmdline = {
         enabled = true,
         keymap = {
@@ -54,9 +53,6 @@ return {
           ["<Left>"] = { "select_prev", "fallback" },
         },
       },
-      -- keymap = {
-      --   ["<RIGHT>"] = { "select_and_accept", "fallback" },
-      -- },
     },
   },
   {
