@@ -1,6 +1,6 @@
 return {
   {
-    "nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       opts.incremental_selection = {
         enable = true,

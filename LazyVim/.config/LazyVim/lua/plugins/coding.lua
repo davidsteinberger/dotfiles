@@ -15,6 +15,14 @@ return {
     },
   },
   {
+    "Olical/conjure",
+    ft = { "clojure", "clojurescript" },
+    lazy = true,
+    init = function()
+      vim.g["conjure#client_on_load"] = false
+    end,
+  },
+  {
     "piersolenski/wtf.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
