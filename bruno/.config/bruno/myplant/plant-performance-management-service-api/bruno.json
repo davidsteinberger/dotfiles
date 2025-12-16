@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "plant-performance-management-service-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

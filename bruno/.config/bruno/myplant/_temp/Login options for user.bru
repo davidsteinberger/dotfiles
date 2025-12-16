@@ -1,0 +1,20 @@
+meta {
+  name: Login options for user
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/api/auth/sso/user/105042697
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

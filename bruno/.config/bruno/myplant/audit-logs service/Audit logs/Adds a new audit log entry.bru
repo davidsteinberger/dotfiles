@@ -1,0 +1,61 @@
+meta {
+  name: Adds a new audit log entry
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/:type
+  body: json
+  auth: inherit
+}
+
+params:query {
+  username: 
+}
+
+params:path {
+  type: 
+}
+
+example {
+  name: 200 Response
+  description: The newly added log entry
+  
+  request: {
+    url: {{baseUrl}}/:type
+    method: POST
+    mode: json
+    params:query: {
+      username: 
+    }
+  
+    params:path: {
+      type: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": "",
+          "timestamp": 0,
+          "username": "",
+          "type": "",
+          "data": ""
+        }
+      '''
+    }
+  }
+}

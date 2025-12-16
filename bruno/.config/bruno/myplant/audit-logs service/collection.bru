@@ -1,0 +1,13 @@
+meta {
+  name: audit-logs service
+}
+
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: x-seshat-token
+  value: {{apiKey}}
+  placement: header
+}

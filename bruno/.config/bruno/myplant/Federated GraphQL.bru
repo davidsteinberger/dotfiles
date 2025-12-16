@@ -11,9 +11,50 @@ post {
 }
 
 body:graphql {
-  query Test {
-    asset(id: 1) {
-      id
+  query AssetOverviewQuery(
+    $filter: ListFilter!
+  ) {
+    assets(filter: $filter) {
+      items {
+        id
+      }
+    }
+  }
+  
+}
+
+body:graphql:vars {
+  {
+    "filter": {
+      "filters": [
+        [
+          {
+            "name": "model",
+            "op": "IN",
+            "value": [
+              "J-Engine"
+            ],
+            "comb": "AND"
+          },
+          {
+            "name": "dataItems.OperationalCondition",
+            "op": "EQUALS",
+            "mod": "NOT",
+            "comb": "AND",
+            "value": [
+              "Decommissioned"
+            ]
+          },
+          {
+            "name": "dataItems.[OperationalCondition]",
+            "op": "IN",
+            "value": [
+              "Running"
+            ],
+            "comb": "AND"
+          }
+        ]
+      ]
     }
   }
 }

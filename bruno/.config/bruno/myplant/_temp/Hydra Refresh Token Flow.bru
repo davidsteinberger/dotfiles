@@ -1,0 +1,29 @@
+meta {
+  name: Hydra Refresh Token Flow
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{host}}/ws/oauth/oauth2/token
+  body: formUrlEncoded
+  auth: basic
+}
+
+auth:basic {
+  username: client-id
+  password: client-secret
+}
+
+body:form-urlencoded {
+  grant_type: refresh_token
+  refresh_token: 
+  scope: openid email profile offline_access
+  ~client_id: 
+  ~client_secret: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

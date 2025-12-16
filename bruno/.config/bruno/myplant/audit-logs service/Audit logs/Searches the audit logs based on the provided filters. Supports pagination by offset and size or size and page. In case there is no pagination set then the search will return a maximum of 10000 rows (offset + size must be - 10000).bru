@@ -1,0 +1,73 @@
+meta {
+  name: Searches the audit logs based on the provided filters. Supports pagination by offset and size or size and page. In case there is no pagination set then the search will return a maximum of 10000 rows (offset + size must be < 10000).
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/search
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: 
+  ~username: 
+  ~data.xtUsername: 
+  ~data.JNumber: 
+  ~page: 
+  ~size: 
+  ~offset: 
+  ~from: 
+  ~to: 
+  ~sortOrder: 
+}
+
+example {
+  name: 200 Response
+  description: Search results
+  
+  request: {
+    url: {{baseUrl}}/search
+    method: GET
+    mode: none
+    params:query: {
+      type: 
+      ~username: 
+      ~data.xtUsername: 
+      ~data.JNumber: 
+      ~page: 
+      ~size: 
+      ~offset: 
+      ~from: 
+      ~to: 
+      ~sortOrder: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": "",
+            "timestamp": 0,
+            "username": "",
+            "type": "",
+            "data": ""
+          }
+        ]
+      '''
+    }
+  }
+}

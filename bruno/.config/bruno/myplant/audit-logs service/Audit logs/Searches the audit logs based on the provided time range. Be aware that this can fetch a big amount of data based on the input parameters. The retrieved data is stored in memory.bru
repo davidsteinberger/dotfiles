@@ -1,0 +1,61 @@
+meta {
+  name: Searches the audit logs based on the provided time range. Be aware that this can fetch a big amount of data based on the input parameters. The retrieved data is stored in memory.
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/search/time-range
+  body: none
+  auth: inherit
+}
+
+params:query {
+  type: 
+  from: 
+  to: 
+  ~sortOrder: 
+}
+
+example {
+  name: 200 Response
+  description: Search results
+  
+  request: {
+    url: {{baseUrl}}/search/time-range
+    method: GET
+    mode: none
+    params:query: {
+      type: 
+      from: 
+      to: 
+      ~sortOrder: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {
+            "id": "",
+            "timestamp": 0,
+            "username": "",
+            "type": "",
+            "data": ""
+          }
+        ]
+      '''
+    }
+  }
+}
