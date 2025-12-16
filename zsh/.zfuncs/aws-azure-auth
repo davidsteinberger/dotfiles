@@ -1,0 +1,52 @@
+# Set your Bitwarden item ID here
+BW_ITEM_ID="f7a331e1-25b0-414b-a3fe-acf800e4aaa8"
+
+# Check if profile argument is given
+if [ -z "$1" ]; then
+  echo "Usage: $0 <aws-profile>"
+  exit 1
+fi
+
+PROFILE="$1"
+
+# Get credentials from Bitwarden (single call to minimize sudo prompts)
+BW_ITEM=$(bw get item "$BW_ITEM_ID")
+BW_PASSWORD=$(echo "$BW_ITEM" | jq -r '.login.password')
+BW_USERNAME=$(echo "$BW_ITEM" | jq -r '.login.username')
+BW_TOTP=$(bw get totp "$BW_ITEM_ID")
+
+if [ -z "$BW_PASSWORD" ]; then
+  echo "Failed to retrieve password from Bitwarden."
+  exit 1
+fi
+
+if [ -z "$BW_USERNAME" ]; then
+  echo "Failed to retrieve username from Bitwarden."
+  exit 1
+fi
+
+if [ -z "$BW_TOTP" ]; then
+  echo "Failed to retrieve TOTP from Bitwarden."
+  exit 1
+fi
+
+echo "Starting AWS Azure login for profile: $PROFILE"
+echo "TOTP: $BW_TOTP"
+
+# Set environment variables and run expect inline
+export AZURE_DEFAULT_USERNAME="$BW_USERNAME"
+export AZURE_DEFAULT_PASSWORD="$BW_PASSWORD"
+
+expect -c "
+  set timeout 20
+  
+  spawn aws-azure-login --profile $PROFILE --no-prompt
+  
+  expect \"Verification Code\"
+  send \"$BW_TOTP\r\"
+
+  interact
+"
+
+unset AZURE_DEFAULT_USERNAME
+unset AZURE_DEFAULT_PASSWORD
