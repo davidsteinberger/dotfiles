@@ -40,7 +40,7 @@ function _bw {
         "move:Move an item to an organization."
         "confirm:Confirm an object to the organization."
         "import:Import vault data from a file."
-        "export:Export vault data to a CSV or JSON file."
+        "export:Export vault data to a CSV, JSON or ZIP file."
         "share:--DEPRECATED-- Move an item to an organization."
         "send:Work with Bitwarden sends. A Send can be quickly created using this command or subcommands can be used to fine-tune the Send"
         "receive:Access a Bitwarden Send from a url"
@@ -144,7 +144,7 @@ function _bw_login {
   _arguments -C \
     '--method[Two-step login method.]' \
     '--code[Two-step login code.]' \
-    '--sso[Log in with Single-Sign On.]' \
+    '--sso[Log in with Single-Sign On with optional organization identifier.]' \
     '--apikey[Log in with an Api Key.]' \
     '--passwordenv[Environment variable storing your password]' \
     '--passwordfile[Path to a file containing your password as its first line]' \
