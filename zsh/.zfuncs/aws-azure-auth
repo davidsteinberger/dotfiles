@@ -37,16 +37,48 @@ echo "TOTP: $BW_TOTP"
 export AZURE_DEFAULT_USERNAME="$BW_USERNAME"
 export AZURE_DEFAULT_PASSWORD="$BW_PASSWORD"
 
-expect -c "
-  set timeout 20
-  
-  spawn aws-azure-login --profile $PROFILE --no-prompt
-  
-  expect \"Verification Code\"
-  send \"$BW_TOTP\r\"
+# Create expect script with proper terminal handling
+EXPECT_SCRIPT=$(mktemp)
+cat > "$EXPECT_SCRIPT" <<'EOF'
+#!/usr/bin/expect -f
 
-  interact
-"
+# Enable proper terminal handling
+exp_internal 0
+log_user 1
+set timeout 30
+
+# Get variables from environment
+set profile $env(PROFILE)
+set totp $env(BW_TOTP)
+
+# Spawn with proper terminal
+spawn -noecho aws-azure-login --profile $profile --no-prompt
+
+# Handle TOTP
+expect {
+    "Verification Code" {
+        send "$totp\r"
+        exp_continue
+    }
+    "Role" {
+        # Hand over control to user with full terminal access
+        interact
+        exit 0
+    }
+    timeout {
+        puts "\nTimeout waiting for role selection"
+        interact
+        exit 1
+    }
+    eof {
+        exit 0
+    }
+}
+EOF
+
+chmod +x "$EXPECT_SCRIPT"
+PROFILE="$PROFILE" BW_TOTP="$BW_TOTP" "$EXPECT_SCRIPT"
+rm -f "$EXPECT_SCRIPT"
 
 unset AZURE_DEFAULT_USERNAME
 unset AZURE_DEFAULT_PASSWORD
