@@ -1,0 +1,103 @@
+meta {
+  name: availableAnalyticsItems
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/analytics/available
+  body: none
+  auth: inherit
+}
+
+params:query {
+  assetIds: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/analytics/available
+    method: GET
+    mode: none
+    params:query: {
+      assetIds: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {}
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/analytics/available
+    method: GET
+    mode: none
+    params:query: {
+      assetIds: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/analytics/available
+    method: GET
+    mode: none
+    params:query: {
+      assetIds: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,139 @@
+meta {
+  name: updateSystemSettings
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/system/settings
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/settings
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "user": {
+            "termsOfServiceVersion": 0
+          },
+          "systemLogger": {
+            "verboseRequestErrors": false
+          },
+          "packageLevelSettings": {
+            "internalLevel": "",
+            "defaultLevel": "",
+            "contractPackageSettings": {
+              "level": "",
+              "expiryDays": 0
+            },
+            "eventPackageLevels": [
+              {
+                "name": "",
+                "originalOrganizationLevel": "",
+                "targetOrganizationLevel": "",
+                "functionGroups": "",
+                "organizationScope": 0
+              }
+            ]
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/system/settings
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/system/settings
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/system/settings
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

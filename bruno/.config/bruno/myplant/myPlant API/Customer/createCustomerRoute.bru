@@ -1,0 +1,94 @@
+meta {
+  name: createCustomerRoute
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/customer
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/customer
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "name": "",
+          "description": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/customer
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/customer
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

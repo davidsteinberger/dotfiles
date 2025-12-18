@@ -1,0 +1,18 @@
+meta {
+  name: xt4AuditLogRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/xt4/auditlog
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~jNumber: 
+  ~username: 
+  ~limit: 
+  ~offset: 
+}

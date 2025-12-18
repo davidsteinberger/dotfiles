@@ -1,0 +1,95 @@
+meta {
+  name: createDeviceUnitRoute
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/unit
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "name": "",
+          "source": "",
+          "description": "",
+          "id": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

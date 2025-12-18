@@ -1,0 +1,133 @@
+meta {
+  name: getDataFiltersRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/datafilter
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~name: 
+  ~names: 
+  ~group: 
+  ~groups: 
+  ~orgId: 
+  ~visibility: 
+  ~managed: 
+  ~all: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/datafilter
+    method: GET
+    mode: none
+    params:query: {
+      ~name: 
+      ~names: 
+      ~group: 
+      ~groups: 
+      ~orgId: 
+      ~visibility: 
+      ~managed: 
+      ~all: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/datafilter
+    method: GET
+    mode: none
+    params:query: {
+      ~name: 
+      ~names: 
+      ~group: 
+      ~groups: 
+      ~orgId: 
+      ~visibility: 
+      ~managed: 
+      ~all: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/datafilter
+    method: GET
+    mode: none
+    params:query: {
+      ~name: 
+      ~names: 
+      ~group: 
+      ~groups: 
+      ~orgId: 
+      ~visibility: 
+      ~managed: 
+      ~all: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

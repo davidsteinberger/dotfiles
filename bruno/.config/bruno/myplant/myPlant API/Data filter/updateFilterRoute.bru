@@ -1,0 +1,142 @@
+meta {
+  name: updateFilterRoute
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/datafilter/:dataFilterId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  dataFilterId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/datafilter/:dataFilterId
+    method: PUT
+    mode: none
+    params:path: {
+      dataFilterId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "name": "",
+          "group": "",
+          "owner": "",
+          "organizationId": 0,
+          "visibility": "",
+          "metaData": {},
+          "filterData": {},
+          "description": "",
+          "date": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/datafilter/:dataFilterId
+    method: PUT
+    mode: none
+    params:path: {
+      dataFilterId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/datafilter/:dataFilterId
+    method: PUT
+    mode: none
+    params:path: {
+      dataFilterId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/datafilter/:dataFilterId
+    method: PUT
+    mode: none
+    params:path: {
+      dataFilterId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,65 @@
+meta {
+  name: getSnapshotsRoute
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/snapshot/:assetId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  name: 
+  ~from: 
+  ~to: 
+  ~limit: 
+  ~offset: 
+}
+
+params:path {
+  assetId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/snapshot/:assetId
+    method: GET
+    mode: none
+    params:query: {
+      name: 
+      ~from: 
+      ~to: 
+      ~limit: 
+      ~offset: 
+    }
+  
+    params:path: {
+      assetId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}

@@ -1,0 +1,147 @@
+meta {
+  name: qrCodeDataItemUpdate
+  type: http
+  seq: 29
+}
+
+post {
+  url: {{baseUrl}}/asset/qrcode
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/asset/qrcode
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "timestamp": 0,
+          "name": "",
+          "value": "",
+          "unit": "",
+          "assetId": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/asset/qrcode
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/asset/qrcode
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/asset/qrcode
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/asset/qrcode
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

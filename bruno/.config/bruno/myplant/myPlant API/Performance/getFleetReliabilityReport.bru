@@ -1,0 +1,198 @@
+meta {
+  name: getFleetReliabilityReport
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/performance/reliability/report
+  body: none
+  auth: inherit
+}
+
+params:query {
+  kpis: 
+  ~assetIds: 
+  ~serialNumber: 
+  ~assetType: 
+  ~from: 
+  ~to: 
+  ~groupBy: 
+  ~expressionFilter: 
+  ~dataItems: 
+  ~properties: 
+  ~assetTypes: 
+  ~fleetAggregation: 
+  ~groupByAssetValue: 
+  ~assetAggregation: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability/report
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      kpis: 
+      ~groupBy: 
+      ~expressionFilter: 
+      ~dataItems: 
+      ~properties: 
+      ~assetTypes: 
+      ~fleetAggregation: 
+      ~groupByAssetValue: 
+      ~assetAggregation: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability/report
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      kpis: 
+      ~groupBy: 
+      ~expressionFilter: 
+      ~dataItems: 
+      ~properties: 
+      ~assetTypes: 
+      ~fleetAggregation: 
+      ~groupByAssetValue: 
+      ~assetAggregation: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability/report
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      kpis: 
+      ~groupBy: 
+      ~expressionFilter: 
+      ~dataItems: 
+      ~properties: 
+      ~assetTypes: 
+      ~fleetAggregation: 
+      ~groupByAssetValue: 
+      ~assetAggregation: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability/report
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      kpis: 
+      ~groupBy: 
+      ~expressionFilter: 
+      ~dataItems: 
+      ~properties: 
+      ~assetTypes: 
+      ~fleetAggregation: 
+      ~groupByAssetValue: 
+      ~assetAggregation: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

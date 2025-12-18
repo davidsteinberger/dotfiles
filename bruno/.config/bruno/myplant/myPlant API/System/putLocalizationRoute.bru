@@ -1,0 +1,40 @@
+meta {
+  name: putLocalizationRoute
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/system/localization
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/localization
+    method: PUT
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,122 @@
+meta {
+  name: deleteRemoteSessionRoute
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{baseUrl}}/remote-connection/session/:sessionId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  sessionType: 
+}
+
+params:path {
+  sessionId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session/:sessionId
+    method: DELETE
+    mode: none
+    params:query: {
+      sessionType: 
+    }
+  
+    params:path: {
+      sessionId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session/:sessionId
+    method: DELETE
+    mode: none
+    params:query: {
+      sessionType: 
+    }
+  
+    params:path: {
+      sessionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session/:sessionId
+    method: DELETE
+    mode: none
+    params:query: {
+      sessionType: 
+    }
+  
+    params:path: {
+      sessionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

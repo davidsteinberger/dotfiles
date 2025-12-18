@@ -52,25 +52,35 @@ set profile $env(PROFILE)
 set totp $env(BW_TOTP)
 
 # Spawn with proper terminal
-spawn -noecho aws-azure-login --profile $profile --no-prompt
+spawn aws-azure-login --profile $profile
 
-# Handle TOTP
+# Handle TOTP first - separate phase
 expect {
     "Verification Code" {
         send "$totp\r"
-        exp_continue
     }
+    timeout {
+        puts "\nTimeout waiting for TOTP prompt"
+        exit 1
+    }
+    eof {
+        puts "\nProcess ended during TOTP"
+        exit 1
+    }
+}
+
+# Now wait specifically for role selection - separate phase
+expect {
     "Role" {
-        # Hand over control to user with full terminal access
         interact
         exit 0
     }
     timeout {
-        puts "\nTimeout waiting for role selection"
-        interact
+        puts "\nTimeout waiting for role selection."
         exit 1
     }
     eof {
+        puts "\nProcess ended unexpectedly"
         exit 0
     }
 }

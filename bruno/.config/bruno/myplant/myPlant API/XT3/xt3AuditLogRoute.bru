@@ -1,0 +1,53 @@
+meta {
+  name: xt3AuditLogRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/xt3/auditlog
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~jNumber: 
+  ~xtUsername: 
+  ~limit: 
+  ~offset: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/xt3/auditlog
+    method: GET
+    mode: none
+    params:query: {
+      ~jNumber: 
+      ~xtUsername: 
+      ~limit: 
+      ~offset: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {}
+      '''
+    }
+  }
+}

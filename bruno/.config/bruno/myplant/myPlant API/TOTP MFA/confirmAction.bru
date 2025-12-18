@@ -1,0 +1,93 @@
+meta {
+  name: confirmAction
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/auth/mfa/totp/actions/confirmation
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/auth/mfa/totp/actions/confirmation
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/auth/mfa/totp/actions/confirmation
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 500 Response
+  description: server_error
+  
+  request: {
+    url: {{baseUrl}}/auth/mfa/totp/actions/confirmation
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 500
+      text: Internal Server Error
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

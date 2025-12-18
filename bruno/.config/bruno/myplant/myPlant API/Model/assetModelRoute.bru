@@ -1,0 +1,120 @@
+meta {
+  name: assetModelRoute
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/model/:modelName
+  body: none
+  auth: inherit
+}
+
+params:path {
+  modelName: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/model/:modelName
+    method: GET
+    mode: none
+    params:path: {
+      modelName: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "name": "",
+          "dataItems": [
+            {
+              "id": 0,
+              "name": "",
+              "unit": ""
+            }
+          ],
+          "properties": [
+            {
+              "id": 0,
+              "modelId": 0,
+              "name": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/model/:modelName
+    method: GET
+    mode: none
+    params:path: {
+      modelName: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Model not found
+  
+  request: {
+    url: {{baseUrl}}/model/:modelName
+    method: GET
+    mode: none
+    params:path: {
+      modelName: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,48 @@
+meta {
+  name: signupToken
+  type: http
+  seq: 25
+}
+
+post {
+  url: {{baseUrl}}/user/signup/token
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/signup/token
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "token": "",
+          "creatorUserId": "",
+          "createdOn": 0,
+          "targetOrg": 0,
+          "parentOrg": 0,
+          "geAdminSSO": 0,
+          "usedOn": 0
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,49 @@
+meta {
+  name: createUser
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/user/signup/account
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/signup/account
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "valid": false,
+          "errors": [
+            {
+              "field": "",
+              "messages": []
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

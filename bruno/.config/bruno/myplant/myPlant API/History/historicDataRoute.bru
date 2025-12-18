@@ -1,0 +1,137 @@
+meta {
+  name: historicDataRoute
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/history/data
+  body: none
+  auth: inherit
+}
+
+params:query {
+  serialNumber: 
+  assetType: 
+  ~from: 
+  ~to: 
+  ~limit: 
+  ~dataItemName: 
+  ~dataItemId: 
+  ~timeCycle: 
+  ~forceDownSampling: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/history/data
+    method: GET
+    mode: none
+    params:query: {
+      serialNumber: 
+      ~from: 
+      ~to: 
+      ~limit: 
+      assetType: 
+      ~dataItemName: 
+      ~dataItemId: 
+      ~timeCycle: 
+      ~forceDownSampling: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required parameters
+  
+  request: {
+    url: {{baseUrl}}/history/data
+    method: GET
+    mode: none
+    params:query: {
+      serialNumber: 
+      ~from: 
+      ~to: 
+      ~limit: 
+      assetType: 
+      ~dataItemName: 
+      ~dataItemId: 
+      ~timeCycle: 
+      ~forceDownSampling: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/history/data
+    method: GET
+    mode: none
+    params:query: {
+      serialNumber: 
+      ~from: 
+      ~to: 
+      ~limit: 
+      assetType: 
+      ~dataItemName: 
+      ~dataItemId: 
+      ~timeCycle: 
+      ~forceDownSampling: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

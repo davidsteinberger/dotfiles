@@ -1,0 +1,176 @@
+meta {
+  name: insertEngineCountersLegacyRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/legacy/counters
+  body: none
+  auth: inherit
+}
+
+params:query {
+  serialNumber: 
+  dateFormat: 
+  presto_password: 
+  presto_user: 
+  readingDate: 
+  ~Count_OpHourManual: 
+  ~Count_Energy: 
+  ~Count_Start: 
+  ~reason: 
+  ~enteredBy: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/legacy/counters
+    method: GET
+    mode: none
+    params:query: {
+      ~Count_OpHourManual: 
+      ~Count_Energy: 
+      ~Count_Start: 
+      ~reason: 
+      serialNumber: 
+      dateFormat: 
+      presto_password: 
+      presto_user: 
+      ~enteredBy: 
+      readingDate: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/xml
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: xml
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/legacy/counters
+    method: GET
+    mode: none
+    params:query: {
+      ~Count_OpHourManual: 
+      ~Count_Energy: 
+      ~Count_Start: 
+      ~reason: 
+      serialNumber: 
+      dateFormat: 
+      presto_password: 
+      presto_user: 
+      ~enteredBy: 
+      readingDate: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/legacy/counters
+    method: GET
+    mode: none
+    params:query: {
+      ~Count_OpHourManual: 
+      ~Count_Energy: 
+      ~Count_Start: 
+      ~reason: 
+      serialNumber: 
+      dateFormat: 
+      presto_password: 
+      presto_user: 
+      ~enteredBy: 
+      readingDate: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/legacy/counters
+    method: GET
+    mode: none
+    params:query: {
+      ~Count_OpHourManual: 
+      ~Count_Energy: 
+      ~Count_Start: 
+      ~reason: 
+      serialNumber: 
+      dateFormat: 
+      presto_password: 
+      presto_user: 
+      ~enteredBy: 
+      readingDate: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

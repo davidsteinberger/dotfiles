@@ -1,0 +1,162 @@
+meta {
+  name: updateUserGroupRoute
+  type: http
+  seq: 14
+}
+
+put {
+  url: {{baseUrl}}/usergroup/:groupId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~relations: 
+}
+
+params:path {
+  groupId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/usergroup/:groupId
+    method: PUT
+    mode: none
+    params:query: {
+      ~relations: 
+    }
+  
+    params:path: {
+      groupId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "name": "",
+          "notes": "",
+          "description": "",
+          "label": "",
+          "allAssetAccess": false,
+          "assetGroupsActive": false,
+          "regionsActive": false,
+          "customersActive": false,
+          "sitesActive": false
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/usergroup/:groupId
+    method: PUT
+    mode: none
+    params:query: {
+      ~relations: 
+    }
+  
+    params:path: {
+      groupId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/usergroup/:groupId
+    method: PUT
+    mode: none
+    params:query: {
+      ~relations: 
+    }
+  
+    params:path: {
+      groupId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/usergroup/:groupId
+    method: PUT
+    mode: none
+    params:query: {
+      ~relations: 
+    }
+  
+    params:path: {
+      groupId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

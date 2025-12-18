@@ -1,0 +1,225 @@
+meta {
+  name: issueDetails
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/analytics/issue/:issueId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  issueId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/analytics/issue/:issueId
+    method: GET
+    mode: none
+    params:path: {
+      issueId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "issueId": "",
+          "deviceId": 0,
+          "timestamp": "",
+          "type": "",
+          "state": {
+            "id": 0,
+            "color": "",
+            "stateId": 0,
+            "name": "",
+            "type": ""
+          },
+          "stateOnSite": {},
+          "component": {
+            "componentId": "",
+            "name": "",
+            "description": ""
+          },
+          "analyticsItem": {
+            "analyticsItemId": "",
+            "name": "",
+            "timespanBefore": 0,
+            "timespanAfter": 0,
+            "chartType": "",
+            "orderingNumber": 0,
+            "description": "",
+            "showAlways": false,
+            "packageLevel": ""
+          },
+          "srNumber": "",
+          "maturityLevel": 0,
+          "history": [
+            {
+              "id": "",
+              "time": "",
+              "stateId": 0,
+              "descriptionId": "",
+              "reasonId": "",
+              "sso": "",
+              "freeText": ""
+            }
+          ],
+          "historyOnSite": [
+            {}
+          ],
+          "description": {
+            "id": "",
+            "descriptionId": "",
+            "reasonId": "",
+            "description": "",
+            "orderingNumber": 0
+          },
+          "descriptionOnSite": {},
+          "reason": {
+            "id": "",
+            "reasonId": "",
+            "analyticsItemId": "",
+            "stateId": 0,
+            "reason": "",
+            "orderingNumber": 0,
+            "reminderPeriod": 0,
+            "reminderTemplate": ""
+          },
+          "reasonOnSite": {},
+          "freeText": "",
+          "freeTextOnSite": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/analytics/issue/:issueId
+    method: GET
+    mode: none
+    params:path: {
+      issueId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/analytics/issue/:issueId
+    method: GET
+    mode: none
+    params:path: {
+      issueId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/analytics/issue/:issueId
+    method: GET
+    mode: none
+    params:path: {
+      issueId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/analytics/issue/:issueId
+    method: GET
+    mode: none
+    params:path: {
+      issueId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

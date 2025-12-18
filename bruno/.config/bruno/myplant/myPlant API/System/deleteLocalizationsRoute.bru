@@ -1,0 +1,54 @@
+meta {
+  name: deleteLocalizationsRoute
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{baseUrl}}/system/localization
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~language: 
+  ~group: 
+  ~key: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/localization
+    method: DELETE
+    mode: none
+    params:query: {
+      ~language: 
+      ~group: 
+      ~key: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,165 @@
+meta {
+  name: getSeshatDeviceDetailsRoute
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/device/:deviceId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~dataItemGroups: 
+}
+
+params:path {
+  deviceId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/device/:deviceId
+    method: GET
+    mode: none
+    params:query: {
+      ~dataItemGroups: 
+    }
+  
+    params:path: {
+      deviceId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "name": "",
+          "description": "",
+          "source": "",
+          "modelType": {},
+          "dataItemGroups": [
+            {
+              "id": 0,
+              "name": "",
+              "modelId": 0,
+              "dataItemIds": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/device/:deviceId
+    method: GET
+    mode: none
+    params:query: {
+      ~dataItemGroups: 
+    }
+  
+    params:path: {
+      deviceId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/device/:deviceId
+    method: GET
+    mode: none
+    params:query: {
+      ~dataItemGroups: 
+    }
+  
+    params:path: {
+      deviceId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/device/:deviceId
+    method: GET
+    mode: none
+    params:query: {
+      ~dataItemGroups: 
+    }
+  
+    params:path: {
+      deviceId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

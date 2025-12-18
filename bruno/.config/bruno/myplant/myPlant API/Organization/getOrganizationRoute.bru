@@ -1,0 +1,193 @@
+meta {
+  name: getOrganizationRoute
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/organization/:organizationId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  organizationId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/organization/:organizationId
+    method: GET
+    mode: none
+    params:path: {
+      organizationId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "adminUsername": "",
+          "name": "",
+          "address": "",
+          "xtGroupNumber": "",
+          "childXtGroups": "",
+          "paMaturityLevel": 0,
+          "parentAssetGroupId": 0,
+          "groupType": {},
+          "groupActive": false,
+          "deactivationDate": 0,
+          "vendorId": "",
+          "packageInfo": {
+            "apiRequestQuota": 0,
+            "trialPackageLevel": "",
+            "apiRequestQuotaType": 0,
+            "packageValidTo": 0,
+            "trialPackageValidTo": 0,
+            "trialPackageValidFrom": 0,
+            "assetPackageLevel": "",
+            "promotionName": "",
+            "packageValidFrom": 0,
+            "packageLevel": ""
+          },
+          "mfaStatus": {},
+          "managementType": {},
+          "partyIds": 0,
+          "parentPartyIds": 0,
+          "permissionSettings": {
+            "putChanges": false,
+            "properties": {},
+            "nested": {}
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/organization/:organizationId
+    method: GET
+    mode: none
+    params:path: {
+      organizationId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/organization/:organizationId
+    method: GET
+    mode: none
+    params:path: {
+      organizationId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/organization/:organizationId
+    method: GET
+    mode: none
+    params:path: {
+      organizationId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/organization/:organizationId
+    method: GET
+    mode: none
+    params:path: {
+      organizationId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

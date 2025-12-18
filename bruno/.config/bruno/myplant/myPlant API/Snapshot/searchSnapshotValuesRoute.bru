@@ -1,0 +1,49 @@
+meta {
+  name: searchSnapshotValuesRoute
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/snapshot/:assetId/values
+  body: none
+  auth: inherit
+}
+
+params:path {
+  assetId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/snapshot/:assetId/values
+    method: POST
+    mode: none
+    params:path: {
+      assetId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}

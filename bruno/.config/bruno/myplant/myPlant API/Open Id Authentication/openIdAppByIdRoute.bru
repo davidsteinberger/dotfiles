@@ -1,0 +1,57 @@
+meta {
+  name: openIdAppByIdRoute
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/oauth/app/:appId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/oauth/app/:appId
+    method: GET
+    mode: none
+    params:path: {
+      appId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "redirectUrls": [],
+          "name": "",
+          "description": "",
+          "applicationRolesAppId": "",
+          "appUser": "",
+          "organizationId": 0,
+          "appId": "",
+          "postLogoutRedirectUrls": "",
+          "appSecret": ""
+        }
+      '''
+    }
+  }
+}

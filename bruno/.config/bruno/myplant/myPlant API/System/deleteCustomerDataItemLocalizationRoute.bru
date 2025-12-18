@@ -1,0 +1,52 @@
+meta {
+  name: deleteCustomerDataItemLocalizationRoute
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{baseUrl}}/system/localization/customer
+  body: none
+  auth: inherit
+}
+
+params:query {
+  assetId: 
+  ~dataItemIds: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/localization/customer
+    method: DELETE
+    mode: none
+    params:query: {
+      assetId: 
+      ~dataItemIds: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}

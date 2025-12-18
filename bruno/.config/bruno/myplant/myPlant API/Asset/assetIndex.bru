@@ -1,0 +1,181 @@
+meta {
+  name: assetIndex
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/asset
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~assetType: 
+  ~limit: 
+  ~offset: 
+  ~serialNumber: 
+  ~assetIds: 
+  ~dataItems: 
+  ~dataItemIds: 
+  ~properties: 
+  ~customerName: 
+  ~customerId: 
+  ~locationId: 
+  ~regionId: 
+  ~fields: 
+  ~anonymize: 
+  ~assetTypes: 
+  ~filterBy: 
+  ~serialNumbers: 
+  ~allStatus: 
+  ~useIBSerialNumbers: 
+  ~slim: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/asset
+    method: GET
+    mode: none
+    params:query: {
+      ~assetType: 
+      ~limit: 
+      ~offset: 
+      ~serialNumber: 
+      ~assetIds: 
+      ~dataItems: 
+      ~dataItemIds: 
+      ~properties: 
+      ~customerName: 
+      ~customerId: 
+      ~locationId: 
+      ~regionId: 
+      ~fields: 
+      ~anonymize: 
+      ~assetTypes: 
+      ~filterBy: 
+      ~serialNumbers: 
+      ~allStatus: 
+      ~useIBSerialNumbers: 
+      ~slim: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/asset
+    method: GET
+    mode: none
+    params:query: {
+      ~assetType: 
+      ~limit: 
+      ~offset: 
+      ~serialNumber: 
+      ~assetIds: 
+      ~dataItems: 
+      ~dataItemIds: 
+      ~properties: 
+      ~customerName: 
+      ~customerId: 
+      ~locationId: 
+      ~regionId: 
+      ~fields: 
+      ~anonymize: 
+      ~assetTypes: 
+      ~filterBy: 
+      ~serialNumbers: 
+      ~allStatus: 
+      ~useIBSerialNumbers: 
+      ~slim: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/asset
+    method: GET
+    mode: none
+    params:query: {
+      ~assetType: 
+      ~limit: 
+      ~offset: 
+      ~serialNumber: 
+      ~assetIds: 
+      ~dataItems: 
+      ~dataItemIds: 
+      ~properties: 
+      ~customerName: 
+      ~customerId: 
+      ~locationId: 
+      ~regionId: 
+      ~fields: 
+      ~anonymize: 
+      ~assetTypes: 
+      ~filterBy: 
+      ~serialNumbers: 
+      ~allStatus: 
+      ~useIBSerialNumbers: 
+      ~slim: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

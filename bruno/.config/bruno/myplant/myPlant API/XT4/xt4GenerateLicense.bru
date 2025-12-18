@@ -1,0 +1,19 @@
+meta {
+  name: xt4GenerateLicense
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/xt4/license
+  body: none
+  auth: inherit
+}
+
+params:query {
+  UserId: 
+  UserPassword: 
+  HashedPassword: 
+  HardwareId: 
+  ~Version: 
+}

@@ -1,0 +1,43 @@
+meta {
+  name: publishLocalizationRoute
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/system/localization
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/localization
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}

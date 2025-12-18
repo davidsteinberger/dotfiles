@@ -1,0 +1,303 @@
+meta {
+  name: getRegionDetailsRoute
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/region/:regionId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~embedChildRegions: 
+  ~embedSites: 
+  ~anonymize: 
+}
+
+params:path {
+  regionId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/region/:regionId
+    method: GET
+    mode: none
+    params:query: {
+      ~embedChildRegions: 
+      ~embedSites: 
+      ~anonymize: 
+    }
+  
+    params:path: {
+      regionId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "region": {
+            "id": 0,
+            "name": "",
+            "description": "",
+            "parentId": 0,
+            "regionAssetId": 0
+          },
+          "regionAsset": {
+            "geoLocation": {
+              "lat": "",
+              "lon": "",
+              "alt": "",
+              "timestamp": 0
+            },
+            "serialNumber": "",
+            "dataItems": [
+              {
+                "id": 0,
+                "timestamp": 0,
+                "name": "",
+                "value": "",
+                "unit": "",
+                "assetId": 0
+              }
+            ],
+            "name": "",
+            "location": {
+              "id": 0,
+              "name": "",
+              "city": "",
+              "zip": "",
+              "country": "",
+              "state": "",
+              "region": "",
+              "address1": "",
+              "address2": "",
+              "siteType": ""
+            },
+            "model": "",
+            "timezone": "",
+            "modelId": 0,
+            "alternateId": "",
+            "gateway": {
+              "id": 0,
+              "name": "",
+              "remote": [
+                {
+                  "id": 0,
+                  "name": "",
+                  "restricted": false
+                }
+              ],
+              "serialNumber": "",
+              "authNeeded": false
+            },
+            "associated": [
+              {
+                "id": 0,
+                "type": "",
+                "serialNumber": "",
+                "model": ""
+              }
+            ],
+            "id": 0,
+            "properties": [
+              {
+                "id": 0,
+                "assetId": 0,
+                "name": "",
+                "value": ""
+              }
+            ],
+            "status": {
+              "registrationDate": 0,
+              "lastContactDate": 0,
+              "lastDataFlowDate": 0,
+              "activeConnection": false,
+              "condition": ""
+            },
+            "customer": {
+              "id": 0,
+              "name": ""
+            },
+            "agentVersion": "",
+            "packageLevel": ""
+          },
+          "childRegions": [
+            {}
+          ],
+          "sites": [
+            {
+              "id": 0,
+              "name": "",
+              "city": "",
+              "zip": "",
+              "country": "",
+              "state": "",
+              "address1": "",
+              "address2": "",
+              "siteType": "",
+              "siteAssetId": 0,
+              "regionId": 0,
+              "customerId": 0,
+              "geoLocation": {},
+              "ibSiteId": 0
+            }
+          ]
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/region/:regionId
+    method: GET
+    mode: none
+    params:query: {
+      ~embedChildRegions: 
+      ~embedSites: 
+      ~anonymize: 
+    }
+  
+    params:path: {
+      regionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/region/:regionId
+    method: GET
+    mode: none
+    params:query: {
+      ~embedChildRegions: 
+      ~embedSites: 
+      ~anonymize: 
+    }
+  
+    params:path: {
+      regionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/region/:regionId
+    method: GET
+    mode: none
+    params:query: {
+      ~embedChildRegions: 
+      ~embedSites: 
+      ~anonymize: 
+    }
+  
+    params:path: {
+      regionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/region/:regionId
+    method: GET
+    mode: none
+    params:query: {
+      ~embedChildRegions: 
+      ~embedSites: 
+      ~anonymize: 
+    }
+  
+    params:path: {
+      regionId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

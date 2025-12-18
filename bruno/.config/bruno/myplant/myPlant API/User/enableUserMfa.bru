@@ -1,0 +1,229 @@
+meta {
+  name: enableUserMfa
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/user/:username/mfa/enabled
+  body: none
+  auth: inherit
+}
+
+params:path {
+  username: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/:username/mfa/enabled
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "organization": {
+            "paMaturityLevel": 0,
+            "name": "",
+            "groupActive": false,
+            "partyIds": 0,
+            "parentAssetGroupId": 0,
+            "groupType": 0,
+            "childXtGroups": "",
+            "packageValidTo": "",
+            "vendorId": "",
+            "adminUsername": "",
+            "xtGroupId": "",
+            "mfaStatus": {},
+            "packageInfo": {
+              "apiRequestQuota": 0,
+              "trialPackageLevel": "",
+              "apiRequestQuotaType": 0,
+              "packageValidTo": 0,
+              "trialPackageValidTo": 0,
+              "trialPackageValidFrom": 0,
+              "assetPackageLevel": "",
+              "promotionName": "",
+              "packageValidFrom": 0,
+              "packageLevel": ""
+            },
+            "parentPartyIds": 0,
+            "packageValidFrom": "",
+            "address": "",
+            "packageLevel": "",
+            "xtGroupNumber": "",
+            "deactivationDate": 0,
+            "deleted": false,
+            "daAssetGroupId": ""
+          },
+          "isInternal": false,
+          "isAdmin": false,
+          "email": "",
+          "parentOrgId": 0,
+          "mfaConfig": {
+            "enabled": false
+          },
+          "fullName": "",
+          "hasActiveContract": false,
+          "lastLogon": 0,
+          "groups": [
+            {
+              "name": "",
+              "description": "",
+              "id": 0,
+              "notes": ""
+            }
+          ],
+          "profile": {
+            "paMaturityLevel": 0,
+            "phoneNumber": "",
+            "email": "",
+            "userRoles": "",
+            "username": "",
+            "trainingLevels": "",
+            "xtData": {
+              "xtLevel": 0,
+              "xtUsername": 0,
+              "visRole": 0,
+              "xt4Roles": "",
+              "xtGroup": 0,
+              "xtGroupNumber": "",
+              "xtActive": false,
+              "xtBlockTemporaryPassword": false,
+              "permissionSettings": {
+                "putChanges": false,
+                "properties": {},
+                "nested": {}
+              }
+            },
+            "adminUsername": "",
+            "lastName": "",
+            "firstName": "",
+            "preferredLanguage": "",
+            "contactId": 0,
+            "preferences": {
+              "fields": {}
+            },
+            "region": "",
+            "appPrivileges": "",
+            "acceptedTermsVersion": 0,
+            "userId": "",
+            "permissionSettings": {},
+            "settings": {
+              "receiveProductInfo": false,
+              "allowUserAnalytics": false,
+              "permissionSettings": {}
+            }
+          },
+          "oracleId": 0,
+          "ssoUser": "",
+          "isActive": false,
+          "created": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/user/:username/mfa/enabled
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/user/:username/mfa/enabled
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/user/:username/mfa/enabled
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,109 @@
+meta {
+  name: getDeviceUnitsRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/unit
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~source: 
+  ~name: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/unit
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,136 @@
+meta {
+  name: updateDeviceUnitRoute
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/unit/:unitId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  unitId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/unit/:unitId
+    method: PUT
+    mode: none
+    params:path: {
+      unitId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "name": "",
+          "source": "",
+          "description": "",
+          "id": 0
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/unit/:unitId
+    method: PUT
+    mode: none
+    params:path: {
+      unitId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/unit/:unitId
+    method: PUT
+    mode: none
+    params:path: {
+      unitId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/unit/:unitId
+    method: PUT
+    mode: none
+    params:path: {
+      unitId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

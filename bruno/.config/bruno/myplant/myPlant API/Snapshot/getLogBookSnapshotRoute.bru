@@ -1,0 +1,68 @@
+meta {
+  name: getLogBookSnapshotRoute
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/snapshot/:assetId/:timestamp
+  body: none
+  auth: inherit
+}
+
+params:query {
+  name: 
+}
+
+params:path {
+  assetId: 
+  timestamp: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/snapshot/:assetId/:timestamp
+    method: GET
+    mode: none
+    params:query: {
+      name: 
+    }
+  
+    params:path: {
+      assetId: 
+      timestamp: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "timestamp": 0,
+          "assetId": 0,
+          "entries": [
+            {
+              "name": "",
+              "value": ""
+            }
+          ],
+          "user": "",
+          "metaData": {}
+        }
+      '''
+    }
+  }
+}

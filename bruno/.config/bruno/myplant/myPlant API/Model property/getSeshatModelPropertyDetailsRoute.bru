@@ -1,0 +1,135 @@
+meta {
+  name: getSeshatModelPropertyDetailsRoute
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/modelproperty/:propertyId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  propertyId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/modelproperty/:propertyId
+    method: GET
+    mode: none
+    params:path: {
+      propertyId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "id": 0,
+          "modelId": 0,
+          "name": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/modelproperty/:propertyId
+    method: GET
+    mode: none
+    params:path: {
+      propertyId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/modelproperty/:propertyId
+    method: GET
+    mode: none
+    params:path: {
+      propertyId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/modelproperty/:propertyId
+    method: GET
+    mode: none
+    params:path: {
+      propertyId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

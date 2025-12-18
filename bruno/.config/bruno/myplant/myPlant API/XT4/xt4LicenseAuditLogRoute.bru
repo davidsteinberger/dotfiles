@@ -1,0 +1,16 @@
+meta {
+  name: xt4LicenseAuditLogRoute
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/xt4/auditlog/license
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~limit: 
+  ~offset: 
+}

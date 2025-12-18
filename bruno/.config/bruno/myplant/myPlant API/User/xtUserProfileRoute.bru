@@ -1,0 +1,171 @@
+meta {
+  name: xtUserProfileRoute
+  type: http
+  seq: 27
+}
+
+get {
+  url: {{baseUrl}}/user/xtuser/:xtUsername
+  body: none
+  auth: inherit
+}
+
+params:path {
+  xtUsername: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/xtuser/:xtUsername
+    method: GET
+    mode: none
+    params:path: {
+      xtUsername: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "paMaturityLevel": 0,
+          "phoneNumber": "",
+          "email": "",
+          "userRoles": "",
+          "username": "",
+          "trainingLevels": "",
+          "xtData": {
+            "xtLevel": 0,
+            "xtUsername": 0,
+            "visRole": 0,
+            "xt4Roles": "",
+            "xtGroup": 0,
+            "xtGroupNumber": "",
+            "xtActive": false,
+            "xtBlockTemporaryPassword": false,
+            "permissionSettings": {
+              "putChanges": false,
+              "properties": {},
+              "nested": {}
+            }
+          },
+          "adminUsername": "",
+          "lastName": "",
+          "firstName": "",
+          "preferredLanguage": "",
+          "contactId": 0,
+          "preferences": {
+            "fields": {}
+          },
+          "region": "",
+          "appPrivileges": "",
+          "acceptedTermsVersion": 0,
+          "userId": "",
+          "permissionSettings": {},
+          "settings": {
+            "receiveProductInfo": false,
+            "allowUserAnalytics": false,
+            "permissionSettings": {}
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/user/xtuser/:xtUsername
+    method: GET
+    mode: none
+    params:path: {
+      xtUsername: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/user/xtuser/:xtUsername
+    method: GET
+    mode: none
+    params:path: {
+      xtUsername: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/user/xtuser/:xtUsername
+    method: GET
+    mode: none
+    params:path: {
+      xtUsername: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

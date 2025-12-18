@@ -1,0 +1,146 @@
+meta {
+  name: Returns a paginated list of filtered users with the related information from user profile, organization and functional and administrative groups
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{baseUrl}}/user/search
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/search
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "items": [
+            {}
+          ],
+          "pageInfo": {
+            "offset": 0,
+            "limit": 0,
+            "count": 0,
+            "filters": [],
+            "order": {
+              "name": "",
+              "order": {},
+              "options": {
+                "asType": {},
+                "subQuery": [
+                  {
+                    "comb": {},
+                    "name": "",
+                    "op": {},
+                    "mod": {},
+                    "value": []
+                  }
+                ],
+                "rangedAggregate": {
+                  "from": 0,
+                  "to": 0,
+                  "aggregateType": {}
+                }
+              }
+            }
+          }
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token'
+  
+  request: {
+    url: {{baseUrl}}/user/search
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/user/search
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/user/search
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

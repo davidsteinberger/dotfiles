@@ -1,0 +1,158 @@
+meta {
+  name: getFleetReliability
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/performance/reliability
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~assetIds: 
+  ~serialNumber: 
+  ~assetType: 
+  ~from: 
+  ~to: 
+  ~lang: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      ~lang: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      ~lang: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      ~lang: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/performance/reliability
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+      ~serialNumber: 
+      ~assetType: 
+      ~from: 
+      ~to: 
+      ~lang: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

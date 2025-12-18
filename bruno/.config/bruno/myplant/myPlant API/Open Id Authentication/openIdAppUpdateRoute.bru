@@ -1,0 +1,141 @@
+meta {
+  name: openIdAppUpdateRoute
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/oauth/app/:appId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  appId: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/oauth/app/:appId
+    method: PUT
+    mode: none
+    params:path: {
+      appId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "redirectUrls": [],
+          "name": "",
+          "description": "",
+          "applicationRolesAppId": "",
+          "appUser": "",
+          "organizationId": 0,
+          "appId": "",
+          "postLogoutRedirectUrls": "",
+          "appSecret": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/oauth/app/:appId
+    method: PUT
+    mode: none
+    params:path: {
+      appId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/oauth/app/:appId
+    method: PUT
+    mode: none
+    params:path: {
+      appId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 404 Response
+  description: Not found
+  
+  request: {
+    url: {{baseUrl}}/oauth/app/:appId
+    method: PUT
+    mode: none
+    params:path: {
+      appId: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 404
+      text: Not Found
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

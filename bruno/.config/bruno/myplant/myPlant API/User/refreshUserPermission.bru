@@ -1,0 +1,50 @@
+meta {
+  name: refreshUserPermission
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{baseUrl}}/user/:username/refresh
+  body: none
+  auth: inherit
+}
+
+params:path {
+  username: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/:username/refresh
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}

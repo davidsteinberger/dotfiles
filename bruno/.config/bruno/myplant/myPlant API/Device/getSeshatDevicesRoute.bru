@@ -1,0 +1,113 @@
+meta {
+  name: getSeshatDevicesRoute
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/device
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~source: 
+  ~name: 
+  ~fleetModels: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/device
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+      ~fleetModels: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/device
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+      ~fleetModels: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/device
+    method: GET
+    mode: none
+    params:query: {
+      ~source: 
+      ~name: 
+      ~fleetModels: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -1,0 +1,42 @@
+meta {
+  name: putCustomerDataItemLocalizationRoute
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/system/localization/customer
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/localization/customer
+    method: PUT
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        [
+          {}
+        ]
+      '''
+    }
+  }
+}

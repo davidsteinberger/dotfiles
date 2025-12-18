@@ -1,0 +1,133 @@
+meta {
+  name: springXdEngineSyncRoute
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{baseUrl}}/system/springxd/enginesync
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~assetIds: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/springxd/enginesync
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": ""
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/system/springxd/enginesync
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/system/springxd/enginesync
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 403 Response
+  description: No permission to access this resource
+  
+  request: {
+    url: {{baseUrl}}/system/springxd/enginesync
+    method: GET
+    mode: none
+    params:query: {
+      ~assetIds: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 403
+      text: Forbidden
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

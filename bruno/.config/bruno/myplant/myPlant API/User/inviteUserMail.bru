@@ -1,0 +1,50 @@
+meta {
+  name: inviteUserMail
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{baseUrl}}/user/signup/invite/:username
+  body: none
+  auth: inherit
+}
+
+params:path {
+  username: 
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/user/signup/invite/:username
+    method: POST
+    mode: none
+    params:path: {
+      username: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "status": "",
+          "message": ""
+        }
+      '''
+    }
+  }
+}

@@ -1,0 +1,24 @@
+meta {
+  name: /api/auth/impersonate
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{host}}/api/auth/impersonate/:username?set-cookie=false
+  body: none
+  auth: inherit
+}
+
+params:query {
+  set-cookie: false
+}
+
+params:path {
+  username: 
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

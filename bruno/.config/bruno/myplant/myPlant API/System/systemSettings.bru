@@ -1,0 +1,64 @@
+meta {
+  name: systemSettings
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{baseUrl}}/system/settings
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/system/settings
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "user": {
+            "termsOfServiceVersion": 0
+          },
+          "systemLogger": {
+            "verboseRequestErrors": false
+          },
+          "packageLevelSettings": {
+            "internalLevel": "",
+            "defaultLevel": "",
+            "contractPackageSettings": {
+              "level": "",
+              "expiryDays": 0
+            },
+            "eventPackageLevels": [
+              {
+                "name": "",
+                "originalOrganizationLevel": "",
+                "targetOrganizationLevel": "",
+                "functionGroups": "",
+                "organizationScope": 0
+              }
+            ]
+          }
+        }
+      '''
+    }
+  }
+}

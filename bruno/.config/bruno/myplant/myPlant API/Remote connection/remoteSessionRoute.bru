@@ -1,0 +1,101 @@
+meta {
+  name: remoteSessionRoute
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/remote-connection/session
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: Ok
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "edgeSessionId": "",
+          "seshatSessionId": "",
+          "axedaInterfaceId": 0,
+          "url": "",
+          "connectionType": "",
+          "agentHost": "",
+          "agentPort": 0,
+          "agentPorts": 0,
+          "sessionState": 0,
+          "axedaAuthInfo": {}
+        }
+      '''
+    }
+  }
+}
+
+example {
+  name: 400 Response
+  description: Request is missing required HTTP header 'x-seshat-token' or required param
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 400
+      text: Bad Request
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
+
+example {
+  name: 401 Response
+  description: The supplied authentication is invalid
+  
+  request: {
+    url: {{baseUrl}}/remote-connection/session
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 401
+      text: Unauthorized
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}
