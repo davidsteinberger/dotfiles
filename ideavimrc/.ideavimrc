@@ -1,0 +1,146 @@
+" IdeaVim configuration - mirrors LazyVim keymaps
+" Based on LazyVim/.config/LazyVim/lua/config/keymaps.lua
+
+" Enable IdeaVim plugins
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+" Basic Vim settings
+set clipboard+=unnamedplus
+set clipboard+=ideaput
+set scrolloff=8
+set number
+set relativenumber
+set showmode
+set showcmd
+set smartcase
+set incsearch
+set hlsearch
+
+" Leader key
+let mapleader = " "
+
+" Delete to blackhole register
+xnoremap <bs> "_d
+
+" Delete inner word to blackhole register (normal, visual, select modes)
+nnoremap <bs><bs> "_diw
+xnoremap <bs><bs> "_diw
+vnoremap <bs><bs> "_diw
+
+" Shortcuts with backspace prefix
+" Change inner word (delete to blackhole and enter insert)
+nnoremap <bs>w "_ciw
+
+" Change word (delete to blackhole and enter insert)
+nnoremap <bs>p "_cw
+
+" Navigate diagnostics/errors (using IntelliJ's error navigation)
+nnoremap <bs>d :action GotoNextError<CR>
+nnoremap <bs>D :action GotoPreviousError<CR>
+
+" Navigate quickfix/problems (using IntelliJ's problem navigation)
+nnoremap <bs>q :action GotoNextError<CR>
+nnoremap <bs>Q :action GotoPreviousError<CR>
+
+" Close buffer/tab
+nnoremap <bs>b :action CloseContent<CR>
+
+" Copy entire buffer
+nnoremap <leader>Y :%y+<CR>
+
+" Select from beginning to end of line (excluding whitespace)
+nnoremap <leader>v ^vg_
+
+" Copy relative path to clipboard
+nnoremap cp :action CopyReference<CR>
+" Copy full path to clipboard
+nnoremap cpp :action CopyAbsolutePath<CR>
+
+" Restore cursor position after joining lines
+nnoremap J mzJ`z
+
+" Window navigation using Page/Home/End keys
+nnoremap <PageUp> <C-w>k
+nnoremap <PageDown> <C-w>j
+nnoremap <Home> <C-w>h
+nnoremap <End> <C-w>l
+
+" Tab navigation
+nnoremap <S-Right> :action NextTab<CR>
+nnoremap <S-Left> :action PreviousTab<CR>
+
+" Search navigation
+nnoremap <S-Up> N
+nnoremap <S-Down> n
+
+" Note: Zellij navigation replaced with IntelliJ split navigation
+" Split navigation with Shift + navigation keys
+nnoremap <S-PageUp> :action MoveTabUp<CR>
+nnoremap <S-PageDown> :action MoveTabDown<CR>
+nnoremap <S-Home> :action MoveTabLeft<CR>
+nnoremap <S-End> :action MoveTabRight<CR>
+
+" Ctrl-C to escape in insert mode
+inoremap <C-c> <Esc>
+
+" Dashboard equivalent - open recent files or welcome screen
+nnoremap <leader>; :action RecentFiles<CR>
+
+" Additional IntelliJ-specific mappings that complement the LazyVim setup
+
+" File navigation
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fr :action RecentFiles<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+
+" Code navigation
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gI :action GotoImplementation<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap gra :action ShowIntentionActions<CR>
+nnoremap grn :action RenameElement<CR>
+
+" Refactoring
+nnoremap <leader>cf :action ReformatCode<CR>
+" nnoremap <leader>ro :action OptimizeImports<CR>
+
+" Git operations
+nnoremap <leader>gg :action Vcs.Show.Log<CR>
+nnoremap <leader>gb :action Git.Branches<CR>
+nnoremap <leader>gc :action CheckinProject<CR>
+
+" Build and run
+" nnoremap <leader>br :action Run<CR>
+" nnoremap <leader>bd :action Debug<CR>
+" nnoremap <leader>bb :action CompileDirty<CR>
+
+" Toggle features
+nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
+" nnoremap <leader>tp :action ActivateProjectToolWindow<CR>
+" nnoremap <leader>td :action ActivateDebugToolWindow<CR>
+
+" Comments (similar to LazyVim's comment plugin)
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+
+" Surround support (requires IdeaVim-Surround plugin)
+set surround
+
+" Mini.surround style keymaps
+" Add surrounding - sa{motion}{char}
+nmap sa <Plug>YSurround
+xmap sa <Plug>VSurround
+
+" Delete surrounding - sd{char}
+nmap sd <Plug>DSurround
+
+" Replace surrounding - sr{old_char}{new_char}  
+nmap sr <Plug>CSurround
+
+" Multiple cursors support (requires IdeaVim-Multiple-Cursors plugin)
+set multiple-cursors
+
+" Easymotion support (requires IdeaVim-EasyMotion plugin)
+set easymotion
