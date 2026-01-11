@@ -1,7 +1,7 @@
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
 
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
@@ -17,7 +17,7 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget dark-notify -c "sketchybar --reload || echo "']
+# after-startup-command = ['exec-and-forget dark-notify -c "sketchybar --reload || echo "']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -64,18 +64,26 @@ on-focus-changed = [
 [gaps]
 inner.horizontal = 18
 inner.vertical =   18
-outer.left =       18
+outer.left =       [
+  { monitor."built-in" = 0 },
+  { monitor."main" = 18 },
+  18
+]
 outer.bottom = [
   { monitor."built-in" = 0 },
   { monitor."main" = 18 },
   18
 ]
 outer.top = [
-  { monitor."built-in" = 12},
-  { monitor."main" = 48 },
-  24
+  { monitor."built-in" = 0 },
+  { monitor."main" = 18 },
+  18
 ]
-outer.right =      48
+outer.right =      [
+  { monitor."built-in" = 0 },
+  { monitor."main" = 18 },
+  18
+]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

@@ -8,7 +8,7 @@ local map = vim.keymap.set
 -- delete to blackhole register
 map("x", "<bs>", '"_d', DEFAULT_OPTIONS)
 
-map({ "n", "x", "v" }, "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
+-- map({ "n", "x", "v" }, "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
 
 -- shortcuts
 map("n", "<bs>w", '"_ciw', DEFAULT_OPTIONS)
@@ -49,7 +49,6 @@ map("n", "<S-PageUp>", ":ZellijNavigateUp<cr>", DEFAULT_OPTIONS)
 map("n", "<S-PageDown>", ":ZellijNavigateDown<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Home>", ":ZellijNavigateLeft<cr>", DEFAULT_OPTIONS)
 map("n", "<S-End>", ":ZellijNavigateRight<cr>", DEFAULT_OPTIONS)
--- map("n", "<S-TAB>", "[", DEFAULT_OPTIONS)
 
 map("i", "<c-c>", "<esc>", DEFAULT_OPTIONS)
 

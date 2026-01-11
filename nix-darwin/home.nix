@@ -51,7 +51,7 @@ in {
     lazygit
     delta
     # neovim
-    starship
+    # starship
     fnm
     pyenv
     fzf

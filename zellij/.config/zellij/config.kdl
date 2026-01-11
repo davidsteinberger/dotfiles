@@ -179,7 +179,7 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl Q" { Quit; }
 
         bind "Alt q" {
             // Disable the autolock plugin.
