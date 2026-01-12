@@ -1,0 +1,57 @@
+meta {
+  name: retryFailedDebriefTaskCreationRequests
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/service-request-resources/retry/debrief-task
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {}
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-request-resources/retry/debrief-task
+    method: POST
+    mode: json
+    body:json: {
+      [
+        ""
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        [
+          {
+            "requestId": "",
+            "status": "",
+            "payload": {}
+          }
+        ]
+      '''
+    }
+  }
+}

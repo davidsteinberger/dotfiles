@@ -1,0 +1,90 @@
+meta {
+  name: findAddressesByEventId_1
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/addresses/event/:eventId
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~srNumber: 
+}
+
+params:path {
+  eventId: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/addresses/event/:eventId
+    method: GET
+    mode: none
+    params:query: {
+      ~srNumber: 
+    }
+  
+    params:path: {
+      eventId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "addresses": [
+            {
+              "unitSerialNumber": "",
+              "partyName": "",
+              "partyId": 0,
+              "partyNumber": "",
+              "custAccountId": 0,
+              "accountNumber": "",
+              "ownerFlag": "",
+              "partySiteNumber": "",
+              "address1": "",
+              "address2": "",
+              "address3": "",
+              "postalCode": "",
+              "city": "",
+              "state": "",
+              "country": "",
+              "countryCode": "",
+              "orgId": 0,
+              "siteId": 0,
+              "crmPurpose": "",
+              "crmDefault": false,
+              "crmStatus": "",
+              "ibBillToPartySiteId": "",
+              "ibShipToPartySiteId": "",
+              "installedBaseAddress": ""
+            }
+          ],
+          "salesRepresentatives": [
+            {
+              "salesrepId": 0,
+              "salesrepName": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

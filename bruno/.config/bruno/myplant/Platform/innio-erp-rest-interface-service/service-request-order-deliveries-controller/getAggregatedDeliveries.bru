@@ -1,0 +1,51 @@
+meta {
+  name: getAggregatedDeliveries
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/service-request-order-deliveries/sr-numbers/aggregated
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {}
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-request-order-deliveries/sr-numbers/aggregated
+    method: POST
+    mode: json
+    body:json: {
+      [
+        ""
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {}
+      '''
+    }
+  }
+}

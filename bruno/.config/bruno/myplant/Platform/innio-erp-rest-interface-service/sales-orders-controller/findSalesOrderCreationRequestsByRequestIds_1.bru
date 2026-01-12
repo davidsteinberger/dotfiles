@@ -1,0 +1,107 @@
+meta {
+  name: findSalesOrderCreationRequestsByRequestIds_1
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/sales-orders/requests/ids
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {}
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/sales-orders/requests/ids
+    method: POST
+    mode: json
+    body:json: {
+      [
+        ""
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        [
+          {
+            "id": "",
+            "request": {
+              "ssoWorkId": "",
+              "organizationUnit": "",
+              "purchaseOrder": "",
+              "billTo": {
+                "partyId": 0,
+                "custAccountId": 0,
+                "orgId": 0,
+                "siteId": 0
+              },
+              "shipTo": {},
+              "parts": [
+                {
+                  "partNumber": "",
+                  "quantity": 0
+                }
+              ],
+              "shippingInstructions": "",
+              "contactName": "",
+              "contactNumber": "",
+              "projectName": "",
+              "transportBillable": false,
+              "reasonBillingTransport": "",
+              "promiseDate": "",
+              "discountOrderLevel": "",
+              "salesRepresentative": 0,
+              "shippingMethod": "",
+              "shipFromOrganization": "",
+              "shippingPriority": "",
+              "packagePrice": "",
+              "packageGroup": "",
+              "msa": false,
+              "freightCode": "",
+              "fobCode": "",
+              "paymentTermCode": "",
+              "warehouse": "",
+              "soldTo": "",
+              "pricelistHdrId": "",
+              "CUG": "",
+              "CIP": ""
+            },
+            "requestMetadata": {
+              "eventId": 0,
+              "srNumber": ""
+            },
+            "requestedBy": "",
+            "reviewedBy": "",
+            "reviewerGroup": "",
+            "reviewedAt": 0,
+            "status": "",
+            "requester": "",
+            "reviewer": ""
+          }
+        ]
+      '''
+    }
+  }
+}

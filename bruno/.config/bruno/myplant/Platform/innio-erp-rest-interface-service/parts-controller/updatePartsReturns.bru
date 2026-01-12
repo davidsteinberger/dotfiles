@@ -1,0 +1,67 @@
+meta {
+  name: updatePartsReturns
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/parts-return
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "offsetPeriod": 0,
+    "lines": [
+      {
+        "headerId": 0,
+        "lineId": 0,
+        "status": "",
+        "amount": 0
+      }
+    ]
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/parts-return
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "offsetPeriod": 0,
+        "lines": [
+          {
+            "headerId": 0,
+            "lineId": 0,
+            "status": "",
+            "amount": 0
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+  
+      '''
+    }
+  }
+}

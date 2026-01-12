@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "innio-erp-rest-interface-api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

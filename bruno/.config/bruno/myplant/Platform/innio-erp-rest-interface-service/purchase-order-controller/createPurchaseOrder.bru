@@ -1,0 +1,121 @@
+meta {
+  name: createPurchaseOrder
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/purchase-orders
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "purchase_order_requisition": {
+      "org": "",
+      "sso": "",
+      "event_source": "",
+      "event_id": 0,
+      "header_description": "",
+      "preparer_id": 0,
+      "sr_number": "",
+      "country": "",
+      "suggested_vendor_id": "",
+      "suggested_vendor_site_id": "",
+      "att_txt_ship_to_address": "",
+      "att_txt_to_supplier": "",
+      "att_txt_to_buyer": "",
+      "att_url_to_supplier": "",
+      "att_url_to_buyer": "",
+      "purchase_order_requisition_lines": [
+        {
+          "quantity": "",
+          "unit_price": "",
+          "item_segment1": "",
+          "item_description": "",
+          "need_by_date": ""
+        }
+      ],
+      "purchase_order_requisition_attachments": [
+        {
+          "att_category": "",
+          "att_content": "",
+          "att_type": "",
+          "att_file_name": "",
+          "file_content_type": "",
+          "att_base64_content": ""
+        }
+      ]
+    }
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/purchase-orders
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "purchase_order_requisition": {
+          "org": "",
+          "sso": "",
+          "event_source": "",
+          "event_id": 0,
+          "header_description": "",
+          "preparer_id": 0,
+          "sr_number": "",
+          "country": "",
+          "suggested_vendor_id": "",
+          "suggested_vendor_site_id": "",
+          "att_txt_ship_to_address": "",
+          "att_txt_to_supplier": "",
+          "att_txt_to_buyer": "",
+          "att_url_to_supplier": "",
+          "att_url_to_buyer": "",
+          "purchase_order_requisition_lines": [
+            {
+              "quantity": "",
+              "unit_price": "",
+              "item_segment1": "",
+              "item_description": "",
+              "need_by_date": ""
+            }
+          ],
+          "purchase_order_requisition_attachments": [
+            {
+              "att_category": "",
+              "att_content": "",
+              "att_type": "",
+              "att_file_name": "",
+              "file_content_type": "",
+              "att_base64_content": ""
+            }
+          ]
+        }
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

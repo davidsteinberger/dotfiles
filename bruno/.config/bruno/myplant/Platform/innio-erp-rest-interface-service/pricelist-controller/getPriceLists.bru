@@ -1,0 +1,64 @@
+meta {
+  name: getPriceLists
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/pricelist
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/pricelist
+    method: GET
+    mode: none
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "pricelists": [
+            {
+              "price_list_hdr_id": "",
+              "name": "",
+              "description": "",
+              "currency_code": "",
+              "qualifiers": [
+                {
+                  "qualifier_grouping_no": 0,
+                  "qualifier_context": "",
+                  "qualifier_attribute": "",
+                  "qualifier_precedence": 0,
+                  "comparision_operator_code": "",
+                  "qualifier_attr_value": "",
+                  "party_id": 0,
+                  "party_number": "",
+                  "party_name": "",
+                  "cust_account_id": 0,
+                  "account_number": ""
+                }
+              ]
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

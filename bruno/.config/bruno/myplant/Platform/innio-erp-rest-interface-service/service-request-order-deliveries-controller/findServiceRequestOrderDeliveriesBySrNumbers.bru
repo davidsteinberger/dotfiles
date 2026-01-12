@@ -1,0 +1,75 @@
+meta {
+  name: findServiceRequestOrderDeliveriesBySrNumbers
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/service-request-order-deliveries/sr-numbers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {}
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-request-order-deliveries/sr-numbers
+    method: POST
+    mode: json
+    body:json: {
+      [
+        ""
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "deliveries": [
+            {
+              "eventId": 0,
+              "orderNumber": 0,
+              "lineNumber": 0,
+              "orderedItem": "",
+              "description": "",
+              "orderedQuantity": 0,
+              "totalOrderedQuantity": "",
+              "pickStatus": "",
+              "delivery": "",
+              "lastUpdateDateOrder": "",
+              "scheduledDeliveryTimestamp": "",
+              "confirmedDeliveryTimestamp": "",
+              "arrivedPodDate": "",
+              "trackingUrl": "",
+              "shippableItemFlag": "",
+              "referenceSource": "",
+              "referenceNumber": "",
+              "shipFromWarehouse": "",
+              "lpn": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

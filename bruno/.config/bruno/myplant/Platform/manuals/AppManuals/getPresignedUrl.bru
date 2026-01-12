@@ -1,0 +1,65 @@
+meta {
+  name: getPresignedUrl
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/app/:appId/:manualKey
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~locale: 
+}
+
+params:path {
+  appId: 
+  manualKey: 
+}
+
+headers {
+  ~Accept-Language: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/app/:appId/:manualKey
+    method: GET
+    mode: none
+    params:query: {
+      ~locale: 
+    }
+  
+    params:path: {
+      appId: 
+      manualKey: 
+    }
+  
+    headers: {
+      ~Accept-Language: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {}
+      '''
+    }
+  }
+}

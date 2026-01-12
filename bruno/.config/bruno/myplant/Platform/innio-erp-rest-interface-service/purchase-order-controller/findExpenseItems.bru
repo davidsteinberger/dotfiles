@@ -1,0 +1,63 @@
+meta {
+  name: findExpenseItems
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/purchase-orders/expense-items/:region
+  body: none
+  auth: inherit
+}
+
+params:path {
+  region: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/purchase-orders/expense-items/:region
+    method: GET
+    mode: none
+    params:path: {
+      region: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "svcs": [
+            {
+              "organizationCode": "",
+              "itemNumber": "",
+              "description": "",
+              "itemType": "",
+              "inventoryItemStatusCode": "",
+              "makeBuy": "",
+              "creationDate": "",
+              "lastUpdateDate": "",
+              "purchasingItemFlag": "",
+              "createdByUser": "",
+              "lastUpdateByUser": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

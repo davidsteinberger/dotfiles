@@ -1,0 +1,75 @@
+meta {
+  name: updateInstalledBase
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/installed-base
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "installedBaseUpdates": [
+      {
+        "srNumber": "",
+        "commissioningDate": "",
+        "documentationComplete": false
+      }
+    ]
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/installed-base
+    method: PUT
+    mode: json
+    body:json: {
+      {
+        "installedBaseUpdates": [
+          {
+            "srNumber": "",
+            "commissioningDate": "",
+            "documentationComplete": false
+          }
+        ]
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "resultMessage": "",
+          "resultCode": "",
+          "result": [
+            {
+              "srNumber": "",
+              "commissioningDate": "",
+              "documentationComplete": false,
+              "resultCode": "",
+              "resultMessage": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

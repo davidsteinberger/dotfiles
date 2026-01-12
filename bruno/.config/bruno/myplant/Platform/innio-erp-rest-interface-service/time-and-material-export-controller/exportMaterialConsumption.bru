@@ -1,0 +1,83 @@
+meta {
+  name: exportMaterialConsumption
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/service-request-resources/:srNumber/materials
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~dryrun: 
+}
+
+params:path {
+  srNumber: 
+}
+
+body:json {
+  [
+    {
+      "consumingUser": "",
+      "itemNumber": "",
+      "uomCode": "",
+      "quantity": "",
+      "issueingSubinventoryCode": ""
+    }
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-request-resources/:srNumber/materials
+    method: POST
+    mode: json
+    params:query: {
+      ~dryrun: 
+    }
+  
+    params:path: {
+      srNumber: 
+    }
+  
+    body:json: {
+      [
+        {
+          "consumingUser": "",
+          "itemNumber": "",
+          "uomCode": "",
+          "quantity": "",
+          "issueingSubinventoryCode": ""
+        }
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "success": false,
+          "message": "",
+          "data": {}
+        }
+      '''
+    }
+  }
+}

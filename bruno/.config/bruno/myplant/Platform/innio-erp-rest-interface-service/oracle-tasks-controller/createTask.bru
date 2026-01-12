@@ -1,0 +1,79 @@
+meta {
+  name: createTask
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/tasks/for-service-request/:srNumber
+  body: json
+  auth: inherit
+}
+
+params:path {
+  srNumber: 
+}
+
+body:json {
+  {
+    "subCaseId": "",
+    "subCaseType": "",
+    "subCaseTitle": "",
+    "description": "",
+    "plannedStartDate": "",
+    "plannedEndDate": "",
+    "subCaseOwnerGroup": "",
+    "subCaseAssignGroup": "",
+    "notes": []
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/tasks/for-service-request/:srNumber
+    method: POST
+    mode: json
+    params:path: {
+      srNumber: 
+    }
+  
+    body:json: {
+      {
+        "subCaseId": "",
+        "subCaseType": "",
+        "subCaseTitle": "",
+        "description": "",
+        "plannedStartDate": "",
+        "plannedEndDate": "",
+        "subCaseOwnerGroup": "",
+        "subCaseAssignGroup": "",
+        "notes": []
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "result_code": "",
+          "result_message": "",
+          "result_data": {}
+        }
+      '''
+    }
+  }
+}

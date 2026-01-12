@@ -1,0 +1,165 @@
+meta {
+  name: exportTimesheet
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/service-request-resources/:srNumber/timesheet
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~dryrun: 
+}
+
+params:path {
+  srNumber: 
+}
+
+body:json {
+  {
+    "id": 0,
+    "status": "",
+    "type": "",
+    "rejectCounter": 0,
+    "myplantUser": "",
+    "approvedBy": "",
+    "allowedActions": [],
+    "eventId": 0,
+    "eventAssignmentId": 0,
+    "timeEntries": [
+      {
+        "uniqueLineId": 0,
+        "ride": {
+          "driver": false,
+          "carType": "",
+          "licencePlateNumber": "",
+          "distance": 0,
+          "distanceUOM": "",
+          "distanceKm": 0,
+          "startLocation": "",
+          "endLocation": "",
+          "borderCrossedFrom": "",
+          "borderCrossedTo": "",
+          "borderCrossingAt": 0
+        },
+        "startTimestamp": 0,
+        "endTimestamp": 0,
+        "timezone": "",
+        "durationHours": "",
+        "comment": "",
+        "timeCategory": ""
+      }
+    ],
+    "expenseEntries": [
+      {
+        "id": 0,
+        "expenseType": "",
+        "serviceDate": "",
+        "expenseItem": "",
+        "voucher": false,
+        "comment": "",
+        "cost": "",
+        "currency": "",
+        "quantity": 0
+      }
+    ],
+    "empty": false,
+    "notEmpty": false
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-request-resources/:srNumber/timesheet
+    method: POST
+    mode: json
+    params:query: {
+      ~dryrun: 
+    }
+  
+    params:path: {
+      srNumber: 
+    }
+  
+    body:json: {
+      {
+        "id": 0,
+        "status": "",
+        "type": "",
+        "rejectCounter": 0,
+        "myplantUser": "",
+        "approvedBy": "",
+        "allowedActions": [],
+        "eventId": 0,
+        "eventAssignmentId": 0,
+        "timeEntries": [
+          {
+            "uniqueLineId": 0,
+            "ride": {
+              "driver": false,
+              "carType": "",
+              "licencePlateNumber": "",
+              "distance": 0,
+              "distanceUOM": "",
+              "distanceKm": 0,
+              "startLocation": "",
+              "endLocation": "",
+              "borderCrossedFrom": "",
+              "borderCrossedTo": "",
+              "borderCrossingAt": 0
+            },
+            "startTimestamp": 0,
+            "endTimestamp": 0,
+            "timezone": "",
+            "durationHours": "",
+            "comment": "",
+            "timeCategory": ""
+          }
+        ],
+        "expenseEntries": [
+          {
+            "id": 0,
+            "expenseType": "",
+            "serviceDate": "",
+            "expenseItem": "",
+            "voucher": false,
+            "comment": "",
+            "cost": "",
+            "currency": "",
+            "quantity": 0
+          }
+        ],
+        "empty": false,
+        "notEmpty": false
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {
+          "success": false,
+          "message": "",
+          "data": {}
+        }
+      '''
+    }
+  }
+}

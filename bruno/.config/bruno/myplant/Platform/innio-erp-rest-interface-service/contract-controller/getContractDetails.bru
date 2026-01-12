@@ -1,0 +1,61 @@
+meta {
+  name: getContractDetails
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/contract/details
+  body: none
+  auth: inherit
+}
+
+params:query {
+  asset_id: 
+  ~contract_number: 
+  ~only_active_contracts: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/contract/details
+    method: GET
+    mode: none
+    params:query: {
+      ~contract_number: 
+      ~only_active_contracts: 
+      asset_id: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        [
+          {
+            "party_id": "",
+            "party_number": "",
+            "party_name": "",
+            "scs_code": "",
+            "contract_number": "",
+            "short_description": "",
+            "account_number": ""
+          }
+        ]
+      '''
+    }
+  }
+}

@@ -1,0 +1,80 @@
+meta {
+  name: retryFailedSRCreationRequests
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/service-requests/retry/:requestId
+  body: none
+  auth: inherit
+}
+
+params:path {
+  requestId: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-requests/retry/:requestId
+    method: POST
+    mode: none
+    params:path: {
+      requestId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "SSO": "",
+          "CASE_ID": "",
+          "INCIDENT_OCCURED_DATE": "",
+          "REPORTED_DATE": "",
+          "UNIT_SERIAL_NUMBER": "",
+          "DESCRIPTION": "",
+          "ORG": "",
+          "ATTRIBUTE3": "",
+          "ATTRIBUTE5": "",
+          "ATTRIBUTE6": "",
+          "OWNER_PARTY_ACCOUNT_ID": 0,
+          "CASE_OWNER_GROUP_ID": 0,
+          "srid": "",
+          "SR_NUMBER": "",
+          "APPLY_BILLING_GROUP_HANDOVER": "",
+          "BILLING_GROUP_HANDOVER": "",
+          "ALL_EVENTS_COMPLETED": "",
+          "EVENT_TYPE": "",
+          "MAINTENANCE_OPH": 0,
+          "CONTRACT_INTERVAL": 0,
+          "PACKAGE_NAME": "",
+          "SAC": "",
+          "SERIAL_FAILURE": "",
+          "RELATED_SR_NUMBER": "",
+          "EVENT_CATEGORY": "",
+          "BILLABLE": false,
+          "MILESTONE": false,
+          "QCASE": false,
+          "SALES_ORDER_NUMBER": "",
+          "WTY_CASE_TYPE": "",
+          "WTY_CASE_SUBTYPE": "",
+          "CONTRACT_TYPE": ""
+        }
+      '''
+    }
+  }
+}

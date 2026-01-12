@@ -1,0 +1,55 @@
+meta {
+  name: getPartsReturns
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/parts-return
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJSUzI1NiIsImtpZCI6InNlc2hhdC1iZXRhIiwidHlwIjoiSldUIn0.eyJhdWQiOlsibXlQbGFudCJdLCJjbGllbnRfaWQiOiJMSDdDVzY0OTQxWU9OIiwiZXhwIjoxNzY4MzE4NDMwLCJpYXQiOjE3NjgyMzIwMjksImlzcyI6Imh0dHBzOi8vYmV0YS5zdGFnaW5nLm15cGxhbnQuaW8vd3Mvb2F1dGgiLCJqdGkiOiI2NDY5NTMzYy0yYjljLTQ3MGItYWJlZC05MjkzNjA1NzYyMzYiLCJteV9wbGFudCI6eyJhcHBSb2xlIjoiTWFpbnRlbmFuY2VBZG1pbiIsImVtYWlsIjoiY3VzdG9tZXJhZG1pbkBteXBsYW50LmlvIiwiZ3JvdXBzIjpbIkFkbWluLVVzZXJNYW5hZ2VtZW50IiwiQWRtaW4tTWFuYWdlQXNzZXRzIiwiQXNzZXRNYW5hZ2VtZW50IiwiQW5hbHl0aWNzIiwiUGFydHMtQ2F0YWxvZyIsIkFkbWluLVVzZXJNYW5hZ2VtZW50IiwiQWRtaW4tTWFuYWdlQXNzZXRzIiwiQXNzZXRNYW5hZ2VtZW50IiwiTWFuYWdlQ29udGFjdHMiLCJNYWludGVuYW5jZU92ZXJ2aWV3IiwiQWRtaW4tTWFpbnRlbmFuY2VTY2hlZHVsZXMiLCJNYWludGVuYW5jZVNjaGVkdWxlcyIsIlVzZXJWaXNpYmlsaXR5IiwiTWFpbnRlbmFuY2VTY2hlZHVsZXMtV3JpdGUiLCJNYWludGVuYW5jZURlYnJpZWYiLCJNYWludGVuYW5jZURlYnJpZWYtV3JpdGUiLCJNYWludGVuYW5jZVJlcG9ydHMiLCJEaXNwYXRjaGVyIiwiTWFpbnRlbmFuY2VBc3NldE1hbmFnZXIiLCJNYWludGVuYW5jZVRlY2huaWNhbFJldmlld2VyIiwiQWRtaW4tSW1wZXJzb25hdGlvbiIsIlRvb2xzLU1hbmFnZW1lbnQiLCJNYWludGVuYW5jZU9wZXJhdGlvbnMtT3JkZXJNYW5hZ2VtZW50IiwiRlNNLUNvbW1pc3Npb25pbmdTdXBwb3J0IiwiRlNNLUFkbWluIiwiRlNNLUNvcmVzUmV0dXJuIl0sImlzU3NvIjpmYWxzZSwibWF0dXJpdHlMZXZlbCI6NDAwLCJvcmFjbGVJZCI6OTMzMDUsIm9yZ2FuaXphdGlvbklkIjoxMDk0NjcsIm9yaWciOiI3OWNlN2Y4My1hNmJmLTQ1NGMtOGZmNi04ZmIzNTZiOGQzNjMiLCJwYXJlbnRPcmdJZCI6MTA5NDY3LCJ1c2VybmFtZSI6ImZzbV90ZXN0aW5nX2FkbWluIn0sIm5iZiI6MTc2ODIzMjAyOSwic2NwIjpbXSwic3ViIjoiZnNtX3Rlc3RpbmdfYWRtaW4ifQ.QkzlglDf8vtrMGTKuyQv8S7E5ye5wFrvRIkvQvE2xZmGNceECY_pc5tUA8m2oYF1NA1ur0Kvri4vi1FCukKQ3fb4PHX79KDnvlRESMj5NFhRiCnFUGAEw7BYKbSP-sScBcrnX9lxffm5wdlvLDKL3diGw9oblX6_NxgtpyX1QlouLn5SmJtY37JsyQj3_dFLyW0CFa742WIrr5kv-UNCxSAb8heNgjZgv7KxzOOTW3Q9fVYJSbIHQ4w31B2AwpnXQsA12hKf-Lup6zONWJ1SmRs4XJ1Te8KHVcMe_J8iuberl7lrQCBvnMpYpukcyChxHmLkYEntxVRmcJZuT2Jsuw
+}
+
+body:json {
+  {
+    "offsetPeriod": 90
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/parts-return
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "offsetPeriod": 0
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+  
+      '''
+    }
+  }
+}

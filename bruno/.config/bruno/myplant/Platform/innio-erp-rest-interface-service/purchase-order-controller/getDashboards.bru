@@ -1,0 +1,66 @@
+meta {
+  name: getDashboards
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/purchase-orders/dashboards
+  body: none
+  auth: inherit
+}
+
+params:query {
+  eventIds: 
+  srNumbers: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/purchase-orders/dashboards
+    method: GET
+    mode: none
+    params:query: {
+      eventIds: 
+      srNumbers: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "items": [
+            {
+              "eventId": "",
+              "srNumber": "",
+              "porNumber": "",
+              "porCreationDate": "",
+              "porAuthorizationStatus": "",
+              "porApprover": "",
+              "porComment": "",
+              "poNumber": "",
+              "poCreationDate": "",
+              "poAuthorizationStatus": "",
+              "invoiceNumber": "",
+              "invoiceDeepLink": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

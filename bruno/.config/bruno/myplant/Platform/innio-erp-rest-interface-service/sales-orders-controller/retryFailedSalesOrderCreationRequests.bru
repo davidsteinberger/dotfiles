@@ -1,0 +1,57 @@
+meta {
+  name: retryFailedSalesOrderCreationRequests
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/sales-orders/requests/retry
+  body: json
+  auth: inherit
+}
+
+body:json {
+  [
+    {}
+  ]
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/sales-orders/requests/retry
+    method: POST
+    mode: json
+    body:json: {
+      [
+        ""
+      ]
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        [
+          {
+            "requestId": "",
+            "status": "",
+            "payload": {}
+          }
+        ]
+      '''
+    }
+  }
+}

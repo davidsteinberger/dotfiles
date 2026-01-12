@@ -1,0 +1,70 @@
+meta {
+  name: getInventory
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/inventory
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~lang: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/inventory
+    method: GET
+    mode: none
+    params:query: {
+      ~lang: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        [
+          {
+            "inventory": {
+              "subinventoryCode": "",
+              "description": ""
+            },
+            "items": [
+              {
+                "unit": {
+                  "uomClass": "",
+                  "localizedUnit": "",
+                  "uomCode": "",
+                  "inputType": ""
+                },
+                "item": {
+                  "itemNumber": "",
+                  "inventoryItemId": "",
+                  "description": ""
+                },
+                "quantity": 0
+              }
+            ]
+          }
+        ]
+      '''
+    }
+  }
+}

@@ -1,0 +1,165 @@
+meta {
+  name: createSalesOrder
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/sales-orders
+  body: json
+  auth: inherit
+}
+
+params:query {
+  eventId: 
+  srNumber: 
+  ~isDirectCreation: 
+}
+
+body:json {
+  {
+    "ssoWorkId": "",
+    "organizationUnit": "",
+    "purchaseOrder": "",
+    "billTo": {
+      "partyId": 0,
+      "custAccountId": 0,
+      "orgId": 0,
+      "siteId": 0
+    },
+    "shipTo": {},
+    "parts": [
+      {
+        "partNumber": "",
+        "quantity": 0
+      }
+    ],
+    "shippingInstructions": "",
+    "contactName": "",
+    "contactNumber": "",
+    "projectName": "",
+    "transportBillable": false,
+    "reasonBillingTransport": "",
+    "promiseDate": "",
+    "discountOrderLevel": "",
+    "salesRepresentative": 0,
+    "shippingMethod": "",
+    "shipFromOrganization": "",
+    "shippingPriority": "",
+    "packagePrice": "",
+    "packageGroup": "",
+    "msa": false,
+    "freightCode": "",
+    "fobCode": "",
+    "paymentTermCode": "",
+    "warehouse": "",
+    "soldTo": "",
+    "pricelistHdrId": "",
+    "CUG": "",
+    "CIP": ""
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/sales-orders
+    method: POST
+    mode: json
+    params:query: {
+      eventId: 
+      srNumber: 
+      ~isDirectCreation: 
+    }
+  
+    body:json: {
+      {
+        "ssoWorkId": "",
+        "organizationUnit": "",
+        "purchaseOrder": "",
+        "billTo": {
+          "partyId": 0,
+          "custAccountId": 0,
+          "orgId": 0,
+          "siteId": 0
+        },
+        "shipTo": {},
+        "parts": [
+          {
+            "partNumber": "",
+            "quantity": 0
+          }
+        ],
+        "shippingInstructions": "",
+        "contactName": "",
+        "contactNumber": "",
+        "projectName": "",
+        "transportBillable": false,
+        "reasonBillingTransport": "",
+        "promiseDate": "",
+        "discountOrderLevel": "",
+        "salesRepresentative": 0,
+        "shippingMethod": "",
+        "shipFromOrganization": "",
+        "shippingPriority": "",
+        "packagePrice": "",
+        "packageGroup": "",
+        "msa": false,
+        "freightCode": "",
+        "fobCode": "",
+        "paymentTermCode": "",
+        "warehouse": "",
+        "soldTo": "",
+        "pricelistHdrId": "",
+        "CUG": "",
+        "CIP": ""
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "result_code": "",
+          "result_message": "",
+          "result_data": [
+            {
+              "requestId": 0,
+              "incidentNumber": "",
+              "incidentId": 0,
+              "headerId": 0,
+              "orderNumber": 0,
+              "orgId": 0,
+              "shipFromOrgId": 0,
+              "orderStatus": "",
+              "orderLines": [
+                {
+                  "lineId": 0,
+                  "lineNumber": 0,
+                  "lineStatus": "",
+                  "item": "",
+                  "itemDescription": "",
+                  "quantity": 0,
+                  "uom": ""
+                }
+              ]
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

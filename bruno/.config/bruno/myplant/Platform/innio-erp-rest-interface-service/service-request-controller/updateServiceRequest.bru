@@ -1,0 +1,65 @@
+meta {
+  name: updateServiceRequest
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{baseUrl}}/service-requests/events/:eventId
+  body: json
+  auth: inherit
+}
+
+params:path {
+  eventId: 
+}
+
+body:json {
+  {
+    "eventCategory": "",
+    "caseType": "",
+    "caseSubType": "",
+    "billable": false,
+    "isCsaMilestoneBilling": false,
+    "qcaseId": 0
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/service-requests/events/:eventId
+    method: PATCH
+    mode: json
+    params:path: {
+      eventId: 
+    }
+  
+    body:json: {
+      {
+        "eventCategory": "",
+        "caseType": "",
+        "caseSubType": "",
+        "billable": false,
+        "isCsaMilestoneBilling": false,
+        "qcaseId": 0
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

@@ -15,7 +15,12 @@ params:query {
 }
 
 params:path {
-  username: 
+  username: {{impersonatedUsername}}
+}
+
+script:post-response {
+  var jsonData = res.getBody();
+  bru.setEnvVar("token", jsonData.token);
 }
 
 settings {

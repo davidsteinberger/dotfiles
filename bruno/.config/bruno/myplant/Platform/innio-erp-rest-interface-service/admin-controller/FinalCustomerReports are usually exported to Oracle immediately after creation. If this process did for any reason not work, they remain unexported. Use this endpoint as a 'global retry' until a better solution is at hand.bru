@@ -1,0 +1,36 @@
+meta {
+  name: FinalCustomerReports are usually exported to Oracle immediately after creation. If this process did for any reason not work, they remain unexported. Use this endpoint as a 'global retry' until a better solution is at hand.
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/admin/export-all-pending-final-customer-reports
+  body: none
+  auth: inherit
+}
+
+example {
+  name: 204 Response
+  description: Successfully accepted
+  
+  request: {
+    url: {{baseUrl}}/admin/export-all-pending-final-customer-reports
+    method: POST
+    mode: none
+  }
+  
+  response: {
+    status: {
+      code: 204
+      text: No Content
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

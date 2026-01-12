@@ -1,0 +1,55 @@
+meta {
+  name: downloadPresignedUrl
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/download-presigned/:encryptedKey
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~preSigned: 
+}
+
+params:path {
+  encryptedKey: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/download-presigned/:encryptedKey
+    method: GET
+    mode: none
+    params:query: {
+      ~preSigned: 
+    }
+  
+    params:path: {
+      encryptedKey: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {}
+      '''
+    }
+  }
+}

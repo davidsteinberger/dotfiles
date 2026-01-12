@@ -1,0 +1,63 @@
+meta {
+  name: getInstalledBase
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/installed-base
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "unitSerialNumbers": []
+  }
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/installed-base
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "unitSerialNumbers": []
+      }
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: */*
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+        {
+          "installedBase": [
+            {
+              "unitSerialNumber": "",
+              "commissioningDate": "",
+              "documentationComplete": "",
+              "ibStatus": "",
+              "srNumber": "",
+              "srType": "",
+              "srSubType": ""
+            }
+          ]
+        }
+      '''
+    }
+  }
+}

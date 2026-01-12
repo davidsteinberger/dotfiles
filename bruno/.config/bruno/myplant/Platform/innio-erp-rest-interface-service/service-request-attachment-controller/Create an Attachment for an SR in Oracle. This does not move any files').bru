@@ -1,0 +1,55 @@
+meta {
+  name: Create an Attachment for an SR in Oracle. This does not move any files')
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/service-request-attachments
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "srNumber": "",
+    "description": "",
+    "category": "",
+    "id": "",
+    "url": ""
+  }
+}
+
+example {
+  name: 204 Response
+  description: Successfully accepted
+  
+  request: {
+    url: {{baseUrl}}/service-request-attachments
+    method: POST
+    mode: json
+    body:json: {
+      {
+        "srNumber": "",
+        "description": "",
+        "category": "",
+        "id": "",
+        "url": ""
+      }
+    }
+  }
+  
+  response: {
+    status: {
+      code: 204
+      text: No Content
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

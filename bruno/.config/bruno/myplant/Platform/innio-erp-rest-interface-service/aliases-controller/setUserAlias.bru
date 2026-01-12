@@ -1,0 +1,45 @@
+meta {
+  name: setUserAlias
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/aliases/users
+  body: none
+  auth: inherit
+}
+
+params:query {
+  myplant_user: 
+  alias: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/aliases/users
+    method: PUT
+    mode: none
+    params:query: {
+      myplant_user: 
+      alias: 
+    }
+  }
+  
+  response: {
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: text
+      content: '''
+  
+      '''
+    }
+  }
+}

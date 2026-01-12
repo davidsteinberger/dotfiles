@@ -1,0 +1,49 @@
+meta {
+  name: list_1
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~designNumber: 
+  ~assetId: 
+}
+
+example {
+  name: 200 Response
+  description: OK
+  
+  request: {
+    url: {{baseUrl}}/
+    method: GET
+    mode: none
+    params:query: {
+      ~designNumber: 
+      ~assetId: 
+    }
+  }
+  
+  response: {
+    headers: {
+      Content-Type: application/json
+    }
+  
+    status: {
+      code: 200
+      text: OK
+    }
+  
+    body: {
+      type: json
+      content: '''
+        {}
+      '''
+    }
+  }
+}
