@@ -51,37 +51,39 @@ set timeout 30
 set profile $env(PROFILE)
 set totp $env(BW_TOTP)
 
+# Use xterm-256color for better compatibility
+set env(TERM) "xterm-256color"
+
 # Spawn with proper terminal
 spawn aws-azure-login --profile $profile
 
-# Handle TOTP first - separate phase
+# Handle either TOTP or Role first
 expect {
     "Verification Code" {
         send "$totp\r"
+        # Now wait for role selection
+        expect {
+            "Role" {
+                interact
+                exit 0
+            }
+            eof {
+                exit 0
+            }
+            timeout {
+                exit 1
+            }
+        }
     }
-    timeout {
-        puts "\nTimeout waiting for TOTP prompt"
-        exit 1
-    }
-    eof {
-        puts "\nProcess ended during TOTP"
-        exit 1
-    }
-}
-
-# Now wait specifically for role selection - separate phase
-expect {
     "Role" {
         interact
         exit 0
     }
     timeout {
-        puts "\nTimeout waiting for role selection."
         exit 1
     }
     eof {
-        puts "\nProcess ended unexpectedly"
-        exit 0
+        exit 1
     }
 }
 EOF

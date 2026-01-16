@@ -46,7 +46,7 @@ alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
 alias v="nvim"
 alias n="npm"
 alias k="k9s"
-alias o="opencode"
+alias o="opencode --port"
 alias a="aerospace enable on >/dev/null 2>&1 || open -a /Applications/AeroSpace.app"
 
 # tmux
