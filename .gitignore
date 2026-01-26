@@ -8,4 +8,5 @@ karabiner/.config/karabiner/automatic_backups
 !aider/*
 OpenCode.md
 .env
+bruno/**/_wip
 node_modules/
