@@ -121,6 +121,10 @@ alt-comma = 'layout accordion horizontal vertical'
 alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-z = 'exec-and-forget MOZ_DISABLE_SAFE_MODE_KEY=1 open -a /Applications/Zen\ Browser.app'
 alt-t = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
+alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-x = 'exec-and-forget open -a /Applications/IntelliJ\ IDEA.app'
+alt-v = 'exec-and-forget open -a /Applications/Visual\ Studio\ Code.app'
+alt-b = 'exec-and-forget open -a /Applications/Bruno.app'
 # cmd-e = 'enable toggle'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
