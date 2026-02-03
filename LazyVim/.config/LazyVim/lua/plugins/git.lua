@@ -30,6 +30,11 @@ return {
     },
   },
   {
+    "esmuellert/codediff.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    cmd = "CodeDiff",
+  },
+  {
     "tpope/vim-fugitive",
     dependencies = {
       "tpope/vim-rhubarb",

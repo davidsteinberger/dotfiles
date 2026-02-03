@@ -1,5 +1,13 @@
 return {
   {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "debugpy",
+      },
+    },
+  },
+  {
     "tpope/vim-dispatch",
     cmd = { "Dispatch", "Make", "Focus", "Start" },
     config = function()
