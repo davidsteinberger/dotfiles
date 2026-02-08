@@ -1,0 +1,187 @@
+// VS Code keybindings mirroring nvim/LazyVim shortcuts
+// Symlink to ~/Library/Application Support/Code/User/keybindings.json
+[
+  // ============================================
+  // Navigation between editor groups (windows)
+  // Mirrors: <PageUp/Down/Home/End> for <c-w> navigation
+  // ============================================
+  {
+    "key": "pageup",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "pagedown",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "home",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "end",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Buffer/Tab navigation
+  // Mirrors: <S-Right/Left> for BufferLineCycle
+  // ============================================
+  {
+    "key": "shift+right",
+    "command": "workbench.action.nextEditor",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+left",
+    "command": "workbench.action.previousEditor",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Search navigation
+  // Mirrors: <S-Up/Down> for N/n (previous/next search match)
+  // ============================================
+  {
+    "key": "shift+up",
+    "command": "editor.action.previousMatchFindAction",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "shift+down",
+    "command": "editor.action.nextMatchFindAction",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Diagnostics navigation
+  // Mirrors: <bs>d / <bs>D for next/prev diagnostic
+  // Using backspace as prefix isn't practical in VS Code, using ctrl+d instead
+  // ============================================
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.marker.next",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "editor.action.marker.prev",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Quickfix navigation
+  // Mirrors: <bs>q / <bs>Q for cnext/cprev
+  // ============================================
+  {
+    "key": "ctrl+q",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult",
+  },
+  {
+    "key": "ctrl+shift+q",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult",
+  },
+
+  // ============================================
+  // Close buffer
+  // Mirrors: <bs>b for :bd
+  // ============================================
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Copy entire buffer
+  // Mirrors: <leader>Y for :%y+
+  // ============================================
+  {
+    "key": "ctrl+shift+y",
+    "command": "editor.action.selectAll",
+  },
+  {
+    "key": "ctrl+shift+y ctrl+shift+y",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "editor.action.selectAll",
+        "editor.action.clipboardCopyAction",
+      ],
+    },
+  },
+
+  // ============================================
+  // Copy relative path
+  // Mirrors: cp for relative path, cpp for full path
+  // ============================================
+  {
+    "key": "alt+c alt+p",
+    "command": "copyRelativeFilePath",
+    "when": "editorTextFocus",
+  },
+  {
+    "key": "alt+c alt+shift+p",
+    "command": "copyFilePath",
+    "when": "editorTextFocus",
+  },
+
+  // ============================================
+  // Escape from insert mode
+  // Mirrors: <c-c> to <esc>
+  // ============================================
+  {
+    "key": "ctrl+c",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.mode == 'Insert'",
+  },
+
+  // ============================================
+  // Dashboard/Welcome
+  // Mirrors: <leader>; for Snacks.dashboard
+  // ============================================
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.openWalkthrough",
+  },
+
+  // ============================================
+  // Terminal navigation (Zellij-like)
+  // Mirrors: <S-PageUp/Down/Home/End> for Zellij navigation
+  // ============================================
+  {
+    "key": "shift+pageup",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus",
+  },
+  {
+    "key": "shift+pagedown",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus",
+  },
+
+  // ============================================
+  // Preserved from existing config
+  // ============================================
+  {
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save",
+  },
+  {
+    "key": "alt+cmd+left",
+    "command": "workbench.action.navigateBack",
+  },
+  {
+    "key": "alt+cmd+right",
+    "command": "workbench.action.navigateForward",
+  },
+  {
+    "key": "alt+cmd+n",
+    "command": "workbench.action.tasks.runTask",
+  },
+]

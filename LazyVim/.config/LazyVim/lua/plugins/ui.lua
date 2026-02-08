@@ -14,6 +14,7 @@ return {
               { find = "; before #%d+" },
               { find = "%d fewer lines" },
               { find = "%d more lines" },
+              { find = "Invalid 'end_col': out of range" },
             },
           },
           opts = { skip = true },
