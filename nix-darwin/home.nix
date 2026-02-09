@@ -134,9 +134,9 @@ in {
 
     ".gitconfig".source = link "${config.home.homeDirectory}/dotfiles/git/.gitconfig";
     ".gitignore".source = link "${config.home.homeDirectory}/dotfiles/git/.gitignore";
-    ".aider.conf.yml".source = link "${config.home.homeDirectory}/dotfiles/aider/.aider.conf.yml";
-    ".aider.model.metadata.json".source = link "${config.home.homeDirectory}/dotfiles/aider/.aider.model.metadata.json";
     ".ideavimrc".source = link "${config.home.homeDirectory}/dotfiles/ideavimrc/.ideavimrc";
+    "Library/Application Support/Code/User/keybindings.json".source =
+      link "${config.home.homeDirectory}/dotfiles/vscode/.config/Code/User/keybindings.json";
   };
 
   xdg.configFile = {
