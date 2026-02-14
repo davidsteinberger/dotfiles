@@ -124,8 +124,8 @@ alt-t = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
 alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-x = 'exec-and-forget open -a /Applications/IntelliJ\ IDEA.app'
 alt-v = 'exec-and-forget open -a /Applications/Visual\ Studio\ Code.app'
-alt-b = 'exec-and-forget open -a /Applications/Bruno.app'
-# cmd-e = 'enable toggle'
+alt-c = 'exec-and-forget open -a /Applications/Bruno.app'
+cmd-e = 'enable toggle'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 ctrl-alt-y = 'focus left'
