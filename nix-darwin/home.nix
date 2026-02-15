@@ -135,6 +135,8 @@ in {
     ".gitconfig".source = link "${config.home.homeDirectory}/dotfiles/git/.gitconfig";
     ".gitignore".source = link "${config.home.homeDirectory}/dotfiles/git/.gitignore";
     ".ideavimrc".source = link "${config.home.homeDirectory}/dotfiles/ideavimrc/.ideavimrc";
+    "Library/KeyBindings/DefaultKeyBinding.dict".source =
+      link "${config.home.homeDirectory}/dotfiles/keybindings/Library/KeyBindings/DefaultKeyBinding.dict";
     "Library/Application Support/Code/User/keybindings.json".source =
       link "${config.home.homeDirectory}/dotfiles/vscode/.config/Code/User/keybindings.json";
   };

@@ -274,7 +274,7 @@ run = 'move-node-to-workspace 8'
 # check-further-callbacks = true
 # run = 'layout floating'
 
-[[on-window-detected]]
-if.during-aerospace-startup = true
-run = 'move-node-to-workspace 9'
-
+# [[on-window-detected]]
+# if.during-aerospace-startup = true
+# run = 'move-node-to-workspace 9'
+#

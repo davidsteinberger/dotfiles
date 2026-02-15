@@ -92,8 +92,8 @@ nnoremap <leader>; :action RecentFiles<CR>
 
 " File navigation
 nnoremap <leader>ff :action GotoFile<CR>
-nnoremap <leader>fr :action RecentFiles<CR>
-nnoremap <leader>fg :action FindInPath<CR>
+" nnoremap <leader>fr :action RecentFiles<CR>
+" nnoremap <leader>fg :action FindInPath<CR>
 
 " Code navigation
 nnoremap gd :action GotoDeclaration<CR>
@@ -108,8 +108,8 @@ nnoremap <leader>cf :action ReformatCode<CR>
 
 " Git operations
 nnoremap <leader>gg :action Vcs.Show.Log<CR>
-nnoremap <leader>gb :action Git.Branches<CR>
-nnoremap <leader>gc :action CheckinProject<CR>
+" nnoremap <leader>gb :action Git.Branches<CR>
+" nnoremap <leader>gc :action CheckinProject<CR>
 
 " Build and run
 " nnoremap <leader>br :action Run<CR>
@@ -117,9 +117,7 @@ nnoremap <leader>gc :action CheckinProject<CR>
 " nnoremap <leader>bb :action CompileDirty<CR>
 
 " Toggle features
-nnoremap <leader>tt :action ActivateTerminalToolWindow<CR>
-" nnoremap <leader>tp :action ActivateProjectToolWindow<CR>
-" nnoremap <leader>td :action ActivateDebugToolWindow<CR>
+nnoremap <C-/> :action ActivateTerminalToolWindow<CR>
 
 " Comments (similar to LazyVim's comment plugin)
 nnoremap gcc :action CommentByLineComment<CR>
