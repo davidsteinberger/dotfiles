@@ -139,6 +139,7 @@ in {
       link "${config.home.homeDirectory}/dotfiles/keybindings/Library/KeyBindings/DefaultKeyBinding.dict";
     "Library/Application Support/Code/User/keybindings.json".source =
       link "${config.home.homeDirectory}/dotfiles/vscode/.config/Code/User/keybindings.json";
+    ".claude/settings.json".source = link "${config.home.homeDirectory}/dotfiles/.claude/settings.json";
   };
 
   xdg.configFile = {

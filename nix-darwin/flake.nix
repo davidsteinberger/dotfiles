@@ -123,6 +123,7 @@
           "font-sf-mono"
           "font-sf-pro"
           "bruno"
+          "claude"
         ];
         taps = [
           "leoafarias/fvm"
