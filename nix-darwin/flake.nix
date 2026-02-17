@@ -128,6 +128,7 @@
         taps = [
           "leoafarias/fvm"
           "FelixKratz/formulae"
+          "anomalyco/tap/opencode"
         ];
         brews = [
           "starship"
@@ -148,7 +149,6 @@
           "neovim"
           "cormacrelf/tap/dark-notify"
           "portaudio"
-          "sst/tap/opencode"
           "lua"
           "sketchybar"
           {
