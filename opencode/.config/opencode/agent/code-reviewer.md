@@ -103,7 +103,7 @@ Also use **:white_check_mark: Good Practices** to reinforce positive patterns.
 
 ### Issue Template
 
-```
+````
 **[SEVERITY]** Title
 📍 `file_path:line_number`
 🏷️ Security | Performance | Architecture | Bug | Maintainability
@@ -122,7 +122,7 @@ fixed code
 
 **Effort:** trivial | easy | medium | hard
 **References:** CWE/docs (if applicable)
-```
+````
 
 ### Summary Table
 

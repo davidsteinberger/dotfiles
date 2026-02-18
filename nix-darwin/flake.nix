@@ -124,11 +124,11 @@
           "font-sf-pro"
           "bruno"
           "claude"
+          "opencode-desktop"
         ];
         taps = [
           "leoafarias/fvm"
           "FelixKratz/formulae"
-          "anomalyco/tap/opencode"
         ];
         brews = [
           "starship"
@@ -157,6 +157,7 @@
           }
           "clojure/tools/clojure"
           "borkdude/brew/babashka"
+          "anomalyco/tap/opencode"
         ];
         masApps = {
           Yubico = 1497506650;
