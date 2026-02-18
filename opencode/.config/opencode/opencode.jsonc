@@ -7,9 +7,7 @@
   "model": "github-copilot/claude-opus-4.6",
   "autoupdate": true,
   "permission": {
-    "edit": "allow",
-    "bash": "allow",
-    "webfetch": "allow"
+    "*": "allow",
   },
   "provider": {
     "amazon-bedrock": {
