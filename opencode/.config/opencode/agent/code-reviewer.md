@@ -1,12 +1,11 @@
 ---
 description: 'Perform a comprehensive code review'
 mode: primary
-model: github-copilot/claude-opus-4.6
 temperature: 0.1
 tools:
   write: false
   edit: false
-  bash: false
+  git: true
 ---
 
 ## Role
