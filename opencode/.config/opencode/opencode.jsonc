@@ -4,27 +4,21 @@
     "@franlol/opencode-md-table-formatter@0.0.3"
   ],
   "theme": "opencode",
-  "model": "github-copilot/claude-opus-4.6",
+  "model": "anthropic-claude-sonnet-4.6",
   "autoupdate": true,
   "permission": {
     "*": "allow",
   },
   "provider": {
     "amazon-bedrock": {
-      // "models": {
-      //   "arn:aws:bedrock:us-east-1:334450016200:inference-profile/global.anthropic.claude-opus-4-6-v1": {
-      //     "name": "my aip profile",
-      //     "options": {
-      //       "thinking": {
-      //         "type": "enabled",
-      //         "budgettokens": 1024
-      //       }
-      //     }
-      //   }
-      // },
+      "models": {
+        "anthropic-claude-sonnet-4.6": {
+          "id": "arn:aws:bedrock:eu-central-1:328991713846:inference-profile/eu.anthropic.claude-sonnet-4-6"
+        }
+      },
       "options": {
-        "region": "us-east-1",
-        "profile": "az-myplant-prod"
+        "region": "eu-central-1",
+        "profile": "innio-ai-devs"
       }
     }
   },
