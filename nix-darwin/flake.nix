@@ -158,6 +158,7 @@
           "clojure/tools/clojure"
           "borkdude/brew/babashka"
           "anomalyco/tap/opencode"
+          "bitwarden-cli"
         ];
         masApps = {
           Yubico = 1497506650;
