@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@opencode-ai/plugin": "1.2.6",
+    "@opencode-ai/plugin": "1.2.14",
     "node-emoji": "^2.2.0"
   }
 }
