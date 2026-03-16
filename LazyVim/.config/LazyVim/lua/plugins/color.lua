@@ -1,6 +1,11 @@
 return {
   {
-    "NvChad/nvim-colorizer.lua",
-    config = true,
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {
+      user_default_options = {
+        suppress_deprecation = true,
+      },
+    },
   },
 }

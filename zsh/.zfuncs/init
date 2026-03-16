@@ -9,7 +9,8 @@ init_apps() {
     corepack \
     wgc \
     yarn \
-    tree-sitter-cli
+    tree-sitter-cli \
+    typescript
 
   cd ~/dotfiles/ && stow -t /Applications Applications
 }
@@ -24,5 +25,5 @@ init_opam() {
   opam update
 }
 
-init_tpm && init_node && init_apps && init_opam
-
+# init_tpm && init_node && init_apps && init_opam
+init_node && init_apps
