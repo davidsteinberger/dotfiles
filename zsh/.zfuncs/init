@@ -10,7 +10,8 @@ init_apps() {
     wgc \
     yarn \
     tree-sitter-cli \
-    typescript
+    typescript \
+    @arethetypeswrong/cli
 
   cd ~/dotfiles/ && stow -t /Applications Applications
 }

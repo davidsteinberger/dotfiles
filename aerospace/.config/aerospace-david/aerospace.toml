@@ -271,9 +271,9 @@ run = 'move-node-to-workspace 8'
 if.app-id = 'com.apple.finder'
 run = 'layout floating'
 
-[[on-window-detected]]
-check-further-callbacks = true
-run = 'layout floating'
+# [[on-window-detected]]
+# check-further-callbacks = true
+# run = 'layout floating'
 
 [[on-window-detected]]
 if.during-aerospace-startup = true
