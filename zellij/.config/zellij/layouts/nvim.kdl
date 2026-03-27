@@ -1,0 +1,42 @@
+layout {
+    tab focus=true hide_floating_panes=true {
+        pane split_direction="vertical" {
+            pane command="nvim" size="70%" {
+                start_suspended false
+            }
+            pane stacked=true {
+                children
+            }
+        }
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar" {
+                tooltip "F1"
+            }
+        }
+    }
+    new_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar" {
+                tooltip "F1"
+            }
+        }
+    }
+    swap_tiled_layout name="stacked" {
+        tab {
+            pane {
+                pane split_direction="vertical" {
+                    pane size="70%"
+                    pane stacked=true {
+                        children
+                    }
+                }
+            }
+            pane size=1 borderless=true {
+                plugin location="zellij:compact-bar" {
+                    tooltip "F1"
+                }
+            }
+        }
+    }
+}
+

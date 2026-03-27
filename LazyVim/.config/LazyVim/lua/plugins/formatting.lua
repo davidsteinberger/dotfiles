@@ -40,6 +40,7 @@ return {
         ["graphql"] = { "prettier" },
         ["handlebars"] = { "prettier" },
         ["python"] = { "black" },
+        ["kdl"] = { "kdlfmt" },
       })
     end,
   },
