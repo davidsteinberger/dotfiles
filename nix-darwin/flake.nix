@@ -151,10 +151,7 @@
           "portaudio"
           "lua"
           "sketchybar"
-          {
-            name = "zellij";
-            args = ["HEAD"];
-          }
+          "zellij"
           "clojure/tools/clojure"
           "borkdude/brew/babashka"
           "anomalyco/tap/opencode"

@@ -53,6 +53,23 @@
       "url": "http://localhost:3001/mcp",
       "oauth": {}
     },
+    "groundcover": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-remote@0.1.30",
+        "https://mcp.groundcover.com/api/mcp",
+        "54278",
+        "--header",
+        "X-Timezone:Europe/Vienna",
+        "--header",
+        "X-Tenant-UUID:b266993b-005a-4d94-b653-3eb16cb901b6",
+        "--header",
+        "X-Backend-Id:groundcover"
+      ]
+    }
     // "chrome-devtools": {
     //   "enabled": false,
     //   "type": "local",
