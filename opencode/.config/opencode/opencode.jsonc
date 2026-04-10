@@ -69,6 +69,22 @@
         "--header",
         "X-Backend-Id:groundcover"
       ]
+    },
+    "ms365": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@softeria/ms-365-mcp-server",
+        "--toon",
+        "--org-mode"
+      ],
+      "environment": {
+        "MS365_MCP_CLIENT_ID": "{env: MS365_MCP_CLIENT_ID}",
+        "MS365_MCP_TENANT_ID": "{env: MS365_MCP_TENANT_ID}",
+        "MS365_MCP_CLIENT_SECRET": "{env: MS365_MCP_CLIENT_SECRET}"
+      }
     }
     // "chrome-devtools": {
     //   "enabled": false,

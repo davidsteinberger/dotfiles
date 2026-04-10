@@ -1,14 +1,13 @@
 vars {
   host: https://alpha.staging.myplant.io
-  baseUrl: http://localhost:{{localPort}}
-  prefix: /
-  localPort: 8080
+  baseUrl: http://localhost:{{localPort}}{{prefix}}
+  prefix: /api
+  localPort: 9090
 }
 vars:secret [
   otp,
   apiKey,
   token,
-  challenge,
   clientId,
   impersonatedUsername
 ]
