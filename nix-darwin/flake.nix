@@ -124,6 +124,7 @@
           "font-sf-pro"
           "bruno"
           "claude"
+          "claude-code"
           "opencode-desktop"
         ];
         taps = [
