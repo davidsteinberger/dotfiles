@@ -85,6 +85,26 @@
         "MS365_MCP_TENANT_ID": "{env: MS365_MCP_TENANT_ID}",
         "MS365_MCP_CLIENT_SECRET": "{env: MS365_MCP_CLIENT_SECRET}"
       }
+    },
+    "sonarqube": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "--init",
+        "--pull=always",
+        "-e",
+        "SONARQUBE_TOKEN",
+        "-e",
+        "SONARQUBE_URL",
+        "mcp/sonarqube"
+      ],
+      "environment": {
+        "SONARQUBE_TOKEN": "{env:SONARQUBE_TOKEN}",
+        "SONARQUBE_URL": "{env:SONARQUBE_URL}"
+      }
     }
     // "chrome-devtools": {
     //   "enabled": false,
