@@ -157,6 +157,7 @@
           "borkdude/brew/babashka"
           "anomalyco/tap/opencode"
           "bitwarden-cli"
+          "uv"
         ];
         masApps = {
           Yubico = 1497506650;
