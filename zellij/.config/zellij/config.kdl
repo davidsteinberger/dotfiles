@@ -11,7 +11,6 @@ keybinds clear-defaults=true {
 
             }
         }
- //...
     }
     locked {
         bind "Ctrl g" {
@@ -33,7 +32,6 @@ keybinds clear-defaults=true {
                 payload "enable"
             }
         }
- //...
     }
     pane {
         bind "left" {

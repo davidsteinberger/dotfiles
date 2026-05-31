@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_PROFILE": "innio-ai-devs",
+    "AWS_REGION": "eu-central-1",
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:eu-central-1:328991713846:inference-profile/eu.anthropic.claude-sonnet-4-6"
+  },
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true
+  },
+  "theme": "dark",
+  "enableAllProjectMcpServers": true,
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "figma",
+      "Bash"
+    ]
+  }
+}
