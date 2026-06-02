@@ -61,10 +61,10 @@ in {
     nushell
     ripgrep
     eza
-    (pass.withExtensions (exts: [
-      exts.pass-otp
-      exts.pass-import
-    ]))
+    # (pass.withExtensions (exts: [
+    #   exts.pass-otp
+    #   exts.pass-import
+    # ]))
     tmux
     cmake
     ninja
