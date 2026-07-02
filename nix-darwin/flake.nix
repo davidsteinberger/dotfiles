@@ -129,7 +129,7 @@
         ];
         taps = [
           "leoafarias/fvm"
-          "FelixKratz/formulae"
+          "felixkratz/formulae"
         ];
         brews = [
           "starship"
@@ -144,20 +144,22 @@
           "fvm"
           "mysql"
           "lazydocker"
-          "derailed/k9s/k9s"
+          "k9s"
           "kubectx"
           "stern"
           "neovim"
           "cormacrelf/tap/dark-notify"
           "portaudio"
           "lua"
-          "sketchybar"
+          "felixkratz/formulae/sketchybar"
           "zellij"
           "clojure/tools/clojure"
           "borkdude/brew/babashka"
           "anomalyco/tap/opencode"
           "bitwarden-cli"
           "uv"
+          "herdr"
+          "coursier"
         ];
         masApps = {
           Yubico = 1497506650;

@@ -1,0 +1,29 @@
+onboarding = false
+
+[theme]
+auto_switch = true
+dark_name   = "kanagawa"
+light_name  = "kanagawa-lotus"
+
+name = "kanagawa"
+
+[keys]
+prefix = "ctrl+space"
+
+# Graphite layout equivalents of hjkl, plus arrow keys
+focus_pane_left  = ["alt+shift+y", "alt+shift+left"]
+focus_pane_down  = ["alt+shift+h", "alt+shift+down"]
+focus_pane_up    = ["alt+shift+a", "alt+shift+up"]
+focus_pane_right = ["alt+shift+e", "alt+shift+right"]
+
+# Split creation (mirrors tmux bindings)
+split_vertical   = ["prefix+|", "prefix+\\"]
+split_horizontal = ["prefix+-", "prefix+_"]
+
+[ui.toast]
+delivery = "herdr"
+
+[ui]
+show_agent_labels_on_pane_borders = true
+pane_borders = false
+pane_gaps = false

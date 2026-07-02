@@ -161,6 +161,7 @@ in {
     "aerc".source = link "${config.home.homeDirectory}/dotfiles/aerc/.config/aerc";
     "sketchybar".source = link "${config.home.homeDirectory}/dotfiles/sketchybar/.config/sketchybar";
     "bruno".source = link "${config.home.homeDirectory}/dotfiles/bruno/.config/bruno";
+    "herdr".source = link "${config.home.homeDirectory}/dotfiles/herdr/.config/herdr";
   };
 
   # Home Manager can also manage your environment variables through

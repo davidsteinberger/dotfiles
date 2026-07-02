@@ -37,9 +37,13 @@ map("n", "cpp", ':let @+=expand("%:p")<cr>', DEFAULT_OPTIONS)
 map("n", "J", "mzJ`z", DEFAULT_OPTIONS)
 
 map("n", "<PageUp>", "<c-w><Up>", DEFAULT_OPTIONS)
+map("n", "<M-a>", "<c-w><Up>", DEFAULT_OPTIONS)
 map("n", "<PageDown>", "<c-w><Down>", DEFAULT_OPTIONS)
+map("n", "<M-h>", "<c-w><Down>", DEFAULT_OPTIONS)
 map("n", "<Home>", "<c-w><Left>", DEFAULT_OPTIONS)
+map("n", "<M-y>", "<c-w><Left>", DEFAULT_OPTIONS)
 map("n", "<End>", "<c-w><Right>", DEFAULT_OPTIONS)
+map("n", "<M-e>", "<c-w><Right>", DEFAULT_OPTIONS)
 map("n", "<S-Right>", ":BufferLineCycleNext<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Left>", ":BufferLineCyclePrev<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Up>", "N", DEFAULT_OPTIONS)
@@ -49,6 +53,29 @@ map("n", "<S-PageUp>", ":ZellijNavigateUp<cr>", DEFAULT_OPTIONS)
 map("n", "<S-PageDown>", ":ZellijNavigateDown<cr>", DEFAULT_OPTIONS)
 map("n", "<S-Home>", ":ZellijNavigateLeft<cr>", DEFAULT_OPTIONS)
 map("n", "<S-End>", ":ZellijNavigateRight<cr>", DEFAULT_OPTIONS)
+
+-- Herdr pane navigation (Graphite hjkl = y/h/a/e)
+-- Moves to an adjacent vim split; falls back to herdr pane focus at the edge.
+local function navigate(vim_dir, herdr_dir)
+  local cur = vim.api.nvim_get_current_win()
+  vim.cmd("wincmd " .. vim_dir)
+  if vim.api.nvim_get_current_win() == cur then
+    vim.fn.jobstart({ "herdr", "pane", "focus", "--direction", herdr_dir })
+  end
+end
+
+map("n", "<M-Y>", function()
+  navigate("h", "left")
+end, DEFAULT_OPTIONS)
+map("n", "<M-H>", function()
+  navigate("j", "down")
+end, DEFAULT_OPTIONS)
+map("n", "<M-A>", function()
+  navigate("k", "up")
+end, DEFAULT_OPTIONS)
+map("n", "<M-E>", function()
+  navigate("l", "right")
+end, DEFAULT_OPTIONS)
 
 map("i", "<c-c>", "<esc>", DEFAULT_OPTIONS)
 
