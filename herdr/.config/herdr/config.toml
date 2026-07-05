@@ -16,9 +16,17 @@ focus_pane_down  = ["alt+shift+h", "alt+shift+down"]
 focus_pane_up    = ["alt+shift+a", "alt+shift+up"]
 focus_pane_right = ["alt+shift+e", "alt+shift+right"]
 
+previous_tab = ["prefix+p", "alt+shift+["]
+next_tab = ["prefix+n", "alt+shift+]"]
+
 # Split creation (mirrors tmux bindings)
 split_vertical   = ["prefix+|", "prefix+\\"]
 split_horizontal = ["prefix+-", "prefix+_"]
+
+zoom = ["prefix+z", "alt+shift+z"]
+
+focus_agent = ["alt+1..9"]
+switch_workspace = ["prefix+alt+1..9"]
 
 [ui.toast]
 delivery = "herdr"
