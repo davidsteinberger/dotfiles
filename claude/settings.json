@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:eu-central-1:328991713846:inference-profile/eu.anthropic.claude-sonnet-4-6",
+    "AWS_PROFILE": "innio-ai-devs",
+    "AWS_REGION": "eu-central-1",
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "eu.anthropic.claude-sonnet-4-6",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "eu.anthropic.claude-opus-4-8",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
+  },
+  "permissions": {
+    "allow": [
+      "Figma",
+      "Bash"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+  "enableAllProjectMcpServers": true,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/herdr-agent-state.sh session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "figma@claude-plugins-official": true
+  },
+  "theme": "dark",
+  "model": "opus"
+}

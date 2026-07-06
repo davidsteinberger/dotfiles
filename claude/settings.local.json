@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp *)",
+      "Bash(xargs ls -la)",
+      "Bash(xargs cat)",
+      "Read(//Users/davidsteinberger/.claude/**)",
+      "Read(//Users/davidsteinberger/**)",
+      "Bash(python3 -m json.tool)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('mcpServers',{}\\), indent=2\\)\\)\")",
+      "Bash(env)",
+      "Bash(docker info *)",
+      "Skill(figma:figma-generate-design)",
+      "Skill(figma:figma-create-new-file)",
+      "mcp__plugin_figma_figma__whoami",
+      "mcp__plugin_figma_figma__create_new_file",
+      "mcp__plugin_figma_figma__get_libraries",
+      "mcp__plugin_figma_figma__search_design_system",
+      "mcp__plugin_figma_figma__use_figma",
+      "mcp__plugin_figma_figma__get_screenshot",
+      "Bash(curl *)",
+      "mcp__plugin_figma_figma__get_metadata"
+    ]
+  }
+}

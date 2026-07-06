@@ -139,7 +139,8 @@ in {
       link "${config.home.homeDirectory}/dotfiles/keybindings/Library/KeyBindings/DefaultKeyBinding.dict";
     "Library/Application Support/Code/User/keybindings.json".source =
       link "${config.home.homeDirectory}/dotfiles/vscode/.config/Code/User/keybindings.json";
-    ".claude/settings.json".source = link "${config.home.homeDirectory}/dotfiles/.claude/settings.json";
+    ".claude/settings.json".source = link "${config.home.homeDirectory}/dotfiles/claude/settings.json";
+    ".agents/skills".source = link "${config.home.homeDirectory}/dotfiles/agents/skills";
   };
 
   xdg.configFile = {
@@ -151,7 +152,7 @@ in {
     "LazyVim".source = link "${config.home.homeDirectory}/dotfiles/LazyVim/.config/LazyVim";
     "kitty".source = link "${config.home.homeDirectory}/dotfiles/kitty/.config/kitty";
     "warpd".source = link "${config.home.homeDirectory}/dotfiles/warpd/.config/warpd";
-    "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace-${config.home.username}";
+    "aerospace".source = link "${config.home.homeDirectory}/dotfiles/aerospace/.config/aerospace.toml";
     "ghostty".source = link "${config.home.homeDirectory}/dotfiles/ghostty/.config/ghostty";
     "k9s".source = link "${config.home.homeDirectory}/dotfiles/k9s/.config/k9s";
     "tmux".source = link "${config.home.homeDirectory}/dotfiles/tmux/.config/tmux";
