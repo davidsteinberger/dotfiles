@@ -62,6 +62,11 @@ return {
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
       end,
+      keymap = {
+        -- ctrl+space is herdr's prefix; pressing it twice passes it through,
+        -- but alt+space lets us trigger completions with a single keypress.
+        ["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
+      },
       cmdline = {
         enabled = true,
         keymap = {
