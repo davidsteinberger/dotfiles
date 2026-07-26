@@ -63,6 +63,10 @@ return {
             truncate = 100,
           },
         },
+        sources = {
+          files = { hidden = true },
+          grep = { hidden = true },
+        },
       },
     },
   },
