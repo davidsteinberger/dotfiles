@@ -2333,7 +2333,7 @@ script:pre-request {
   
   var totpObj = new TOTP();
   var otp = totpObj.getOTP(bru.getFolderVar('otpSecret'));
-  bru.setEnvVar("otp", otp);
+  bru.setVar("otp", otp);
 }
 
 script:post-response {

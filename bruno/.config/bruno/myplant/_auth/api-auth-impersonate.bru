@@ -20,7 +20,7 @@ params:path {
 
 script:post-response {
   var jsonData = res.getBody();
-  bru.setEnvVar("token", jsonData.token);
+  bru.setVar("token", jsonData.token);
 }
 
 settings {

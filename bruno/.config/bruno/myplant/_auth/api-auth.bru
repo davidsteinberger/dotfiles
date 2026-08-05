@@ -24,8 +24,8 @@ body:json {
 
 script:post-response {
   var jsonData = res.getBody();
-  bru.setEnvVar("challenge", jsonData.challenge);
-  bru.setEnvVar("token", jsonData.token);
+  bru.setVar("challenge", jsonData.challenge);
+  bru.setVar("token", jsonData.token);
 }
 
 settings {
