@@ -52,8 +52,6 @@ in {
     delta
     # neovim
     # starship
-    fnm
-    pyenv
     fzf
     zoxide
     atuin
@@ -84,12 +82,7 @@ in {
     gnupatch
     gnumake
     sketchybar-app-font
-
-    # lang
-    go
-    rustup
-    opam
-    dune_3
+    mise
 
     # gnupg
     yubikey-personalization
@@ -97,7 +90,6 @@ in {
     pinentry_mac
 
     redis
-    awscli2
     argo-rollouts
 
     # qmk
@@ -126,6 +118,7 @@ in {
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".zprofile".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zprofile";
     ".zcompletions".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zcompletions";
     ".zfuncs".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zfuncs";
     ".zaliases.zsh".source = link "${config.home.homeDirectory}/dotfiles/zsh/.zaliases.zsh";
@@ -163,6 +156,7 @@ in {
     "sketchybar".source = link "${config.home.homeDirectory}/dotfiles/sketchybar/.config/sketchybar";
     "bruno".source = link "${config.home.homeDirectory}/dotfiles/bruno/.config/bruno";
     "herdr".source = link "${config.home.homeDirectory}/dotfiles/herdr/.config/herdr";
+    "mise".source = link "${config.home.homeDirectory}/dotfiles/mise/.config/mise";
   };
 
   # Home Manager can also manage your environment variables through

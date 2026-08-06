@@ -1,0 +1,24 @@
+[tools]
+node = 'lts'
+"npm:yarn" = "latest"
+pnpm = "latest"
+python = "{{ get_env(name='PYTHON_VERSION', default='3') }}"
+ruff = "latest"
+"npm:aws-azure-login" = "latest"
+go = "latest"
+
+[env]
+_.file = ".env"
+
+# Use the project name derived from the current directory
+PROJECT_NAME = "{{ cwd | basename }}"
+
+[hooks]
+cd = "if [ -f pyproject.toml ] || [ -f requirements.txt ] || [ -f .python-version ]; then [ -d .venv ] || python -m venv .venv; fi"
+
+[settings]
+experimental = true
+# read version files used by other version managers, such as .nvmrc
+idiomatic_version_file_enable_tools = ["node","python"]
+#python.venv_stdlib = true
+

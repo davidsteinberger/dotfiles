@@ -90,30 +90,7 @@ else
 fi
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# pnpm
-export PNPM_HOME="${HOME}/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 eval "$(starship init zsh)"
-
-# fnm
-eval "$(fnm env --use-on-cd)"
-
-# opam
-[[ ! -r ~/.opam/opam-init/init.zsh ]] || source ~/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
-# go
-GOPATH="$(go env GOPATH)"
-export PATH="$GOPATH/bin:$PATH"
 
 zsh-defer source ${ZDOTDIR:-~}/.zdefer.zsh
 
@@ -124,5 +101,8 @@ eval "$(zoxide init zsh)"
 
 # atuin
 eval "$(atuin init zsh --disable-up-arrow)"
+
+# mise
+eval "$(mise activate zsh)"
 
 # zprof
