@@ -1,0 +1,469 @@
+emulate -L zsh
+setopt extended_glob
+
+# ---------------------------------------------------------------------------
+# repo-clean [PATH] — scan a directory tree for git repos and reclaim space.
+#
+# Dry-run by default: prints a per-repo plan with estimated bytes freed and a
+# grand total, and touches nothing. Pass -f to execute. See `repo-clean -h`.
+#
+# Structure: a *planner* walks the tree and emits a line-oriented plan
+# (repo <tab> action <tab> target <tab> bytes); an *executor* consumes it.
+# Dry-run runs the planner and pretty-prints; -f runs planner then executor.
+# The plan is the one test seam (see repo-clean.test.zsh).
+# ---------------------------------------------------------------------------
+
+# Dependency/build directory names removed from a repo *only when git already
+# ignores them*. Edit this list to add or drop ecosystems.
+typeset -ga _RC_DEPDIRS=(
+  node_modules target .venv venv build dist
+  .next .nuxt .dart_tool .gradle Pods
+  __pycache__ .pytest_cache .turbo
+)
+
+typeset -gA _RC_OPT
+typeset -ga _RC_PLAN
+
+_repo_clean_usage() {
+  print -r -- 'repo-clean [PATH] [options] — reclaim disk space from git repos under PATH (default: .)
+
+Dry-run by default: prints a per-repo plan with estimated bytes freed and a
+grand total, and changes nothing. Pass -f to execute.
+
+  -f, --apply        execute the plan
+  -v, --verbose      also list repos whose plan is empty
+  -i                 fzf multi-select which discovered repos to act on
+      --deep         also: reflog expire, git gc --prune=now, git clean -xdf
+                     (skips repos with a dirty work tree unless --force-dirty)
+      --force-dirty  let --deep act on dirty repos too
+      --caches       also clean global caches: npm/pnpm/yarn, cargo registry,
+                     pip, go build cache, Xcode DerivedData
+      --docker       also run: docker builder prune -f
+      --nix          also run: nix-collect-garbage -d (drops rollback ability)
+  -h, --help         show this help
+
+Env:
+  REPO_CLEAN_EXCLUDE   colon-separated path globs to always skip'
+}
+
+_repo_clean_hb() {  # humanize a byte count
+  local b=${1:-0}
+  if   (( b >= 1073741824 )); then printf '%.1f GiB' $(( b / 1073741824.0 ))
+  elif (( b >= 1048576    )); then printf '%.1f MiB' $(( b / 1048576.0 ))
+  elif (( b >= 1024       )); then printf '%.1f KiB' $(( b / 1024.0 ))
+  else                            printf '%d B' $b
+  fi
+}
+
+_repo_clean_dirsize() {  # bytes on disk for a path (0 if missing)
+  [[ -e $1 ]] || { print -r -- 0; return }
+  du -sk -- "$1" 2>/dev/null | awk 'NR==1 {print $1 * 1024; ok=1} END {if (!ok) print 0}'
+}
+
+_repo_clean_objbytes() {  # bytes held by git objects (loose + pack + garbage)
+  git -C "$1" count-objects -v 2>/dev/null | awk '
+    /^size:/         {s  = $2}
+    /^size-pack:/    {sp = $2}
+    /^size-garbage:/ {sg = $2}
+    END              {print (s + sp + sg) * 1024}'
+}
+
+_repo_clean_cache_cmd() {
+  case $1 in
+    npm)               print -r -- 'npm cache clean --force';;
+    pnpm)              print -r -- 'pnpm store prune';;
+    yarn)              print -r -- 'yarn cache clean';;
+    cargo)             print -r -- 'rm -rf ~/.cargo/registry/{cache,src}';;
+    pip)               print -r -- 'pip cache purge';;
+    go)                print -r -- 'go clean -cache';;
+    xcode-deriveddata) print -r -- 'rm -rf ~/Library/Developer/Xcode/DerivedData/*';;
+  esac
+}
+
+_repo_clean_find_git() {  # emit every .git directory beneath $1
+  fd --hidden --no-ignore --type d --glob --absolute-path '.git' "$1" 2>/dev/null
+}
+
+_repo_clean_in_nested_repo() {  # true if $1 sits inside a git repo nested below $2
+  local p=${1:h} root=$2
+  while [[ $p == $root/* ]]; do
+    [[ -e $p/.git ]] && return 0
+    p=${p:h}
+  done
+  return 1
+}
+
+_repo_clean_discover() {  # emit repo paths under $1, one per line, deduped/filtered
+  local root=$1
+  local -a gitdirs repos kept
+  local g r k gl
+  gitdirs=("${(@f)$(_repo_clean_find_git "$root")}")
+  for g in $gitdirs; do
+    [[ -n $g ]] || continue
+    g=${g%/}
+    repos+=("${g:h}")
+  done
+  # drop any repo nested inside another discovered repo (parents sort first)
+  for r in "${(@ou)repos}"; do
+    for k in $kept; do
+      [[ $r == $k/* ]] && { r=''; break }
+    done
+    [[ -n $r ]] && kept+=("$r")
+  done
+  # honour REPO_CLEAN_EXCLUDE path globs
+  if [[ -n $REPO_CLEAN_EXCLUDE ]]; then
+    local -a globs=("${(@s.:.)REPO_CLEAN_EXCLUDE}") survivors
+    local skip
+    for r in $kept; do
+      skip=0
+      for gl in $globs; do
+        [[ -n $gl ]] || continue
+        [[ $r == ${~gl} ]] && { skip=1; break }
+      done
+      (( skip )) || survivors+=("$r")
+    done
+    kept=($survivors)
+  fi
+  print -rl -- $kept
+}
+
+_repo_clean_plan_repo() {  # append this repo's plan lines to _RC_PLAN
+  local repo=$1
+  local deep=${_RC_OPT[deep]:-0} force=${_RC_OPT[force_dirty]:-0}
+  local line
+
+  # 1. git gc — estimate from the current loose + garbage footprint
+  local cov size sg
+  cov=$(git -C "$repo" count-objects -v 2>/dev/null)
+  size=$(print -r -- "$cov" | awk '/^size:/ {print $2}')
+  sg=$(print -r -- "$cov" | awk '/^size-garbage:/ {print $2}')
+  (( size = ${size:-0}, sg = ${sg:-0} ))
+  _RC_PLAN+=("$repo"$'\t'gc$'\t'"$repo"$'\t'$(( (size + sg) * 1024 )))
+
+  # 2. prune stale remote-tracking branches, one action per configured remote
+  local rmt
+  for rmt in "${(@f)$(git -C "$repo" remote 2>/dev/null)}"; do
+    [[ -n $rmt ]] && _RC_PLAN+=("$repo"$'\t'remote-prune$'\t'"$rmt"$'\t'0)
+  done
+
+  # 3. ignored dependency/build directories, found at any depth
+  local -a esc hits
+  local d h b
+  for d in $_RC_DEPDIRS; do esc+=("${d//./\\.}"); done
+  local pat="^(${(j:|:)esc})\$"
+  hits=("${(@f)$(fd --hidden --no-ignore --type d --prune --absolute-path "$pat" "$repo" 2>/dev/null)}")
+  for h in $hits; do
+    [[ -n $h ]] || continue
+    h=${h%/}
+    [[ $h == $repo/* ]] || continue
+    _repo_clean_in_nested_repo "$h" "$repo" && continue   # don't reach into a vendored repo
+    git -C "$repo" check-ignore -q -- "$h" 2>/dev/null || continue
+    b=$(_repo_clean_dirsize "$h")
+    _RC_PLAN+=("$repo"$'\t'rmdir$'\t'"$h"$'\t'"$b")
+  done
+
+  # 4. --deep history strip, guarded on a dirty work tree
+  if (( deep )); then
+    local dirty=0
+    [[ -n $(git -C "$repo" status --porcelain 2>/dev/null) ]] && dirty=1
+    if (( dirty && ! force )); then
+      _RC_PLAN+=("$repo"$'\t'deep-skip$'\t'"working tree dirty"$'\t'0)
+    else
+      _RC_PLAN+=("$repo"$'\t'deep-reflog$'\t'$'\t'0)
+      _RC_PLAN+=("$repo"$'\t'deep-gc$'\t'$'\t'0)
+      local l p full est=0 skip
+      for l in "${(@f)$(git -C "$repo" clean -xdn 2>/dev/null)}"; do
+        p=${l#Would remove }
+        [[ $p == "$l" ]] && continue
+        full="$repo/${p%/}"
+        skip=0
+        for line in $_RC_PLAN; do
+          [[ $line == "$repo"$'\t'rmdir$'\t'"$full"$'\t'* ]] && { skip=1; break }
+        done
+        (( skip )) && continue
+        (( est += $(_repo_clean_dirsize "$full") ))
+      done
+      _RC_PLAN+=("$repo"$'\t'deep-clean$'\t'$'\t'"$est")
+    fi
+  fi
+}
+
+_repo_clean_plan_caches() {  # append global-cache plan lines (opt-in flags)
+  local G='(global)' p
+  if (( ${_RC_OPT[caches]:-0} )); then
+    (( $+commands[npm] )) && [[ -d ~/.npm ]] && \
+      _RC_PLAN+=("$G"$'\t'cache$'\t'npm$'\t'$(_repo_clean_dirsize ~/.npm))
+    if (( $+commands[pnpm] )); then
+      p=$(pnpm store path 2>/dev/null)
+      [[ -n $p && -d $p ]] && _RC_PLAN+=("$G"$'\t'cache$'\t'pnpm$'\t'$(_repo_clean_dirsize "$p"))
+    fi
+    (( $+commands[yarn] )) && [[ -d ~/Library/Caches/Yarn ]] && \
+      _RC_PLAN+=("$G"$'\t'cache$'\t'yarn$'\t'$(_repo_clean_dirsize ~/Library/Caches/Yarn))
+    if [[ -d ~/.cargo/registry/cache || -d ~/.cargo/registry/src ]]; then
+      local cb=0
+      [[ -d ~/.cargo/registry/cache ]] && (( cb += $(_repo_clean_dirsize ~/.cargo/registry/cache) ))
+      [[ -d ~/.cargo/registry/src   ]] && (( cb += $(_repo_clean_dirsize ~/.cargo/registry/src) ))
+      _RC_PLAN+=("$G"$'\t'cache$'\t'cargo$'\t'$cb)
+    fi
+    (( $+commands[pip] || $+commands[pip3] )) && [[ -d ~/Library/Caches/pip ]] && \
+      _RC_PLAN+=("$G"$'\t'cache$'\t'pip$'\t'$(_repo_clean_dirsize ~/Library/Caches/pip))
+    if (( $+commands[go] )); then
+      p=$(go env GOCACHE 2>/dev/null)
+      [[ -n $p && -d $p ]] && _RC_PLAN+=("$G"$'\t'cache$'\t'go$'\t'$(_repo_clean_dirsize "$p"))
+    fi
+    [[ -d ~/Library/Developer/Xcode/DerivedData ]] && \
+      _RC_PLAN+=("$G"$'\t'cache$'\t'xcode-deriveddata$'\t'$(_repo_clean_dirsize ~/Library/Developer/Xcode/DerivedData))
+  fi
+  (( ${_RC_OPT[docker]:-0} )) && (( $+commands[docker] )) && \
+    _RC_PLAN+=("$G"$'\t'docker$'\t'$'\t'0)
+  (( ${_RC_OPT[nix]:-0} )) && (( $+commands[nix-collect-garbage] )) && \
+    _RC_PLAN+=("$G"$'\t'nix$'\t'$'\t'0)
+}
+
+_repo_clean_print() {  # pretty-print the plan (dry run)
+  local C=$'\e[36m' Z=$'\e[0m'
+  [[ -t 1 ]] || { C=''; Z='' }
+
+  local -A grp
+  local -a order rlines f quiet
+  local line r a t b total=0 shown=0 repos_shown=0 global_shown=0 rtotal meaningful
+
+  for line in $_RC_PLAN; do
+    r=${line%%$'\t'*}
+    [[ -n ${grp[$r]+x} ]] || order+=("$r")
+    grp[$r]+="$line"$'\n'
+  done
+
+  for r in $order; do
+    rlines=("${(@f)grp[$r]}")
+    rtotal=0; meaningful=0
+    for line in $rlines; do
+      [[ -n $line ]] || continue
+      f=("${(@ps:\t:)line}")
+      a=$f[2]; b=${f[4]:-0}
+      (( rtotal += b ))
+      case $a in
+        gc) (( b > 0 )) && meaningful=1;;
+        *)  meaningful=1;;
+      esac
+    done
+    if (( ! meaningful && ! ${_RC_OPT[verbose]:-0} )); then
+      [[ $r == '(global)' ]] || quiet+=("$r")   # -f still repacks these
+      continue
+    fi
+    (( shown++, total += rtotal ))
+
+    if [[ $r == '(global)' ]]; then
+      global_shown=1
+      print -r -- "${C}global caches${Z}"
+    else
+      (( repos_shown++ ))
+      print -r -- "${C}${r}${Z}"
+    fi
+    for line in $rlines; do
+      [[ -n $line ]] || continue
+      f=("${(@ps:\t:)line}")
+      a=$f[2]; t=$f[3]; b=${f[4]:-0}
+      case $a in
+        gc)           printf '  %-34s ~%s\n' 'git gc' "$(_repo_clean_hb $b)";;
+        remote-prune) printf '  %-34s %s\n'  'prune remote-tracking (network)' "$t";;
+        rmdir)        printf '  %-34s ~%s\n' "rm ${t#$r/}  (git-ignored)" "$(_repo_clean_hb $b)";;
+        deep-reflog)  print -r -- '  [--deep] git reflog expire --expire=now --all';;
+        deep-gc)      print -r -- '  [--deep] git gc --prune=now';;
+        deep-clean)   printf '  %-34s ~%s\n' '[--deep] git clean -xdf' "$(_repo_clean_hb $b)"
+                      print -r -- '           deletes every git-ignored + untracked file (incl. .env, local secrets)';;
+        deep-skip)    print -r -- "  [--deep] SKIPPED — $t (pass --force-dirty to override)";;
+        cache)        printf '  %-34s ~%s\n' "$(_repo_clean_cache_cmd $t)" "$(_repo_clean_hb $b)";;
+        docker)       print -r -- '  docker builder prune -f';;
+        nix)          print -r -- '  nix-collect-garbage -d   (removes rollback ability)';;
+      esac
+    done
+  done
+
+  local tail_note=''
+  (( ${#quiet} )) && tail_note="  (-f also repacks ${#quiet} repo(s) with no estimated savings; -v lists them)"
+
+  if (( ! shown )); then
+    if (( ${#quiet} )); then
+      print -r -- "repo-clean: no space to reclaim under ${_RC_OPT[root]};${tail_note}"
+    else
+      print -r -- "repo-clean: nothing to clean under ${_RC_OPT[root]}"
+    fi
+    return 0
+  fi
+  local scope
+  if (( repos_shown )); then
+    local noun=repos; (( repos_shown == 1 )) && noun=repo
+    scope="across $repos_shown $noun"
+    (( global_shown )) && scope+=" + global caches"
+  else
+    scope="from global caches"
+  fi
+  print -r -- ''
+  print -r -- "would free ~$(_repo_clean_hb $total) $scope  (dry run — pass -f to apply)"
+  [[ -n $tail_note ]] && print -r -- "note:${tail_note}"
+}
+
+_repo_clean_exec_cache() {  # run one --caches sub-action, print bytes freed
+  local label=$1 before=0 after=0 p
+  case $label in
+    npm)  before=$(_repo_clean_dirsize ~/.npm)
+          npm cache clean --force >/dev/null 2>&1
+          after=$(_repo_clean_dirsize ~/.npm);;
+    pnpm) p=$(pnpm store path 2>/dev/null)
+          before=$(_repo_clean_dirsize "$p")
+          pnpm store prune >/dev/null 2>&1
+          after=$(_repo_clean_dirsize "$p");;
+    yarn) before=$(_repo_clean_dirsize ~/Library/Caches/Yarn)
+          yarn cache clean >/dev/null 2>&1
+          after=$(_repo_clean_dirsize ~/Library/Caches/Yarn);;
+    cargo) before=$(( $(_repo_clean_dirsize ~/.cargo/registry/cache) + $(_repo_clean_dirsize ~/.cargo/registry/src) ))
+          rm -rf ~/.cargo/registry/cache ~/.cargo/registry/src 2>/dev/null
+          after=$(( $(_repo_clean_dirsize ~/.cargo/registry/cache) + $(_repo_clean_dirsize ~/.cargo/registry/src) ));;
+    pip)  before=$(_repo_clean_dirsize ~/Library/Caches/pip)
+          { pip cache purge || pip3 cache purge } >/dev/null 2>&1
+          after=$(_repo_clean_dirsize ~/Library/Caches/pip);;
+    go)   p=$(go env GOCACHE 2>/dev/null)
+          before=$(_repo_clean_dirsize "$p")
+          go clean -cache >/dev/null 2>&1
+          after=$(_repo_clean_dirsize "$p");;
+    xcode-deriveddata)
+          before=$(_repo_clean_dirsize ~/Library/Developer/Xcode/DerivedData)
+          rm -rf ~/Library/Developer/Xcode/DerivedData/* 2>/dev/null
+          after=$(_repo_clean_dirsize ~/Library/Developer/Xcode/DerivedData);;
+  esac
+  local d=$(( before - after )); (( d < 0 )) && d=0
+  print -r -- $d
+}
+
+_repo_clean_execute() {  # consume the plan, do the work, report reclaimed bytes
+  local -A reclaimed
+  local -a f
+  local line r a t b freed grand=0 before
+
+  for line in $_RC_PLAN; do
+    f=("${(@ps:\t:)line}")
+    r=$f[1]; a=$f[2]; t=$f[3]; b=${f[4]:-0}
+    freed=0
+    case $a in
+      gc)
+        before=$(_repo_clean_objbytes "$r")
+        git -C "$r" gc --quiet 2>/dev/null
+        (( freed = before - $(_repo_clean_objbytes "$r") ));;
+      remote-prune)
+        # contacts the network; never prompt or hang, never fatal
+        GIT_TERMINAL_PROMPT=0 GIT_ASKPASS=true SSH_ASKPASS=true \
+        GIT_SSH_COMMAND='ssh -oBatchMode=yes -oConnectTimeout=5' \
+          git -C "$r" remote prune "$t" >/dev/null 2>&1 || true;;
+      rmdir)
+        if [[ $t == $r/* && -d $t ]] && git -C "$r" check-ignore -q -- "$t" 2>/dev/null; then
+          freed=$(_repo_clean_dirsize "$t")
+          rm -rf -- "$t"
+        fi;;
+      deep-reflog)
+        git -C "$r" reflog expire --expire=now --all 2>/dev/null || true;;
+      deep-gc)
+        before=$(_repo_clean_objbytes "$r")
+        git -C "$r" gc --prune=now --quiet 2>/dev/null || true
+        (( freed = before - $(_repo_clean_objbytes "$r") ));;
+      deep-clean)
+        local l p
+        for l in "${(@f)$(git -C "$r" clean -xdn 2>/dev/null)}"; do
+          p=${l#Would remove }
+          [[ $p == "$l" ]] && continue
+          (( freed += $(_repo_clean_dirsize "$r/${p%/}") ))
+        done
+        git -C "$r" clean -xdf >/dev/null 2>&1 || true;;
+      deep-skip)
+        print -u2 -r -- "repo-clean: ${r}: --deep skipped — $t";;
+      cache)
+        freed=$(_repo_clean_exec_cache "$t");;
+      docker)
+        docker builder prune -f >/dev/null 2>&1 || true;;
+      nix)
+        print -u2 -r -- 'repo-clean: nix-collect-garbage -d — system rollbacks will no longer be available'
+        nix-collect-garbage -d >/dev/null 2>&1 || true;;
+    esac
+    (( freed < 0 )) && freed=0
+    if (( freed > 0 )); then
+      (( grand += freed ))
+      (( reclaimed[$r] = ${reclaimed[$r]:-0} + freed ))
+      printf '%-22s %-14s freed %-10s (running total %s)\n' \
+        "${r:t}" "$a" "$(_repo_clean_hb $freed)" "$(_repo_clean_hb $grand)"
+    fi
+  done
+
+  print -r -- ''
+  if (( grand > 0 )); then
+    print -r -- 'reclaimed by repo:'
+    local k
+    for k in "${(@k)reclaimed}"; do
+      print -r -- "${reclaimed[$k]}"$'\t'"$k"
+    done | sort -rn | while IFS=$'\t' read -r b k; do
+      printf '  %-46s %s\n' "$k" "$(_repo_clean_hb $b)"
+    done
+  fi
+  print -r -- "total reclaimed: $(_repo_clean_hb $grand)"
+}
+
+# --------------------------- main -------------------------------------------
+
+_RC_OPT=()
+_RC_PLAN=()
+
+local root=''
+while (( $# )); do
+  case $1 in
+    -f|--apply)       _RC_OPT[apply]=1;;
+    -v|--verbose)     _RC_OPT[verbose]=1;;
+    -i|--interactive) _RC_OPT[interactive]=1;;
+    --deep)           _RC_OPT[deep]=1;;
+    --force-dirty)    _RC_OPT[force_dirty]=1;;
+    --caches)         _RC_OPT[caches]=1;;
+    --docker)         _RC_OPT[docker]=1;;
+    --nix)            _RC_OPT[nix]=1;;
+    -h|--help)        _repo_clean_usage; return 0;;
+    --)               shift; break;;
+    -*)               print -u2 -r -- "repo-clean: unknown option: $1"; _repo_clean_usage; return 2;;
+    *)                if [[ -z $root ]]; then root=$1
+                      else print -u2 -r -- "repo-clean: unexpected argument: $1"; return 2; fi;;
+  esac
+  shift
+done
+[[ -z $root && $# -gt 0 ]] && root=$1
+
+(( $+commands[fd] )) || { print -u2 -r -- 'repo-clean: requires fd (https://github.com/sharkdp/fd)'; return 1 }
+
+[[ -n $root ]] || root=$PWD
+root=${root:A}
+[[ -d $root ]] || { print -u2 -r -- "repo-clean: not a directory: $root"; return 1 }
+_RC_OPT[root]=$root
+
+local -a repos
+repos=("${(@f)$(_repo_clean_discover "$root")}")
+repos=("${(@)repos:#}")
+if (( ! ${#repos} )); then
+  print -r -- "repo-clean: no git repos found under $root"
+  return 0
+fi
+
+if (( ${_RC_OPT[interactive]:-0} )) && [[ -t 0 && -t 1 ]] && (( $+commands[fzf] )); then
+  local sel
+  sel=$(print -rl -- $repos | fzf --multi --reverse --height=60% --prompt='repo-clean> ') || return 0
+  repos=("${(@f)sel}")
+  repos=("${(@)repos:#}")
+  (( ${#repos} )) || { print -r -- 'repo-clean: nothing selected'; return 0 }
+fi
+
+local repo
+for repo in $repos; do
+  _repo_clean_plan_repo "$repo"
+done
+_repo_clean_plan_caches
+
+if (( ${_RC_OPT[apply]:-0} )); then
+  _repo_clean_execute
+else
+  _repo_clean_print
+fi
+return 0
