@@ -6,6 +6,7 @@ python = "{{ get_env(name='PYTHON_VERSION', default='3') }}"
 ruff = "latest"
 "npm:aws-azure-login" = "latest"
 go = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
 
 [env]
 _.file = ".env"
