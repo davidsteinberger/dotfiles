@@ -160,6 +160,7 @@
           "uv"
           "herdr"
           "coursier"
+          "gh"
         ];
         masApps = {
           Yubico = 1497506650;
