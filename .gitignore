@@ -12,3 +12,4 @@ bruno/**/_wip
 node_modules/
 herdr/.config/herdr/*
 !herdr/.config/herdr/config.toml
+.scratch/

@@ -51,4 +51,23 @@ sibling hook files instead.
   (existing history is terse, e.g. "update config").
 - Never commit secrets. Local/gitignored: `.env`, `zsh/.zlocal.zsh`,
   `zsh/.zfuncs/secret`. GPG/YubiKey + `pass` handle credentials.
-- Apple-silicon only (`aarch64-darwin`). No tests, no CI.
+- Apple-silicon only (`aarch64-darwin`). No CI. The lone test is
+  `zsh/.zfuncs/repo-clean.test.zsh` (standalone, run it directly).
+
+## Agent skills
+
+### Issue tracker
+
+Specs and implementation issues live as markdown under `.scratch/<feature-slug>/`
+(gitignored). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Canonical five roles, label strings unchanged (`needs-triage`, `needs-info`,
+`ready-for-agent`, `ready-for-human`, `wontfix`), recorded as a `Status:` line in
+each issue file. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root (created lazily, may
+not exist yet). See `docs/agents/domain.md`.
