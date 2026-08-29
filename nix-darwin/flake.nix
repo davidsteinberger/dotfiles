@@ -165,6 +165,7 @@
         masApps = {
           Yubico = 1497506650;
           Bitwarden = 1352778147;
+          Amphetamine = 937984704;
         };
         onActivation = {
           cleanup = "zap";
