@@ -59,6 +59,7 @@ in {
     nushell
     ripgrep
     eza
+    jq
     # (pass.withExtensions (exts: [
     #   exts.pass-otp
     #   exts.pass-import
@@ -134,6 +135,7 @@ in {
       link "${config.home.homeDirectory}/dotfiles/vscode/.config/Code/User/keybindings.json";
     ".claude/CLAUDE.md".source = link "${config.home.homeDirectory}/dotfiles/claude/CLAUDE.md";
     ".claude/settings.json".source = link "${config.home.homeDirectory}/dotfiles/claude/settings.json";
+    ".claude/statusline-command.sh".source = link "${config.home.homeDirectory}/dotfiles/claude/statusline-command.sh";
     ".claude/keybindings.json".source = link "${config.home.homeDirectory}/dotfiles/claude/keybindings.json";
     ".claude/hooks".source = link "${config.home.homeDirectory}/dotfiles/claude/hooks";
     ".claude/skills".source = link "${config.home.homeDirectory}/dotfiles/claude/skills";
