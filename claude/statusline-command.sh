@@ -69,10 +69,14 @@ limit_fmt() {
   printf '%s%s: %.0f%%%s' "$color" "$label" "$2" "$RESET"
 }
 
+GIT_STATUS=""
+[ "$STAGED" -gt 0 ] && GIT_STATUS="${GREEN}+${STAGED}${RESET}"
+[ "$MODIFIED" -gt 0 ] && GIT_STATUS="${GIT_STATUS}${YELLOW}~${MODIFIED}${RESET}"
+
 LIMITS=""
 [ -n "$FIVE_H" ] && LIMITS="$(limit_fmt 5h "$FIVE_H")"
 [ -n "$WEEK" ] && LIMITS="${LIMITS:+$LIMITS }$(limit_fmt 7d "$WEEK")"
 
-echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR##*/} | 🌿 $BRANCH"
+echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR##*/} | 🌿 $BRANCH $GIT_STATUS"
 COST_FMT=$(printf '$%.2f' "$COST")
 echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET}${LIMITS:+ | $LIMITS} | ⏱️ ${MINS}m ${SECS}s"

@@ -12,12 +12,14 @@ Checks that the nix-darwin config still evaluates and builds, without applying i
 1. From `~/dotfiles/nix-darwin`, run:
 
    ```
-   darwin-rebuild build --flake ~/dotfiles/nix-darwin
+   darwin-rebuild build --flake ~/dotfiles/nix-darwin --no-out-link
    ```
 
    This evaluates the flake and builds the system closure. It needs **no sudo**
    and does **not** activate anything. It picks the config matching the current
-   hostname (`david` or `dastein1`).
+   hostname (`david` or `dastein1`). `--no-out-link` is required here: unlike
+   `switch`, plain `build` otherwise drops a `./result` symlink into whatever
+   directory the command was run from.
 
 2. If it fails:
    - Report the failing file and message.
