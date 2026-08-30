@@ -3,7 +3,7 @@ onboarding = false
 [theme]
 auto_switch = true
 dark_name   = "kanagawa"
-light_name  = "kanagawa-lotus"
+light_name  = "catppuccin-latte"
 
 name = "kanagawa"
 

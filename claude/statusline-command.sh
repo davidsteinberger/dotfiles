@@ -60,6 +60,19 @@ fi
 
 IFS='|' read -r BRANCH STAGED MODIFIED <"$CACHE_FILE"
 
+# Color a rate-limit percentage like the context bar: green/yellow/red
+limit_fmt() {
+  local label=$1 pct=${2%.*}
+  local color=$GREEN
+  [ "$pct" -ge 50 ] && color=$YELLOW
+  [ "$pct" -ge 80 ] && color=$RED
+  printf '%s%s: %.0f%%%s' "$color" "$label" "$2" "$RESET"
+}
+
+LIMITS=""
+[ -n "$FIVE_H" ] && LIMITS="$(limit_fmt 5h "$FIVE_H")"
+[ -n "$WEEK" ] && LIMITS="${LIMITS:+$LIMITS }$(limit_fmt 7d "$WEEK")"
+
 echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR##*/} | 🌿 $BRANCH"
 COST_FMT=$(printf '$%.2f' "$COST")
-echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET} | ⏱️ ${MINS}m ${SECS}s"
+echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET}${LIMITS:+ | $LIMITS} | ⏱️ ${MINS}m ${SECS}s"

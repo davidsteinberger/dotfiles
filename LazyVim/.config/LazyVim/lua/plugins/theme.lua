@@ -42,10 +42,8 @@ function DarkMode(transparent)
 end
 
 function LightMode()
-  local kanagawa = require("kanagawa")
-  ---@diagnostic disable-next-line: missing-fields
-  kanagawa.setup({ theme = "lotus", transparent = false })
-  vim.cmd("colorscheme kanagawa-lotus")
+  require("catppuccin").setup({ flavour = "latte", transparent_background = false })
+  vim.cmd("colorscheme catppuccin-latte")
 end
 
 return {
@@ -54,19 +52,19 @@ return {
     config = function()
       DarkMode()
     end,
-    init = function()
-      vim.api.nvim_create_autocmd("ColorScheme", {
-        pattern = "kanagawa",
-        callback = function()
-          vim.api.nvim_set_hl(0, "StatusLine", { link = "lualine_c_normal" })
-        end,
-      })
-    end,
+    opts = {
+      ---@param colors KanagawaColors
+      overrides = function(colors)
+        return {
+          StatusLine = { bg = colors.theme.ui.bg_p1 },
+        }
+      end,
+    },
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    event = "VeryLazy",
+    priority = 1000,
     config = function()
       require("catppuccin").setup({
         transparent_background = false,

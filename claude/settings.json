@@ -39,7 +39,7 @@
     "mode": "tap"
   },
   "skipDangerousModePermissionPrompt": true,
-  "theme": "dark",
+  "theme": "auto",
   "agentPushNotifEnabled": true,
   "autoMode": {
     "environment": [
