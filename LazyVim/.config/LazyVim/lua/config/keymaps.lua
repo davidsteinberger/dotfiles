@@ -21,7 +21,9 @@ map("n", "<bs>D", function()
 end, DEFAULT_OPTIONS)
 map("n", "<bs>q", ":cnext<cr>", DEFAULT_OPTIONS)
 map("n", "<bs>Q", ":cprev<cr>", DEFAULT_OPTIONS)
-map("n", "<bs>b", ":bd<cr>", DEFAULT_OPTIONS)
+map("n", "<bs>b", function()
+  Snacks.bufdelete()
+end, DEFAULT_OPTIONS)
 
 -- copy entire buffer
 map("n", "<leader>Y", ":%y+<cr>", DEFAULT_OPTIONS)

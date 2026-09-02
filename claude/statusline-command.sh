@@ -57,13 +57,13 @@ if cache_is_stale; then
     if [ -n "$BRANCH" ] && command -v gh >/dev/null 2>&1; then
       PR_URL=$(timeout 3 gh pr view --json url -q .url 2>/dev/null)
     fi
-    echo "$BRANCH|$STAGED|$MODIFIED|$REMOTE|$PR_URL" >"$CACHE_FILE"
+    echo "1|$BRANCH|$STAGED|$MODIFIED|$REMOTE|$PR_URL" >"$CACHE_FILE"
   else
-    echo "||||" >"$CACHE_FILE"
+    echo "0|||||" >"$CACHE_FILE"
   fi
 fi
 
-IFS='|' read -r BRANCH STAGED MODIFIED REMOTE PR_URL <"$CACHE_FILE"
+IFS='|' read -r IS_GIT BRANCH STAGED MODIFIED REMOTE PR_URL <"$CACHE_FILE"
 
 # Color a rate-limit percentage like the context bar: green/yellow/red
 limit_fmt() {
@@ -98,6 +98,9 @@ LIMITS=""
 [ -n "$FIVE_H" ] && LIMITS="$(limit_fmt 5h "$FIVE_H")"
 [ -n "$WEEK" ] && LIMITS="${LIMITS:+$LIMITS }$(limit_fmt 7d "$WEEK")"
 
-echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR_LABEL} | 🌿 ${BRANCH_LABEL} $GIT_STATUS"
+GIT_SECTION=""
+[ "$IS_GIT" = "1" ] && GIT_SECTION=" | 🌿 ${BRANCH_LABEL} $GIT_STATUS"
+
+echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR_LABEL}${GIT_SECTION}"
 COST_FMT=$(printf '$%.2f' "$COST")
 echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET}${LIMITS:+ | $LIMITS} | ⏱️ ${MINS}m ${SECS}s"
