@@ -7,6 +7,9 @@ ruff = "latest"
 "npm:aws-azure-login" = "latest"
 go = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
+"npm:attw" = "latest"
+"npm:wgc" = "latest"
+"npm:@graphql-inspector/cli" = "latest"
 
 [env]
 _.file = ".env"
