@@ -3,7 +3,14 @@
 # Run automatically via home-manager activation on `hm`/`rebuild`.
 set -eu
 
-command -v herdr >/dev/null 2>&1 || exit 0
+# home-manager activation scripts run with a minimal, hermetic PATH that
+# excludes Homebrew, so herdr (installed via brew) won't be found otherwise.
+PATH="/opt/homebrew/bin:$PATH"
+
+if ! command -v herdr >/dev/null 2>&1; then
+    echo "herdr: skipping plugin install, herdr not found (expected at /opt/homebrew/bin)" >&2
+    exit 0
+fi
 
 desired="
 lmilojevicc/herdr-tab-rename
