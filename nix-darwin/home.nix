@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   link = config.lib.file.mkOutOfStoreSymlink;
@@ -187,6 +188,10 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.activation.herdrPlugins = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    run ${config.home.homeDirectory}/dotfiles/herdr/.config/herdr/scripts/ensure-plugins.sh
+  '';
 
   programs.direnv.enable = true;
 
