@@ -10,12 +10,6 @@ name = "kanagawa"
 [keys]
 prefix = "ctrl+space"
 
-# Graphite layout equivalents of hjkl, plus arrow keys
-focus_pane_left  = ["alt+shift+y", "alt+shift+left"]
-focus_pane_down  = ["alt+shift+h", "alt+shift+down"]
-focus_pane_up    = ["alt+shift+a", "alt+shift+up"]
-focus_pane_right = ["alt+shift+e", "alt+shift+right"]
-
 previous_tab = ["prefix+p", "alt+shift+["]
 next_tab = ["prefix+n", "alt+shift+]"]
 
@@ -27,6 +21,60 @@ zoom = ["prefix+z", "alt+shift+z"]
 
 focus_agent = ["alt+1..9"]
 switch_workspace = ["alt+shift+1..9"]
+
+# Graphite layout equivalents of hjkl, plus arrow keys: nvim-aware pane
+# navigation. If the focused pane is running nvim, forward the equivalent
+# alt+shift+<LETTER> chord into it so nvim's own keymap (config/keymaps.lua)
+# decides whether to move within its window layout or hand back to herdr at
+# the edge; otherwise move herdr's pane focus directly. See
+# scripts/nvim-aware-nav.sh.
+[[keys.command]]
+key = "alt+shift+y"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh left y"
+description = "nav/focus left"
+
+[[keys.command]]
+key = "alt+shift+left"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh left y"
+description = "nav/focus left"
+
+[[keys.command]]
+key = "alt+shift+h"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh down h"
+description = "nav/focus down"
+
+[[keys.command]]
+key = "alt+shift+down"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh down h"
+description = "nav/focus down"
+
+[[keys.command]]
+key = "alt+shift+a"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh up a"
+description = "nav/focus up"
+
+[[keys.command]]
+key = "alt+shift+up"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh up a"
+description = "nav/focus up"
+
+[[keys.command]]
+key = "alt+shift+e"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh right e"
+description = "nav/focus right"
+
+[[keys.command]]
+key = "alt+shift+right"
+type = "shell"
+command = "$HOME/.config/herdr/scripts/nvim-aware-nav.sh right e"
+description = "nav/focus right"
 
 [ui.toast]
 delivery = "herdr"

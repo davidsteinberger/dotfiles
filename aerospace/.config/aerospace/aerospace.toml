@@ -125,7 +125,8 @@ alt-shift-n = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-x = 'exec-and-forget open -a /Applications/IntelliJ\ IDEA.app'
 alt-v = 'exec-and-forget open -a /Applications/Visual\ Studio\ Code.app'
 alt-r = 'exec-and-forget open -a /Applications/Bruno.app'
-alt-shift-c = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
+alt-shift-c = 'exec-and-forget open -a /Applications/Claude.app'
+ctrl-alt-shift-c = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
 cmd-e = 'enable toggle'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
@@ -134,11 +135,25 @@ ctrl-alt-h = 'focus down'
 ctrl-alt-a = 'focus up'
 ctrl-alt-e = 'focus right'
 
+# Arrow-key aliases for the Graphite bindings above, for the regular macbook
+# keyboard (no ZMK/Graphite letters available there).
+ctrl-alt-left = 'focus left'
+ctrl-alt-down = 'focus down'
+ctrl-alt-up = 'focus up'
+ctrl-alt-right = 'focus right'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 ctrl-alt-shift-y = 'move left'
 ctrl-alt-shift-h = 'move down'
 ctrl-alt-shift-a = 'move up'
 ctrl-alt-shift-e = 'move right'
+
+# Arrow-key aliases for the Graphite bindings above, for the regular macbook
+# keyboard (no ZMK/Graphite letters available there).
+ctrl-alt-shift-left = 'move left'
+ctrl-alt-shift-down = 'move down'
+ctrl-alt-shift-up = 'move up'
+ctrl-alt-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 ctrl-alt-shift-minus = 'resize smart -50'
@@ -242,6 +257,13 @@ ctrl-alt-shift-y = ['join-with left', 'mode main']
 ctrl-alt-shift-h = ['join-with down', 'mode main']
 ctrl-alt-shift-a = ['join-with up', 'mode main']
 ctrl-alt-shift-e = ['join-with right', 'mode main']
+
+# Arrow-key aliases for the Graphite bindings above, for the regular macbook
+# keyboard (no ZMK/Graphite letters available there).
+ctrl-alt-shift-left = ['join-with left', 'mode main']
+ctrl-alt-shift-down = ['join-with down', 'mode main']
+ctrl-alt-shift-up = ['join-with up', 'mode main']
+ctrl-alt-shift-right = ['join-with right', 'mode main']
 
 [workspace-to-monitor-force-assignment]
 2 = 'main'      # Main monitor

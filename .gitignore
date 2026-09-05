@@ -12,6 +12,8 @@ bruno/**/_wip
 node_modules/
 herdr/.config/herdr/*
 !herdr/.config/herdr/config.toml
+!herdr/.config/herdr/scripts/
+!herdr/.config/herdr/scripts/*
 .scratch/
 result
 nix-darwin/result

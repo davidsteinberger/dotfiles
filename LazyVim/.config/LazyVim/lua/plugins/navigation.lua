@@ -5,21 +5,21 @@ vim.keymap.set("n", "<cr>", function()
 end, { noremap = true, expr = true })
 
 return {
-  {
-    "christoomey/vim-tmux-navigator",
-  },
-  {
-    "swaits/zellij-nav.nvim",
-    lazy = true,
-    event = "VeryLazy",
-    keys = {
-      { "<c-h>", "<cmd>ZellijNavigateLeftTab<cr>", { silent = true, desc = "navigate left or tab" } },
-      { "<c-j>", "<cmd>ZellijNavigateDown<cr>", { silent = true, desc = "navigate down" } },
-      { "<c-k>", "<cmd>ZellijNavigateUp<cr>", { silent = true, desc = "navigate up" } },
-      { "<c-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" } },
-    },
-    opts = {},
-  },
+  -- {
+  --   "christoomey/vim-tmux-navigator",
+  -- },
+  -- {
+  --   "swaits/zellij-nav.nvim",
+  --   lazy = true,
+  --   event = "VeryLazy",
+  --   keys = {
+  --     { "<c-h>", "<cmd>ZellijNavigateLeftTab<cr>", { silent = true, desc = "navigate left or tab" } },
+  --     { "<c-j>", "<cmd>ZellijNavigateDown<cr>", { silent = true, desc = "navigate down" } },
+  --     { "<c-k>", "<cmd>ZellijNavigateUp<cr>", { silent = true, desc = "navigate up" } },
+  --     { "<c-l>", "<cmd>ZellijNavigateRightTab<cr>", { silent = true, desc = "navigate right or tab" } },
+  --   },
+  --   opts = {},
+  -- },
   {
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
