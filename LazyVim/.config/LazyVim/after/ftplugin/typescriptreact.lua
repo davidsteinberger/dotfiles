@@ -13,7 +13,7 @@ map("n", "<Leader>m", function()
     .. util.mise_exec()
     .. " "
     .. tsc_cmd
-    .. " 2>&1 | grep -E '^[^/][^(]+\\([0-9]+,[0-9]+\\): (error|warning)' | sed \"s|^|"
+    .. " 2>&1 | grep -E '^[^/].+\\([0-9]+,[0-9]+\\): (error|warning)' | sed \"s|^|"
     .. sed_root
     .. '/|"'
 

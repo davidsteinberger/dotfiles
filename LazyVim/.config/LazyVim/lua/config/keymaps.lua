@@ -51,22 +51,27 @@ map("n", "<S-Down>", "n", DEFAULT_OPTIONS)
 -- Moves to an adjacent vim split; falls back to herdr pane focus at the edge.
 local function navigate(vim_dir, herdr_dir)
   local cur = vim.api.nvim_get_current_win()
-  vim.cmd("wincmd " .. vim_dir)
-  if vim.api.nvim_get_current_win() == cur then
+  -- wincmd silently shifts focus to a background split when the current
+  -- window is floating (e.g. lazygit), so treat that as "no move" too.
+  local floating = vim.api.nvim_win_get_config(cur).relative ~= ""
+  if not floating then
+    vim.cmd("wincmd " .. vim_dir)
+  end
+  if floating or vim.api.nvim_get_current_win() == cur then
     vim.fn.jobstart({ "herdr", "pane", "focus", "--direction", herdr_dir })
   end
 end
 
-map({ "n", "v" }, "<M-Y>", function()
+map({ "n", "v", "t" }, "<M-Y>", function()
   navigate("h", "left")
 end, DEFAULT_OPTIONS)
-map({ "n", "v" }, "<M-H>", function()
+map({ "n", "v", "t" }, "<M-H>", function()
   navigate("j", "down")
 end, DEFAULT_OPTIONS)
-map({ "n", "v" }, "<M-A>", function()
+map({ "n", "v", "t" }, "<M-A>", function()
   navigate("k", "up")
 end, DEFAULT_OPTIONS)
-map({ "n", "v" }, "<M-E>", function()
+map({ "n", "v", "t" }, "<M-E>", function()
   navigate("l", "right")
 end, DEFAULT_OPTIONS)
 

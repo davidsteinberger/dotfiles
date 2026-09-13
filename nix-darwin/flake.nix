@@ -157,7 +157,6 @@
           "borkdude/brew/babashka"
           "anomalyco/tap/opencode"
           "bitwarden-cli"
-          "uv"
           "herdr"
           "coursier"
           "gh"
