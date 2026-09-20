@@ -52,12 +52,17 @@ map("n", "<S-Down>", "n", DEFAULT_OPTIONS)
 local function navigate(vim_dir, herdr_dir)
   local cur = vim.api.nvim_get_current_win()
   -- wincmd silently shifts focus to a background split when the current
-  -- window is floating (e.g. lazygit), so treat that as "no move" too.
+  -- window is a floating terminal (e.g. lazygit), so treat that as "no move"
+  -- too. Floating non-terminal windows (Snacks explorer, mini.files, pickers)
+  -- navigate fine with wincmd, and non-floating terminals (e.g. the <c-/>
+  -- split terminal) navigate fine too, so only skip wincmd for the
+  -- floating+terminal combination.
   local floating = vim.api.nvim_win_get_config(cur).relative ~= ""
-  if not floating then
+  local floating_terminal = floating and vim.bo.buftype == "terminal"
+  if not floating_terminal then
     vim.cmd("wincmd " .. vim_dir)
   end
-  if floating or vim.api.nvim_get_current_win() == cur then
+  if floating_terminal or vim.api.nvim_get_current_win() == cur then
     vim.fn.jobstart({ "herdr", "pane", "focus", "--direction", herdr_dir })
   end
 end
