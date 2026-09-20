@@ -41,7 +41,7 @@
   side-by-side = true
 
 [merge]
-  tool = nvim
+  tool = diffconflicts
 
 [mergetool]
   hideResolved = true
@@ -60,3 +60,7 @@
 
 [rebase]
 	autoStash = true
+
+[mergetool "diffconflicts"]
+	cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true

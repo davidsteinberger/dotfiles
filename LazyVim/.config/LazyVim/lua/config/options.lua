@@ -21,7 +21,14 @@
 
 vim.g.maplocalleader = ","
 
-vim.o.diffopt = "filler,iwhite,internal,context:3,algorithm:minimal"
+vim.opt.diffopt = {
+  "vertical",
+  "filler",
+  "closeoff",
+  "algorithm:histogram",
+  "linematch:60",
+  "iwhiteall",
+}
 
 vim.opt.mousescroll = "ver:1,hor:4"
 vim.o.swapfile = false

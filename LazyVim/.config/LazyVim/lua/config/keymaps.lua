@@ -11,6 +11,7 @@ map("x", "<bs>", '"_d', DEFAULT_OPTIONS)
 -- map({ "n", "x", "v" }, "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
 
 -- shortcuts
+map("n", "<bs>t", ":tabclose<cr>", DEFAULT_OPTIONS)
 map("n", "<bs>w", '"_ciw', DEFAULT_OPTIONS)
 map("n", "<bs>p", '"_cw', DEFAULT_OPTIONS)
 map("n", "<bs>d", function()
