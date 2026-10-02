@@ -19,8 +19,6 @@
 --   return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
 -- end
 
-vim.g.maplocalleader = ","
-
 vim.opt.diffopt = {
   "vertical",
   "filler",

@@ -53,7 +53,9 @@ return {
     "makyinmars/herdr-context.nvim",
     cond = vim.env.HERDR_ENV == "1",
     lazy = false, -- keeps :checkhealth herdr-context discoverable before the first mapping
-    opts = {},
+    opts = {
+      focus_after_send = true, -- focus the Herdr agent pane after sending context
+    },
     keys = {
       {
         "<leader>ac",
@@ -117,5 +119,13 @@ return {
         desc = "Refresh Herdr Agents",
       },
     },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    opts = function(_, opts)
+      table.insert(opts.sections.lualine_x, function()
+        return require("herdr-context").statusline()
+      end)
+    end,
   },
 }
