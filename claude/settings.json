@@ -7,7 +7,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
   "enableAllProjectMcpServers": true,
   "hooks": {
     "SessionStart": [

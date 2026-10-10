@@ -17,3 +17,4 @@ herdr/.config/herdr/*
 .scratch/
 result
 nix-darwin/result
+claude/skills/synced

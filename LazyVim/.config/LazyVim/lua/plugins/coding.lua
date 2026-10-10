@@ -59,6 +59,16 @@ return {
   {
     "saghen/blink.cmp",
     opts = {
+      sources = {
+        -- Conjure's nREPL completions incl. Java members (see lua/conjure_blink.lua)
+        per_filetype = { clojure = { inherit_defaults = true, "conjure" } },
+        providers = {
+          conjure = { name = "conjure", module = "conjure_blink", score_offset = 5 },
+        },
+      },
+      completion = {
+        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+      },
       enabled = function()
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
       end,

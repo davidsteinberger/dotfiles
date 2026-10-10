@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "markdown" },
   callback = function()
     vim.wo.conceallevel = 1
+    vim.diagnostic.enable(false, { bufnr = 0 })
   end,
 })
 
