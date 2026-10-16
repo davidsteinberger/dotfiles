@@ -11,7 +11,17 @@ map("x", "<bs>", '"_d', DEFAULT_OPTIONS)
 -- map({ "n", "x", "v" }, "<bs><bs>", '"_diw', DEFAULT_OPTIONS)
 
 -- shortcuts
-map("n", "<bs>t", ":tabclose<cr>", DEFAULT_OPTIONS)
+-- close the tab but keep its buffer (and cursor) in the tab we land on
+map("n", "<bs>t", function()
+  if #vim.api.nvim_list_tabpages() == 1 then
+    return
+  end
+  local buf = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  vim.cmd.tabclose()
+  vim.api.nvim_set_current_buf(buf)
+  pcall(vim.api.nvim_win_set_cursor, 0, cursor)
+end, DEFAULT_OPTIONS)
 map("n", "<bs>w", '"_ciw', DEFAULT_OPTIONS)
 map("n", "<bs>p", '"_cw', DEFAULT_OPTIONS)
 map("n", "<bs>d", function()

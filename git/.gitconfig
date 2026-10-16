@@ -41,11 +41,11 @@
   side-by-side = true
 
 [merge]
-  tool = diffconflicts
+	tool = diffconflicts
 
 [mergetool]
   hideResolved = true
-  keepBackup = false
+	keepBackup = false
   prompt = false
 
 [mergetool "nvim"]
@@ -62,5 +62,5 @@
 	autoStash = true
 
 [mergetool "diffconflicts"]
-	cmd = nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	cmd = "if grep -Iq -E '^(<<<<<<<|>>>>>>>)([[:space:]]|$)' \"$MERGED\" || ! grep -Iq . \"$MERGED\"; then nvim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"; else echo \"$MERGED: no conflict markers, staging\"; fi"
 	trustExitCode = true

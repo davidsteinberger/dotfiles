@@ -3,6 +3,7 @@ DEFAULT_OPTIONS = { noremap = true, silent = true }
 map("n", "<Leader>m", "<Cmd>ConjureEvalRootForm<CR>", DEFAULT_OPTIONS)
 map("n", "<Leader>cj", "<Cmd>Clj!<CR>", DEFAULT_OPTIONS)
 map("n", "<Leader>cef", "<Cmd>ConjureEvalFile<CR>", DEFAULT_OPTIONS)
+map("n", "<leader>ceb", "<Cmd>ConjureEvalBuf<CR>", DEFAULT_OPTIONS)
 map("n", "<Leader>cee", "<Cmd>ConjureEvalCurrentForm<CR>", DEFAULT_OPTIONS)
 map("n", "<Leader>cer", "<Cmd>ConjureEvalRootForm<CR>", DEFAULT_OPTIONS)
 map("n", "<Leader>cc", "<Cmd>ConjureConnect<CR>", DEFAULT_OPTIONS)
@@ -34,7 +35,7 @@ vim.keymap.set("n", "<localleader>eco", function()
       end
       local lines = {}
       for line in vim.gsplit(vim.trim(out), "\n", { plain = true }) do
-        table.insert(lines, (((";; " .. line):gsub("%s+$", ""))))
+        table.insert(lines, ((";; " .. line):gsub("%s+$", "")))
       end
       buffer["replace-range"](buf, form.range, table.concat(lines, "\n"))
     end,
