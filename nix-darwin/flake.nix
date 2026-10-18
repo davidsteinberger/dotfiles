@@ -123,40 +123,26 @@
           "bruno"
           "claude"
           "claude-code"
-          "opencode-desktop"
         ];
-        taps = [
-          "leoafarias/fvm"
-          "felixkratz/formulae"
-        ];
+        taps = [];
         brews = [
           "starship"
           "mas"
           "syncthing"
           "openssl"
-          "readline"
           "sqlite3"
-          "xz"
-          "zlib"
-          "tcl-tk"
-          "fvm"
-          "mysql"
           "lazydocker"
           "k9s"
           "kubectx"
           "stern"
           "neovim"
           "cormacrelf/tap/dark-notify"
-          "portaudio"
-          "lua"
-          "felixkratz/formulae/sketchybar"
           "zellij"
           "clojure/tools/clojure"
           "borkdude/brew/babashka"
-          "anomalyco/tap/opencode"
+          "babashka/brew/neil"
           "bitwarden-cli"
           "herdr"
-          "coursier"
           "gh"
         ];
         masApps = {

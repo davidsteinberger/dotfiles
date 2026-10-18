@@ -11,6 +11,8 @@ aws-cli = { version = "latest", symlink_bins = "true" }
 "npm:@graphql-inspector/cli" = "latest"
 "npm:@arethetypeswrong/cli" = "latest"
 uv = "latest"
+java = "lts"
+gradle = "latest"
 
 [env]
 _.file = ".env"
