@@ -73,9 +73,10 @@ return {
         return not vim.tbl_contains({ "typr" }, vim.bo.filetype)
       end,
       keymap = {
-        -- ctrl+space is herdr's prefix; pressing it twice passes it through,
-        -- but alt+space lets us trigger completions with a single keypress.
-        ["<M-space>"] = { "show", "show_documentation", "hide_documentation" },
+        -- ctrl+space is herdr's prefix, so trigger completions with ctrl+n/p
+        -- (alt+space is used to insert a space after the cursor, see keymaps.lua).
+        ["<C-n>"] = { "show", "select_next", "fallback" },
+        ["<C-p>"] = { "show", "select_prev", "fallback" },
       },
       cmdline = {
         enabled = true,

@@ -93,6 +93,24 @@ end, DEFAULT_OPTIONS)
 
 map("i", "<c-c>", "<esc>", DEFAULT_OPTIONS)
 
+-- insert a space after the cursor without moving it (<C-g>U keeps undo/dot-repeat intact)
+-- copilot's auto_trigger would otherwise suggest on the text change, so pause it briefly
+-- and dismiss any suggestion already showing
+map("i", "<M-space>", function()
+  local buf = vim.api.nvim_get_current_buf()
+  local ok, suggestion = pcall(require, "copilot.suggestion")
+  if ok then
+    suggestion.dismiss()
+  end
+  vim.b[buf].copilot_suggestion_auto_trigger = false
+  vim.api.nvim_feedkeys(vim.keycode("<space><C-g>U<Left>"), "n", false)
+  vim.defer_fn(function()
+    if vim.api.nvim_buf_is_valid(buf) then
+      vim.b[buf].copilot_suggestion_auto_trigger = nil
+    end
+  end, 150)
+end, DEFAULT_OPTIONS)
+
 map("n", "<leader>;", function()
   Snacks.dashboard()
 end)

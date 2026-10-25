@@ -164,6 +164,21 @@ in {
     "bruno".source = link "${config.home.homeDirectory}/dotfiles/bruno/.config/bruno";
     "herdr".source = link "${config.home.homeDirectory}/dotfiles/herdr/.config/herdr";
     "mise".source = link "${config.home.homeDirectory}/dotfiles/mise/.config/mise";
+    "clojure-lsp".source = link "${config.home.homeDirectory}/dotfiles/clojure-lsp/.config/clojure-lsp";
+
+    # ~/.config/clojure also holds generated state (.cpcache, tools, ...), so
+    # link only what we manage. deps.edn is rendered here because :local/root
+    # must be absolute and tools.deps expands neither ~ nor env vars.
+    "clojure/deps.edn".text = ''
+      {:aliases
+       {;; Personal REPL helpers (dev.spy)
+        :dev/local
+        {:extra-deps
+         {local/dev {:local/root "${config.xdg.configHome}/clojure/local/dev"}
+          ;; needed by dev.kotlin
+          org.jetbrains.kotlin/kotlin-reflect {:mvn/version "2.1.0"}}}}}
+    '';
+    "clojure/local/dev".source = link "${config.home.homeDirectory}/dotfiles/clojure/.config/clojure/local/dev";
   };
 
   # Home Manager can also manage your environment variables through

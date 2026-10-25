@@ -1,0 +1,3 @@
+;; Global clojure-lsp config.
+;; :dev/local is defined in ~/.config/clojure/deps.edn (personal REPL helpers, local.dev.*).
+{:source-aliases #{:scratch :test :dev/local}}
