@@ -20,4 +20,5 @@ nix-darwin/result
 claude/skills/synced
 **/.clj-kondo/.cache
 **/.lsp/.cache
+.cpcache
 
