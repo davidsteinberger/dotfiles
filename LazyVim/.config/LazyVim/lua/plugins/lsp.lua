@@ -6,6 +6,7 @@ return {
     opts = {
       -- make sure mason installs the server
       servers = {
+        clojure_lsp = {},
         tsserver = {
           enabled = false,
         },
