@@ -123,6 +123,7 @@
           "bruno"
           "claude"
           "claude-code"
+          "nextcloud"
         ];
         taps = [];
         brews = [
